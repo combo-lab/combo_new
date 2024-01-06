@@ -1,15 +1,19 @@
 defmodule NeedleCombo.MixProject do
   use Mix.Project
 
+  @app :needle_combo
+  @version "0.1.0"
+
   def project do
     [
-      app: :needle_combo,
-      version: "0.1.0",
+      app: @app,
+      version: @version,
       elixir: "~> 1.14",
       elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,
-      aliases: aliases(),
-      deps: deps()
+      releases: releases(),
+      deps: deps(),
+      aliases: aliases()
     ]
   end
 
@@ -26,6 +30,15 @@ defmodule NeedleCombo.MixProject do
   # Specifies which paths to compile per environment.
   defp elixirc_paths(:test), do: ["lib", "test/support"]
   defp elixirc_paths(_), do: ["lib"]
+
+  defp releases do
+    [
+      {@app,
+       [
+         include_executables_for: [:unix]
+       ]}
+    ]
+  end
 
   # Specifies the project dependencies.
   #
@@ -109,6 +122,7 @@ defmodule NeedleCombo.MixProject do
       ],
 
       # ! core
+
       "core.ecto.setup": [
         "ecto.create -r NeedleCombo.Core.Repo",
         "ecto.migrate -r NeedleCombo.Core.Repo",
@@ -120,6 +134,7 @@ defmodule NeedleCombo.MixProject do
       ],
 
       # ! user_web
+
       "user_web.assets.setup": [
         "cmd npm install --prefix assets/user_web"
       ],

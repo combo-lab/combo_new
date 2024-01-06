@@ -87,7 +87,7 @@ config :needle_combo, CozyProxy,
   ip: cozy_proxy_listen_ip,
   port: cozy_proxy_listen_port
 
-if System.get_env("RELEASE_MODE") || System.get_env("COZY_PROXY_SERVER") do
+if System.get_env("RELEASE_NAME") || System.get_env("COZY_PROXY_SERVER") do
   config :needle_combo, CozyProxy, server: true
 end
 
