@@ -2,12 +2,88 @@ defmodule NeedleNew.Codemod do
   alias __MODULE__.SourcerorExt
 
   @doc """
-  Injects new deps into the body of `deps/0` private function of source.
+  Extracts var from pattern when the pattern is found in given AST.
+
+  ## Examples
+
+      # extract args from pattern {:defmodule, _meta, args}
+      extract_pattern_var(ast, {:defmodule, _meta, args}, args)
+
   """
-  def inject_deps(source, new_source) when is_binary(new_source) do
-    source
-    |> Sourceror.parse_string!()
-    |> Sourceror.postwalk(fn
+  defmacro extract_pattern_var(ast, pattern, var) do
+    quote do
+      try do
+        Sourceror.prewalk(unquote(ast), fn
+          unquote(pattern), state ->
+            throw(unquote(var))
+
+          other, state ->
+            {other, state}
+        end)
+      catch
+        # found
+        :throw, value ->
+          value
+      else
+        # not found
+        _ ->
+          nil
+      end
+    end
+  end
+
+  @doc """
+  Returns module name of AST.
+  """
+  def get_module_name!(ast) do
+    case extract_pattern_var(ast, {:defmodule, _, [{:__aliases__, _, aliases} | _]}, aliases) do
+      nil ->
+        raise RuntimeError, "failed to get module name"
+
+      aliases ->
+        Module.concat(aliases)
+    end
+  end
+
+  @doc """
+  Merges content of two mix.exs files.
+  """
+  def merge_mix(source, new_source) do
+    source_ast = Sourceror.parse_string!(source)
+    new_source_ast = Sourceror.parse_string!(new_source)
+
+    new_source_deps =
+      extract_pattern_var(
+        new_source_ast,
+        {:defp, meta, [{:deps, _, _}, [{{_, _, [:do]}, {:__block__, _, [deps]}}]]},
+        deps
+      )
+
+    new_source_aliases =
+      extract_pattern_var(
+        new_source_ast,
+        {:defp, meta, [{:aliases, _, _}, [{{_, _, [:do]}, {:__block__, _, [aliases]}}]]},
+        aliases
+      )
+
+    source_ast =
+      if new_source_deps,
+        do: inject_deps(source_ast, new_source_deps),
+        else: source_ast
+
+    source_ast =
+      if new_source_aliases,
+        do: inject_aliases(source_ast, new_source_aliases),
+        else: source_ast
+
+    source_ast
+    |> Sourceror.to_string()
+    |> String.trim()
+    |> Kernel.<>("\n")
+  end
+
+  defp inject_deps(ast, new_deps) do
+    Sourceror.postwalk(ast, fn
       {:defp, meta, [{:deps, _, _} = fun, body]}, state ->
         [{{_, _, [:do]}, do_block_ast}] = body
         {:__block__, block_meta, [deps]} = do_block_ast
@@ -21,9 +97,8 @@ defmodule NeedleNew.Codemod do
               block_meta[:line]
           end + 1
 
-        {:__block__, _block_meta, [new_deps]} =
-          new_source
-          |> Sourceror.parse_string!()
+        new_deps =
+          new_deps
           |> add_extra_leading_comment_eol()
           |> SourcerorExt.correct_lines(new_deps_line)
 
@@ -35,16 +110,10 @@ defmodule NeedleNew.Codemod do
       other, state ->
         {other, state}
     end)
-    |> Sourceror.to_string()
   end
 
-  @doc """
-  Injects new deps into the body of `aliases/0` private function of source.
-  """
-  def inject_aliases(source, new_source) when is_binary(new_source) do
-    source
-    |> Sourceror.parse_string!()
-    |> Sourceror.postwalk(fn
+  defp inject_aliases(ast, new_aliases) do
+    Sourceror.postwalk(ast, fn
       {:defp, meta, [{:aliases, _, _} = fun, body]}, state ->
         [{{_, _, [:do]}, do_block_ast}] = body
         {:__block__, block_meta, [aliases]} = do_block_ast
@@ -58,9 +127,8 @@ defmodule NeedleNew.Codemod do
               block_meta[:line]
           end + 1
 
-        {:__block__, _block_meta, [new_aliases]} =
-          new_source
-          |> Sourceror.parse_string!()
+        new_aliases =
+          new_aliases
           |> add_extra_leading_comment_eol()
           |> SourcerorExt.correct_lines(new_aliases_line)
 
@@ -72,13 +140,12 @@ defmodule NeedleNew.Codemod do
       other, state ->
         {other, state}
     end)
-    |> Sourceror.to_string()
   end
 
   @doc """
-  Injects new config into existing config.
+  Merges content of two config files.
   """
-  def inject_config(source, new_source) when is_binary(new_source) do
+  def merge_config(source, new_source) when is_binary(new_source) do
     {:__block__, block_meta, config} =
       source
       |> Sourceror.parse_string!()
@@ -111,7 +178,7 @@ defmodule NeedleNew.Codemod do
     left ++ new_config ++ right
   end
 
-  def add_extra_leading_comment_eol(ast) do
+  defp add_extra_leading_comment_eol(ast) do
     extra_leading_comment_eol = 1
 
     {ast, is_added?} =
