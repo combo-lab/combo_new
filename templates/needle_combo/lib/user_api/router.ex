@@ -7,5 +7,7 @@ defmodule NeedleCombo.UserAPI.Router do
 
   scope "/v1", NeedleCombo.UserAPI do
     pipe_through :api
+
+    get "/", HomeController, :welcome
   end
 end
