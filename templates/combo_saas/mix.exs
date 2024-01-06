@@ -31,6 +31,9 @@ defmodule ComboSaaS.MixProject do
   defp elixirc_paths(:test), do: ["lib", "test/support"]
   defp elixirc_paths(_), do: ["lib"]
 
+  # Specifies configuration for releases.
+  #
+  # Type `mix help release` for examples and options.
   defp releases do
     [
       {@app,
@@ -54,8 +57,8 @@ defmodule ComboSaaS.MixProject do
       {:plug_probe, "~> 0.1"},
 
       # i18n
-      {:gettext, "~> 0.20"},
       {:ex_cldr, "~> 2.37"},
+      {:gettext, "~> 0.20"},
 
       # core
       {:ecto_sql, "~> 3.10"},
@@ -81,6 +84,17 @@ defmodule ComboSaaS.MixProject do
     [
       setup: ["deps.get", "ecto.setup", "assets.setup", "assets.build"],
       test: ["ecto.setup", "test"],
+
+      # for testing release locally
+      "release.local": [
+        "assets.setup",
+        "assets.deploy",
+        "release",
+        "assets.clean"
+      ],
+
+      # ! summary
+
       "ecto.setup": [
         "core.ecto.setup"
       ],
@@ -102,13 +116,6 @@ defmodule ComboSaaS.MixProject do
       "assets.clean": [
         "user_web.assets.clean",
         "admin_web.assets.clean"
-      ],
-      # for testing release locally
-      "release.local": [
-        "assets.setup",
-        "assets.deploy",
-        "release",
-        "assets.clean"
       ],
 
       # ! i18n
