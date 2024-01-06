@@ -1,4 +1,4 @@
-defmodule I18n do
+defmodule NeedleCombo.I18n do
   @moduledoc """
   A module providing Internationalization support.
 
@@ -20,9 +20,9 @@ defmodule I18n do
 
   """
 
-  alias I18n.Config
-  alias I18n.Cldr
-  alias I18n.Gettext
+  alias NeedleCombo.I18n.Config
+  alias NeedleCombo.I18n.Cldr
+  alias NeedleCombo.I18n.Gettext
 
   @doc """
   Gets the default locale.

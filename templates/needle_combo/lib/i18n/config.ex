@@ -1,7 +1,7 @@
-defmodule I18n.Config do
+defmodule NeedleCombo.I18n.Config do
   @moduledoc false
 
-  @compiled_env Application.compile_env!(:needle_combo, I18n)
+  @compiled_env Application.compile_env!(:needle_combo, NeedleCombo.I18n)
   @default_locale Keyword.fetch!(@compiled_env, :default_locale)
   @locales Keyword.fetch!(@compiled_env, :locales)
 

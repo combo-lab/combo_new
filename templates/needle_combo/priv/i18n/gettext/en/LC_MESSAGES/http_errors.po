@@ -11,18 +11,18 @@ msgstr ""
 "Language: en\n"
 "Plural-Forms: nplurals=2\n"
 
-#: lib/needle_combo_user_api/controllers/error_json.ex:40
+#: lib/user_api/controllers/error_json.ex:40
 #, elixir-autogen, elixir-format
 msgid "Bad Request"
 msgstr ""
 
-#: lib/needle_combo_user_api/controllers/error_json.ex:48
-#: lib/needle_combo_user_api/controllers/error_json.ex:53
+#: lib/user_api/controllers/error_json.ex:48
+#: lib/user_api/controllers/error_json.ex:53
 #, elixir-autogen, elixir-format
 msgid "Internal Server Error"
 msgstr ""
 
-#: lib/needle_combo_user_api/controllers/error_json.ex:44
+#: lib/user_api/controllers/error_json.ex:44
 #, elixir-autogen, elixir-format
 msgid "Not Found"
 msgstr ""

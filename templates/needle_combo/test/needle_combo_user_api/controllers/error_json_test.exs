@@ -1,13 +1,13 @@
-defmodule NeedleComboUserAPI.ErrorJSONTest do
-  use NeedleComboUserAPI.ConnCase, async: true
+defmodule NeedleCombo.UserAPI.ErrorJSONTest do
+  use NeedleCombo.UserAPI.ConnCase, async: true
 
   test "renders 404" do
-    assert NeedleComboUserAPI.ErrorJSON.render("404.json", %{}) ==
+    assert NeedleCombo.UserAPI.ErrorJSON.render("404.json", %{}) ==
              %{message: "Not Found"}
   end
 
   test "renders 500" do
-    assert NeedleComboUserAPI.ErrorJSON.render("500.json", %{}) ==
+    assert NeedleCombo.UserAPI.ErrorJSON.render("500.json", %{}) ==
              %{message: "Internal Server Error"}
   end
 end

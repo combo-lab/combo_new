@@ -28,15 +28,15 @@ end
 
 config :needle_combo, :dns_cluster_query, System.get_env("DNS_CLUSTER_QUERY")
 
-# ! needle_combo
+# ! core
 
 if config_env() == :prod do
-  database_url = fetch_env!.("NEEDLE_COMBO_DATABASE_URL")
+  database_url = fetch_env!.("NEEDLE_COMBO_CORE_DATABASE_URL")
 
   database_pool_size =
-    String.to_integer(System.get_env("NEEDLE_COMBO_DATABASE_POOL_SIZE") || "10")
+    String.to_integer(System.get_env("NEEDLE_COMBO_CORE_DATABASE_POOL_SIZE") || "10")
 
-  config :needle_combo, NeedleCombo.Repo,
+  config :needle_combo, NeedleCombo.Core.Repo,
     url: database_url,
     pool_size: database_pool_size
 
@@ -46,10 +46,10 @@ if config_env() == :prod do
   # Also, you may need to configure the Swoosh API client of your choice if you
   # are not using SMTP. Here is an example of the configuration:
   #
-  #     config :needle_combo, NeedleCombo.Mailer,
+  #     config :needle_combo, NeedleCombo.Core.Mailer,
   #       adapter: Swoosh.Adapters.Mailgun,
-  #       api_key: System.get_env("NEEDLE_COMBO_MAILGUN_API_KEY"),
-  #       domain: System.get_env("NEEDLE_COMBO_MAILGUN_DOMAIN")
+  #       api_key: System.get_env("NEEDLE_COMBO_CORE_MAILGUN_API_KEY"),
+  #       domain: System.get_env("NEEDLE_COMBO_CORE_MAILGUN_DOMAIN")
   #
   # For this example you need include a HTTP client required by Swoosh API client.
   # Swoosh supports Hackney and Finch out of the box:
@@ -91,35 +91,35 @@ if System.get_env("RELEASE_MODE") || System.get_env("COZY_PROXY_SERVER") do
   config :needle_combo, CozyProxy, server: true
 end
 
-# ! needle_combo_user_web
+# ! user_web
 
-config :needle_combo, NeedleComboUserWeb.Endpoint, url: cozy_proxy_parsed_endpoint
+config :needle_combo, NeedleCombo.UserWeb.Endpoint, url: cozy_proxy_parsed_endpoint
 
 case config_env() do
   :prod ->
     secret_key_base = fetch_env!.("NEEDLE_COMBO_USER_WEB_SECRET_KEY_BASE")
 
-    config :needle_combo, NeedleComboUserWeb.Endpoint,
+    config :needle_combo, NeedleCombo.UserWeb.Endpoint,
       secret_key_base: secret_key_base,
       check_origin: cozy_proxy_origin
 
   :dev ->
     force_watchers = Application.get_env(:phoenix, :serve_endpoints, false)
-    config :needle_combo, NeedleComboUserWeb.Endpoint, force_watchers: force_watchers
+    config :needle_combo, NeedleCombo.UserWeb.Endpoint, force_watchers: force_watchers
 
   _ ->
     :skip
 end
 
-# ! needle_combo_user_api
+# ! user_api
 
-config :needle_combo, NeedleComboUserAPI.Endpoint, url: cozy_proxy_parsed_endpoint
+config :needle_combo, NeedleCombo.UserAPI.Endpoint, url: cozy_proxy_parsed_endpoint
 
 case config_env() do
   :prod ->
     secret_key_base = fetch_env!.("NEEDLE_COMBO_USER_API_SECRET_KEY_BASE")
 
-    config :needle_combo, NeedleComboUserAPI.Endpoint,
+    config :needle_combo, NeedleCombo.UserAPI.Endpoint,
       secret_key_base: secret_key_base,
       check_origin: cozy_proxy_origin
 
@@ -127,21 +127,21 @@ case config_env() do
     :skip
 end
 
-# ! needle_combo_admin_web
+# ! admin_web
 
-config :needle_combo, NeedleComboAdminWeb.Endpoint, url: cozy_proxy_parsed_endpoint
+config :needle_combo, NeedleCombo.AdminWeb.Endpoint, url: cozy_proxy_parsed_endpoint
 
 case config_env() do
   :prod ->
     secret_key_base = fetch_env!.("NEEDLE_COMBO_ADMIN_WEB_SECRET_KEY_BASE")
 
-    config :needle_combo, NeedleComboAdminWeb.Endpoint,
+    config :needle_combo, NeedleCombo.AdminWeb.Endpoint,
       secret_key_base: secret_key_base,
       check_origin: cozy_proxy_origin
 
   :dev ->
     force_watchers = Application.get_env(:phoenix, :serve_endpoints, false)
-    config :needle_combo, NeedleComboAdminWeb.Endpoint, force_watchers: force_watchers
+    config :needle_combo, NeedleCombo.AdminWeb.Endpoint, force_watchers: force_watchers
 
   _ ->
     :skip

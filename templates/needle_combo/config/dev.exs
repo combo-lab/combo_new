@@ -28,14 +28,14 @@ config :needle_combo, process_limit: true
 
 config :needle_combo, CozyProxy, transport_options: [num_acceptors: 2]
 
-# ! needle_combo
+# ! core
 
 # Configure the database
-config :needle_combo, NeedleCombo.Repo,
+config :needle_combo, NeedleCombo.Core.Repo,
   username: "postgres",
   password: "postgres",
   hostname: "localhost",
-  database: "needle_combo_dev",
+  database: "needle_combo_core_dev",
   stacktrace: true,
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
@@ -44,15 +44,15 @@ config :needle_combo, NeedleCombo.Repo,
 #
 # Use "Local" adapter which stores the emails locally. You can see the emails
 # in web browser, at "/dev/mailbox".
-config :needle_combo, NeedleCombo.Mailer, adapter: Swoosh.Adapters.Local
+config :needle_combo, NeedleCombo.Core.Mailer, adapter: Swoosh.Adapters.Local
 
 # Disable Swoosh API client as it is only required for production adapters.
 config :swoosh, :api_client, false
 
-# ! needle_combo_user_web
+# ! user_web
 
 # Configure the endpoint
-config :needle_combo, NeedleComboUserWeb.Endpoint,
+config :needle_combo, NeedleCombo.UserWeb.Endpoint,
   http: [
     transport_options: [num_acceptors: 2]
   ],
@@ -61,23 +61,23 @@ config :needle_combo, NeedleComboUserWeb.Endpoint,
   debug_errors: true,
   secret_key_base: "=========================secret_key_base=========================",
   watchers: [
-    npm: ["run", "watch", cd: Path.expand("../assets/needle_combo_user_web", __DIR__)]
+    npm: ["run", "watch", cd: Path.expand("../assets/user_web", __DIR__)]
   ]
 
 # Watch static and templates for browser reloading.
-config :needle_combo, NeedleComboUserWeb.Endpoint,
+config :needle_combo, NeedleCombo.UserWeb.Endpoint,
   live_reload: [
     patterns: [
-      ~r"priv/needle_combo_user_web/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
-      ~r"priv/needle_combo_user_web/gettext/.*(po)$",
-      ~r"lib/needle_combo_user_web/(controllers|live|components)/.*(ex|heex)$"
+      ~r"priv/user_web/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
+      ~r"priv/user_web/gettext/.*(po)$",
+      ~r"lib/user_web/(controllers|live|components)/.*(ex|heex)$"
     ]
   ]
 
-# ! needle_combo_user_api
+# ! user_api
 
 # Configure the endpoint
-config :needle_combo, NeedleComboUserAPI.Endpoint,
+config :needle_combo, NeedleCombo.UserAPI.Endpoint,
   http: [
     transport_options: [num_acceptors: 2]
   ],
@@ -87,10 +87,10 @@ config :needle_combo, NeedleComboUserAPI.Endpoint,
   secret_key_base: "=========================secret_key_base=========================",
   watchers: []
 
-# ! needle_combo_admin_web
+# ! admin_web
 
 # Configure the endpoint
-config :needle_combo, NeedleComboAdminWeb.Endpoint,
+config :needle_combo, NeedleCombo.AdminWeb.Endpoint,
   http: [
     transport_options: [num_acceptors: 2]
   ],
@@ -99,15 +99,15 @@ config :needle_combo, NeedleComboAdminWeb.Endpoint,
   debug_errors: true,
   secret_key_base: "=========================secret_key_base=========================",
   watchers: [
-    npm: ["run", "watch", cd: Path.expand("../assets/needle_combo_admin_web", __DIR__)]
+    npm: ["run", "watch", cd: Path.expand("../assets/admin_web", __DIR__)]
   ]
 
 # Watch static and templates for browser reloading.
-config :needle_combo, NeedleComboAdminWeb.Endpoint,
+config :needle_combo, NeedleCombo.AdminWeb.Endpoint,
   live_reload: [
     patterns: [
-      ~r"priv/needle_combo_admin_web/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
-      ~r"priv/needle_combo_admin_web/gettext/.*(po)$",
-      ~r"lib/needle_combo_admin_web/(controllers|live|components)/.*(ex|heex)$"
+      ~r"priv/admin_web/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
+      ~r"priv/admin_web/gettext/.*(po)$",
+      ~r"lib/admin_web/(controllers|live|components)/.*(ex|heex)$"
     ]
   ]

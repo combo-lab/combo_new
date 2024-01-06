@@ -11,16 +11,16 @@
 msgid ""
 msgstr ""
 
-#: lib/needle_combo_admin_web/components/core_components.ex:486
-#: lib/needle_combo_user_web/components/core_components.ex:486
+#: lib/admin_web/components/core_components.ex:486
+#: lib/user_web/components/core_components.ex:486
 #, elixir-autogen, elixir-format
 msgid "Actions"
 msgstr ""
 
-#: lib/needle_combo_admin_web/components/core_components.ex:76
-#: lib/needle_combo_admin_web/components/core_components.ex:133
-#: lib/needle_combo_user_web/components/core_components.ex:76
-#: lib/needle_combo_user_web/components/core_components.ex:133
+#: lib/admin_web/components/core_components.ex:76
+#: lib/admin_web/components/core_components.ex:133
+#: lib/user_web/components/core_components.ex:76
+#: lib/user_web/components/core_components.ex:133
 #, elixir-autogen, elixir-format
 msgid "close"
 msgstr ""

@@ -18,7 +18,7 @@ defmodule NeedleCombo.MixProject do
   # Type `mix help compile.app` for more information.
   def application do
     [
-      mod: {NeedleComboApplication, []},
+      mod: {NeedleCombo.Application, []},
       extra_applications: [:logger, :runtime_tools]
     ]
   end
@@ -47,13 +47,13 @@ defmodule NeedleCombo.MixProject do
       # core
       {:ecto_sql, "~> 3.10"},
       {:postgrex, ">= 0.0.0"},
-      {:phoenix_ecto, "~> 4.4"},
       {:swoosh, "~> 1.3"},
       {:finch, "~> 0.13"},
 
       # web
       {:phoenix, "~> 1.7.10"},
       {:phoenix_html, "~> 4.0"},
+      {:phoenix_ecto, "~> 4.4"},
       {:phoenix_live_view, "~> 0.20.2"},
       {:phoenix_live_dashboard, "~> 0.8.3"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
@@ -69,26 +69,26 @@ defmodule NeedleCombo.MixProject do
       setup: ["deps.get", "ecto.setup", "assets.setup", "assets.build"],
       test: ["ecto.setup", "test"],
       "ecto.setup": [
-        "needle_combo.ecto.setup"
+        "core.ecto.setup"
       ],
       "ecto.reset": [
-        "needle_combo.ecto.reset"
+        "core.ecto.reset"
       ],
       "assets.setup": [
-        "needle_combo_user_web.assets.setup",
-        "needle_combo_admin_web.assets.setup"
+        "user_web.assets.setup",
+        "admin_web.assets.setup"
       ],
       "assets.build": [
-        "needle_combo_user_web.assets.build",
-        "needle_combo_admin_web.assets.build"
+        "user_web.assets.build",
+        "admin_web.assets.build"
       ],
       "assets.deploy": [
-        "needle_combo_user_web.assets.deploy",
-        "needle_combo_admin_web.assets.deploy"
+        "user_web.assets.deploy",
+        "admin_web.assets.deploy"
       ],
       "assets.clean": [
-        "needle_combo_user_web.assets.clean",
-        "needle_combo_admin_web.assets.clean"
+        "user_web.assets.clean",
+        "admin_web.assets.clean"
       ],
       # for testing release locally
       "release.local": [
@@ -108,46 +108,46 @@ defmodule NeedleCombo.MixProject do
         "gettext.merge priv/i18n/gettext --locale"
       ],
 
-      # ! needle_combo
-      "needle_combo.ecto.setup": [
-        "ecto.create -r NeedleCombo.Repo",
-        "ecto.migrate -r NeedleCombo.Repo",
-        "run priv/needle_combo/repo/seeds.exs"
+      # ! core
+      "core.ecto.setup": [
+        "ecto.create -r NeedleCombo.Core.Repo",
+        "ecto.migrate -r NeedleCombo.Core.Repo",
+        "run priv/core/repo/seeds.exs"
       ],
-      "needle_combo.ecto.reset": [
-        "ecto.drop -r NeedleCombo.Repo",
-        "needle_combo.ecto.setup"
-      ],
-
-      # ! needle_combo_user_web
-      "needle_combo_user_web.assets.setup": [
-        "cmd npm install --prefix assets/needle_combo_user_web"
-      ],
-      "needle_combo_user_web.assets.build": [
-        "cmd npm run build --prefix assets/needle_combo_user_web"
-      ],
-      "needle_combo_user_web.assets.deploy": [
-        "cmd npm run build --prefix assets/needle_combo_user_web",
-        "cmd mix phx.digest priv/needle_combo_user_web/static"
-      ],
-      "needle_combo_user_web.assets.clean": [
-        "cmd mix phx.digest.clean --all -o priv/needle_combo_user_web/static"
+      "core.ecto.reset": [
+        "ecto.drop -r NeedleCombo.Core.Repo",
+        "core.ecto.setup"
       ],
 
-      # ! needle_combo_admin_web
+      # ! user_web
+      "user_web.assets.setup": [
+        "cmd npm install --prefix assets/user_web"
+      ],
+      "user_web.assets.build": [
+        "cmd npm run build --prefix assets/user_web"
+      ],
+      "user_web.assets.deploy": [
+        "cmd npm run build --prefix assets/user_web",
+        "cmd mix phx.digest priv/user_web/static"
+      ],
+      "user_web.assets.clean": [
+        "cmd mix phx.digest.clean --all -o priv/user_web/static"
+      ],
 
-      "needle_combo_admin_web.assets.setup": [
-        "cmd npm install --prefix assets/needle_combo_admin_web"
+      # ! admin_web
+
+      "admin_web.assets.setup": [
+        "cmd npm install --prefix assets/admin_web"
       ],
-      "needle_combo_admin_web.assets.build": [
-        "cmd npm run build --prefix assets/needle_combo_admin_web"
+      "admin_web.assets.build": [
+        "cmd npm run build --prefix assets/admin_web"
       ],
-      "needle_combo_admin_web.assets.deploy": [
-        "cmd npm run build --prefix assets/needle_combo_admin_web",
-        "cmd mix phx.digest priv/needle_combo_admin_web/static"
+      "admin_web.assets.deploy": [
+        "cmd npm run build --prefix assets/admin_web",
+        "cmd mix phx.digest priv/admin_web/static"
       ],
-      "needle_combo_admin_web.assets.clean": [
-        "cmd mix phx.digest.clean --all -o priv/needle_combo_admin_web/static"
+      "admin_web.assets.clean": [
+        "cmd mix phx.digest.clean --all -o priv/admin_web/static"
       ]
     ]
   end

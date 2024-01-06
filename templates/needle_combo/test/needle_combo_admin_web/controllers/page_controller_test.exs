@@ -1,5 +1,5 @@
-defmodule NeedleComboAdminWeb.PageControllerTest do
-  use NeedleComboAdminWeb.ConnCase
+defmodule NeedleCombo.AdminWeb.PageControllerTest do
+  use NeedleCombo.AdminWeb.ConnCase
 
   test "GET /", %{conn: conn} do
     conn = get(conn, ~p"/")

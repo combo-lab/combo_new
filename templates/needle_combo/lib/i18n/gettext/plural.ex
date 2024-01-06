@@ -1,4 +1,4 @@
-defmodule I18n.Gettext.Plural do
+defmodule NeedleCombo.I18n.Gettext.Plural do
   @moduledoc """
   A plural forms module that uses CLDR plural rules.
   """

@@ -25,81 +25,81 @@ config :needle_combo, CozyProxy,
       path: "/probe"
     },
     %{
-      plug: NeedleComboAdminWeb.Endpoint,
+      plug: NeedleCombo.AdminWeb.Endpoint,
       path: "/admin"
     },
     %{
-      plug: NeedleComboUserAPI.Endpoint,
+      plug: NeedleCombo.UserAPI.Endpoint,
       path: "/api"
     },
     %{
-      plug: NeedleComboUserWeb.Endpoint,
+      plug: NeedleCombo.UserWeb.Endpoint,
       path: "/"
     }
   ]
 
 # ! i18n
 
-config :needle_combo, I18n,
+config :needle_combo, NeedleCombo.I18n,
   default_locale: "en",
   locales: ["en"]
 
 # Tasks like `mix gettext.merge` use the plural backend configured under the :gettext
 # application, so the following global configuration approach is preferred.
 config :gettext,
-  plural_forms: I18n.Gettext.Plural
+  plural_forms: NeedleCombo.I18n.Gettext.Plural
 
 config :ex_cldr,
-  default_backend: I18n.Cldr,
+  default_backend: NeedleCombo.I18n.Cldr,
   json_library: Jason
 
-# ! needle_combo
+# ! core
 
 # Configure Mix tasks for Ecto.
-config :needle_combo, ecto_repos: [NeedleCombo.Repo]
+config :needle_combo, ecto_repos: [NeedleCombo.Core.Repo]
 
 # Configures the database
-config :needle_combo, NeedleCombo.Repo,
-  priv: "priv/needle_combo/repo",
+config :needle_combo, NeedleCombo.Core.Repo,
+  priv: "priv/core/repo",
   migration_primary_key: [name: :id, type: :binary_id],
   migration_timestamps: [type: :utc_datetime_usec]
 
-# ! needle_combo_user_web
+# ! user_web
 
 # Configure the endpoint.
-config :needle_combo, NeedleComboUserWeb.Endpoint,
+config :needle_combo, NeedleCombo.UserWeb.Endpoint,
   url: [path: "/"],
   adapter: Phoenix.Endpoint.Cowboy2Adapter,
   render_errors: [
-    formats: [html: NeedleComboUserWeb.ErrorHTML],
+    formats: [html: NeedleCombo.UserWeb.ErrorHTML],
     layout: false
   ],
   pubsub_server: NeedleCombo.PubSub,
   live_view: [signing_salt: "==salt=="],
   server: false
 
-# ! needle_combo_user_api
+# ! user_api
 
 # Configure the endpoint.
-config :needle_combo, NeedleComboUserAPI.Endpoint,
+config :needle_combo, NeedleCombo.UserAPI.Endpoint,
   url: [path: "/api"],
   adapter: Phoenix.Endpoint.Cowboy2Adapter,
   render_errors: [
-    formats: [json: NeedleComboUserAPI.ErrorJSON],
+    formats: [json: NeedleCombo.UserAPI.ErrorJSON],
     layout: false
   ],
   pubsub_server: NeedleCombo.PubSub,
   live_view: [signing_salt: "==salt=="],
   server: false
 
-# ! needle_combo_admin_web
+# ! admin_web
 
 # Configure the endpoint.
-config :needle_combo, NeedleComboAdminWeb.Endpoint,
+config :needle_combo, NeedleCombo.AdminWeb.Endpoint,
   url: [path: "/admin"],
   adapter: Phoenix.Endpoint.Cowboy2Adapter,
   render_errors: [
-    formats: [html: NeedleComboAdminWeb.ErrorHTML],
+    formats: [html: NeedleCombo.AdminWeb.ErrorHTML],
     layout: false
   ],
   pubsub_server: NeedleCombo.PubSub,
