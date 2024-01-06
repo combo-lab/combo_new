@@ -6,8 +6,16 @@ defmodule NeedleCombo.I18n.Config do
   @locales Keyword.fetch!(@compiled_env, :locales)
 
   @doc false
-  def default_locale(), do: @default_locale
+  defmacro default_locale() do
+    quote do
+      unquote(@default_locale)
+    end
+  end
 
   @doc false
-  def locales(), do: @locales
+  defmacro supported_locales() do
+    quote do
+      unquote(@locales)
+    end
+  end
 end

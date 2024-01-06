@@ -1,6 +1,6 @@
 defmodule NeedleCombo.I18n.Gettext do
   @moduledoc """
-  A module providing Internationalization with a gettext-based API.
+  Provides i18n support with a gettext-based API.
 
   It provides a set of macros for translations, for example:
 
@@ -30,10 +30,12 @@ defmodule NeedleCombo.I18n.Gettext do
 
   """
 
+  require NeedleCombo.I18n.Config
+
   use Gettext,
     otp_app: :needle_combo,
     priv: "priv/i18n/gettext",
-    allowed_locales: NeedleCombo.I18n.Config.locales(),
+    allowed_locales: NeedleCombo.I18n.Config.supported_locales(),
     default_locale: NeedleCombo.I18n.Config.default_locale()
 
   def put_locale(locale) do

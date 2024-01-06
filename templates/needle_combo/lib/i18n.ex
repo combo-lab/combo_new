@@ -1,6 +1,6 @@
 defmodule NeedleCombo.I18n do
   @moduledoc """
-  A module providing Internationalization support.
+  Provides i18n support.
 
   Commonly used packages:
 
@@ -15,11 +15,12 @@ defmodule NeedleCombo.I18n do
   ## Change locale
 
   When an Elixir process want to change the locale of all backends. It
-  should use `put_locale/1` provided by current module instead of the
-  `Gettext.put_locale/1` or `Cldr.put_locale/1`.
+  should use `put_locale/1` provided by this module instead of the
+  `Gettext.put_locale/1`, `Cldr.put_locale/1`, etc.
 
   """
 
+  require NeedleCombo.I18n.Config
   alias NeedleCombo.I18n.Config
   alias NeedleCombo.I18n.Cldr
   alias NeedleCombo.I18n.Gettext
@@ -32,13 +33,13 @@ defmodule NeedleCombo.I18n do
   @doc """
   Gets supported locales.
   """
-  def get_supported_locales(), do: Config.locales()
+  def get_supported_locales(), do: Config.supported_locales()
 
   @doc """
   Changes the locale of current process.
   """
   def put_locale(locale) when is_binary(locale) do
-    locale = sanitize_locale(locale)
+    locale = cast_locale(locale)
     put_trusted_locale(locale)
   end
 
@@ -46,14 +47,16 @@ defmodule NeedleCombo.I18n do
   Changes the locale of current process.
 
   Like `put_locale/1`, but it treats give locale as trusted and doesn't
-  sanitize it  anymore.
+  casted it anymore.
 
-  It's often used with `sanitize_locale/1`.
+  It's often used with `cast_locale/1`.
 
   """
   def put_trusted_locale(locale) when is_binary(locale) do
     Gettext.put_locale(locale)
     Cldr.put_locale(locale)
+
+    put_process_locale(locale)
 
     :ok
   end
@@ -61,30 +64,37 @@ defmodule NeedleCombo.I18n do
   @doc """
   Gets the locale of current process.
   """
-  def get_locale() do
-    Gettext.get_locale()
-  end
+  def get_locale(), do: get_process_locale()
 
   @doc """
-  Sanitizes an arbitrary locale to a known locale.
+  Casts an arbitrary locale to a known locale.
   """
-  def sanitize_locale(locale) do
+  def cast_locale(locale) do
     case locale do
       # explicit matching on supported locale
-      locale when locale in ["en", "zh-Hans"] ->
+      locale when locale in Config.supported_locales() ->
         locale
 
-      # fuzzy matching on english related locale
+      # fuzzy matching on en related locale
       "en-" <> _ ->
         "en"
 
-      # fuzzy matching on zh-Hans related locale
-      "zh-" <> _ ->
-        "zh-Hans"
+      # add more patterns here...
+      #
+      # "zh-" <> _ ->
+      #   "zh-Hans"
 
-      # fallback for unsupported locales, such as ja-Jpan, ko-Kore
+      # fallback locale for unsupported locales, such as ja-Jpan, ko-Kore, etc.
       _ ->
         "en"
     end
   end
+
+  @process_locale_key __MODULE__
+                      |> Module.split()
+                      |> Enum.map(&Macro.underscore/1)
+                      |> Enum.join("_")
+                      |> String.to_atom()
+  defp put_process_locale(value), do: Process.put(@process_locale_key, value)
+  defp get_process_locale(), do: Process.get(@process_locale_key, Config.default_locale())
 end
