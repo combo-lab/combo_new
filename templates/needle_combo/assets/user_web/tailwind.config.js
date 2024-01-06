@@ -11,7 +11,7 @@ import tailwindcssForms from '@tailwindcss/forms'
 import tailwindcssAspectRatio from '@tailwindcss/aspect-ratio'
 
 export default {
-  content: ['../../lib/admin_web/**/*.*ex', './{lib,vendor}/**/*.js'],
+  content: ['../../lib/user_web/**/*.*ex', './{lib,vendor}/**/*.js'],
   theme: {
     extend: {
       fontFamily: {
