@@ -1,28 +1,235 @@
 defmodule NeedleCombo.Core.Release do
   @moduledoc """
-  Used for executing DB release tasks when run in production without Mix
-  installed.
+  Release-related DB tasks for production environment without Mix installed.
+
+  ## Functions
+
+  This module provides multiple public functions.
+
+  ### For migrating database structure
+
+    * `migrate/0` / `migrate/1`
+    * `rollback/0` / `rollback/1`
+
+  ### For populating data into database
+
+    * `seed/0`
+    * `seed/1`
+
+  ### For migrating the data in database
+
+    * `migrate_data/0`
+    * `migrate_data/1`
+
+  ## Run a function manually
+
+  Run the functions in this module by calling `eval` command provided by release.
+  For example:
+
+  ```sh
+  $RELEASE_ROOT/bin/$RELEASE_NAME eval '#{inspect(__MODULE__)}.migrate()'
+  ```
+
+  ## Run a function automatically
+
+  For example, when starting a release:
+
+
+  ```
+  # mix release.init && $EDITOR rel/env.sh.eex
+  case $RELEASE_COMMAND in
+      start*)
+          "$RELEASE_ROOT/bin/$RELEASE_NAME" eval '#{inspect(__MODULE__)}.migrate()'
+          ;;
+      *)
+          ;;
+  esac
+  ```
+
+  Read more details and examples at:
+
+    * https://hexdocs.pm/ecto_sql/3.7.2/Ecto.Migrator.html#module-example-running-migrations-in-a-release
+    * https://hexdocs.pm/phoenix/1.6.6/releases.html#ecto-migrations-and-custom-commands
+
   """
   @app :needle_combo
+  @repo NeedleCombo.Core.Repo
 
-  def migrate do
-    load_app()
+  @doc """
+  Migrates the database.
 
-    for repo <- repos() do
-      {:ok, _, _} = Ecto.Migrator.with_repo(repo, &Ecto.Migrator.run(&1, :up, all: true))
+  It accepts the same `opts` of `Ecto.Migrator.run/4`.
+  """
+  def migrate(opts \\ [all: true]) do
+    load_apps()
+
+    path = path_for_migrations(@repo)
+    up_for(@repo, path, opts)
+  end
+
+  @doc """
+  Rollbacks the database.
+
+  It accepts the same `opts` of `Ecto.Migrator.run/4`.
+  """
+  def rollback(opts \\ [step: 1]) do
+    load_apps()
+
+    path = path_for_migrations(@repo)
+    down_for(@repo, path, opts)
+  end
+
+  @doc """
+  Runs seeds.
+
+  When using `all: true` option, it expect a file which are located in
+  `priv/<namespace>/seeds.exs`. And, `priv/<namespace>/seeds.exs` is
+  free to call any seeds in `priv/<namespace>/seeds/`. You can use this
+  function as a batch operation for seeding
+  `priv/<namespace>/seeds/<name>.exs`.
+
+  When using `:name` option, it expects a file which are located in
+  `priv/<namespace>/seeds/<name>.exs`.
+
+  ## Example `priv/<namespace>/seeds.exs`
+
+      [
+        "foo.exs",
+        "bar.exs",
+        # ...
+      ]
+      |> Enum.each(fn file ->
+        Code.eval_file(file, Path.join(__DIR__, "./seeds"))
+      end)
+
+  """
+  def seed(opts \\ []) do
+    load_apps()
+
+    case opts do
+      [all: true] ->
+        seed_all()
+
+      [name: name] ->
+        seed_one(name)
+
+      _ ->
+        raise "I don't know what to do"
     end
   end
 
-  def rollback(repo, version) do
-    load_app()
-    {:ok, _, _} = Ecto.Migrator.with_repo(repo, &Ecto.Migrator.run(&1, :down, to: version))
+  defp seed_all() do
+    script = priv_path_for(@repo, "seeds.exs")
+    run_script(@repo, script)
   end
 
-  defp repos do
-    Application.fetch_env!(@app, :ecto_repos)
+  defp seed_one(name) do
+    script = priv_path_for(@repo, "seeds/#{name}.exs")
+    run_script(@repo, script)
   end
 
-  defp load_app do
+  @doc """
+  Runs data migrations.
+
+  When using `all: true` option, it expect a file which are located in
+  `priv/<namespace>/data_migrations.exs`. And,
+  `priv/<namespace>/data_migrations.exs` is free to call any data
+  migraions in `priv/<namespace>/data_migrations/`. You can use this
+  function as a batch operation for seeding
+  `priv/<namespace>/data_migrations/<name>.exs`.
+
+  When using `:name` option, it expects a file which are located in
+  `priv/<namespace>/data_migrations/<name>.exs`.
+
+  ## Example `priv/<namespace>/data_migrations.exs`
+
+      [
+        "foo.exs",
+        "bar.exs",
+        # ...
+      ]
+      |> Enum.each(fn file ->
+        Code.eval_file(file, Path.join(__DIR__, "./data_migrations"))
+      end)
+
+  """
+  def migrate_data(opts \\ []) do
+    load_apps()
+
+    case opts do
+      [all: true] ->
+        migrate_all_data()
+
+      [name: name] ->
+        migrate_one_data(name)
+
+      _ ->
+        raise "I don't know what to do"
+    end
+  end
+
+  defp migrate_all_data() do
+    script = priv_path_for(@repo, "data_migrations.exs")
+    run_script(@repo, script)
+  end
+
+  defp migrate_one_data(name) do
+    script = priv_path_for(@repo, "data_migrations/#{name}.exs")
+    run_script(@repo, script)
+  end
+
+  defp load_apps() do
     Application.load(@app)
+  end
+
+  defp path_for_migrations(repo) do
+    Ecto.Migrator.migrations_path(repo)
+  end
+
+  defp up_for(repo, path, opts) do
+    {:ok, _, _} =
+      Ecto.Migrator.with_repo(repo, fn repo ->
+        Ecto.Migrator.run(repo, path, :up, opts)
+      end)
+  end
+
+  defp down_for(repo, path, opts) do
+    {:ok, _, _} =
+      Ecto.Migrator.with_repo(repo, fn repo ->
+        Ecto.Migrator.run(repo, path, :down, opts)
+      end)
+  end
+
+  defp run_script(repo, path) do
+    Ecto.Migrator.with_repo(repo, fn _repo ->
+      if File.exists?(path) do
+        {result, _binding} = Code.eval_file(path)
+        {:return, result}
+      else
+        {:abort, :bad_path, path}
+      end
+    end)
+    |> case do
+      {:ok, {:return, result}, _} ->
+        result
+
+      {:ok, {:abort, :bad_path, path}, _} ->
+        raise RuntimeError, "script doesn't exist - #{path}"
+
+      {:error, term} ->
+        raise RuntimeError, "error occurs when running Ecto.Migrator.with_repo - #{inspect(term)}"
+    end
+  end
+
+  defp priv_path_for(repo, filename) do
+    app = Keyword.get(repo.config(), :otp_app)
+    priv_dir = "#{:code.priv_dir(app)}"
+
+    [_app_underscore, namespace_underscore, repo_underscore] =
+      repo
+      |> Module.split()
+      |> Enum.map(&Macro.underscore/1)
+
+    Path.join([priv_dir, namespace_underscore, repo_underscore, filename])
   end
 end
