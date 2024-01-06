@@ -17,7 +17,7 @@ defmodule NeedleCombo.UserWeb do
   those modules here.
   """
 
-  def static_paths, do: ~w(favicon.ico robots.txt images assets)
+  def static_paths, do: ~w(robots.txt icons images assets)
 
   def router do
     quote do
