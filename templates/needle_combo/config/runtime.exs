@@ -113,13 +113,13 @@ end
 
 # ! needle_combo_user_api
 
-config :needle_combo, NeedleComboUserApi.Endpoint, url: cozy_proxy_parsed_endpoint
+config :needle_combo, NeedleComboUserAPI.Endpoint, url: cozy_proxy_parsed_endpoint
 
 case config_env() do
   :prod ->
     secret_key_base = fetch_env!.("NEEDLE_COMBO_USER_API_SECRET_KEY_BASE")
 
-    config :needle_combo, NeedleComboUserApi.Endpoint,
+    config :needle_combo, NeedleComboUserAPI.Endpoint,
       secret_key_base: secret_key_base,
       check_origin: cozy_proxy_origin
 

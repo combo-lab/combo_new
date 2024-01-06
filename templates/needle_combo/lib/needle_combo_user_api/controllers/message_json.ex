@@ -1,4 +1,4 @@
-defmodule NeedleComboUserApi.MessageJSON do
+defmodule NeedleComboUserAPI.MessageJSON do
   @moduledoc false
 
   def show(%{message: message}) do

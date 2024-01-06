@@ -1,4 +1,4 @@
-defmodule NeedleComboUserApi.Supervisor do
+defmodule NeedleComboUserAPI.Supervisor do
   @moduledoc false
 
   use Supervisor
@@ -10,8 +10,8 @@ defmodule NeedleComboUserApi.Supervisor do
   @impl true
   def init(_arg) do
     children = [
-      NeedleComboUserApi.Telemetry,
-      NeedleComboUserApi.Endpoint
+      NeedleComboUserAPI.Telemetry,
+      NeedleComboUserAPI.Endpoint
     ]
 
     Supervisor.init(children, strategy: :one_for_one)

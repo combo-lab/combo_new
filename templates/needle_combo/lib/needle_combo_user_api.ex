@@ -1,12 +1,12 @@
-defmodule NeedleComboUserApi do
+defmodule NeedleComboUserAPI do
   @moduledoc """
   The entrypoint for defining the web interface, such
   as controllers, components, channels, and so on.
 
   This can be used in the application as:
 
-      use NeedleComboUserApi, :router
-      use NeedleComboUserApi, :controller
+      use NeedleComboUserAPI, :router
+      use NeedleComboUserAPI, :controller
 
   The definitions below will be executed for every controller,
   component, etc, so keep them short and clean, focused
@@ -43,15 +43,15 @@ defmodule NeedleComboUserApi do
 
       unquote(verified_routes())
 
-      action_fallback NeedleComboUserApi.FallbackController
+      action_fallback NeedleComboUserAPI.FallbackController
     end
   end
 
   def verified_routes do
     quote do
       use Phoenix.VerifiedRoutes,
-        endpoint: NeedleComboUserApi.Endpoint,
-        router: NeedleComboUserApi.Router
+        endpoint: NeedleComboUserAPI.Endpoint,
+        router: NeedleComboUserAPI.Router
     end
   end
 

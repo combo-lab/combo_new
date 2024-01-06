@@ -77,7 +77,7 @@ config :needle_combo, NeedleComboUserWeb.Endpoint,
 # ! needle_combo_user_api
 
 # Configure the endpoint
-config :needle_combo, NeedleComboUserApi.Endpoint,
+config :needle_combo, NeedleComboUserAPI.Endpoint,
   http: [
     transport_options: [num_acceptors: 2]
   ],

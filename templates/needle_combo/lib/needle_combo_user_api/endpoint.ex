@@ -1,4 +1,4 @@
-defmodule NeedleComboUserApi.Endpoint do
+defmodule NeedleComboUserAPI.Endpoint do
   use Phoenix.Endpoint, otp_app: :needle_combo
 
   # The session will be stored in the cookie and signed,
@@ -33,5 +33,5 @@ defmodule NeedleComboUserApi.Endpoint do
   plug Plug.MethodOverride
   plug Plug.Head
   plug Plug.Session, @session_options
-  plug NeedleComboUserApi.Router
+  plug NeedleComboUserAPI.Router
 end

@@ -1,4 +1,4 @@
-defmodule NeedleComboUserApi.ErrorJSON do
+defmodule NeedleComboUserAPI.ErrorJSON do
   require Logger
   import I18n.Gettext
 

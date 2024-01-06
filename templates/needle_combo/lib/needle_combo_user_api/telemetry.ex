@@ -1,4 +1,4 @@
-defmodule NeedleComboUserApi.Telemetry do
+defmodule NeedleComboUserAPI.Telemetry do
   @moduledoc false
 
   use Supervisor
@@ -65,7 +65,7 @@ defmodule NeedleComboUserApi.Telemetry do
     [
       # A module, function and arguments to be invoked periodically.
       # This function must call :telemetry.execute/3 and a metric must be added above.
-      # {NeedleComboUserApi, :count_online_users, []}
+      # {NeedleComboUserAPI, :count_online_users, []}
     ]
   end
 end

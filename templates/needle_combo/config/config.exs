@@ -29,7 +29,7 @@ config :needle_combo, CozyProxy,
       path: "/admin"
     },
     %{
-      plug: NeedleComboUserApi.Endpoint,
+      plug: NeedleComboUserAPI.Endpoint,
       path: "/api"
     },
     %{
@@ -81,11 +81,11 @@ config :needle_combo, NeedleComboUserWeb.Endpoint,
 # ! needle_combo_user_api
 
 # Configure the endpoint.
-config :needle_combo, NeedleComboUserApi.Endpoint,
+config :needle_combo, NeedleComboUserAPI.Endpoint,
   url: [path: "/api"],
   adapter: Phoenix.Endpoint.Cowboy2Adapter,
   render_errors: [
-    formats: [json: NeedleComboUserApi.ErrorJSON],
+    formats: [json: NeedleComboUserAPI.ErrorJSON],
     layout: false
   ],
   pubsub_server: NeedleCombo.PubSub,

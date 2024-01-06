@@ -11,7 +11,7 @@ defmodule NeedleComboApplication do
       {DNSCluster, dns_cluster_config()},
       NeedleCombo.Supervisor,
       NeedleComboUserWeb.Supervisor,
-      NeedleComboUserApi.Supervisor,
+      NeedleComboUserAPI.Supervisor,
       NeedleComboAdminWeb.Supervisor,
       {CozyProxy, cozy_proxy_config()}
     ]

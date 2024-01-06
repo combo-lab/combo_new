@@ -1,12 +1,12 @@
-defmodule NeedleComboUserApi.FallbackController do
+defmodule NeedleComboUserAPI.FallbackController do
   @moduledoc """
   Translates controller action results into valid `Plug.Conn` responses.
 
   See `Phoenix.Controller.action_fallback/1` for more details.
   """
 
-  use NeedleComboUserApi, :controller
-  alias NeedleComboUserApi.MessageJSON
+  use NeedleComboUserAPI, :controller
+  alias NeedleComboUserAPI.MessageJSON
 
   # def call(
   #       conn,
