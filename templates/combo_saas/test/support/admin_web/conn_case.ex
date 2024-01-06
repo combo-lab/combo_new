@@ -32,7 +32,7 @@ defmodule ComboSaaS.AdminWeb.ConnCase do
   end
 
   setup tags do
-    ComboSaaS.DataCase.setup_sandbox(tags)
+    ComboSaaS.Core.DataCase.setup_sandbox(tags)
     {:ok, conn: Phoenix.ConnTest.build_conn()}
   end
 end

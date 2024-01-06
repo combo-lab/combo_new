@@ -15,7 +15,6 @@ defmodule ComboSaaS.UserAPI.Endpoint do
   # :code_reloader configuration of the endpoint.
   if code_reloading? do
     plug Phoenix.CodeReloader
-    plug Phoenix.Ecto.CheckRepoStatus, otp_app: :combo_saas
   end
 
   plug Phoenix.LiveDashboard.RequestLogger,

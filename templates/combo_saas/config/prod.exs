@@ -10,7 +10,9 @@ config :logger, level: :info
 # Configure the mailer
 #
 # Setup Swoosh API client.
-config :swoosh, api_client: Swoosh.ApiClient.Finch, finch_name: ComboSaaS.Finch
+config :swoosh,
+  api_client: Swoosh.ApiClient.Finch,
+  finch_name: ComboSaaS.Core.Finch
 
 # Disable Swoosh local memory storage.
 config :swoosh, local: false

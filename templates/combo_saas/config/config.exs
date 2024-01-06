@@ -44,8 +44,9 @@ config :combo_saas, ComboSaaS.I18n,
   default_locale: "en",
   locales: ["en"]
 
-# Tasks like `mix gettext.merge` use the plural backend configured under the :gettext
-# application, so the following global configuration approach is preferred.
+# Tasks like `mix gettext.merge` use the plural backend configured under the
+# :gettext application, so the following global configuration approach is
+# preferred.
 config :gettext,
   plural_forms: ComboSaaS.I18n.Gettext.Plural
 

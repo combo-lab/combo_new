@@ -43,7 +43,6 @@ defmodule ComboSaaS.AdminWeb.Endpoint do
 
     plug Phoenix.LiveReloader
     plug Phoenix.CodeReloader
-    plug Phoenix.Ecto.CheckRepoStatus, otp_app: :combo_saas
   end
 
   plug Phoenix.LiveDashboard.RequestLogger,

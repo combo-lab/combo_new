@@ -51,7 +51,7 @@ config :swoosh, :api_client, false
 
 # ! user_web
 
-# Configure the endpoint
+# Configure the endpoint.
 config :combo_saas, ComboSaaS.UserWeb.Endpoint,
   http: [
     transport_options: [num_acceptors: 2]

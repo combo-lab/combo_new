@@ -14,7 +14,7 @@ defmodule ComboSaaS.Core.Supervisor do
       ComboSaaS.Core.Repo,
       {Phoenix.PubSub, name: ComboSaaS.PubSub},
       # Start the Finch HTTP client for sending emails
-      {Finch, name: ComboSaaS.Finch}
+      {Finch, name: ComboSaaS.Core.Finch}
     ]
 
     Supervisor.init(children, strategy: :one_for_one)

@@ -28,37 +28,6 @@ end
 
 config :combo_saas, :dns_cluster_query, System.get_env("DNS_CLUSTER_QUERY")
 
-# ! core
-
-if config_env() == :prod do
-  database_url = fetch_env!.("COMBO_SAAS_CORE_DATABASE_URL")
-
-  database_pool_size =
-    String.to_integer(System.get_env("COMBO_SAAS_CORE_DATABASE_POOL_SIZE") || "10")
-
-  config :combo_saas, ComboSaaS.Core.Repo,
-    url: database_url,
-    pool_size: database_pool_size
-
-  # Configure the mailer
-  #
-  # In production you need to configure the mailer to use a different adapter.
-  # Also, you may need to configure the Swoosh API client of your choice if you
-  # are not using SMTP. Here is an example of the configuration:
-  #
-  #     config :combo_saas, ComboSaaS.Core.Mailer,
-  #       adapter: Swoosh.Adapters.Mailgun,
-  #       api_key: System.get_env("COMBO_SAAS_CORE_MAILGUN_API_KEY"),
-  #       domain: System.get_env("COMBO_SAAS_CORE_MAILGUN_DOMAIN")
-  #
-  # For this example you need include a HTTP client required by Swoosh API client.
-  # Swoosh supports Hackney and Finch out of the box:
-  #
-  #     config :swoosh, :api_client, Swoosh.ApiClient.Hackney
-  #
-  # See https://hexdocs.pm/swoosh/Swoosh.html#module-installation for details.
-end
-
 # ! cozy_proxy
 
 cozy_proxy_endpoint = System.get_env("COZY_PROXY_ENDPOINT") || "http://localhost:4000"
@@ -89,6 +58,37 @@ config :combo_saas, CozyProxy,
 
 if System.get_env("RELEASE_NAME") || System.get_env("COZY_PROXY_SERVER") do
   config :combo_saas, CozyProxy, server: true
+end
+
+# ! core
+
+if config_env() == :prod do
+  database_url = fetch_env!.("COMBO_SAAS_CORE_DATABASE_URL")
+
+  database_pool_size =
+    String.to_integer(System.get_env("COMBO_SAAS_CORE_DATABASE_POOL_SIZE") || "10")
+
+  config :combo_saas, ComboSaaS.Core.Repo,
+    url: database_url,
+    pool_size: database_pool_size
+
+  # Configure the mailer
+  #
+  # In production you need to configure the mailer to use a different adapter.
+  # Also, you may need to configure the Swoosh API client of your choice if you
+  # are not using SMTP. Here is an example of the configuration:
+  #
+  #     config :combo_saas, ComboSaaS.Core.Mailer,
+  #       adapter: Swoosh.Adapters.Mailgun,
+  #       api_key: System.get_env("COMBO_SAAS_CORE_MAILGUN_API_KEY"),
+  #       domain: System.get_env("COMBO_SAAS_CORE_MAILGUN_DOMAIN")
+  #
+  # For this example you need include a HTTP client required by Swoosh API client.
+  # Swoosh supports Hackney and Finch out of the box:
+  #
+  #     config :swoosh, :api_client, Swoosh.ApiClient.Hackney
+  #
+  # See https://hexdocs.pm/swoosh/Swoosh.html#module-installation for details.
 end
 
 # ! user_web

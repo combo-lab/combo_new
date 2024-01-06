@@ -58,7 +58,7 @@ defmodule ComboSaaS.Core.Telemetry do
     [
       # A module, function and arguments to be invoked periodically.
       # This function must call :telemetry.execute/3 and a metric must be added above.
-      # {ComboSaaS, :count_users, []}
+      # {ComboSaaS.Core, :count_users, []}
     ]
   end
 end
