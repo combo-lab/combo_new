@@ -1,18 +1,19 @@
 defmodule NeedleCombo.UserAPI.ErrorJSON do
-  require Logger
-  import NeedleCombo.I18n.Gettext
+  @moduledoc """
+  Provides JSON error responses.
 
-  @doc """
-  Fallback rendering logic for errors.
-
-  If you want to customize a particular status code, you can add your own
-  clauses, such as:
+  If you want to customize a particular status code, you can `render/2`
+  functions, such as:
 
       def render("500.json", _assigns) do
-        %{message: "Oops, something goes wrong."}
+        %{message: "Oops, something went wrong."}
       end
 
   """
+
+  require Logger
+  import NeedleCombo.I18n.Gettext
+
   def render(template, _assigns) do
     message = get_message_from_template_name(template)
     %{message: message}
@@ -28,23 +29,23 @@ defmodule NeedleCombo.UserAPI.ErrorJSON do
   defp get_message_from_template_name(template) do
     template
     |> Phoenix.Controller.status_message_from_template()
-    |> translate_error()
+    |> translate_status_message()
   end
 
-  defp translate_error("Bad Request") do
-    dgettext("http_errors", "Bad Request")
+  defp translate_status_message("Bad Request") do
+    dgettext("http_status_messages", "Bad Request")
   end
 
-  defp translate_error("Not Found") do
-    dgettext("http_errors", "Not Found")
+  defp translate_status_message("Not Found") do
+    dgettext("http_status_messages", "Not Found")
   end
 
-  defp translate_error("Internal Server Error") do
-    dgettext("http_errors", "Internal Server Error")
+  defp translate_status_message("Internal Server Error") do
+    dgettext("http_status_messages", "Internal Server Error")
   end
 
-  defp translate_error(error) do
+  defp translate_status_message(error) do
     Logger.warning("unhandled server error - #{error}")
-    dgettext("http_errors", "Internal Server Error")
+    dgettext("http_status_messages", "Something Went Wrong")
   end
 end

@@ -5,11 +5,12 @@ defmodule NeedleCombo.UserWeb.ErrorHTMLTest do
   import Phoenix.Template
 
   test "renders 404.html" do
-    assert render_to_string(NeedleCombo.UserWeb.ErrorHTML, "404", "html", []) == "Not Found"
+    assert render_to_string(NeedleCombo.UserWeb.ErrorHTML, "404", "html", status: 404) =~
+             "Not Found"
   end
 
   test "renders 500.html" do
-    assert render_to_string(NeedleCombo.UserWeb.ErrorHTML, "500", "html", []) ==
+    assert render_to_string(NeedleCombo.UserWeb.ErrorHTML, "500", "html", status: 500) =~
              "Internal Server Error"
   end
 end

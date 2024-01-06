@@ -1,19 +1,56 @@
 defmodule NeedleCombo.UserWeb.ErrorHTML do
+  @moduledoc """
+  Provides HTML error pages.
+
+  If you want to customize the error pages for particular status codes, add
+  pages to the `error_html/` directory, such as:
+
+    * lib/user_web/controllers/error_html/404.html.heex
+    * lib/user_web/controllers/error_html/500.html.heex
+
+  Or, add `render/2` functions, such as:
+
+      def render("404.html", assigns) do
+        # ...
+      end
+
+      def render("500.html", assigns) do
+        # ...
+      end
+
+  """
+
+  require Logger
   use NeedleCombo.UserWeb, :html
 
-  # If you want to customize the error pages,
-  # uncomment the embed_templates/1 call below
-  # and add pages to the error directory:
-  #
-  #   * lib/user_web/controllers/error_html/404.html.heex
-  #   * lib/user_web/controllers/error_html/500.html.heex
-  #
-  # embed_templates "error_html/*"
+  embed_templates "error_html/*"
 
-  # The default is to render a plain text page based on
-  # the template name. For example, "404.html" becomes
-  # "Not Found".
-  def render(template, _assigns) do
-    Phoenix.Controller.status_message_from_template(template)
+  def render(template, assigns) do
+    message = get_message_from_template_name(template)
+    assigns = Map.put(assigns, :message, message)
+    fallback(assigns)
+  end
+
+  defp get_message_from_template_name(template) do
+    template
+    |> Phoenix.Controller.status_message_from_template()
+    |> translate_status_message()
+  end
+
+  defp translate_status_message("Bad Request") do
+    dgettext("http_status_messages", "Bad Request")
+  end
+
+  defp translate_status_message("Not Found") do
+    dgettext("http_status_messages", "Not Found")
+  end
+
+  defp translate_status_message("Internal Server Error") do
+    dgettext("http_status_messages", "Internal Server Error")
+  end
+
+  defp translate_status_message(error) do
+    Logger.warning("unhandled server error - #{error}")
+    dgettext("http_status_messages", "Something Went Wrong")
   end
 end
