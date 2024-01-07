@@ -12,11 +12,6 @@ parse_endpoint = fn url ->
   [scheme: scheme, host: host, port: port]
 end
 
-fetch_env! = fn env ->
-  System.get_env(env) ||
-    raise "environment variable #{env} is missing."
-end
-
 split_by_comma = fn string ->
   string
   |> String.trim()
@@ -26,13 +21,13 @@ end
 
 # ! general
 
-config :combo_saas, :dns_cluster_query, System.get_env("DNS_CLUSTER_QUERY")
+config :combo_saas, :dns_cluster_query, CozyEnv.get_env("DNS_CLUSTER_QUERY")
 
 # ! cozy_proxy
 
-cozy_proxy_endpoint = System.get_env("COZY_PROXY_ENDPOINT") || "http://localhost:4000"
-cozy_proxy_extra_endpoints = System.get_env("COZY_PROXY_EXTRA_ENDPOINTS")
-cozy_proxy_custom_listen_port = System.get_env("COZY_PROXY_LISTEN_PORT")
+cozy_proxy_endpoint = CozyEnv.get_env("COZY_PROXY_ENDPOINT") || "http://localhost:4000"
+cozy_proxy_extra_endpoints = CozyEnv.get_env("COZY_PROXY_EXTRA_ENDPOINTS")
+cozy_proxy_custom_listen_port = CozyEnv.get_env("COZY_PROXY_LISTEN_PORT", :integer)
 cozy_proxy_parsed_endpoint = parse_endpoint.(cozy_proxy_endpoint)
 cozy_proxy_derived_host = Keyword.fetch!(cozy_proxy_parsed_endpoint, :host)
 cozy_proxy_derived_port = Keyword.fetch!(cozy_proxy_parsed_endpoint, :port)
@@ -44,7 +39,7 @@ cozy_proxy_listen_ip =
 
 cozy_proxy_listen_port =
   if cozy_proxy_custom_listen_port,
-    do: String.to_integer(cozy_proxy_custom_listen_port),
+    do: cozy_proxy_custom_listen_port,
     else: cozy_proxy_derived_port
 
 cozy_proxy_origin =
@@ -56,21 +51,28 @@ config :combo_saas, CozyProxy,
   ip: cozy_proxy_listen_ip,
   port: cozy_proxy_listen_port
 
-if System.get_env("RELEASE_NAME") || System.get_env("COZY_PROXY_SERVER") do
+if CozyEnv.get_env("RELEASE_NAME") || CozyEnv.get_env("COZY_PROXY_SERVER") do
   config :combo_saas, CozyProxy, server: true
 end
+
+# ! ecto
+
+ecto_socket_options = if CozyEnv.get_env("ECTO_IPV6", :boolean), do: [:inet6], else: []
 
 # ! core
 
 if config_env() == :prod do
-  database_url = fetch_env!.("COMBO_SAAS_CORE_DATABASE_URL")
+  database_url =
+    CozyEnv.fetch_env!("COMBO_SAAS_CORE_DATABASE_URL",
+      message: "Set it to something like: ecto://USER:PASS@HOST/DATABASE"
+    )
 
-  database_pool_size =
-    String.to_integer(System.get_env("COMBO_SAAS_CORE_DATABASE_POOL_SIZE") || "10")
+  database_pool_size = CozyEnv.get_env("COMBO_SAAS_CORE_DATABASE_POOL_SIZE", :integer) || 10
 
   config :combo_saas, ComboSaaS.Core.Repo,
     url: database_url,
-    pool_size: database_pool_size
+    pool_size: database_pool_size,
+    socket_options: ecto_socket_options
 
   # Configure the mailer
   #
@@ -80,8 +82,8 @@ if config_env() == :prod do
   #
   #     config :combo_saas, ComboSaaS.Core.Mailer,
   #       adapter: Swoosh.Adapters.Mailgun,
-  #       api_key: System.get_env("COMBO_SAAS_CORE_MAILGUN_API_KEY"),
-  #       domain: System.get_env("COMBO_SAAS_CORE_MAILGUN_DOMAIN")
+  #       api_key: CozyEnv.fetch_env!("COMBO_SAAS_CORE_MAILGUN_API_KEY"),
+  #       domain: CozyEnv.fetch_env!("COMBO_SAAS_CORE_MAILGUN_DOMAIN")
   #
   # For this example you need include a HTTP client required by Swoosh API client.
   # Swoosh supports Hackney and Finch out of the box:
@@ -97,7 +99,10 @@ config :combo_saas, ComboSaaS.UserWeb.Endpoint, url: cozy_proxy_parsed_endpoint
 
 case config_env() do
   :prod ->
-    secret_key_base = fetch_env!.("COMBO_SAAS_USER_WEB_SECRET_KEY_BASE")
+    secret_key_base =
+      CozyEnv.fetch_env!("COMBO_SAAS_USER_WEB_SECRET_KEY_BASE",
+        message: "Generate one by calling: mix phx.gen.secret"
+      )
 
     config :combo_saas, ComboSaaS.UserWeb.Endpoint,
       secret_key_base: secret_key_base,
@@ -117,7 +122,10 @@ config :combo_saas, ComboSaaS.UserAPI.Endpoint, url: cozy_proxy_parsed_endpoint
 
 case config_env() do
   :prod ->
-    secret_key_base = fetch_env!.("COMBO_SAAS_USER_API_SECRET_KEY_BASE")
+    secret_key_base =
+      CozyEnv.fetch_env!("COMBO_SAAS_USER_API_SECRET_KEY_BASE",
+        message: "Generate one by calling: mix phx.gen.secret"
+      )
 
     config :combo_saas, ComboSaaS.UserAPI.Endpoint,
       secret_key_base: secret_key_base,
@@ -133,7 +141,10 @@ config :combo_saas, ComboSaaS.AdminWeb.Endpoint, url: cozy_proxy_parsed_endpoint
 
 case config_env() do
   :prod ->
-    secret_key_base = fetch_env!.("COMBO_SAAS_ADMIN_WEB_SECRET_KEY_BASE")
+    secret_key_base =
+      CozyEnv.fetch_env!("COMBO_SAAS_ADMIN_WEB_SECRET_KEY_BASE",
+        message: "Generate one by calling: mix phx.gen.secret"
+      )
 
     config :combo_saas, ComboSaaS.AdminWeb.Endpoint,
       secret_key_base: secret_key_base,
