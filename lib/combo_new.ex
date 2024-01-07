@@ -61,9 +61,49 @@ defmodule ComboNew do
     module = Module.concat([opts[:module] || camelize(app)])
     env_prefix = upcase(app)
 
+    check_app_name!(app, !!opts[:app])
+    check_module_name!(module)
+    check_directory_existence!(base_path)
+
     :ok = generator.generate(base_path, app: app, module: module, env_prefix: env_prefix)
 
     print_next_steps(base_path)
+  end
+
+  defp check_app_name!(name, from_app_option) do
+    name = to_string(name)
+
+    unless name =~ Regex.recompile!(~r/^[a-z][\w_]*$/) do
+      extra =
+        if !from_app_option do
+          ". The application name is inferred from the path, if you'd like to " <>
+            "explicitly name the application then use the `--app APP` option."
+        else
+          ""
+        end
+
+      Mix.raise(
+        "Application name must start with a letter and have only lowercase " <>
+          "letters, numbers and underscore, got: #{inspect(name)}" <> extra
+      )
+    end
+  end
+
+  defp check_module_name!(name) do
+    unless inspect(name) =~ Regex.recompile!(~r/^[A-Z]\w*(\.[A-Z]\w*)*$/) do
+      Mix.raise(
+        "Module name must be a valid Elixir alias (for example: Foo.Bar), got: #{inspect(name)}"
+      )
+    end
+  end
+
+  defp check_directory_existence!(path) do
+    if File.dir?(path) and
+         not Mix.shell().yes?(
+           "The directory #{path} already exists. Are you sure you want to continue?"
+         ) do
+      Mix.raise("Please select another directory for installation.")
+    end
   end
 
   defp camelize(term) when is_atom(term) do
