@@ -39,6 +39,7 @@ defmodule ComboNew.Generator do
       def generate(target_path, [app: app, module: module, env_prefix: env_prefix] = replacements) do
         slots = [app: @template_app, module: @template_module, env_prefix: @template_env_prefix]
         unquote(__MODULE__).create_files(target_path, @template_files, slots, replacements)
+        :ok
       end
     end
   end
