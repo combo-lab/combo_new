@@ -6,7 +6,7 @@ defmodule ComboSaaS.AdminWeb.Endpoint do
   # Set :encryption_salt if you would also like to encrypt it.
   @session_options [
     store: :cookie,
-    key: "_admin_web_key",
+    key: "_combo_saas_admin_web_key",
     signing_salt: "==signing_salt==",
     same_site: "Lax"
   ]

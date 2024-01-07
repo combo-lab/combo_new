@@ -6,7 +6,7 @@ defmodule ComboSaaS.UserAPI.Endpoint do
   # Set :encryption_salt if you would also like to encrypt it.
   @session_options [
     store: :cookie,
-    key: "_user_api_key",
+    key: "_combo_saas_user_api_key",
     signing_salt: "==signing_salt==",
     same_site: "Lax"
   ]
