@@ -1,0 +1,116 @@
+defmodule ComboNew.Generator do
+  @moduledoc false
+
+  @mode Mix.env()
+
+  defmacro __using__(opts) do
+    template_path = Keyword.fetch!(opts, :template_path)
+    template_app = Keyword.fetch!(opts, :template_app)
+    template_module = Keyword.fetch!(opts, :template_module)
+    template_env_prefix = Keyword.fetch!(opts, :template_env_prefix)
+
+    quote do
+      @template_path unquote(template_path)
+      @template_app unquote(template_app)
+      @template_module unquote(template_module)
+      @template_env_prefix unquote(template_env_prefix)
+
+      @before_compile unquote(__MODULE__)
+    end
+  end
+
+  defmacro __before_compile__(env) do
+    template_path = Module.get_attribute(env.module, :template_path)
+
+    template_files =
+      template_path
+      |> fetch_template_files()
+      |> Enum.map(fn path ->
+        relative_path = Path.relative_to(path, template_path)
+        content = File.read!(path)
+        {relative_path, content}
+      end)
+
+    quote do
+      @template_files unquote(template_files)
+
+      def template_files(), do: @template_files
+
+      def generate(target_path, [app: app, module: module, env_prefix: env_prefix] = replacements) do
+        slots = [app: @template_app, module: @template_module, env_prefix: @template_env_prefix]
+        unquote(__MODULE__).create_files(target_path, @template_files, slots, replacements)
+      end
+    end
+  end
+
+  defp fetch_template_files(dir) do
+    if @mode == :prod,
+      do: fetch_all_files(dir),
+      else: fetch_git_files(dir)
+  end
+
+  defp fetch_all_files(dir) do
+    Path.wildcard("#{dir}/**/*")
+  end
+
+  defp fetch_git_files(dir) do
+    root_dir = git_root_dir()
+
+    cli = "git ls-tree --full-name --name-only -r HEAD ."
+
+    {cmd, args} =
+      cli
+      |> String.split(~r|\s+|)
+      |> List.pop_at(0)
+
+    files =
+      case System.cmd(cmd, args, cd: dir) do
+        {result, 0} ->
+          result
+          |> String.trim()
+          |> String.split("\n")
+
+        _ ->
+          raise RuntimeError, "unable to list git files"
+      end
+
+    Enum.map(files, &Path.join(root_dir, &1))
+  end
+
+  defp git_root_dir() do
+    cli = "git rev-parse --show-toplevel"
+
+    {cmd, args} =
+      cli
+      |> String.split(~r|\s+|)
+      |> List.pop_at(0)
+
+    {result, 0} = System.cmd(cmd, args)
+    String.trim(result)
+  end
+
+  def create_files(target_path, template_files, slots, replacements) do
+    for {path, content} <- template_files do
+      path = Path.join(target_path, path)
+      create_file(path, content, slots, replacements)
+    end
+  end
+
+  defp create_file(path, content, slots, replacements) do
+    slot_app = Keyword.fetch!(slots, :app)
+    slot_module = Keyword.fetch!(slots, :module)
+    slot_env_prefix = Keyword.fetch!(slots, :env_prefix)
+
+    app = Keyword.fetch!(replacements, :app)
+    module = Keyword.fetch!(replacements, :module)
+    env_prefix = Keyword.fetch!(replacements, :env_prefix)
+
+    content =
+      content
+      |> String.replace(to_string(slot_app), to_string(app))
+      |> String.replace(inspect(slot_module), inspect(module))
+      |> String.replace(slot_env_prefix, env_prefix)
+
+    Mix.Generator.create_file(path, content)
+  end
+end
