@@ -3,11 +3,60 @@ defmodule ComboNew do
   An opinionated project generator for Phoenix.
   """
 
+  @app Mix.Project.config()[:app]
+  @version Mix.Project.config()[:version]
+  @elixir_requirement Mix.Project.config()[:elixir]
+
+  @support_options [
+    app: :string,
+    module: :string
+  ]
+
   @doc """
-  Generates a project with specified generator.
+  Runs a generator with Mix task.
   """
-  def run(generator, base_path, opts) do
+  def run(_mix_task_module, _generator, [option] = _agrv)
+      when option in ~w(-v --version) do
+    Mix.shell().info("#{@app} v#{@version}")
+  end
+
+  def run(mix_task_module, generator, argv) do
+    elixir_version_check!()
+
+    case OptionParser.parse!(argv, strict: @support_options) do
+      {opts, [base_path | _]} ->
+        generate(generator, base_path, opts)
+
+      _ ->
+        task_name = to_mix_task_name(mix_task_module)
+        Mix.Tasks.Help.run([task_name])
+    end
+  end
+
+  defp elixir_version_check!() do
+    unless Version.match?(System.version(), @elixir_requirement) do
+      Mix.raise(
+        "#{@app} v#{@version} requires Elixir #{@elixir_requirement}. " <>
+          "But, you have Elixir #{System.version()}. \n" <> "Please update accordingly."
+      )
+    end
+  end
+
+  defp to_mix_task_name(mix_task_module) do
+    "Mix.Tasks." <> module = inspect(mix_task_module)
+
+    module
+    |> String.split(".")
+    |> Enum.map(&Macro.underscore/1)
+    |> Enum.join(".")
+  end
+
+  @doc """
+  Generates a project.
+  """
+  def generate(generator, base_path, opts) do
     base_path = Path.expand(base_path)
+
     app = String.to_atom(opts[:app] || Path.basename(base_path))
     module = Module.concat([opts[:module] || camelize(app)])
     env_prefix = upcase(app)
