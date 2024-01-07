@@ -85,6 +85,8 @@ defmodule ComboSaaS.MixProject do
       setup: ["deps.get", "ecto.setup", "assets.setup", "assets.build"],
       test: ["ecto.setup", "test"],
 
+      # ! high-level aliases
+
       # for testing release locally
       "release.local": [
         "assets.setup",
@@ -93,7 +95,7 @@ defmodule ComboSaaS.MixProject do
         "assets.clean"
       ],
 
-      # ! summary
+      # ! group aliases
 
       "ecto.setup": [
         "core.ecto.setup"

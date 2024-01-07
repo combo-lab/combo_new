@@ -77,6 +77,8 @@ defmodule ComboLite.MixProject do
     [
       setup: ["deps.get", "assets.setup", "assets.build"],
 
+      # ! high-level aliases
+
       # for testing release locally
       "release.local": [
         "assets.setup",
@@ -85,7 +87,7 @@ defmodule ComboLite.MixProject do
         "assets.clean"
       ],
 
-      # ! summary
+      # ! group aliases
 
       "assets.setup": [
         "user_web.assets.setup"
