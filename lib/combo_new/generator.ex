@@ -51,7 +51,8 @@ defmodule ComboNew.Generator do
   end
 
   defp fetch_all_files(dir) do
-    Path.wildcard("#{dir}/**/*")
+    "#{dir}/**/*"
+    |> Path.wildcard(match_dot: true)
     |> Enum.filter(&File.regular?/1)
   end
 
