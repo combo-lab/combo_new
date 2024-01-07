@@ -12,11 +12,6 @@ parse_endpoint = fn url ->
   [scheme: scheme, host: host, port: port]
 end
 
-fetch_env! = fn env ->
-  System.get_env(env) ||
-    raise "environment variable #{env} is missing."
-end
-
 split_by_comma = fn string ->
   string
   |> String.trim()
@@ -26,13 +21,13 @@ end
 
 # ! general
 
-config :combo_lite, :dns_cluster_query, System.get_env("DNS_CLUSTER_QUERY")
+config :combo_lite, :dns_cluster_query, CozyEnv.get_env("DNS_CLUSTER_QUERY")
 
 # ! cozy_proxy
 
-cozy_proxy_endpoint = System.get_env("COZY_PROXY_ENDPOINT") || "http://localhost:4000"
-cozy_proxy_extra_endpoints = System.get_env("COZY_PROXY_EXTRA_ENDPOINTS")
-cozy_proxy_custom_listen_port = System.get_env("COZY_PROXY_LISTEN_PORT")
+cozy_proxy_endpoint = CozyEnv.get_env("COZY_PROXY_ENDPOINT") || "http://localhost:4000"
+cozy_proxy_extra_endpoints = CozyEnv.get_env("COZY_PROXY_EXTRA_ENDPOINTS")
+cozy_proxy_custom_listen_port = CozyEnv.get_env("COZY_PROXY_LISTEN_PORT", :integer)
 cozy_proxy_parsed_endpoint = parse_endpoint.(cozy_proxy_endpoint)
 cozy_proxy_derived_host = Keyword.fetch!(cozy_proxy_parsed_endpoint, :host)
 cozy_proxy_derived_port = Keyword.fetch!(cozy_proxy_parsed_endpoint, :port)
@@ -44,7 +39,7 @@ cozy_proxy_listen_ip =
 
 cozy_proxy_listen_port =
   if cozy_proxy_custom_listen_port,
-    do: String.to_integer(cozy_proxy_custom_listen_port),
+    do: cozy_proxy_custom_listen_port,
     else: cozy_proxy_derived_port
 
 cozy_proxy_origin =
@@ -56,7 +51,7 @@ config :combo_lite, CozyProxy,
   ip: cozy_proxy_listen_ip,
   port: cozy_proxy_listen_port
 
-if System.get_env("RELEASE_NAME") || System.get_env("COZY_PROXY_SERVER") do
+if CozyEnv.get_env("RELEASE_NAME") || CozyEnv.get_env("COZY_PROXY_SERVER") do
   config :combo_lite, CozyProxy, server: true
 end
 
@@ -70,7 +65,10 @@ config :combo_lite, ComboLite.UserWeb.Endpoint, url: cozy_proxy_parsed_endpoint
 
 case config_env() do
   :prod ->
-    secret_key_base = fetch_env!.("COMBO_SAAS_USER_WEB_SECRET_KEY_BASE")
+    secret_key_base =
+      CozyEnv.fetch_env!("COMBO_LITE_USER_WEB_SECRET_KEY_BASE",
+        message: "Generate one by calling: mix phx.gen.secret"
+      )
 
     config :combo_lite, ComboLite.UserWeb.Endpoint,
       secret_key_base: secret_key_base,
