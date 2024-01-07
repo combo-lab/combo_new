@@ -39,7 +39,9 @@ defmodule ComboNew.MixProject do
   defp docs do
     [
       extras: ["README.md"],
-      main: "readme"
+      main: "readme",
+      source_url: @source_url,
+      source_ref: "v#{@version}"
     ]
   end
 
