@@ -1,8 +1,8 @@
-# ComboNew
+# combo_new
 
 An opinionated project generator for Phoenix.
 
-> This generator is highly customized for myself. You should use `phx_new`.
+> It's a part of `combo`, which is an opinionated code generator for Phoenix.
 
 ## Usage
 
