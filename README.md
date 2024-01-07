@@ -24,6 +24,19 @@ $ mix needle.new.saas demo
 
 See `mix help` for more details.
 
+## Features
+
+- asset pipeline powered by [esbuild](https://esbuild.github.io/) and Node.js ecosystem
+- reduced number of processes running in dev environment, which is derived from [axelson's repo](https://github.com/axelson/hello_phoenix/pull/1)
+- liveness probe, which is common in container environments.
+- ...
+
+## Sync Status
+
+`combo_new` will continuously track changes in Phoenix and merge them in.
+
+Currently, this repo is synchronized to the commit `dec89f24169d897442fe82a819e0ba312f96c014`(2024/01/03) of [phoenixframework/phoenix](https://github.com/phoenixframework/phoenix).
+
 ## Why?
 
 Previously, I made many attempts at codemod on Phoenix generated files:
