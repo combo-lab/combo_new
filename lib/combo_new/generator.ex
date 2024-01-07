@@ -52,6 +52,7 @@ defmodule ComboNew.Generator do
 
   defp fetch_all_files(dir) do
     Path.wildcard("#{dir}/**/*")
+    |> Enum.filter(&File.regular?/1)
   end
 
   defp fetch_git_files(dir) do
