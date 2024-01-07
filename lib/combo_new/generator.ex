@@ -112,7 +112,39 @@ defmodule ComboNew.Generator do
       |> String.replace(to_string(slot_app), to_string(app))
       |> String.replace(inspect(slot_module), inspect(module))
       |> String.replace(slot_env_prefix, env_prefix)
+      |> inject_secret_key_base()
+      |> inject_signing_salt()
 
     Mix.Generator.create_file(path, content)
+  end
+
+  defp inject_secret_key_base(content) do
+    pattern = "=========================secret_key_base========================="
+    replacement = random_string(64)
+    new_content = String.replace(content, pattern, replacement, global: false)
+
+    if new_content == content do
+      new_content
+    else
+      inject_secret_key_base(new_content)
+    end
+  end
+
+  defp inject_signing_salt(content) do
+    pattern = "==signing_salt=="
+    replacement = random_string(8)
+    new_content = String.replace(content, pattern, replacement, global: false)
+
+    if new_content == content do
+      new_content
+    else
+      inject_signing_salt(new_content)
+    end
+  end
+
+  defp random_string(length) do
+    :crypto.strong_rand_bytes(length)
+    |> Base.encode64()
+    |> binary_part(0, length)
   end
 end

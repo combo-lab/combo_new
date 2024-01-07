@@ -61,7 +61,7 @@ config :combo_lite, ComboLite.UserWeb.Endpoint,
     layout: false
   ],
   pubsub_server: ComboLite.PubSub,
-  live_view: [signing_salt: "==salt=="],
+  live_view: [signing_salt: "==signing_salt=="],
   server: false
 
 # Import environment specific config. This must remain at the bottom

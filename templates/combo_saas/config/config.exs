@@ -76,7 +76,7 @@ config :combo_saas, ComboSaaS.UserWeb.Endpoint,
     layout: false
   ],
   pubsub_server: ComboSaaS.PubSub,
-  live_view: [signing_salt: "==salt=="],
+  live_view: [signing_salt: "==signing_salt=="],
   server: false
 
 # ! user_api
@@ -90,7 +90,7 @@ config :combo_saas, ComboSaaS.UserAPI.Endpoint,
     layout: false
   ],
   pubsub_server: ComboSaaS.PubSub,
-  live_view: [signing_salt: "==salt=="],
+  live_view: [signing_salt: "==signing_salt=="],
   server: false
 
 # ! admin_web
@@ -104,7 +104,7 @@ config :combo_saas, ComboSaaS.AdminWeb.Endpoint,
     layout: false
   ],
   pubsub_server: ComboSaaS.PubSub,
-  live_view: [signing_salt: "==salt=="],
+  live_view: [signing_salt: "==signing_salt=="],
   server: false
 
 # Import environment specific config. This must remain at the bottom of this

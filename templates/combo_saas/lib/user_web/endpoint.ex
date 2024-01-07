@@ -7,7 +7,7 @@ defmodule ComboSaaS.UserWeb.Endpoint do
   @session_options [
     store: :cookie,
     key: "_user_web_key",
-    signing_salt: "==salt==",
+    signing_salt: "==signing_salt==",
     same_site: "Lax"
   ]
 
