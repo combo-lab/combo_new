@@ -65,7 +65,7 @@ defmodule ComboSaaS.MixProject do
       {:ecto_sql, "~> 3.10"},
       {:postgrex, ">= 0.0.0"},
       {:swoosh, "~> 1.3"},
-      {:finch, "~> 0.13"},
+      {:finch, "~> 0.17"},
 
       # web
       {:phoenix, "~> 1.7.10"},
