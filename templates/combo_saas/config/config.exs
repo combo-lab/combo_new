@@ -59,7 +59,7 @@ config :ex_cldr,
 # Configure Mix tasks for Ecto.
 config :combo_saas, ecto_repos: [ComboSaaS.Core.Repo]
 
-# Configures the database
+# Configures the database.
 config :combo_saas, ComboSaaS.Core.Repo,
   priv: "priv/core/repo",
   migration_primary_key: [name: :id, type: :binary_id],

@@ -30,7 +30,7 @@ config :combo_saas, CozyProxy, transport_options: [num_acceptors: 2]
 
 # ! core
 
-# Configure the database
+# Configure the database.
 config :combo_saas, ComboSaaS.Core.Repo,
   username: "postgres",
   password: "postgres",
@@ -76,7 +76,7 @@ config :combo_saas, ComboSaaS.UserWeb.Endpoint,
 
 # ! user_api
 
-# Configure the endpoint
+# Configure the endpoint.
 config :combo_saas, ComboSaaS.UserAPI.Endpoint,
   http: [
     transport_options: [num_acceptors: 2]
@@ -89,7 +89,7 @@ config :combo_saas, ComboSaaS.UserAPI.Endpoint,
 
 # ! admin_web
 
-# Configure the endpoint
+# Configure the endpoint.
 config :combo_saas, ComboSaaS.AdminWeb.Endpoint,
   http: [
     transport_options: [num_acceptors: 2]

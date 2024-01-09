@@ -47,7 +47,7 @@ defmodule ComboSaaS.I18n do
   Changes the locale of current process.
 
   Like `put_locale/1`, but it treats give locale as trusted and doesn't
-  casted it anymore.
+  cast it anymore.
 
   It's often used with `cast_locale/1`.
 
