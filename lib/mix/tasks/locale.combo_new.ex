@@ -4,7 +4,7 @@ defmodule Mix.Tasks.Local.ComboNew do
   @shortdoc "Updates combo_new locally"
 
   @moduledoc """
-  Updates needle_new locally.
+  Updates combo_new locally.
 
       $ mix local.combo_new
 

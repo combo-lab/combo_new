@@ -16,10 +16,10 @@ Create a new Phoenix project:
 
 ```
 # create a project from combo_lite template
-$ mix combo.new.lite demo
+$ mix combo_new.lite demo
 
 # create a project from combo_saas template
-$ mix needle.new.saas demo
+$ mix combo_new.saas demo
 ```
 
 See `mix help` for more details.
