@@ -52,6 +52,13 @@ The project generator includes some templates tailored to my own needs. Since th
 
 Additionally, all the templates are directly executable projects, which makes development and debugging very simple.
 
+## Thanks
+
+This generator is built on the wisdom in following code:
+
+- [phoenixframework/phoenix](https://github.com/phoenixframework/phoenix) for the Mix tasks.
+- [sasa1977/mix_phx_alt](https://github.com/sasa1977/mix_phx_alt) for the project structure.
+
 ## License
 
 Apache License 2.0
