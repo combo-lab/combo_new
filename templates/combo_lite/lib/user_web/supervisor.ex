@@ -10,7 +10,6 @@ defmodule ComboLite.UserWeb.Supervisor do
   @impl true
   def init(_arg) do
     children = [
-      ComboLite.UserWeb.Telemetry,
       ComboLite.UserWeb.Endpoint
     ]
 

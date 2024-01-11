@@ -10,7 +10,6 @@ defmodule ComboSaaS.UserWeb.Supervisor do
   @impl true
   def init(_arg) do
     children = [
-      ComboSaaS.UserWeb.Telemetry,
       ComboSaaS.UserWeb.Endpoint
     ]
 

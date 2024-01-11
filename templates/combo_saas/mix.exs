@@ -50,9 +50,8 @@ defmodule ComboSaaS.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
+      {:cozy_telemetry, "~> 0.5"},
       {:dns_cluster, "~> 0.1.1"},
-      {:telemetry_metrics, "~> 0.6"},
-      {:telemetry_poller, "~> 1.0"},
       {:jason, "~> 1.2"},
       {:cozy_proxy, "~> 0.3"},
       {:cozy_env, "~> 0.2"},

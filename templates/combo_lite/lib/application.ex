@@ -6,6 +6,7 @@ defmodule ComboLite.Application do
   use Boundary,
     top_level?: true,
     deps: [
+      ComboLite.Telemetry,
       ComboLite.Core,
       ComboLite.UserWeb
     ]
@@ -15,6 +16,7 @@ defmodule ComboLite.Application do
   @impl true
   def start(_type, _args) do
     children = [
+      ComboLite.Telemetry,
       {DNSCluster, dns_cluster_config()},
       ComboLite.Core.Supervisor,
       ComboLite.UserWeb.Supervisor,

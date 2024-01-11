@@ -19,6 +19,7 @@ defmodule ComboSaaS.AdminWeb do
 
   use Boundary,
     deps: [
+      ComboSaaS.Telemetry,
       ComboSaaS.I18n,
       ComboSaaS.Core
     ],

@@ -6,6 +6,7 @@ defmodule ComboSaaS.Application do
   use Boundary,
     top_level?: true,
     deps: [
+      ComboSaaS.Telemetry,
       ComboSaaS.Core,
       ComboSaaS.UserWeb,
       ComboSaaS.UserAPI,
@@ -17,6 +18,7 @@ defmodule ComboSaaS.Application do
   @impl true
   def start(_type, _args) do
     children = [
+      ComboSaaS.Telemetry,
       {DNSCluster, dns_cluster_config()},
       ComboSaaS.Core.Supervisor,
       ComboSaaS.UserWeb.Supervisor,

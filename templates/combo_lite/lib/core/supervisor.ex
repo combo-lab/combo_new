@@ -10,7 +10,6 @@ defmodule ComboLite.Core.Supervisor do
   @impl true
   def init(_arg) do
     children = [
-      ComboLite.Core.Telemetry,
       {Phoenix.PubSub, name: ComboLite.PubSub}
     ]
 

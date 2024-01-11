@@ -19,6 +19,7 @@ defmodule ComboLite.UserWeb do
 
   use Boundary,
     deps: [
+      ComboLite.Telemetry,
       ComboLite.I18n,
       ComboLite.Core
     ],

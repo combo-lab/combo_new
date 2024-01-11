@@ -16,6 +16,18 @@ config :logger, :console,
 # Use Jason for JSON parsing in Phoenix.
 config :phoenix, :json_library, Jason
 
+# ! cozy_telemetry
+
+config :combo_saas, CozyTelemetry,
+  meta: [],
+  specs: [
+    ComboSaaS.Telemetry.VM,
+    ComboSaaS.Telemetry.Phoenix,
+    ComboSaaS.Core.Telemetry
+  ],
+  reporter: {:console, []},
+  poller: [period: 10_000]
+
 # ! cozy_proxy
 
 config :combo_saas, CozyProxy,
