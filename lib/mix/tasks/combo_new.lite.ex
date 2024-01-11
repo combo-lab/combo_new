@@ -6,6 +6,13 @@ defmodule Mix.Tasks.ComboNew.Lite do
   @moduledoc """
   #{@shortdoc}.
 
+  This type assumes that the project is for building a simple website, which
+  generally only includes web interface for users.
+
+  In order to facilitate a smooth transition to a SaaS type when business
+  changes in the future, this type adopts a project structure consistent with
+  the SaaS type.
+
   ## Usage
 
   It expects the path of the project as an argument.

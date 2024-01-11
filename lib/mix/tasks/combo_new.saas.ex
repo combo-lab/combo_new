@@ -6,6 +6,14 @@ defmodule Mix.Tasks.ComboNew.Saas do
   @moduledoc """
   #{@shortdoc}.
 
+  This type assumes that the project is for building SaaS, which generally
+  includes following parts:
+
+    1. core logic for the business
+    2. web interface for users
+    3. web interface for administrators
+    4. web API for users (for developer-oriented SaaS)
+
   ## Usage
 
   It expects the path of the project as an argument.
