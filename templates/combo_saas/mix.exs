@@ -88,8 +88,11 @@ defmodule ComboSaaS.MixProject do
   end
 
   defp compilers do
-    [:boundary] ++ Mix.compilers()
+    extra_compilers(Mix.env()) ++ Mix.compilers()
   end
+
+  defp extra_compilers(:test), do: []
+  defp extra_compilers(_env), do: [:boundary]
 
   defp boundary do
     [
