@@ -103,7 +103,9 @@ defmodule ComboSaaS.Core.Release do
       end)
 
   """
-  def seed(opts \\ []) do
+  def seed(), do: raise("I don't know what to do")
+
+  def seed(opts) do
     load_apps()
 
     case opts do
@@ -114,7 +116,7 @@ defmodule ComboSaaS.Core.Release do
         seed_one(name)
 
       _ ->
-        raise "I don't know what to do"
+        raise "unknown options - #{inspect(opts)}"
     end
   end
 
@@ -153,7 +155,9 @@ defmodule ComboSaaS.Core.Release do
       end)
 
   """
-  def migrate_data(opts \\ []) do
+  def migrate_data(), do: raise("I don't know what to do")
+
+  def migrate_data(opts) do
     load_apps()
 
     case opts do
@@ -164,7 +168,7 @@ defmodule ComboSaaS.Core.Release do
         migrate_one_data(name)
 
       _ ->
-        raise "I don't know what to do"
+        raise "unknown options - #{inspect(opts)}"
     end
   end
 

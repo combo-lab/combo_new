@@ -98,8 +98,7 @@ defmodule ComboSaaS.I18n do
 
   @process_locale_key __MODULE__
                       |> Module.split()
-                      |> Enum.map(&Macro.underscore/1)
-                      |> Enum.join("_")
+                      |> Enum.map_join("_", &Macro.underscore/1)
                       |> String.to_atom()
   defp put_process_locale(value), do: Process.put(@process_locale_key, value)
   defp get_process_locale(), do: Process.get(@process_locale_key, Config.default_locale())
