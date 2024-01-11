@@ -57,7 +57,7 @@ Additionally, all the templates are directly executable projects, which makes de
 This generator is built on the wisdom in following code:
 
 - [phoenixframework/phoenix](https://github.com/phoenixframework/phoenix) for the Mix tasks.
-- [sasa1977/mix_phx_alt](https://github.com/sasa1977/mix_phx_alt) for the project structure.
+- [sasa1977/mix_phx_alt](https://github.com/sasa1977/mix_phx_alt) for the project structure and [boundary](https://github.com/sasa1977/boundary) configuration.
 
 ## License
 
