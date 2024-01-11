@@ -3,6 +3,15 @@ defmodule ComboSaaS.Application do
   # for more information on OTP Applications
   @moduledoc false
 
+  use Boundary,
+    top_level?: true,
+    deps: [
+      ComboSaaS.Core,
+      ComboSaaS.UserWeb,
+      ComboSaaS.UserAPI,
+      ComboSaaS.AdminWeb
+    ]
+
   use Application
 
   @impl true

@@ -17,6 +17,15 @@ defmodule ComboSaaS.UserWeb do
   those modules here.
   """
 
+  use Boundary,
+    deps: [
+      ComboSaaS.I18n,
+      ComboSaaS.Core
+    ],
+    exports: [
+      Supervisor
+    ]
+
   def static_paths, do: ~w(robots.txt icons images assets)
 
   def router do

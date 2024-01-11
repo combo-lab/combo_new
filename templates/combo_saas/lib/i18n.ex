@@ -20,20 +20,26 @@ defmodule ComboSaaS.I18n do
 
   """
 
+  use Boundary,
+    deps: [],
+    exports: [
+      Gettext
+    ]
+
   require ComboSaaS.I18n.Config
   alias ComboSaaS.I18n.Config
   alias ComboSaaS.I18n.Cldr
   alias ComboSaaS.I18n.Gettext
 
   @doc """
-  Gets the default locale.
+  Returns the default locale.
   """
-  def get_default_locale(), do: Config.default_locale()
+  def default_locale(), do: Config.default_locale()
 
   @doc """
-  Gets supported locales.
+  Returns supported locales.
   """
-  def get_supported_locales(), do: Config.supported_locales()
+  def supported_locales(), do: Config.supported_locales()
 
   @doc """
   Changes the locale of current process.

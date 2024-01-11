@@ -17,6 +17,15 @@ defmodule ComboLite.UserWeb do
   those modules here.
   """
 
+  use Boundary,
+    deps: [
+      ComboLite.I18n,
+      ComboLite.Core
+    ],
+    exports: [
+      Supervisor
+    ]
+
   def static_paths, do: ~w(robots.txt icons images assets)
 
   def router do

@@ -13,6 +13,8 @@ defmodule ComboSaaS.MixProject do
       start_permanent: Mix.env() == :prod,
       releases: releases(),
       deps: deps(),
+      compilers: compilers(),
+      boundary: boundary(),
       aliases: aliases()
     ]
   end
@@ -74,7 +76,33 @@ defmodule ComboSaaS.MixProject do
       {:phoenix_live_view, "~> 0.20.2"},
       {:phoenix_live_dashboard, "~> 0.8.3"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
-      {:floki, ">= 0.30.0", only: :test}
+      {:floki, ">= 0.30.0", only: :test},
+
+      # code quality
+      {:boundary, "~> 0.10", runtime: false},
+      {:ex_check, "~> 0.15.0", only: [:dev], runtime: false},
+      {:credo, ">= 0.0.0", only: [:dev], runtime: false},
+      {:dialyxir, ">= 0.0.0", only: [:dev], runtime: false},
+      {:mix_audit, ">= 0.0.0", only: [:dev], runtime: false}
+    ]
+  end
+
+  defp compilers do
+    [:boundary] ++ Mix.compilers()
+  end
+
+  defp boundary do
+    [
+      default: [
+        check: [
+          # enable checking alias references
+          aliases: true,
+          apps: [
+            # warn the runtime calls of Mix, which is not available in release
+            {:mix, :runtime}
+          ]
+        ]
+      ]
     ]
   end
 

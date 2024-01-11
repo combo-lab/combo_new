@@ -3,6 +3,13 @@ defmodule ComboLite.Application do
   # for more information on OTP Applications
   @moduledoc false
 
+  use Boundary,
+    top_level?: true,
+    deps: [
+      ComboLite.Core,
+      ComboLite.UserWeb
+    ]
+
   use Application
 
   @impl true

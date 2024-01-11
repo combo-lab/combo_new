@@ -17,6 +17,15 @@ defmodule ComboSaaS.UserAPI do
   those modules here.
   """
 
+  use Boundary,
+    deps: [
+      ComboSaaS.I18n,
+      ComboSaaS.Core
+    ],
+    exports: [
+      Supervisor
+    ]
+
   def router do
     quote do
       use Phoenix.Router, helpers: false
