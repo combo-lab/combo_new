@@ -6,7 +6,7 @@ defmodule ComboSaaS.UserAPI.FallbackController do
   """
 
   use ComboSaaS.UserAPI, :controller
-  alias ComboSaaS.UserAPI.MessageJSON
+  # alias ComboSaaS.UserAPI.MessageJSON
 
   # def call(
   #       conn,
