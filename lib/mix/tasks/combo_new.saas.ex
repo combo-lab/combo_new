@@ -1,3 +1,7 @@
+# Use Mix.Tasks.ComboNew.Saas instead of Mix.Tasks.ComboNew.SaaS
+#
+# Because the Mix task names are derived from the module name, in order to
+# make `mix combo_new.saas` work, I have to use this strange module name.
 defmodule Mix.Tasks.ComboNew.Saas do
   use Mix.Task
 
