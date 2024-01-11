@@ -92,8 +92,10 @@ defmodule ComboSaaS.UserWeb do
     quote do
       # HTML escaping functionality
       import Phoenix.HTML
-      # Core UI components and translation
+
+      # UI components and translation
       import ComboSaaS.UserWeb.CoreComponents
+      import ComboSaaS.UserWeb.SvgComponents
       import ComboSaaS.I18n.Gettext
 
       # Shortcut for generating JS commands

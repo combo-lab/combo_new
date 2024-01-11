@@ -92,8 +92,10 @@ defmodule ComboLite.UserWeb do
     quote do
       # HTML escaping functionality
       import Phoenix.HTML
-      # Core UI components and translation
+
+      # UI components and translation
       import ComboLite.UserWeb.CoreComponents
+      import ComboLite.UserWeb.SvgComponents
       import ComboLite.I18n.Gettext
 
       # Shortcut for generating JS commands
