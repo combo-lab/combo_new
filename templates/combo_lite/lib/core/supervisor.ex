@@ -10,9 +10,7 @@ defmodule ComboLite.Core.Supervisor do
 
   @impl Supervisor
   def init(_arg) do
-    children = [
-      {Phoenix.PubSub, name: ComboLite.PubSub}
-    ]
+    children = []
 
     Supervisor.init(children, strategy: :one_for_one)
   end

@@ -7,6 +7,7 @@ defmodule ComboLite.Application do
     top_level?: true,
     deps: [
       ComboLite.Telemetry,
+      ComboLite.PubSub,
       ComboLite.Core,
       ComboLite.UserWeb
     ]
@@ -17,6 +18,7 @@ defmodule ComboLite.Application do
   def start(_type, _args) do
     children = [
       ComboLite.Telemetry,
+      ComboLite.PubSub,
       {DNSCluster, dns_cluster_config()},
       ComboLite.Core.Supervisor,
       ComboLite.UserWeb.Supervisor,

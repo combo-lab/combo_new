@@ -7,6 +7,7 @@ defmodule ComboSaaS.Application do
     top_level?: true,
     deps: [
       ComboSaaS.Telemetry,
+      ComboSaaS.PubSub,
       ComboSaaS.Core,
       ComboSaaS.UserWeb,
       ComboSaaS.UserAPI,
@@ -20,6 +21,7 @@ defmodule ComboSaaS.Application do
     children = [
       ComboSaaS.Telemetry,
       {DNSCluster, dns_cluster_config()},
+      ComboSaaS.PubSub,
       ComboSaaS.Core.Supervisor,
       ComboSaaS.UserWeb.Supervisor,
       ComboSaaS.UserAPI.Supervisor,

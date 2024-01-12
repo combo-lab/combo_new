@@ -12,7 +12,6 @@ defmodule ComboSaaS.Core.Supervisor do
   def init(_arg) do
     children = [
       ComboSaaS.Core.Repo,
-      {Phoenix.PubSub, name: ComboSaaS.PubSub},
       # Start the Finch HTTP client for sending emails
       {Finch, name: ComboSaaS.Core.Finch}
     ]
