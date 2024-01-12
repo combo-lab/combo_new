@@ -19,6 +19,8 @@ defmodule ComboSaaS.AdminWeb do
 
   use Boundary,
     deps: [
+      Phoenix,
+      Ecto.Changeset,
       ComboSaaS.Telemetry,
       ComboSaaS.I18n,
       ComboSaaS.Core

@@ -9,6 +9,8 @@ defmodule ComboSaaS.Core do
 
   use Boundary,
     deps: [
+      Ecto,
+      Ecto.Changeset,
       ComboSaaS.I18n
     ],
     exports: [

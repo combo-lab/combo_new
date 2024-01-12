@@ -101,6 +101,8 @@ defmodule ComboSaaS.MixProject do
           # enable checking alias references
           aliases: true,
           apps: [
+            :phoenix,
+            :ecto,
             # warn the runtime calls of Mix, which is not available in release
             {:mix, :runtime}
           ]

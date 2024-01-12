@@ -19,6 +19,8 @@ defmodule ComboSaaS.UserAPI do
 
   use Boundary,
     deps: [
+      Phoenix,
+      Ecto.Changeset,
       ComboSaaS.I18n,
       ComboSaaS.Core
     ],

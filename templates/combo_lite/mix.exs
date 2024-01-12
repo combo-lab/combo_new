@@ -94,6 +94,7 @@ defmodule ComboLite.MixProject do
           # enable checking alias references
           aliases: true,
           apps: [
+            :phoenix,
             # warn the runtime calls of Mix, which is not available in release
             {:mix, :runtime}
           ]
