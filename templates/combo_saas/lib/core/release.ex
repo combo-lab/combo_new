@@ -103,7 +103,7 @@ defmodule ComboSaaS.Core.Release do
       end)
 
   """
-  def seed(), do: raise("I don't know what to do")
+  def seed, do: raise("I don't know what to do")
 
   def seed(opts) do
     load_apps()
@@ -120,7 +120,7 @@ defmodule ComboSaaS.Core.Release do
     end
   end
 
-  defp seed_all() do
+  defp seed_all do
     script = priv_path_for(@repo, "seeds.exs")
     run_script(@repo, script)
   end
@@ -155,7 +155,7 @@ defmodule ComboSaaS.Core.Release do
       end)
 
   """
-  def migrate_data(), do: raise("I don't know what to do")
+  def migrate_data, do: raise("I don't know what to do")
 
   def migrate_data(opts) do
     load_apps()
@@ -172,7 +172,7 @@ defmodule ComboSaaS.Core.Release do
     end
   end
 
-  defp migrate_all_data() do
+  defp migrate_all_data do
     script = priv_path_for(@repo, "data_migrations.exs")
     run_script(@repo, script)
   end
@@ -182,7 +182,7 @@ defmodule ComboSaaS.Core.Release do
     run_script(@repo, script)
   end
 
-  defp load_apps() do
+  defp load_apps do
     Application.load(@app)
   end
 

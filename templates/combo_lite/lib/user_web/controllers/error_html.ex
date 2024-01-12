@@ -20,8 +20,8 @@ defmodule ComboLite.UserWeb.ErrorHTML do
 
   """
 
-  require Logger
   use ComboLite.UserWeb, :html
+  require Logger
 
   embed_templates "error_html/*"
 

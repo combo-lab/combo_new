@@ -3,7 +3,7 @@ defmodule ComboLite.UserWeb.Layouts do
 
   embed_templates "layouts/*"
 
-  defp get_base_path() do
+  defp get_base_path do
     :combo_lite
     |> Application.get_env(ComboLite.UserWeb.Endpoint)
     |> get_in([:url, :path])

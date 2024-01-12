@@ -32,6 +32,7 @@ defmodule ComboLite.I18n.Gettext do
 
   require ComboLite.I18n.Config
 
+  # credo:disable-for-next-line Credo.Check.Readability.StrictModuleLayout
   use Gettext,
     otp_app: :combo_lite,
     priv: "priv/i18n/gettext",
@@ -42,7 +43,7 @@ defmodule ComboLite.I18n.Gettext do
     Gettext.put_locale(__MODULE__, locale)
   end
 
-  def get_locale() do
+  def get_locale do
     Gettext.get_locale(__MODULE__)
   end
 end

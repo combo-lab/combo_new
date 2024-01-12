@@ -5,6 +5,7 @@ defmodule ComboLite.I18n.Cldr do
 
   require ComboLite.I18n.Config
 
+  # credo:disable-for-next-line Credo.Check.Readability.StrictModuleLayout
   use Cldr,
     otp_app: :combo_lite,
     data_dir: "priv/i18n/cldr",

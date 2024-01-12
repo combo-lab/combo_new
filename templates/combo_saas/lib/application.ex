@@ -33,12 +33,12 @@ defmodule ComboSaaS.Application do
     Supervisor.start_link(children, opts)
   end
 
-  defp dns_cluster_config() do
+  defp dns_cluster_config do
     query = Application.get_env(:combo_saas, :dns_cluster_query) || :ignore
     [query: query]
   end
 
-  defp cozy_proxy_config() do
+  defp cozy_proxy_config do
     Application.fetch_env!(:combo_saas, CozyProxy)
   end
 end

@@ -30,12 +30,12 @@ defmodule ComboSaaS.UserWeb.SvgComponents do
 
   """
 
+  use Phoenix.Component
+  import Phoenix.HTML, only: [raw: 1]
+
   defmodule CompiledSVG do
     use CozySVG.QuickWrapper, root: Path.expand("../../../assets/user_web/svg", __DIR__)
   end
-
-  use Phoenix.Component
-  import Phoenix.HTML, only: [raw: 1]
 
   attr :key, :string, required: true, doc: "The key for SVG file."
   attr :rest, :global, doc: "Additional attributes to add to the <svg> tag."

@@ -20,8 +20,8 @@ defmodule ComboSaaS.UserWeb.ErrorHTML do
 
   """
 
-  require Logger
   use ComboSaaS.UserWeb, :html
+  require Logger
 
   embed_templates "error_html/*"
 

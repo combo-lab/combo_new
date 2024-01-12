@@ -26,20 +26,20 @@ defmodule ComboLite.I18n do
       Gettext
     ]
 
-  require ComboLite.I18n.Config
   alias ComboLite.I18n.Config
   alias ComboLite.I18n.Cldr
   alias ComboLite.I18n.Gettext
+  require ComboLite.I18n.Config
 
   @doc """
   Returns the default locale.
   """
-  def default_locale(), do: Config.default_locale()
+  def default_locale, do: Config.default_locale()
 
   @doc """
   Returns supported locales.
   """
-  def supported_locales(), do: Config.supported_locales()
+  def supported_locales, do: Config.supported_locales()
 
   @doc """
   Changes the locale of current process.
@@ -70,7 +70,7 @@ defmodule ComboLite.I18n do
   @doc """
   Gets the locale of current process.
   """
-  def get_locale(), do: get_process_locale()
+  def get_locale, do: get_process_locale()
 
   @doc """
   Casts an arbitrary locale to a known locale.
@@ -101,5 +101,5 @@ defmodule ComboLite.I18n do
                       |> Enum.map_join("_", &Macro.underscore/1)
                       |> String.to_atom()
   defp put_process_locale(value), do: Process.put(@process_locale_key, value)
-  defp get_process_locale(), do: Process.get(@process_locale_key, Config.default_locale())
+  defp get_process_locale, do: Process.get(@process_locale_key, Config.default_locale())
 end

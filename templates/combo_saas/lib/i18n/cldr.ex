@@ -5,6 +5,7 @@ defmodule ComboSaaS.I18n.Cldr do
 
   require ComboSaaS.I18n.Config
 
+  # credo:disable-for-next-line Credo.Check.Readability.StrictModuleLayout
   use Cldr,
     otp_app: :combo_saas,
     data_dir: "priv/i18n/cldr",

@@ -6,14 +6,14 @@ defmodule ComboSaaS.I18n.Config do
   @locales Keyword.fetch!(@compiled_env, :locales)
 
   @doc false
-  defmacro default_locale() do
+  defmacro default_locale do
     quote do
       unquote(@default_locale)
     end
   end
 
   @doc false
-  defmacro supported_locales() do
+  defmacro supported_locales do
     quote do
       unquote(@locales)
     end

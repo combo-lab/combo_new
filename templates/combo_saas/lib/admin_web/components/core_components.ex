@@ -14,10 +14,10 @@ defmodule ComboSaaS.AdminWeb.CoreComponents do
 
   Icons are provided by [heroicons](https://heroicons.com). See `icon/1` for usage.
   """
-  use Phoenix.Component
 
-  alias Phoenix.LiveView.JS
+  use Phoenix.Component
   import ComboSaaS.I18n.Gettext
+  alias Phoenix.LiveView.JS
 
   @doc """
   Renders a modal.

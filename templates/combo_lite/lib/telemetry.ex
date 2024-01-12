@@ -23,11 +23,11 @@ defmodule ComboLite.Telemetry do
     Supervisor.init(children, strategy: :one_for_one)
   end
 
-  def metrics() do
+  def metrics do
     CozyTelemetry.load_metrics(config())
   end
 
-  defp config() do
+  defp config do
     Application.fetch_env!(:combo_lite, CozyTelemetry)
   end
 end

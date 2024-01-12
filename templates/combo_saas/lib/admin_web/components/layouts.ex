@@ -3,7 +3,7 @@ defmodule ComboSaaS.AdminWeb.Layouts do
 
   embed_templates "layouts/*"
 
-  defp get_base_path() do
+  defp get_base_path do
     :combo_saas
     |> Application.get_env(ComboSaaS.AdminWeb.Endpoint)
     |> get_in([:url, :path])

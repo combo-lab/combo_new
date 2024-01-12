@@ -11,8 +11,8 @@ defmodule ComboSaaS.UserAPI.ErrorJSON do
 
   """
 
-  require Logger
   import ComboSaaS.I18n.Gettext
+  require Logger
 
   def render(template, _assigns) do
     message = get_message_from_template_name(template)
