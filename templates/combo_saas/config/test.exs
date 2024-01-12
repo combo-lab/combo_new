@@ -21,7 +21,7 @@ config :combo_saas, ComboSaaS.Core.Repo,
   hostname: "localhost",
   database: "combo_saas_core_test#{System.get_env("COMBO_SAAS_CORE_MIX_TEST_PARTITION")}",
   pool: Ecto.Adapters.SQL.Sandbox,
-  pool_size: 10
+  pool_size: System.schedulers_online() * 2
 
 # Configure the mailer
 #
