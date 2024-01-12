@@ -3,7 +3,7 @@ defmodule ComboSaaS.Core.Telemetry do
 
   use CozyTelemetry.Spec
 
-  @impl true
+  @impl CozyTelemetry.Spec
   def metrics(_meta) do
     [
       summary("combo_saas.core.repo.query.total_time",

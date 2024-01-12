@@ -7,7 +7,7 @@ defmodule ComboSaaS.AdminWeb.Supervisor do
     Supervisor.start_link(__MODULE__, arg, name: __MODULE__)
   end
 
-  @impl true
+  @impl Supervisor
   def init(_arg) do
     children = [
       ComboSaaS.AdminWeb.Endpoint

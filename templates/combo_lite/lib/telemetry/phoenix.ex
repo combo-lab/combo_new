@@ -3,7 +3,7 @@ defmodule ComboLite.Telemetry.Phoenix do
 
   use CozyTelemetry.Spec
 
-  @impl true
+  @impl CozyTelemetry.Spec
   def metrics(_meta) do
     [
       summary("phoenix.endpoint.start.system_time",

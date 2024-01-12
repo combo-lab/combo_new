@@ -3,7 +3,7 @@ defmodule ComboSaaS.Telemetry.VM do
 
   use CozyTelemetry.Spec
 
-  @impl true
+  @impl CozyTelemetry.Spec
   def metrics(_meta) do
     [
       summary("vm.memory.total", unit: {:byte, :kilobyte}),
