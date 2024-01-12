@@ -68,9 +68,9 @@ config :combo_saas, ComboSaaS.UserWeb.Endpoint,
 config :combo_saas, ComboSaaS.UserWeb.Endpoint,
   live_reload: [
     patterns: [
+      ~r"lib/user_web/(controllers|live|components)/.*(ex|heex)$",
       ~r"priv/user_web/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
-      ~r"priv/user_web/gettext/.*(po)$",
-      ~r"lib/user_web/(controllers|live|components)/.*(ex|heex)$"
+      ~r"priv/i18n/gettext/.*(po)$"
     ]
   ]
 
@@ -106,8 +106,8 @@ config :combo_saas, ComboSaaS.AdminWeb.Endpoint,
 config :combo_saas, ComboSaaS.AdminWeb.Endpoint,
   live_reload: [
     patterns: [
+      ~r"lib/admin_web/(controllers|live|components)/.*(ex|heex)$",
       ~r"priv/admin_web/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
-      ~r"priv/admin_web/gettext/.*(po)$",
-      ~r"lib/admin_web/(controllers|live|components)/.*(ex|heex)$"
+      ~r"priv/i18n/gettext/.*(po)$"
     ]
   ]
