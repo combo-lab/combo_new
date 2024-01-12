@@ -1,3 +1,5 @@
+# credo:disable-for-this-file Credo.Check.Readability.Specs
+
 defmodule ComboLite.UserWeb.SvgComponents do
   @moduledoc """
   Provides SVG components.

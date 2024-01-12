@@ -30,19 +30,27 @@ defmodule ComboSaaS.I18n.Gettext do
 
   """
 
+  alias ComboSaaS.I18n.Config
   require ComboSaaS.I18n.Config
 
   # credo:disable-for-next-line Credo.Check.Readability.StrictModuleLayout
   use Gettext,
     otp_app: :combo_saas,
     priv: "priv/i18n/gettext",
-    allowed_locales: ComboSaaS.I18n.Config.supported_locales(),
-    default_locale: ComboSaaS.I18n.Config.default_locale()
+    allowed_locales: Config.locales(),
+    default_locale: Config.default_locale()
 
+  @type locale() :: String.t()
+
+  @doc false
+  @spec put_locale(locale()) :: locale()
   def put_locale(locale) do
     Gettext.put_locale(__MODULE__, locale)
+    locale
   end
 
+  @doc false
+  @spec get_locale :: locale()
   def get_locale do
     Gettext.get_locale(__MODULE__)
   end

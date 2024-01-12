@@ -53,8 +53,8 @@ config :combo_saas, CozyProxy,
 # ! i18n
 
 config :combo_saas, ComboSaaS.I18n,
-  default_locale: "en",
-  locales: ["en"]
+  locales: ["en"],
+  default_locale: "en"
 
 # Tasks like `mix gettext.merge` use the plural backend configured under the
 # :gettext application, so the following global configuration approach is

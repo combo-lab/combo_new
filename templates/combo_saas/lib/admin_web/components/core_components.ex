@@ -1,3 +1,5 @@
+# credo:disable-for-this-file Credo.Check.Readability.Specs
+
 defmodule ComboSaaS.AdminWeb.CoreComponents do
   @moduledoc """
   Provides core UI components.

@@ -1,3 +1,5 @@
+# credo:disable-for-this-file Credo.Check.Readability.Specs
+
 defmodule ComboSaaS.AdminWeb.SvgComponents do
   @moduledoc """
   Provides SVG components.

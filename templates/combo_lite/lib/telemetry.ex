@@ -7,6 +7,7 @@ defmodule ComboLite.Telemetry do
 
   use Supervisor
 
+  @spec start_link(term()) :: Supervisor.on_start()
   def start_link(arg) do
     Supervisor.start_link(__MODULE__, arg, name: __MODULE__)
   end
@@ -23,6 +24,7 @@ defmodule ComboLite.Telemetry do
     Supervisor.init(children, strategy: :one_for_one)
   end
 
+  @spec metrics :: [Telemetry.Metrics.t()]
   def metrics do
     CozyTelemetry.load_metrics(config())
   end

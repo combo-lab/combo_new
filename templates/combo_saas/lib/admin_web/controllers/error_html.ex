@@ -1,3 +1,5 @@
+# credo:disable-for-this-file Credo.Check.Readability.Specs
+
 defmodule ComboSaaS.AdminWeb.ErrorHTML do
   @moduledoc """
   Provides HTML error pages.

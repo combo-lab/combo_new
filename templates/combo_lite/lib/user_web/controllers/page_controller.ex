@@ -1,3 +1,5 @@
+# credo:disable-for-this-file Credo.Check.Readability.Specs
+
 defmodule ComboLite.UserWeb.PageController do
   use ComboLite.UserWeb, :controller
 

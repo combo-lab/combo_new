@@ -31,19 +31,25 @@ defmodule ComboSaaS.I18n do
   alias ComboSaaS.I18n.Gettext
   require ComboSaaS.I18n.Config
 
-  @doc """
-  Returns the default locale.
-  """
-  def default_locale, do: Config.default_locale()
+  @type locale :: String.t()
+  @type locales :: [locale()]
 
   @doc """
   Returns supported locales.
   """
-  def supported_locales, do: Config.supported_locales()
+  @spec locales :: locales()
+  def locales, do: Config.locales()
+
+  @doc """
+  Returns the default locale.
+  """
+  @spec default_locale :: locale()
+  def default_locale, do: Config.default_locale()
 
   @doc """
   Changes the locale of current process.
   """
+  @spec put_locale(locale()) :: :ok
   def put_locale(locale) when is_binary(locale) do
     locale = cast_locale(locale)
     put_trusted_locale(locale)
@@ -58,6 +64,7 @@ defmodule ComboSaaS.I18n do
   It's often used with `cast_locale/1`.
 
   """
+  @spec put_trusted_locale(locale()) :: :ok
   def put_trusted_locale(locale) when is_binary(locale) do
     Gettext.put_locale(locale)
     Cldr.put_locale(locale)
@@ -70,15 +77,17 @@ defmodule ComboSaaS.I18n do
   @doc """
   Gets the locale of current process.
   """
+  @spec get_locale :: locale()
   def get_locale, do: get_process_locale()
 
   @doc """
   Casts an arbitrary locale to a known locale.
   """
+  @spec cast_locale(String.t()) :: locale()
   def cast_locale(locale) do
     case locale do
       # explicit matching on supported locale
-      locale when locale in Config.supported_locales() ->
+      locale when locale in Config.locales() ->
         locale
 
       # fuzzy matching on en related locale

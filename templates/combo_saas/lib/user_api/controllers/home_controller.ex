@@ -1,3 +1,5 @@
+# credo:disable-for-this-file Credo.Check.Readability.Specs
+
 defmodule ComboSaaS.UserAPI.HomeController do
   use ComboSaaS.UserAPI, :controller
   alias ComboSaaS.UserAPI.MessageJSON

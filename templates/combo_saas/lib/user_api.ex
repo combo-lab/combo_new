@@ -1,3 +1,5 @@
+# credo:disable-for-this-file Credo.Check.Readability.Specs
+
 defmodule ComboSaaS.UserAPI do
   @moduledoc """
   The entrypoint for defining the web interface, such

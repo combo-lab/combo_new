@@ -52,6 +52,11 @@ defmodule ComboSaaS.Core.Release do
     * https://hexdocs.pm/phoenix/1.6.6/releases.html#ecto-migrations-and-custom-commands
 
   """
+
+  @type opts :: keyword()
+  @type result :: {:ok, term()} | {:error, term()}
+  @type script_result :: {:ok, term()} | no_return()
+
   @app :combo_saas
   @repo ComboSaaS.Core.Repo
 
@@ -60,6 +65,7 @@ defmodule ComboSaaS.Core.Release do
 
   It accepts the same `opts` of `Ecto.Migrator.run/4`.
   """
+  @spec migrate(opts()) :: result()
   def migrate(opts \\ [all: true]) do
     load_apps()
 
@@ -72,6 +78,7 @@ defmodule ComboSaaS.Core.Release do
 
   It accepts the same `opts` of `Ecto.Migrator.run/4`.
   """
+  @spec rollback(opts()) :: result()
   def rollback(opts \\ [step: 1]) do
     load_apps()
 
@@ -103,8 +110,10 @@ defmodule ComboSaaS.Core.Release do
       end)
 
   """
+  @spec seed :: no_return()
   def seed, do: raise("I don't know what to do")
 
+  @spec seed(opts()) :: script_result()
   def seed(opts) do
     load_apps()
 
@@ -155,8 +164,10 @@ defmodule ComboSaaS.Core.Release do
       end)
 
   """
+  @spec migrate_data :: no_return()
   def migrate_data, do: raise("I don't know what to do")
 
+  @spec migrate_data(opts()) :: script_result()
   def migrate_data(opts) do
     load_apps()
 
@@ -191,17 +202,23 @@ defmodule ComboSaaS.Core.Release do
   end
 
   defp up_for(repo, path, opts) do
-    {:ok, _, _} =
-      Ecto.Migrator.with_repo(repo, fn repo ->
-        Ecto.Migrator.run(repo, path, :up, opts)
-      end)
+    Ecto.Migrator.with_repo(repo, fn repo ->
+      Ecto.Migrator.run(repo, path, :up, opts)
+    end)
+    |> case do
+      {:ok, fun_return, _} -> {:ok, fun_return}
+      {:error, reason} -> {:error, reason}
+    end
   end
 
   defp down_for(repo, path, opts) do
-    {:ok, _, _} =
-      Ecto.Migrator.with_repo(repo, fn repo ->
-        Ecto.Migrator.run(repo, path, :down, opts)
-      end)
+    Ecto.Migrator.with_repo(repo, fn repo ->
+      Ecto.Migrator.run(repo, path, :down, opts)
+    end)
+    |> case do
+      {:ok, fun_return, _} -> {:ok, fun_return}
+      {:error, reason} -> {:error, reason}
+    end
   end
 
   defp run_script(repo, path) do
@@ -215,7 +232,7 @@ defmodule ComboSaaS.Core.Release do
     end)
     |> case do
       {:ok, {:return, result}, _} ->
-        result
+        {:ok, result}
 
       {:ok, {:abort, :bad_path, path}, _} ->
         raise RuntimeError, "script doesn't exist - #{path}"

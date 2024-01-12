@@ -9,7 +9,7 @@
         {Credo.Check.Design.AliasUsage, if_nested_deeper_than: 4, if_called_more_often_than: 1},
         {Credo.Check.Readability.AliasAs, []},
         {Credo.Check.Readability.ImplTrue, []},
-        # {Credo.Check.Readability.Specs, []},
+        {Credo.Check.Readability.Specs, []},
         {Credo.Check.Readability.WithCustomTaggedTuple, []},
         {Credo.Check.Warning.UnsafeToAtom, []},
 
