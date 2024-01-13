@@ -8,18 +8,4 @@ defmodule ComboSaaS.UserAPI.FallbackController do
   """
 
   use ComboSaaS.UserAPI, :controller
-  # alias ComboSaaS.UserAPI.MessageJSON
-
-  # def call(
-  #       conn,
-  #       {:error, %CozyError{} = error}
-  #     ) do
-  #   message = Exception.message(error)
-  #   status = Plug.Exception.status(error)
-
-  #   conn
-  #   |> put_status(status)
-  #   |> put_view(json: MessageJSON)
-  #   |> render(:show, message: message)
-  # end
 end
