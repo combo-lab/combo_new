@@ -1,16 +1,14 @@
 defmodule ComboSaaS.UserWeb.ErrorHTMLTest do
   use ComboSaaS.UserWeb.ConnCase, async: true
 
-  # Bring render_to_string/4 for testing custom views
-  import Phoenix.Template
+  import Phoenix.Template, only: [render_to_string: 4]
+  alias ComboSaaS.UserWeb.ErrorHTML
 
   test "renders 404.html" do
-    assert render_to_string(ComboSaaS.UserWeb.ErrorHTML, "404", "html", status: 404) =~
-             "Not Found"
+    assert render_to_string(ErrorHTML, "404", "html", status: 404) =~ "Not Found"
   end
 
   test "renders 500.html" do
-    assert render_to_string(ComboSaaS.UserWeb.ErrorHTML, "500", "html", status: 500) =~
-             "Internal Server Error"
+    assert render_to_string(ErrorHTML, "500", "html", status: 500) =~ "Internal Server Error"
   end
 end
