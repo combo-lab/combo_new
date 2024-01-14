@@ -15,10 +15,11 @@ defmodule ComboLite.Telemetry do
   @impl Supervisor
   def init(_arg) do
     children = [
-      # Uncomment it when you need a reporter.
+      # Uncomment following lines when you need telemetry.
       # Check https://hexdocs.pm/cozy_telemetry for more details.
+      #
       # {CozyTelemetry.Reporter, config()},
-      {CozyTelemetry.Poller, config()}
+      # {CozyTelemetry.Poller, config()}
     ]
 
     Supervisor.init(children, strategy: :one_for_one)
