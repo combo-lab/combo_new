@@ -98,9 +98,12 @@ defmodule ComboSaaS.AdminWeb do
       # HTML escaping functionality
       import Phoenix.HTML
 
-      # UI components and translation
+      # UI components
       import ComboSaaS.AdminWeb.CoreComponents
       import ComboSaaS.AdminWeb.SvgComponents
+
+      # i18n helpers
+      alias ComboSaaS.I18n
       import ComboSaaS.I18n.Gettext
 
       # Shortcut for generating JS commands

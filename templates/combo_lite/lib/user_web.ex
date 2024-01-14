@@ -97,9 +97,12 @@ defmodule ComboLite.UserWeb do
       # HTML escaping functionality
       import Phoenix.HTML
 
-      # UI components and translation
+      # UI components
       import ComboLite.UserWeb.CoreComponents
       import ComboLite.UserWeb.SvgComponents
+
+      # i18n helpers
+      alias ComboLite.I18n
       import ComboLite.I18n.Gettext
 
       # Shortcut for generating JS commands
