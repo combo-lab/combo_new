@@ -44,7 +44,7 @@ defmodule ComboLite.UserWeb.SvgComponents do
 
   def svg(assigns) do
     ~H"""
-    <%= raw(CompiledSVG.render(@key, @rest)) %>
+    <%= raw(CompiledSVG.render!(@key, @rest)) %>
     """
   end
 end
