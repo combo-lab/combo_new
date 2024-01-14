@@ -25,6 +25,12 @@ defmodule ComboLite.I18n.Gettext do
   $ mix i18n.gettext.merge
   ```
 
+  ## Add new locale
+
+  ```console
+  $ mix i18n.gettext.add_locale zh
+  ```
+
   Get more details at
   <https://github.com/elixir-gettext/gettext/blob/da71fb6d2c9e0a607376b5bb945c80ffc9e18b9b/README.md#workflow>.
 

@@ -11,30 +11,30 @@ msgstr ""
 "Language: en\n"
 "Plural-Forms: nplurals=2\n"
 
-#: lib/admin_web/controllers/error_html.ex:41
-#: lib/user_api/controllers/error_json.ex:36
-#: lib/user_web/controllers/error_html.ex:41
+#: lib/admin_web/controllers/error_html.ex:43
+#: lib/user_api/controllers/error_json.ex:38
+#: lib/user_web/controllers/error_html.ex:43
 #, elixir-autogen, elixir-format
 msgid "Bad Request"
 msgstr ""
 
-#: lib/admin_web/controllers/error_html.ex:49
-#: lib/user_api/controllers/error_json.ex:44
-#: lib/user_web/controllers/error_html.ex:49
+#: lib/admin_web/controllers/error_html.ex:51
+#: lib/user_api/controllers/error_json.ex:46
+#: lib/user_web/controllers/error_html.ex:51
 #, elixir-autogen, elixir-format
 msgid "Internal Server Error"
 msgstr ""
 
-#: lib/admin_web/controllers/error_html.ex:45
-#: lib/user_api/controllers/error_json.ex:40
-#: lib/user_web/controllers/error_html.ex:45
+#: lib/admin_web/controllers/error_html.ex:47
+#: lib/user_api/controllers/error_json.ex:42
+#: lib/user_web/controllers/error_html.ex:47
 #, elixir-autogen, elixir-format
 msgid "Not Found"
 msgstr ""
 
-#: lib/admin_web/controllers/error_html.ex:54
-#: lib/user_api/controllers/error_json.ex:49
-#: lib/user_web/controllers/error_html.ex:54
+#: lib/admin_web/controllers/error_html.ex:56
+#: lib/user_api/controllers/error_json.ex:51
+#: lib/user_web/controllers/error_html.ex:56
 #, elixir-autogen, elixir-format
 msgid "Something Went Wrong"
 msgstr ""

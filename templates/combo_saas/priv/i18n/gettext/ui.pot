@@ -11,16 +11,16 @@
 msgid ""
 msgstr ""
 
-#: lib/admin_web/components/core_components.ex:486
-#: lib/user_web/components/core_components.ex:486
+#: lib/admin_web/components/core_components.ex:488
+#: lib/user_web/components/core_components.ex:488
 #, elixir-autogen, elixir-format
 msgid "Actions"
 msgstr ""
 
-#: lib/admin_web/components/core_components.ex:76
-#: lib/admin_web/components/core_components.ex:133
-#: lib/user_web/components/core_components.ex:76
-#: lib/user_web/components/core_components.ex:133
+#: lib/admin_web/components/core_components.ex:78
+#: lib/admin_web/components/core_components.ex:135
+#: lib/user_web/components/core_components.ex:78
+#: lib/user_web/components/core_components.ex:135
 #, elixir-autogen, elixir-format
 msgid "close"
 msgstr ""
