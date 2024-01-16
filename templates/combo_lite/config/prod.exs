@@ -2,7 +2,7 @@ import Config
 
 # ! general
 
-# Do not print debug messages in production.
+# Do not print debug messages.
 config :logger, level: :info
 
 # ! core

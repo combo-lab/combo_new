@@ -3,7 +3,7 @@ defmodule ComboNew.MixProject do
 
   @version "0.2.2"
   @description "An opinionated project generator for Phoenix."
-  @elixir_requirement "~> 1.14"
+  @elixir_requirement "~> 1.15"
   @source_url "https://github.com/cozy-elixir/combo_new"
 
   def project do
