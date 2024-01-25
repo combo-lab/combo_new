@@ -1,6 +1,7 @@
 defmodule ComboNew.Generator do
   @moduledoc false
 
+  import Bitwise
   alias ComboNew.Git
 
   @mode Mix.env()
@@ -36,13 +37,20 @@ defmodule ComboNew.Generator do
   defmacro __before_compile__(env) do
     template_path = Module.get_attribute(env.module, :template_path)
 
+    fetch_file_mode = fn path ->
+      mask = 0o777
+      stat = File.stat!(path)
+      stat.mode &&& mask
+    end
+
     template_files =
       template_path
       |> fetch_template_files()
       |> Enum.map(fn path ->
         relative_path = Path.relative_to(path, template_path)
         content = File.read!(path)
-        {relative_path, content}
+        mode = fetch_file_mode.(path)
+        Macro.escape({relative_path, mode, content})
       end)
 
     quote do
@@ -71,13 +79,13 @@ defmodule ComboNew.Generator do
   end
 
   def create_files(target_path, template_files, slots, replacements) do
-    for {path, content} <- template_files do
+    for {path, mode, content} <- template_files do
       path = Path.join(target_path, path)
-      create_file(path, content, slots, replacements)
+      create_file(path, mode, content, slots, replacements)
     end
   end
 
-  defp create_file(path, content, slots, replacements) do
+  defp create_file(path, mode, content, slots, replacements) do
     slot_app = Keyword.fetch!(slots, :app)
     slot_module = Keyword.fetch!(slots, :module)
     slot_env_prefix = Keyword.fetch!(slots, :env_prefix)
@@ -95,6 +103,7 @@ defmodule ComboNew.Generator do
       |> inject_signing_salt()
 
     Mix.Generator.create_file(path, content)
+    File.chmod!(path, mode)
   end
 
   defp inject_secret_key_base(content) do
