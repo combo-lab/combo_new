@@ -1,6 +1,8 @@
 defmodule ComboNew.Generator do
   @moduledoc false
 
+  alias ComboNew.Git
+
   @mode Mix.env()
 
   defmacro __using__(opts) do
@@ -14,6 +16,18 @@ defmodule ComboNew.Generator do
       @template_app unquote(template_app)
       @template_module unquote(template_module)
       @template_env_prefix unquote(template_env_prefix)
+
+      paths = Git.ls_files(@template_path)
+
+      @paths_hash :erlang.md5(paths)
+
+      for path <- paths do
+        @external_resource path
+      end
+
+      def __mix_recompile__?() do
+        Git.ls_files(@template_path) |> :erlang.md5() != @paths_hash
+      end
 
       @before_compile unquote(__MODULE__)
     end
@@ -47,49 +61,13 @@ defmodule ComboNew.Generator do
   defp fetch_template_files(dir) do
     if @mode == :prod,
       do: fetch_all_files(dir),
-      else: fetch_git_files(dir)
+      else: Git.ls_files(dir)
   end
 
   defp fetch_all_files(dir) do
     "#{dir}/**/*"
     |> Path.wildcard(match_dot: true)
     |> Enum.filter(&File.regular?/1)
-  end
-
-  defp fetch_git_files(dir) do
-    root_dir = git_root_dir()
-
-    cli = "git ls-tree --full-name --name-only -r HEAD ."
-
-    {cmd, args} =
-      cli
-      |> String.split(~r|\s+|)
-      |> List.pop_at(0)
-
-    files =
-      case System.cmd(cmd, args, cd: dir) do
-        {result, 0} ->
-          result
-          |> String.trim()
-          |> String.split("\n")
-
-        _ ->
-          raise RuntimeError, "unable to list git files"
-      end
-
-    Enum.map(files, &Path.join(root_dir, &1))
-  end
-
-  defp git_root_dir() do
-    cli = "git rev-parse --show-toplevel"
-
-    {cmd, args} =
-      cli
-      |> String.split(~r|\s+|)
-      |> List.pop_at(0)
-
-    {result, 0} = System.cmd(cmd, args)
-    String.trim(result)
   end
 
   def create_files(target_path, template_files, slots, replacements) do
