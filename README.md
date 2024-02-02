@@ -35,7 +35,7 @@ See `mix help` for more details.
 
 `combo_new` will continuously track changes in Phoenix and merge them in.
 
-Currently, this repo is synchronized to the commit `dec89f24169d897442fe82a819e0ba312f96c014`(2024/01/03) of [phoenixframework/phoenix](https://github.com/phoenixframework/phoenix).
+Currently, this repo is synchronized to the commit `6486203`(2024/02/02) of [phoenixframework/phoenix](https://github.com/phoenixframework/phoenix).
 
 ## Why?
 
