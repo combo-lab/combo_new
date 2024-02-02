@@ -31,6 +31,7 @@ const csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute
 const basePath = document.querySelector('html').dataset.basePath || ''
 
 const liveSocket = new LiveSocket(`${basePath}/live`, Socket, {
+  longPollFallbackMs: 2500,
   params: { _csrf_token: csrfToken },
 })
 

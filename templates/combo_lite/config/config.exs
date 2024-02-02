@@ -30,6 +30,7 @@ config :combo_lite, CozyTelemetry,
 # ! cozy_proxy
 
 config :combo_lite, CozyProxy,
+  adapter: Bandit,
   backends: [
     %{
       plug: {PlugProbe, path: "/"},
