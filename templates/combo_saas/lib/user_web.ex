@@ -30,7 +30,7 @@ defmodule ComboSaaS.UserWeb do
       Supervisor
     ]
 
-  def static_paths, do: ~w(robots.txt icons images assets)
+  def static_paths, do: ~w(robots.txt favicon.ico icons images assets)
 
   def router do
     quote do
