@@ -26,7 +26,7 @@ config :combo_saas, process_limit: true
 
 # ! cozy_proxy
 
-config :combo_saas, CozyProxy, transport_options: [num_acceptors: 2]
+config :combo_saas, CozyProxy, thousand_island_options: [num_acceptors: 2]
 
 # ! core
 
@@ -79,7 +79,7 @@ config :combo_saas, ComboSaaS.UserWeb.Endpoint,
 # Configure the endpoint.
 config :combo_saas, ComboSaaS.UserAPI.Endpoint,
   http: [
-    transport_options: [num_acceptors: 2]
+    thousand_island_options: [num_acceptors: 2]
   ],
   check_origin: false,
   code_reloader: true,
@@ -92,7 +92,7 @@ config :combo_saas, ComboSaaS.UserAPI.Endpoint,
 # Configure the endpoint.
 config :combo_saas, ComboSaaS.AdminWeb.Endpoint,
   http: [
-    transport_options: [num_acceptors: 2]
+    thousand_island_options: [num_acceptors: 2]
   ],
   check_origin: false,
   code_reloader: true,

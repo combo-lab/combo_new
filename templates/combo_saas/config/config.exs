@@ -31,6 +31,7 @@ config :combo_saas, CozyTelemetry,
 # ! cozy_proxy
 
 config :combo_saas, CozyProxy,
+  adapter: Bandit,
   backends: [
     %{
       plug: {PlugProbe, path: "/"},
@@ -82,7 +83,7 @@ config :combo_saas, ComboSaaS.Core.Repo,
 # Configure the endpoint.
 config :combo_saas, ComboSaaS.UserWeb.Endpoint,
   url: [path: "/"],
-  adapter: Phoenix.Endpoint.Cowboy2Adapter,
+  adapter: Bandit.PhoenixAdapter,
   render_errors: [
     formats: [html: ComboSaaS.UserWeb.ErrorHTML],
     layout: false
@@ -96,7 +97,7 @@ config :combo_saas, ComboSaaS.UserWeb.Endpoint,
 # Configure the endpoint.
 config :combo_saas, ComboSaaS.UserAPI.Endpoint,
   url: [path: "/api"],
-  adapter: Phoenix.Endpoint.Cowboy2Adapter,
+  adapter: Bandit.PhoenixAdapter,
   render_errors: [
     formats: [json: ComboSaaS.UserAPI.ErrorJSON],
     layout: false
@@ -110,7 +111,7 @@ config :combo_saas, ComboSaaS.UserAPI.Endpoint,
 # Configure the endpoint.
 config :combo_saas, ComboSaaS.AdminWeb.Endpoint,
   url: [path: "/admin"],
-  adapter: Phoenix.Endpoint.Cowboy2Adapter,
+  adapter: Bandit.PhoenixAdapter,
   render_errors: [
     formats: [html: ComboSaaS.AdminWeb.ErrorHTML],
     layout: false

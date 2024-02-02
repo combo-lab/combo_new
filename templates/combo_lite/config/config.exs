@@ -66,7 +66,7 @@ config :ex_cldr,
 # Configure the endpoint.
 config :combo_lite, ComboLite.UserWeb.Endpoint,
   url: [path: "/"],
-  adapter: Phoenix.Endpoint.Cowboy2Adapter,
+  adapter: Bandit.PhoenixAdapter,
   render_errors: [
     formats: [html: ComboLite.UserWeb.ErrorHTML],
     layout: false

@@ -54,8 +54,8 @@ defmodule ComboLite.MixProject do
       {:dns_cluster, "~> 0.1.1"},
       {:jason, "~> 1.2"},
       {:cozy_proxy, "~> 0.3"},
+      {:bandit, "~> 1.2"},
       {:cozy_env, "~> 0.2"},
-      {:plug_cowboy, "~> 2.7"},
       {:plug_probe, "~> 0.1"},
 
       # i18n

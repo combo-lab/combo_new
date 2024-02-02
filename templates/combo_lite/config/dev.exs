@@ -26,7 +26,7 @@ config :combo_lite, process_limit: true
 
 # ! cozy_proxy
 
-config :combo_lite, CozyProxy, transport_options: [num_acceptors: 2]
+config :combo_lite, CozyProxy, thousand_island_options: [num_acceptors: 2]
 
 # ! core
 
@@ -37,7 +37,7 @@ config :combo_lite, CozyProxy, transport_options: [num_acceptors: 2]
 # Configure the endpoint.
 config :combo_lite, ComboLite.UserWeb.Endpoint,
   http: [
-    transport_options: [num_acceptors: 2]
+    thousand_island_options: [num_acceptors: 2]
   ],
   check_origin: false,
   code_reloader: true,
