@@ -52,7 +52,7 @@ config :combo_lite, ComboLite.UserWeb.Endpoint,
   live_reload: [
     patterns: [
       ~r"lib/user_web/(controllers|live|components)/.*(ex|heex)$",
-      ~r"priv/user_web/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
+      ~r"priv/user_web/static/(?!uploads/).*(js|css|png|jpeg|jpg|gif|svg)$",
       ~r"priv/i18n/gettext/.*(po)$"
     ]
   ]
