@@ -70,7 +70,7 @@ defmodule ComboSaaS.MixProject do
       {:finch, "~> 0.17"},
 
       # web
-      {:phoenix, "~> 1.7.10"},
+      {:phoenix, "~> 1.7.11"},
       {:phoenix_html, "~> 4.0"},
       {:phoenix_ecto, "~> 4.4"},
       {:phoenix_live_view, "~> 0.20.2"},
