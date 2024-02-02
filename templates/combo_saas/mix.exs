@@ -73,7 +73,7 @@ defmodule ComboSaaS.MixProject do
       {:phoenix, "~> 1.7.11"},
       {:phoenix_html, "~> 4.0"},
       {:phoenix_ecto, "~> 4.4"},
-      {:phoenix_live_view, "~> 0.20.2"},
+      {:phoenix_live_view, "~> 0.20.4"},
       {:phoenix_live_dashboard, "~> 0.8.3"},
       {:cozy_svg, "~> 0.2"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
