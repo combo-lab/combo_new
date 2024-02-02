@@ -153,28 +153,29 @@ defmodule ComboLite.UserWeb.CoreComponents do
   def flash_group(assigns) do
     ~H"""
     <div id={@id}>
-      <.flash kind={:info} title="Success!" flash={@flash} />
-      <.flash kind={:error} title="Error!" flash={@flash} />
+      <.flash kind={:info} title={dgettext("ui", "Success!")} flash={@flash} />
+      <.flash kind={:error} title={dgettext("ui", "Error!")} flash={@flash} />
       <.flash
         id="client-error"
         kind={:error}
-        title="We can't find the internet"
+        title={dgettext("ui", "We can't find the internet")}
         phx-disconnected={show(".phx-client-error #client-error")}
         phx-connected={hide("#client-error")}
         hidden
       >
-        Attempting to reconnect <.icon name="hero-arrow-path" class="ml-1 h-3 w-3 animate-spin" />
+        <%= dgettext("ui", "Attempting to reconnect") %>
+        <.icon name="hero-arrow-path" class="ml-1 h-3 w-3 animate-spin" />
       </.flash>
 
       <.flash
         id="server-error"
         kind={:error}
-        title="Something went wrong!"
+        title={dgettext("ui", "Something went wrong!")}
         phx-disconnected={show(".phx-server-error #server-error")}
         phx-connected={hide("#server-error")}
         hidden
       >
-        Hang in there while we get back on track
+        <%= dgettext("ui", "Hang in there while we get back on track") %>
         <.icon name="hero-arrow-path" class="ml-1 h-3 w-3 animate-spin" />
       </.flash>
     </div>

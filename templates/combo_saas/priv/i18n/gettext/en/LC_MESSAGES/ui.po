@@ -11,8 +11,44 @@ msgstr ""
 "Language: en\n"
 "Plural-Forms: nplurals=2\n"
 
-#: lib/admin_web/components/core_components.ex:488
-#: lib/user_web/components/core_components.ex:488
+#: lib/admin_web/components/core_components.ex:156
+#: lib/user_web/components/core_components.ex:156
+#, elixir-autogen, elixir-format
+msgid "Success!"
+msgstr ""
+
+#: lib/admin_web/components/core_components.ex:157
+#: lib/user_web/components/core_components.ex:157
+#, elixir-autogen, elixir-format
+msgid "Error!"
+msgstr ""
+
+#: lib/admin_web/components/core_components.ex:161
+#: lib/user_web/components/core_components.ex:161
+#, elixir-autogen, elixir-format
+msgid "We can't find the internet"
+msgstr ""
+
+#: lib/admin_web/components/core_components.ex:166
+#: lib/user_web/components/core_components.ex:166
+#, elixir-autogen, elixir-format
+msgid "Attempting to reconnect"
+msgstr ""
+
+#: lib/admin_web/components/core_components.ex:173
+#: lib/user_web/components/core_components.ex:173
+#, elixir-autogen, elixir-format
+msgid "Something went wrong!"
+msgstr ""
+
+#: lib/admin_web/components/core_components.ex:178
+#: lib/user_web/components/core_components.ex:178
+#, elixir-autogen, elixir-format
+msgid "Hang in there while we get back on track"
+msgstr ""
+
+#: lib/admin_web/components/core_components.ex:489
+#: lib/user_web/components/core_components.ex:489
 #, elixir-autogen, elixir-format
 msgid "Actions"
 msgstr ""
