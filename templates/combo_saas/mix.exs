@@ -180,13 +180,13 @@ defmodule ComboSaaS.MixProject do
       # ! user_web
 
       "user_web.assets.setup": [
-        "cmd npm install --prefix assets/user_web"
+        "cmd pnpm install --dir assets/user_web"
       ],
       "user_web.assets.build": [
-        "cmd npm run build --prefix assets/user_web"
+        "cmd pnpm run --dir assets/user_web build"
       ],
       "user_web.assets.deploy": [
-        "cmd npm run build --prefix assets/user_web",
+        "cmd pnpm run --dir assets/user_web build",
         "cmd mix phx.digest priv/user_web/static"
       ],
       "user_web.assets.clean": [
@@ -196,13 +196,13 @@ defmodule ComboSaaS.MixProject do
       # ! admin_web
 
       "admin_web.assets.setup": [
-        "cmd npm install --prefix assets/admin_web"
+        "cmd pnpm install --dir assets/admin_web"
       ],
       "admin_web.assets.build": [
-        "cmd npm run build --prefix assets/admin_web"
+        "cmd pnpm run --dir assets/admin_web build"
       ],
       "admin_web.assets.deploy": [
-        "cmd npm run build --prefix assets/admin_web",
+        "cmd pnpm run --dir assets/admin_web build",
         "cmd mix phx.digest priv/admin_web/static"
       ],
       "admin_web.assets.clean": [
