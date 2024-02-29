@@ -31,9 +31,8 @@ combo_lite-*.tar
 # Ignore digested assets cache.
 /priv/*/static/cache_manifest.json
 
-# In case you use Node.js/npm, you want to ignore these.
-npm-debug.log
-/assets/node_modules/
+# Ignore Node.js related files.
+/assets/*/node_modules/
 
 # Ignore Nix artifacts
 /result
