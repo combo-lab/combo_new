@@ -15,18 +15,11 @@ config :phoenix, :plug_init_mode, :runtime
 # Include HEEx debug annotations as HTML comments in rendered markup.
 config :phoenix_live_view, :debug_heex_annotations, true
 
-# Enable dev routes for dashboard and mailbox.
-config :combo_desktop, dev_routes: true
-
 # Limit running processes, which is good for:
 #
 #   * inspecting process tree in :observer without too much scrolling
 #   * ...
 config :combo_desktop, process_limit: true
-
-# ! cozy_proxy
-
-config :combo_desktop, CozyProxy, thousand_island_options: [num_acceptors: 2]
 
 # ! core
 

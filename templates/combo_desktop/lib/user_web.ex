@@ -22,7 +22,6 @@ defmodule ComboDesktop.UserWeb do
   use Boundary,
     deps: [
       Phoenix,
-      ComboDesktop.Telemetry,
       ComboDesktop.I18n,
       ComboDesktop.Core
     ],

@@ -50,13 +50,9 @@ defmodule ComboDesktop.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:cozy_telemetry, "~> 0.5"},
-      {:dns_cluster, "~> 0.1.1"},
       {:jason, "~> 1.2"},
-      {:cozy_proxy, "~> 0.3"},
       {:bandit, "~> 1.2"},
       {:cozy_env, "~> 0.2"},
-      {:plug_probe, "~> 0.1"},
 
       # i18n
       {:gettext, "~> 0.20"},
@@ -65,7 +61,6 @@ defmodule ComboDesktop.MixProject do
       {:phoenix, "~> 1.7.11"},
       {:phoenix_html, "~> 4.0"},
       {:phoenix_live_view, "~> 0.20.12"},
-      {:phoenix_live_dashboard, "~> 0.8.3"},
       {:cozy_svg, "~> 0.2"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
       {:floki, ">= 0.30.0", only: :test},

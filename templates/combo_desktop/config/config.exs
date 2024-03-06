@@ -16,32 +16,6 @@ config :logger, :default_formatter,
 # Use Jason for JSON parsing in Phoenix.
 config :phoenix, :json_library, Jason
 
-# ! cozy_telemetry
-
-config :combo_desktop, CozyTelemetry,
-  meta: [],
-  specs: [
-    ComboDesktop.Telemetry.VM,
-    ComboDesktop.Telemetry.Phoenix
-  ],
-  reporter: {:console, []},
-  poller: [period: 10_000]
-
-# ! cozy_proxy
-
-config :combo_desktop, CozyProxy,
-  adapter: Bandit,
-  backends: [
-    %{
-      plug: {PlugProbe, path: "/"},
-      path: "/probe"
-    },
-    %{
-      plug: ComboDesktop.UserWeb.Endpoint,
-      path: "/"
-    }
-  ]
-
 # ! i18n
 
 config :combo_desktop, ComboDesktop.I18n,
@@ -63,8 +37,7 @@ config :combo_desktop, ComboDesktop.UserWeb.Endpoint,
     layout: false
   ],
   pubsub_server: ComboDesktop.PubSub,
-  live_view: [signing_salt: "+l93LYg6"],
-  server: false
+  live_view: [signing_salt: "+l93LYg6"]
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
