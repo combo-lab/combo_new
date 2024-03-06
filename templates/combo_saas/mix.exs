@@ -59,7 +59,6 @@ defmodule ComboSaaS.MixProject do
       {:plug_probe, "~> 0.1"},
 
       # i18n
-      {:ex_cldr, "~> 2.37"},
       {:gettext, "~> 0.20"},
 
       # core

@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Language: en\n"
-"Plural-Forms: nplurals=2\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: lib/admin_web/components/core_components.ex:156
 #: lib/user_web/components/core_components.ex:156
@@ -47,8 +47,8 @@ msgstr ""
 msgid "Hang in there while we get back on track"
 msgstr ""
 
-#: lib/admin_web/components/core_components.ex:489
-#: lib/user_web/components/core_components.ex:489
+#: lib/admin_web/components/core_components.ex:490
+#: lib/user_web/components/core_components.ex:490
 #, elixir-autogen, elixir-format
 msgid "Actions"
 msgstr ""

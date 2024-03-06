@@ -16,7 +16,7 @@ defmodule ComboSaaS.I18n do
 
   When an Elixir process want to change the locale of all backends. It
   should use `put_locale/1` provided by this module instead of the
-  `Gettext.put_locale/1`, `Cldr.put_locale/1`, etc.
+  `Gettext.put_locale/1`, etc.
 
   """
 
@@ -27,7 +27,6 @@ defmodule ComboSaaS.I18n do
     ]
 
   alias ComboSaaS.I18n.Config
-  alias ComboSaaS.I18n.Cldr
   alias ComboSaaS.I18n.Gettext
   require ComboSaaS.I18n.Config
 
@@ -67,7 +66,6 @@ defmodule ComboSaaS.I18n do
   @spec put_trusted_locale(locale()) :: :ok
   def put_trusted_locale(locale) when is_binary(locale) do
     Gettext.put_locale(locale)
-    Cldr.put_locale(locale)
 
     put_process_locale(locale)
 

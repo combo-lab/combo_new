@@ -48,16 +48,6 @@ config :combo_lite, ComboLite.I18n,
   locales: ["en"],
   default_locale: "en"
 
-# Tasks like `mix gettext.merge` use the plural backend configured under the
-# :gettext application, so the following global configuration approach is
-# preferred.
-config :gettext,
-  plural_forms: ComboLite.I18n.Gettext.Plural
-
-config :ex_cldr,
-  default_backend: ComboLite.I18n.Cldr,
-  json_library: Jason
-
 # ! core
 
 # nothing to do
