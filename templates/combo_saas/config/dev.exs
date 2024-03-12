@@ -15,6 +15,9 @@ config :phoenix, :plug_init_mode, :runtime
 # Include HEEx debug annotations as HTML comments in rendered markup.
 config :phoenix_live_view, :debug_heex_annotations, true
 
+# Enable helpful, but potentially expensive runtime checks.
+config :phoenix_live_view, :enable_expensive_runtime_checks, true
+
 # Enable dev routes for dashboard and mailbox.
 config :combo_saas, dev_routes: true
 
