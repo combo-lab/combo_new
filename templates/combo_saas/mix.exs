@@ -51,7 +51,7 @@ defmodule ComboSaaS.MixProject do
   defp deps do
     [
       {:cozy_telemetry, "~> 0.5"},
-      {:dns_cluster, "~> 0.1.1"},
+      {:dns_cluster, "~> 0.1"},
       {:jason, "~> 1.2"},
       {:cozy_proxy, "~> 0.3"},
       {:bandit, "~> 1.2"},
@@ -69,18 +69,18 @@ defmodule ComboSaaS.MixProject do
       {:finch, "~> 0.17"},
 
       # web
-      {:phoenix, "~> 1.7.11"},
+      {:phoenix, "~> 1.7"},
       {:phoenix_html, "~> 4.0"},
       {:phoenix_ecto, "~> 4.4"},
-      {:phoenix_live_view, "~> 0.20.12"},
-      {:phoenix_live_dashboard, "~> 0.8.3"},
+      {:phoenix_live_view, "~> 0.20"},
+      {:phoenix_live_dashboard, "~> 0.8"},
       {:cozy_svg, "~> 0.2"},
-      {:phoenix_live_reload, "~> 1.2", only: :dev},
-      {:floki, ">= 0.30.0", only: :test},
+      {:phoenix_live_reload, "~> 1.5", only: [:dev]},
+      {:floki, ">= 0.30.0", only: [:test]},
 
       # code quality
       {:boundary, "~> 0.10", runtime: false},
-      {:ex_check, "~> 0.15.0", only: [:dev], runtime: false},
+      {:ex_check, "~> 0.16", only: [:dev], runtime: false},
       {:credo, ">= 0.0.0", only: [:dev], runtime: false},
       {:dialyxir, ">= 0.0.0", only: [:dev], runtime: false},
       {:mix_audit, ">= 0.0.0", only: [:dev], runtime: false}
