@@ -33,6 +33,13 @@ const basePath = document.querySelector('html').dataset.basePath || ''
 const liveSocket = new LiveSocket(`${basePath}/live`, Socket, {
   longPollFallbackMs: 2500,
   params: { _csrf_token: csrfToken },
+  dom: {
+    onBeforeElUpdated(from, to) {
+      if (window.Alpine && from._x_dataStack) {
+        window.Alpine.clone(from, to)
+      }
+    },
+  },
 })
 
 const primaryColor = tailwindColors.primary['500']
