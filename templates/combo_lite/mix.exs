@@ -147,13 +147,13 @@ defmodule ComboLite.MixProject do
       # ! user_web
 
       "user_web.assets.setup": [
-        "cmd pnpm install --dir assets/user_web"
+        "cmd npm install --prefix assets/user_web"
       ],
       "user_web.assets.build": [
-        "cmd pnpm run --dir assets/user_web build"
+        "cmd npm run build --prefix assets/user_web"
       ],
       "user_web.assets.deploy": [
-        "cmd pnpm run --dir assets/user_web build",
+        "cmd npm run build --prefix assets/user_web",
         "cmd mix phx.digest priv/user_web/static"
       ],
       "user_web.assets.clean": [
