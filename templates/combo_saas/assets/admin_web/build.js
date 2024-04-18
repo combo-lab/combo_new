@@ -15,7 +15,7 @@ const args = process.argv.slice(2)
 const watch = args.includes('--watch')
 const deploy = args.includes('--deploy')
 
-const target = 'es2015'
+const target = 'es2017'
 const outDir = '../../priv/admin_web/static/assets'
 
 async function main() {
