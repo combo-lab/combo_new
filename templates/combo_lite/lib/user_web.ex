@@ -71,6 +71,12 @@ defmodule ComboLite.UserWeb do
     end
   end
 
+  def component do
+    quote do
+      unquote(component_helpers())
+    end
+  end
+
   def live_component do
     quote do
       use Phoenix.LiveComponent
@@ -81,7 +87,7 @@ defmodule ComboLite.UserWeb do
 
   def html do
     quote do
-      use Phoenix.Component
+      unquote(component_helpers())
 
       # Import convenience functions from controllers
       import Phoenix.Controller,
@@ -92,14 +98,30 @@ defmodule ComboLite.UserWeb do
     end
   end
 
+  defp component_helpers do
+    quote do
+      use Phoenix.Component
+
+      # a helper function for emulating :default option for slot attrs
+      defp default(assigns, key, default \\ nil) do
+        Map.get(assigns, key, default)
+      end
+
+      # a helper function for emulating :global type for slot attrs
+      defp rest(assigns, exclude \\ []) when is_list(exclude) do
+        Phoenix.Component.assigns_to_attributes(assigns, exclude)
+      end
+    end
+  end
+
   defp html_helpers do
     quote do
       # HTML escaping functionality
       import Phoenix.HTML
 
       # UI components
+      import ComboLite.UserWeb.BaseComponents
       import ComboLite.UserWeb.CoreComponents
-      import ComboLite.UserWeb.SvgComponents
 
       # i18n helpers
       alias ComboLite.I18n

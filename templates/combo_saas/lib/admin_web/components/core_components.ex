@@ -4,20 +4,18 @@ defmodule ComboSaaS.AdminWeb.CoreComponents do
   @moduledoc """
   Provides core UI components.
 
-  At first glance, this module may seem daunting, but its goal is to provide
-  core building blocks for the application, such as modals, tables, and
-  forms. The components consist mostly of markup and are well-documented
-  with doc strings and declarative assigns. You may customize and style
-  them in any way you want, based on the application growth and needs.
+  This module provides core building blocks for the application, such as:
 
-  The default components use Tailwind CSS, a utility-first CSS framework.
-  See the [Tailwind CSS documentation](https://tailwindcss.com) to learn
-  how to customize them or feel free to swap in another framework altogether.
+    * modals
+    * tables
+    * forms
+    * ...
 
-  Icons are provided by [heroicons](https://heroicons.com). See `icon/1` for usage.
+  The components in this module should include style, for boosting UI building.
   """
 
-  use Phoenix.Component
+  use ComboSaaS.AdminWeb, :component
+  import ComboSaaS.AdminWeb.BaseComponents, only: [icon: 1]
   import ComboSaaS.I18n.Gettext
   alias Phoenix.LiveView.JS
 
@@ -575,34 +573,6 @@ defmodule ComboSaaS.AdminWeb.CoreComponents do
         <%= render_slot(@inner_block) %>
       </.link>
     </div>
-    """
-  end
-
-  @doc """
-  Renders a [Heroicon](https://heroicons.com).
-
-  Heroicons come in three styles – outline, solid, and mini.
-  By default, the outline style is used, but solid and mini may
-  be applied by using the `-solid` and `-mini` suffix.
-
-  You can customize the size and colors of the icons by setting
-  width, height, and background color classes.
-
-  Icons are extracted from the `assets/node_modules/heroicons`
-  directory and bundled within compiled app.css by the plugin in
-  `assets/tailwind.config.js`.
-
-  ## Examples
-
-      <.icon name="hero-x-mark-solid" />
-      <.icon name="hero-arrow-path" class="ml-1 w-3 h-3 animate-spin" />
-  """
-  attr :name, :string, required: true
-  attr :class, :string, default: nil
-
-  def icon(%{name: "hero-" <> _} = assigns) do
-    ~H"""
-    <span class={[@name, @class]} />
     """
   end
 
