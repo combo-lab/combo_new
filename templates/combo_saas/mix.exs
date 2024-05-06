@@ -62,6 +62,7 @@ defmodule ComboSaaS.MixProject do
       {:gettext, "~> 0.20"},
 
       # core
+      {:argon2_elixir, "~> 4.0"},
       {:ecto_sql, "~> 3.10"},
       {:postgrex, ">= 0.0.0"},
       {:uuidv7, "~> 0.2"},

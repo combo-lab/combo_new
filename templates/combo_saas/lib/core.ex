@@ -11,6 +11,7 @@ defmodule ComboSaaS.Core do
     deps: [
       Ecto,
       Ecto.Changeset,
+      ComboSaaS.Toolkit,
       ComboSaaS.I18n
     ],
     exports: [
