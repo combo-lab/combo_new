@@ -42,10 +42,13 @@ const liveSocket = new LiveSocket(`${basePath}/live`, Socket, {
   },
 })
 
-const primaryColor = tailwindColors.primary['500']
+const brandColor = tailwindColors.brand['500']
+if (!brandColor) {
+  throw new Error(`[topbar] bad color - ${brandColor}`)
+}
 topbar.config({
   barThickness: 2,
-  barColors: { 0: primaryColor },
+  barColors: { 0: brandColor },
   shadowColor: 'rgba(0, 0, 0, .3)',
 })
 

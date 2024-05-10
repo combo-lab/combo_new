@@ -14,12 +14,12 @@
     "flex flex-col justify-center items-center space-y-4",
     "font-mono antialiased"
   ]}>
-    <h1 class="text-xl text-neutral-500 font-medium">
+    <h1 class="text-xl text-base-500 font-medium">
       <span><%= @status %></span>
       <span class="mx-2">|</span>
       <span class="uppercase"><%= @message %></span>
     </h1>
-    <a class="flex items-center space-x-2 text-neutral-500 nav-link hover:underline" href={~p"/"}>
+    <a class="flex items-center space-x-2 text-base-500 nav-link hover:underline" href={~p"/"}>
       <.icon name="hero-arrow-left" class="w-4 h-4" />
       <span>Go back to Home</span>
     </a>
