@@ -54,7 +54,7 @@ defmodule ComboSaaS.MixProject do
       {:dns_cluster, "~> 0.1"},
       {:jason, "~> 1.2"},
       {:cozy_proxy, "~> 0.3"},
-      {:bandit, "~> 1.2"},
+      {:bandit, "~> 1.5"},
       {:cozy_env, "~> 0.2"},
       {:plug_probe, "~> 0.1"},
 
@@ -71,9 +71,9 @@ defmodule ComboSaaS.MixProject do
 
       # web
       {:phoenix, "~> 1.7"},
-      {:phoenix_html, "~> 4.0"},
-      {:phoenix_ecto, "~> 4.4"},
-      {:phoenix_live_view, "~> 0.20"},
+      {:phoenix_html, "~> 4.1"},
+      {:phoenix_ecto, "~> 4.5"},
+      {:phoenix_live_view, "~> 1.0.0-rc.0", override: true},
       {:phoenix_live_dashboard, "~> 0.8"},
       {:cozy_svg, "~> 0.2"},
       {:phoenix_live_reload, "~> 1.5", only: [:dev]},
