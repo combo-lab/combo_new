@@ -20,7 +20,7 @@ export default {
       },
       colors: {
         base: colors.slate,
-        brand: colors.teal,
+        brand: colors.rose,
         blue: colors.sky,
         green: colors.emerald,
         yellow: colors.yellow,
