@@ -11,52 +11,64 @@
 msgid ""
 msgstr ""
 
-#: lib/admin_web/components/core_components.ex:154
-#: lib/user_web/components/core_components.ex:154
+#: lib/admin_web/components/core_components.ex:162
+#: lib/user_web/components/core_components.ex:162
+#, elixir-autogen, elixir-format
+msgid "Info!"
+msgstr ""
+
+#: lib/admin_web/components/core_components.ex:163
+#: lib/user_web/components/core_components.ex:163
 #, elixir-autogen, elixir-format
 msgid "Success!"
-msgstr ""
-
-#: lib/admin_web/components/core_components.ex:155
-#: lib/user_web/components/core_components.ex:155
-#, elixir-autogen, elixir-format
-msgid "Error!"
-msgstr ""
-
-#: lib/admin_web/components/core_components.ex:159
-#: lib/user_web/components/core_components.ex:159
-#, elixir-autogen, elixir-format
-msgid "We can't find the internet"
 msgstr ""
 
 #: lib/admin_web/components/core_components.ex:164
 #: lib/user_web/components/core_components.ex:164
 #, elixir-autogen, elixir-format
+msgid "Warning!"
+msgstr ""
+
+#: lib/admin_web/components/core_components.ex:165
+#: lib/user_web/components/core_components.ex:165
+#, elixir-autogen, elixir-format
+msgid "Error!"
+msgstr ""
+
+#: lib/admin_web/components/core_components.ex:169
+#: lib/user_web/components/core_components.ex:169
+#, elixir-autogen, elixir-format
+msgid "We can't find the internet"
+msgstr ""
+
+#: lib/admin_web/components/core_components.ex:174
+#: lib/user_web/components/core_components.ex:174
+#, elixir-autogen, elixir-format
 msgid "Attempting to reconnect"
 msgstr ""
 
-#: lib/admin_web/components/core_components.ex:171
-#: lib/user_web/components/core_components.ex:171
+#: lib/admin_web/components/core_components.ex:181
+#: lib/user_web/components/core_components.ex:181
 #, elixir-autogen, elixir-format
 msgid "Something went wrong!"
 msgstr ""
 
-#: lib/admin_web/components/core_components.ex:176
-#: lib/user_web/components/core_components.ex:176
+#: lib/admin_web/components/core_components.ex:186
+#: lib/user_web/components/core_components.ex:186
 #, elixir-autogen, elixir-format
 msgid "Hang in there while we get back on track"
 msgstr ""
 
-#: lib/admin_web/components/core_components.ex:488
-#: lib/user_web/components/core_components.ex:488
-#, elixir-autogen, elixir-format
-msgid "Actions"
-msgstr ""
-
 #: lib/admin_web/components/core_components.ex:76
-#: lib/admin_web/components/core_components.ex:133
+#: lib/admin_web/components/core_components.ex:141
 #: lib/user_web/components/core_components.ex:76
-#: lib/user_web/components/core_components.ex:133
+#: lib/user_web/components/core_components.ex:141
 #, elixir-autogen, elixir-format
 msgid "close"
+msgstr ""
+
+#: lib/admin_web/components/core_components.ex:498
+#: lib/user_web/components/core_components.ex:498
+#, elixir-autogen, elixir-format
+msgid "Actions"
 msgstr ""

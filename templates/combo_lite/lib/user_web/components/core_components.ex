@@ -100,7 +100,11 @@ defmodule ComboLite.UserWeb.CoreComponents do
   attr :id, :string, doc: "the optional id of flash container"
   attr :flash, :map, default: %{}, doc: "the map of flash messages to display"
   attr :title, :string, default: nil
-  attr :kind, :atom, values: [:info, :error], doc: "used for styling and flash lookup"
+
+  attr :kind, :atom,
+    values: [:info, :success, :warning, :error],
+    doc: "used for styling and flash lookup"
+
   attr :rest, :global, doc: "the arbitrary HTML attributes to add to the flash container"
 
   slot :inner_block, doc: "the optional inner block that renders the flash message"
@@ -117,12 +121,16 @@ defmodule ComboLite.UserWeb.CoreComponents do
       class={[
         "fixed top-2 right-2 mr-2 w-80 sm:w-96 z-50 rounded-lg p-3 ring-1",
         @kind == :info && "bg-blue-50 text-blue-800 ring-blue-500 fill-blue-900",
+        @kind == :success && "bg-green-50 text-green-800 ring-green-500 fill-green-900",
+        @kind == :warning && "bg-yellow-50 text-yellow-800 ring-yellow-500 fill-yellow-900",
         @kind == :error && "bg-red-50 text-red-900 shadow-md ring-red-500 fill-red-900"
       ]}
       {@rest}
     >
       <p :if={@title} class="flex items-center gap-1.5 text-sm font-semibold leading-6">
         <.icon :if={@kind == :info} name="hero-information-circle-mini" class="h-4 w-4" />
+        <.icon :if={@kind == :success} name="hero-check-circle-mini" class="h-4 w-4" />
+        <.icon :if={@kind == :warning} name="hero-exclamation-circle-mini" class="h-4 w-4" />
         <.icon :if={@kind == :error} name="hero-exclamation-circle-mini" class="h-4 w-4" />
         <%= @title %>
       </p>
@@ -151,7 +159,9 @@ defmodule ComboLite.UserWeb.CoreComponents do
   def flash_group(assigns) do
     ~H"""
     <div id={@id}>
-      <.flash kind={:info} title={dgettext("ui", "Success!")} flash={@flash} />
+      <.flash kind={:info} title={dgettext("ui", "Info!")} flash={@flash} />
+      <.flash kind={:success} title={dgettext("ui", "Success!")} flash={@flash} />
+      <.flash kind={:warning} title={dgettext("ui", "Warning!")} flash={@flash} />
       <.flash kind={:error} title={dgettext("ui", "Error!")} flash={@flash} />
       <.flash
         id="client-error"
