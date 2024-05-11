@@ -119,28 +119,40 @@ defmodule ComboSaaS.UserWeb.CoreComponents do
       phx-click={JS.push("lv:clear-flash", value: %{key: @kind}) |> hide("##{@id}")}
       role="alert"
       class={[
-        "fixed top-2 right-2 mr-2 w-80 sm:w-96 z-50 rounded-lg p-3 ring-1",
-        @kind == :info && "bg-blue-50 text-blue-800 ring-blue-500 fill-blue-900",
-        @kind == :success && "bg-green-50 text-green-800 ring-green-500 fill-green-900",
-        @kind == :warning && "bg-yellow-50 text-yellow-800 ring-yellow-500 fill-yellow-900",
-        @kind == :error && "bg-red-50 text-red-900 shadow-md ring-red-500 fill-red-900"
+        "relative",
+        "p-4 w-80 sm:w-96",
+        "rounded-xl border border-base-50 shadow-xl",
+        "bg-white text-sm"
       ]}
       {@rest}
     >
-      <p :if={@title} class="flex items-center gap-1.5 text-sm font-semibold leading-6">
-        <.icon :if={@kind == :info} name="hero-information-circle-mini" class="h-4 w-4" />
-        <.icon :if={@kind == :success} name="hero-check-circle-mini" class="h-4 w-4" />
-        <.icon :if={@kind == :warning} name="hero-exclamation-circle-mini" class="h-4 w-4" />
-        <.icon :if={@kind == :error} name="hero-exclamation-circle-mini" class="h-4 w-4" />
-        <%= @title %>
-      </p>
-      <p class="mt-2 text-sm leading-5"><%= msg %></p>
+      <div class="flex space-x-4">
+        <div class={[
+          "h-10 w-10 flex justify-center items-center rounded-full",
+          @kind == :info && "bg-blue-100 text-blue-500",
+          @kind == :success && "bg-green-100 text-green-500",
+          @kind == :warning && "bg-yellow-100 text-yellow-500",
+          @kind == :error && "bg-red-100 text-red-500"
+        ]}>
+          <.icon :if={@kind == :info} name="hero-information-circle-mini" class="h-6 w-6" />
+          <.icon :if={@kind == :success} name="hero-check-circle-mini" class="h-6 w-6" />
+          <.icon :if={@kind == :warning} name="hero-exclamation-triangle-mini" class="h-6 w-6" />
+          <.icon :if={@kind == :error} name="hero-x-circle-mini" class="h-6 w-6" />
+        </div>
+
+        <div class="flex-1">
+          <p :if={@title} class="pr-6 font-medium text-base-900">
+            <%= @title %>
+          </p>
+          <p class="mt-1 text-base-500"><%= msg %></p>
+        </div>
+      </div>
       <button
         type="button"
-        class="group absolute top-1 right-1 p-2"
+        class={["group absolute top-1 right-1 p-2", "text-base-400 hover:text-base-800"]}
         aria-label={dgettext("ui", "close")}
       >
-        <.icon name="hero-x-mark-solid" class="h-5 w-5 opacity-40 group-hover:opacity-70" />
+        <.icon name="hero-x-mark-solid" class="h-5 w-5" />
       </button>
     </div>
     """
@@ -158,7 +170,7 @@ defmodule ComboSaaS.UserWeb.CoreComponents do
 
   def flash_group(assigns) do
     ~H"""
-    <div id={@id}>
+    <div id={@id} class="fixed top-4 right-4 z-50 space-y-3">
       <.flash kind={:info} title={dgettext("ui", "Info!")} flash={@flash} />
       <.flash kind={:success} title={dgettext("ui", "Success!")} flash={@flash} />
       <.flash kind={:warning} title={dgettext("ui", "Warning!")} flash={@flash} />
