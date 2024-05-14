@@ -20,7 +20,7 @@ export default {
       },
       colors: {
         base: colors.slate,
-        brand: colors.rose,
+        brand: colors.violet,
         blue: colors.sky,
         green: colors.emerald,
         yellow: colors.yellow,
@@ -32,8 +32,29 @@ export default {
     tailwindcssTypography({ target: 'legacy' }),
     tailwindcssForms,
     tailwindcssAspectRatio,
-    // Allows prefixing tailwind classes with LiveView classes to add rules
-    // only when LiveView classes are applied, for example:
+
+    // Add variants for styling a <progress> element.
+    //
+    // An example:
+    //
+    //     <progress
+    //       max="100"
+    //       value="23"
+    //       class={[
+    //         "block w-full h-2",
+    //         "progress-root:h-2 progress-root:rounded progress-root:bg-base-200",
+    //         "progress-fill:h-2 progress-fill:rounded progress-fill:bg-brand-500"
+    //       ]}
+    //     ></progress>
+    //
+    plugin(({ addVariant }) => {
+      addVariant('progress-root', ['&::-webkit-progress-bar', '&'])
+      addVariant('progress-fill', ['&::-webkit-progress-value', '&::-moz-progress-bar'])
+    }),
+
+    // Add variants for styling elements which are applying LiveView classes.
+    //
+    // An example:
     //
     //     <div class="phx-click-loading:animate-ping">
     //
@@ -45,14 +66,17 @@ export default {
       addVariant('phx-submit-loading', ['.phx-submit-loading&', '.phx-submit-loading &'])
       addVariant('phx-change-loading', ['.phx-change-loading&', '.phx-change-loading &'])
     }),
-    // Embeds Heroicons (https://heroicons.com) into the app.css bundle
-    // See `CoreComponents.icon/1` for more information.
+
+    // Add hero-* components for supporting `BaseComponents.icon/1`.
+    //
+    // See `BaseComponents.icon/1` for more information.
     //
     plugin(function ({ matchComponents, theme }) {
       const iconsDir = path.join(__dirname, './node_modules/heroicons')
       const values = {}
       const icons = [
         ['', '/24/outline'],
+        ['-outline', '/24/outline'],
         ['-solid', '/24/solid'],
         ['-mini', '/20/solid'],
         ['-micro', '/16/solid'],

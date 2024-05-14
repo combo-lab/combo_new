@@ -11,23 +11,38 @@ defmodule ComboSaaS.UserWeb.BaseComponents do
   import Phoenix.HTML, only: [raw: 1]
 
   @doc """
-  Renders a [Heroicon](https://heroicons.com).
+  Renders an icon.
 
-  Heroicons come in three styles – outline, solid, and mini.
-  By default, the outline style is used, but solid and mini may
-  be applied by using the `-solid` and `-mini` suffix.
+  Currently, this component only supports limited sets of icons:
 
-  You can customize the size and colors of the icons by setting
-  width, height, and background color classes.
+    * [Heroicon](https://heroicons.com)
 
-  Icons are extracted from the `assets/node_modules/heroicons`
-  directory and bundled within compiled app.css by the plugin in
-  `assets/tailwind.config.js`.
+  But, it can be extended to support more icons.
 
-  ## Examples
+  ## Heroicon
 
-      <.icon name="hero-x-mark-solid" />
-      <.icon name="hero-arrow-path" class="ml-1 w-3 h-3 animate-spin" />
+  When using icons provided by Heroicon, the `name` attr should be prefixed
+  by `hero-`.
+
+  Heroicons come in four styles – outline, solid, micro and mini. By default,
+  the outline style is used. You can specify the style by using following
+  suffix:
+
+    * `-outline`
+    * `-solid`
+    * `-micro`
+    * `-mini`
+
+  You can also customize the size and colors of the icons by setting width,
+  height, and background color classes.
+
+  Heroicons are extracted from the `node_modules/heroicons` directory and
+  bundled into CSS file by the plugin in `assets/tailwind.config.js`.
+
+  ### Examples
+
+      <.icon name="hero-arrow-path" />
+      <.icon name="hero-x-mark-solid" class="ml-1 w-3 h-3 animate-spin" />
 
   """
   attr :name, :string, required: true
