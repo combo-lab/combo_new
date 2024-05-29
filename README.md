@@ -4,6 +4,12 @@ An opinionated project generator for Phoenix.
 
 > It's a part of `combo`, which is an opinionated code generator for Phoenix.
 
+## Sync Status
+
+`combo_new` will continuously track changes in Phoenix and merge them in.
+
+Currently, this repo is synchronized to the commit `69685f7`(2024/05/27) of [phoenixframework/phoenix](https://github.com/phoenixframework/phoenix).
+
 ## Usage
 
 Install the archive of `combo_new`:
@@ -30,12 +36,6 @@ See `mix help` for more details.
 - reduced number of processes running in dev environment, which is derived from [axelson's repo](https://github.com/axelson/hello_phoenix/pull/1)
 - liveness probe, which is common in container environments.
 - ...
-
-## Sync Status
-
-`combo_new` will continuously track changes in Phoenix and merge them in.
-
-Currently, this repo is synchronized to the commit `6486203`(2024/02/02) of [phoenixframework/phoenix](https://github.com/phoenixframework/phoenix).
 
 ## Why?
 
