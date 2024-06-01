@@ -84,7 +84,10 @@ defmodule ComboSaaS.MixProject do
       {:ex_check, "~> 0.16", only: [:dev], runtime: false},
       {:credo, ">= 0.0.0", only: [:dev], runtime: false},
       {:dialyxir, ">= 0.0.0", only: [:dev], runtime: false},
-      {:mix_audit, ">= 0.0.0", only: [:dev], runtime: false}
+      {:mix_audit, ">= 0.0.0", only: [:dev], runtime: false},
+
+      # test
+      {:ex_machina, github: "beam-community/ex_machina", ref: "a4352dd", only: [:test]}
     ]
   end
 
