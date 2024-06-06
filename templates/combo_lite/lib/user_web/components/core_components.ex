@@ -301,7 +301,7 @@ defmodule ComboLite.UserWeb.CoreComponents do
 
   attr :type, :string,
     default: "text",
-    values: ~w(checkbox color date datetime-local email file month number password
+    values: ~w(hidden checkbox color date datetime-local email file month number password
                range search select tel text textarea time url week)
 
   attr :field, Phoenix.HTML.FormField,
@@ -326,6 +326,12 @@ defmodule ComboLite.UserWeb.CoreComponents do
     |> assign_new(:name, fn -> if assigns.multiple, do: field.name <> "[]", else: field.name end)
     |> assign_new(:value, fn -> field.value end)
     |> input()
+  end
+
+  def input(%{type: "hidden"} = assigns) do
+    ~H"""
+    <input type="hidden" name={@name} value={@value} {@rest} />
+    """
   end
 
   def input(%{type: "checkbox"} = assigns) do
