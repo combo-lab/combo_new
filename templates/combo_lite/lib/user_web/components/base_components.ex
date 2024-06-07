@@ -13,22 +13,36 @@ defmodule ComboLite.UserWeb.BaseComponents do
   @doc """
   Renders an icon.
 
-  Currently, this component only supports limited sets of icons:
+  ## Tabler icons
 
-    * [Heroicon](https://heroicons.com)
+  > https://tabler.io/icons
 
-  But, it can be extended to support more icons.
+  When using icons provided by Tabler, the `name` attr should be prefixed
+  by `tabler-`.
 
-  ## Heroicon
+  Tabler icons support following styles:
 
-  When using icons provided by Heroicon, the `name` attr should be prefixed
+    * `-outline` (default)
+    * `-filled`
+
+  You can also customize the size and colors of the icons by setting width,
+  height, and background color classes.
+
+  ### Examples
+
+      <.icon name="tabler-brand-apple" />
+      <.icon name="tabler-brand-apple-filled" class="ml-1 w-3 h-3 animate-spin" />
+
+  ## Heroicons
+
+  > https://heroicons.com
+
+  When using icons provided by Heroicons, the `name` attr should be prefixed
   by `hero-`.
 
-  Heroicons come in four styles – outline, solid, micro and mini. By default,
-  the outline style is used. You can specify the style by using following
-  suffix:
+  Heroicons support following styles:
 
-    * `-outline`
+    * `-outline` (default)
     * `-solid`
     * `-micro`
     * `-mini`
@@ -36,17 +50,28 @@ defmodule ComboLite.UserWeb.BaseComponents do
   You can also customize the size and colors of the icons by setting width,
   height, and background color classes.
 
-  Heroicons are extracted from the `node_modules/heroicons` directory and
-  bundled into CSS file by the plugin in `assets/tailwind.config.js`.
-
   ### Examples
 
       <.icon name="hero-arrow-path" />
-      <.icon name="hero-x-mark-solid" class="ml-1 w-3 h-3 animate-spin" />
+      <.icon name="hero-arrow-path-solid" class="ml-1 w-3 h-3 animate-spin" />
 
+  ## CSS Bundling
+
+  These icons are extracted from the `node_modules/*` directory and
+  bundled into CSS file by the plugin in `assets/*/tailwind.config.js`.
+
+  ## More
+
+  You are free to extend this component to support more icon sets.
   """
   attr :name, :string, required: true
   attr :class, :string, default: nil
+
+  def icon(%{name: "tabler-" <> _} = assigns) do
+    ~H"""
+    <span class={[@name, @class]} />
+    """
+  end
 
   def icon(%{name: "hero-" <> _} = assigns) do
     ~H"""
