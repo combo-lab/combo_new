@@ -1,36 +1,36 @@
-import esbuild from 'esbuild'
-import pluginStyle from 'esbuild-style-plugin'
-import postcssImport from 'postcss-import'
-import tailwindcss from 'tailwindcss'
-import autoprefixer from 'autoprefixer'
+import esbuild from "esbuild"
+import pluginStyle from "esbuild-style-plugin"
+import postcssImport from "postcss-import"
+import tailwindcss from "tailwindcss"
+import autoprefixer from "autoprefixer"
 
-import resolveTailwindConfig from 'tailwindcss/resolveConfig.js'
-import tailwindConfig from './tailwind.config.js'
+import resolveTailwindConfig from "tailwindcss/resolveConfig.js"
+import tailwindConfig from "./tailwind.config.js"
 
 const {
   theme: { colors: tailwindColors },
 } = resolveTailwindConfig(tailwindConfig)
 
 const args = process.argv.slice(2)
-const watch = args.includes('--watch')
-const deploy = args.includes('--deploy')
+const watch = args.includes("--watch")
+const deploy = args.includes("--deploy")
 
-const target = 'es2017'
-const outDir = '../../priv/admin_web/static/assets'
+const target = "es2017"
+const outDir = "../../priv/admin_web/static/assets"
 
 async function main() {
   const ctx = await esbuild.context({
-    entryPoints: ['app.js'],
-    resolveExtensions: ['.js'],
+    entryPoints: ["app.js"],
+    resolveExtensions: [".js"],
     outdir: outDir,
     bundle: true,
     splitting: true,
     target: target,
-    format: 'esm',
+    format: "esm",
     minify: deploy,
-    sourcemap: deploy ? undefined : 'linked',
+    sourcemap: deploy ? undefined : "linked",
     define: {
-      'process.env.TAILWIND_COLORS': JSON.stringify(tailwindColors),
+      "process.env.TAILWIND_COLORS": JSON.stringify(tailwindColors),
     },
     plugins: [
       pluginStyle({
@@ -40,11 +40,11 @@ async function main() {
       }),
     ],
     loader: {
-      '.ttf': 'file',
-      '.woff': 'file',
-      '.woff2': 'file',
-      '.eot': 'file',
-      '.svg': 'file',
+      ".ttf": "file",
+      ".woff": "file",
+      ".woff2": "file",
+      ".eot": "file",
+      ".svg": "file",
     },
   })
 
@@ -52,7 +52,7 @@ async function main() {
     await ctx.watch()
 
     // watch STDIN and terminate esbuild when Phoenix quits
-    process.stdin.on('close', () => {
+    process.stdin.on("close", () => {
       process.exit(0)
     })
 

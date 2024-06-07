@@ -1,10 +1,10 @@
-import { Socket } from 'phoenix'
-import { LiveSocket } from 'phoenix_live_view'
+import { Socket } from "phoenix"
+import { LiveSocket } from "phoenix_live_view"
 
-import topbar from 'topbar'
-import tailwindColors from '../tailwind/colors'
+import topbar from "topbar"
+import tailwindColors from "../tailwind/colors"
 
-const csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute('content')
+const csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content")
 
 // If the Phoenix endpoint is not served on /, you should set `data-base-path` attribute
 // on the root template. For example:
@@ -28,7 +28,7 @@ const csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute
 //     end
 //   end
 //
-const basePath = document.querySelector('html').dataset.basePath || ''
+const basePath = document.querySelector("html").dataset.basePath || ""
 
 const liveSocket = new LiveSocket(`${basePath}/live`, Socket, {
   longPollFallbackMs: 2500,
@@ -42,19 +42,19 @@ const liveSocket = new LiveSocket(`${basePath}/live`, Socket, {
   },
 })
 
-const brandColor = tailwindColors.brand['500']
+const brandColor = tailwindColors.brand["500"]
 if (!brandColor) {
   throw new Error(`[topbar] bad color - ${brandColor}`)
 }
 topbar.config({
   barThickness: 2,
   barColors: { 0: brandColor },
-  shadowColor: 'rgba(0, 0, 0, .3)',
+  shadowColor: "rgba(0, 0, 0, .3)",
 })
 
 // Show progress bar on live navigation and form submits if the results do not appear within 200ms.
-window.addEventListener('phx:page-loading-start', (_info) => topbar.show(200))
-window.addEventListener('phx:page-loading-stop', (_info) => topbar.hide())
+window.addEventListener("phx:page-loading-start", (_info) => topbar.show(200))
+window.addEventListener("phx:page-loading-stop", (_info) => topbar.hide())
 
 // connect if there are any LiveViews on the page
 liveSocket.connect()

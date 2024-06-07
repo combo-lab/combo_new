@@ -1,22 +1,22 @@
 // See the Tailwind configuration guide for advanced usage
 // https://tailwindcss.com/docs/configuration
 
-import defaultTheme from 'tailwindcss/defaultTheme.js'
-import colors from 'tailwindcss/colors.js'
-import plugin from 'tailwindcss/plugin.js'
-import fs from 'fs'
-import path from 'path'
-import tailwindcssTypography from '@tailwindcss/typography'
-import tailwindcssForms from '@tailwindcss/forms'
-import tailwindcssAspectRatio from '@tailwindcss/aspect-ratio'
+import defaultTheme from "tailwindcss/defaultTheme.js"
+import colors from "tailwindcss/colors.js"
+import plugin from "tailwindcss/plugin.js"
+import fs from "fs"
+import path from "path"
+import tailwindcssTypography from "@tailwindcss/typography"
+import tailwindcssForms from "@tailwindcss/forms"
+import tailwindcssAspectRatio from "@tailwindcss/aspect-ratio"
 
 export default {
-  content: ['../../lib/admin_web/**/*.*ex', './{lib,vendor}/**/*.js'],
+  content: ["../../lib/admin_web/**/*.*ex", "./{lib,vendor}/**/*.js"],
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Inter Variable', ...defaultTheme.fontFamily.sans],
-        mono: ['JetBrains Mono Variable', ...defaultTheme.fontFamily.mono],
+        sans: ["Inter Variable", ...defaultTheme.fontFamily.sans],
+        mono: ["JetBrains Mono Variable", ...defaultTheme.fontFamily.mono],
       },
       colors: {
         base: colors.slate,
@@ -29,7 +29,7 @@ export default {
     },
   },
   plugins: [
-    tailwindcssTypography({ target: 'legacy' }),
+    tailwindcssTypography({ target: "legacy" }),
     tailwindcssForms,
     tailwindcssAspectRatio,
 
@@ -48,8 +48,8 @@ export default {
     //     ></progress>
     //
     plugin(({ addVariant }) => {
-      addVariant('progress-root', ['&::-webkit-progress-bar', '&'])
-      addVariant('progress-fill', ['&::-webkit-progress-value', '&::-moz-progress-bar'])
+      addVariant("progress-root", ["&::-webkit-progress-bar", "&"])
+      addVariant("progress-fill", ["&::-webkit-progress-value", "&::-moz-progress-bar"])
     }),
 
     // Add variants for styling elements which are applying LiveView classes.
@@ -59,12 +59,12 @@ export default {
     //     <div class="phx-click-loading:animate-ping">
     //
     plugin(({ addVariant }) => {
-      addVariant('phx-loading', ['.phx-loading&', '.phx-loading &'])
-      addVariant('phx-connected', ['.phx-connected&', '.phx-connected &'])
-      addVariant('phx-error', ['.phx-error&', '.phx-error &'])
-      addVariant('phx-click-loading', ['.phx-click-loading&', '.phx-click-loading &'])
-      addVariant('phx-submit-loading', ['.phx-submit-loading&', '.phx-submit-loading &'])
-      addVariant('phx-change-loading', ['.phx-change-loading&', '.phx-change-loading &'])
+      addVariant("phx-loading", [".phx-loading&", ".phx-loading &"])
+      addVariant("phx-connected", [".phx-connected&", ".phx-connected &"])
+      addVariant("phx-error", [".phx-error&", ".phx-error &"])
+      addVariant("phx-click-loading", [".phx-click-loading&", ".phx-click-loading &"])
+      addVariant("phx-submit-loading", [".phx-submit-loading&", ".phx-submit-loading &"])
+      addVariant("phx-change-loading", [".phx-change-loading&", ".phx-change-loading &"])
     }),
 
     // Add tabler-* components for supporting `BaseComponents.icon/1`.
@@ -72,16 +72,16 @@ export default {
     // See `BaseComponents.icon/1` for more information.
     //
     plugin(function ({ matchComponents, theme }) {
-      const iconsDir = path.join(__dirname, './node_modules/@tabler/icons/icons')
+      const iconsDir = path.join(__dirname, "./node_modules/@tabler/icons/icons")
       const values = {}
       const icons = [
-        ['', '/outline'],
-        ['-outline', '/outline'],
-        ['-filled', '/filled'],
+        ["", "/outline"],
+        ["-outline", "/outline"],
+        ["-filled", "/filled"],
       ]
       icons.forEach(([suffix, dir]) => {
         fs.readdirSync(path.join(iconsDir, dir)).map((file) => {
-          const name = path.basename(file, '.svg') + suffix
+          const name = path.basename(file, ".svg") + suffix
           values[name] = { name, fullPath: path.join(iconsDir, dir, file) }
         })
       })
@@ -91,25 +91,25 @@ export default {
             const content = fs
               .readFileSync(fullPath)
               .toString()
-              .replace(/(width|height|class)="[^"]*"\s*/g, '')
-              .replace(/\r?\n|\r/g, '')
+              .replace(/(width|height|class)="[^"]*"\s*/g, "")
+              .replace(/\r?\n|\r/g, "")
 
-            const size = theme('spacing.6')
+            const size = theme("spacing.6")
 
             return {
               [`--tabler-${name}`]: `url('data:image/svg+xml;utf8,${content}')`,
-              '-webkit-mask': `var(--tabler-${name})`,
-              mask: `var(--tabler-${name})`,
-              'mask-repeat': 'no-repeat',
-              'background-color': 'currentColor',
-              'vertical-align': 'middle',
-              display: 'inline-block',
-              width: size,
-              height: size,
+              "-webkit-mask": `var(--tabler-${name})`,
+              "mask": `var(--tabler-${name})`,
+              "mask-repeat": "no-repeat",
+              "background-color": "currentColor",
+              "vertical-align": "middle",
+              "display": "inline-block",
+              "width": size,
+              "height": size,
             }
           },
         },
-        { values }
+        { values },
       )
     }),
 
@@ -118,18 +118,18 @@ export default {
     // See `BaseComponents.icon/1` for more information.
     //
     plugin(function ({ matchComponents, theme }) {
-      const iconsDir = path.join(__dirname, './node_modules/heroicons')
+      const iconsDir = path.join(__dirname, "./node_modules/heroicons")
       const values = {}
       const icons = [
-        ['', '/24/outline'],
-        ['-outline', '/24/outline'],
-        ['-solid', '/24/solid'],
-        ['-mini', '/20/solid'],
-        ['-micro', '/16/solid'],
+        ["", "/24/outline"],
+        ["-outline", "/24/outline"],
+        ["-solid", "/24/solid"],
+        ["-mini", "/20/solid"],
+        ["-micro", "/16/solid"],
       ]
       icons.forEach(([suffix, dir]) => {
         fs.readdirSync(path.join(iconsDir, dir)).forEach((file) => {
-          const name = path.basename(file, '.svg') + suffix
+          const name = path.basename(file, ".svg") + suffix
           values[name] = { name, fullPath: path.join(iconsDir, dir, file) }
         })
       })
@@ -139,29 +139,29 @@ export default {
             const content = fs
               .readFileSync(fullPath)
               .toString()
-              .replace(/\r?\n|\r/g, '')
+              .replace(/\r?\n|\r/g, "")
 
-            let size = theme('spacing.6')
-            if (name.endsWith('-mini')) {
-              size = theme('spacing.5')
-            } else if (name.endsWith('-micro')) {
-              size = theme('spacing.4')
+            let size = theme("spacing.6")
+            if (name.endsWith("-mini")) {
+              size = theme("spacing.5")
+            } else if (name.endsWith("-micro")) {
+              size = theme("spacing.4")
             }
 
             return {
               [`--hero-${name}`]: `url('data:image/svg+xml;utf8,${content}')`,
-              '-webkit-mask': `var(--hero-${name})`,
-              mask: `var(--hero-${name})`,
-              'mask-repeat': 'no-repeat',
-              'background-color': 'currentColor',
-              'vertical-align': 'middle',
-              display: 'inline-block',
-              width: size,
-              height: size,
+              "-webkit-mask": `var(--hero-${name})`,
+              "mask": `var(--hero-${name})`,
+              "mask-repeat": "no-repeat",
+              "background-color": "currentColor",
+              "vertical-align": "middle",
+              "display": "inline-block",
+              "width": size,
+              "height": size,
             }
           },
         },
-        { values }
+        { values },
       )
     }),
   ],
