@@ -100,7 +100,7 @@ defmodule ComboLite.UserWeb do
 
   defp component_helpers do
     quote do
-      use Phoenix.Component
+      use Phoenix.Component, global_prefixes: ~w(x-)
 
       # a helper function for emulating :default option for slot attrs
       defp default(assigns, key, default \\ nil) do
