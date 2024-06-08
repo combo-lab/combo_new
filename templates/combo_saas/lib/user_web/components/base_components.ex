@@ -13,26 +13,6 @@ defmodule ComboSaaS.UserWeb.BaseComponents do
   @doc """
   Renders an icon.
 
-  ## Tabler icons
-
-  > https://tabler.io/icons
-
-  When using icons provided by Tabler, the `name` attr should be prefixed
-  by `tabler-`.
-
-  Tabler icons support following styles:
-
-    * `-outline` (default)
-    * `-filled`
-
-  You can also customize the size and colors of the icons by setting width,
-  height, and background color classes.
-
-  ### Examples
-
-      <.icon name="tabler-brand-apple" />
-      <.icon name="tabler-brand-apple-filled" class="ml-1 w-3 h-3 animate-spin" />
-
   ## Heroicons
 
   > https://heroicons.com
@@ -66,12 +46,6 @@ defmodule ComboSaaS.UserWeb.BaseComponents do
   """
   attr :name, :string, required: true
   attr :class, :string, default: nil
-
-  def icon(%{name: "tabler-" <> _} = assigns) do
-    ~H"""
-    <span class={[@name, @class]} />
-    """
-  end
 
   def icon(%{name: "hero-" <> _} = assigns) do
     ~H"""

@@ -67,52 +67,6 @@ export default {
       addVariant("phx-change-loading", [".phx-change-loading&", ".phx-change-loading &"])
     }),
 
-    // Add tabler-* components for supporting `BaseComponents.icon/1`.
-    //
-    // See `BaseComponents.icon/1` for more information.
-    //
-    plugin(function ({ matchComponents, theme }) {
-      const iconsDir = path.join(__dirname, "./node_modules/@tabler/icons/icons")
-      const values = {}
-      const icons = [
-        ["", "/outline"],
-        ["-outline", "/outline"],
-        ["-filled", "/filled"],
-      ]
-      icons.forEach(([suffix, dir]) => {
-        fs.readdirSync(path.join(iconsDir, dir)).map((file) => {
-          const name = path.basename(file, ".svg") + suffix
-          values[name] = { name, fullPath: path.join(iconsDir, dir, file) }
-        })
-      })
-      matchComponents(
-        {
-          tabler: ({ name, fullPath }) => {
-            const content = fs
-              .readFileSync(fullPath)
-              .toString()
-              .replace(/(width|height|class)="[^"]*"\s*/g, "")
-              .replace(/\r?\n|\r/g, "")
-
-            const size = theme("spacing.6")
-
-            return {
-              [`--tabler-${name}`]: `url('data:image/svg+xml;utf8,${content}')`,
-              "-webkit-mask": `var(--tabler-${name})`,
-              "mask": `var(--tabler-${name})`,
-              "mask-repeat": "no-repeat",
-              "background-color": "currentColor",
-              "vertical-align": "middle",
-              "display": "inline-block",
-              "width": size,
-              "height": size,
-            }
-          },
-        },
-        { values },
-      )
-    }),
-
     // Add hero-* components for supporting `BaseComponents.icon/1`.
     //
     // See `BaseComponents.icon/1` for more information.
