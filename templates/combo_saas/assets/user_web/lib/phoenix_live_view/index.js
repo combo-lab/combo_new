@@ -1,10 +1,10 @@
 import { Socket } from "phoenix"
 import { LiveSocket } from "phoenix_live_view"
+import hooks from "./hooks"
+import uploaders from "./uploaders"
 
 import topbar from "topbar"
 import tailwindColors from "../tailwind/colors"
-
-const csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content")
 
 // If the Phoenix endpoint is not served on /, you should set `data-base-path` attribute
 // on the root template. For example:
@@ -29,6 +29,7 @@ const csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute
 //   end
 //
 const basePath = document.querySelector("html").dataset.basePath || ""
+const csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content")
 
 const liveSocket = new LiveSocket(`${basePath}/live`, Socket, {
   longPollFallbackMs: 2500,
