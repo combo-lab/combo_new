@@ -138,13 +138,14 @@ defmodule ComboSaaS.UserWeb.CoreComponents do
           <.icon :if={@kind == :success} name="hero-check-circle-mini" class="h-6 w-6" />
           <.icon :if={@kind == :warning} name="hero-exclamation-triangle-mini" class="h-6 w-6" />
           <.icon :if={@kind == :error} name="hero-x-circle-mini" class="h-6 w-6" />
+          <p class="sr-only"><%= @kind %></p>
         </div>
 
-        <div class="flex-1">
+        <div class="flex-1 flex flex-col justify-center space-y-1">
           <p :if={@title} class="pr-6 font-medium text-base-900">
             <%= @title %>
           </p>
-          <p class="mt-1 text-base-500"><%= msg %></p>
+          <p class="text-base-500"><%= msg %></p>
         </div>
       </div>
       <button
@@ -171,10 +172,10 @@ defmodule ComboSaaS.UserWeb.CoreComponents do
   def flash_group(assigns) do
     ~H"""
     <div id={@id} class="fixed top-4 right-4 z-50 space-y-3">
-      <.flash kind={:info} title={dgettext("ui", "Info!")} flash={@flash} />
-      <.flash kind={:success} title={dgettext("ui", "Success!")} flash={@flash} />
-      <.flash kind={:warning} title={dgettext("ui", "Warning!")} flash={@flash} />
-      <.flash kind={:error} title={dgettext("ui", "Error!")} flash={@flash} />
+      <.flash kind={:info} flash={@flash} />
+      <.flash kind={:success} flash={@flash} />
+      <.flash kind={:warning} flash={@flash} />
+      <.flash kind={:error} flash={@flash} />
       <.flash
         id="client-error"
         kind={:error}
