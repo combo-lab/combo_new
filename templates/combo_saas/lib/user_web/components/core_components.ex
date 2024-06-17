@@ -482,12 +482,15 @@ defmodule ComboSaaS.UserWeb.CoreComponents do
       <.table id="users" rows={@users}>
         <:col :let={user} label="id"><%= user.id %></:col>
         <:col :let={user} label="username"><%= user.username %></:col>
+        <:action :let={user}>
+          <.link patch={~p"/users/#{user}/edit"}>Edit</.link>
+        </:action>
       </.table>
+
   """
   attr :id, :string, required: true
   attr :rows, :list, required: true
   attr :row_id, :any, default: nil, doc: "the function for generating the row id"
-  attr :row_click, :any, default: nil, doc: "the function for handling phx-click on each row"
 
   attr :row_item, :any,
     default: &Function.identity/1,
@@ -506,12 +509,14 @@ defmodule ComboSaaS.UserWeb.CoreComponents do
       end
 
     ~H"""
-    <div class="overflow-y-auto px-4 sm:overflow-visible sm:px-0">
-      <table class="w-[40rem] mt-11 sm:w-full">
-        <thead class="text-sm text-left leading-6 text-base-500">
+    <div class="w-full overflow-auto">
+      <table class="w-full">
+        <thead class="border-b border-base-100 ">
           <tr>
-            <th :for={col <- @col} class="p-0 pb-4 pr-6 font-normal"><%= col[:label] %></th>
-            <th :if={@action != []} class="relative p-0 pb-4">
+            <th :for={col <- @col} class="p-4 text-left font-medium text-sm text-base-500">
+              <%= col[:label] %>
+            </th>
+            <th :if={@action != []} class="p-4 text-right font-medium text-sm text-base-500">
               <span class="sr-only"><%= dgettext("ui", "Actions") %></span>
             </th>
           </tr>
@@ -519,27 +524,23 @@ defmodule ComboSaaS.UserWeb.CoreComponents do
         <tbody
           id={@id}
           phx-update={match?(%Phoenix.LiveView.LiveStream{}, @rows) && "stream"}
-          class="relative divide-y divide-base-100 border-t border-base-200 text-sm leading-6 text-base-700"
+          class="divide-y divide-base-100"
         >
-          <tr :for={row <- @rows} id={@row_id && @row_id.(row)} class="group hover:bg-base-50">
-            <td
-              :for={{col, i} <- Enum.with_index(@col)}
-              phx-click={@row_click && @row_click.(row)}
-              class={["relative p-0", @row_click && "hover:cursor-pointer"]}
-            >
-              <div class="block py-4 pr-6">
-                <span class="absolute -inset-y-px right-0 -left-4 group-hover:bg-base-50 sm:rounded-l-xl" />
-                <span class={["relative", i == 0 && "font-semibold text-base-900"]}>
-                  <%= render_slot(col, @row_item.(row)) %>
-                </span>
+          <tr
+            :for={row <- @rows}
+            id={@row_id && @row_id.(row)}
+            class="group transition-colors hover:bg-base-50"
+          >
+            <td :for={{col, i} <- Enum.with_index(@col)} class="p-0">
+              <div class={["whitespace-nowrap p-4", i == 0 && "font-semibold text-sm text-base-900"]}>
+                <%= render_slot(col, @row_item.(row)) %>
               </div>
             </td>
-            <td :if={@action != []} class="relative w-14 p-0">
-              <div class="relative whitespace-nowrap py-4 text-right text-sm font-medium">
-                <span class="absolute -inset-y-px -right-4 left-0 group-hover:bg-base-50 sm:rounded-r-xl" />
+            <td :if={@action != []} class="p-0">
+              <div class="whitespace-nowrap p-4 text-right space-x-4">
                 <span
                   :for={action <- @action}
-                  class="relative ml-4 font-semibold leading-6 text-base-900 hover:text-base-700"
+                  class="font-semibold text-sm text-base-900 hover:text-base-700"
                 >
                   <%= render_slot(action, @row_item.(row)) %>
                 </span>
