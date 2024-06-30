@@ -13,8 +13,8 @@ defmodule ComboSaaS.Core.Accounts.UserSessionTokens do
   @type meta :: map()
   @type token :: String.t()
 
-  @spec create(User.t(), meta()) :: token()
-  def create(user, meta \\ %{}) do
+  @spec create_token(User.t(), meta()) :: token()
+  def create_token(user, meta \\ %{}) do
     {token, token_hash} = EasyToken.generate(@token_format)
 
     Repo.insert!(
@@ -30,8 +30,8 @@ defmodule ComboSaaS.Core.Accounts.UserSessionTokens do
     token
   end
 
-  @spec fetch(token()) :: {:ok, UserSessionToken.t()} | :error
-  def fetch(token) do
+  @spec fetch_token(token()) :: {:ok, UserSessionToken.t()} | :error
+  def fetch_token(token) do
     with {:ok, token_hash} <- EasyToken.hash(@token_format, token),
          user_session_token = Repo.one(valid_tokens_query(token_hash: token_hash)),
          :ok <- if_else(user_session_token),
@@ -39,8 +39,8 @@ defmodule ComboSaaS.Core.Accounts.UserSessionTokens do
          else: (_ -> :error)
   end
 
-  @spec delete(token()) :: :ok
-  def delete(token) do
+  @spec delete_token(token()) :: :ok
+  def delete_token(token) do
     with {:ok, token_hash} <- EasyToken.hash(@token_format, token) do
       Repo.delete_all(valid_tokens_query(token_hash: token_hash))
     end
@@ -48,14 +48,14 @@ defmodule ComboSaaS.Core.Accounts.UserSessionTokens do
     :ok
   end
 
-  @spec delete_all(User.t()) :: :ok
-  def delete_all(user) do
+  @spec delete_tokens(User.t()) :: :ok
+  def delete_tokens(user) do
     Repo.delete_all(valid_tokens_query(user: user))
     :ok
   end
 
-  @spec delete_all(User.t(), except: token()) :: :ok
-  def delete_all(user, except: token) do
+  @spec delete_tokens(User.t(), except: token()) :: :ok
+  def delete_tokens(user, except: token) do
     with {:ok, token_hash} <- EasyToken.hash(@token_format, token) do
       valid_tokens_query(user: user)
       |> where([user_session_token], user_session_token.token_hash != ^token_hash)
@@ -65,8 +65,8 @@ defmodule ComboSaaS.Core.Accounts.UserSessionTokens do
     :ok
   end
 
-  @spec cleanup() :: :ok
-  def cleanup do
+  @spec cleanup_tokens() :: :ok
+  def cleanup_tokens do
     Repo.delete_all(invalid_token_query())
     :ok
   end

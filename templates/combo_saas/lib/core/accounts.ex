@@ -114,6 +114,7 @@ defmodule ComboSaaS.Core.Accounts do
 
   import ComboSaaS.Toolkit.EasyFlow
   alias ComboSaaS.Core.Repo
+  alias ComboSaaS.Core.Accounts.User
   alias ComboSaaS.Core.Accounts.Users
   alias ComboSaaS.Core.Accounts.NoUserTokens
   alias ComboSaaS.Core.Accounts.UserTokens
@@ -122,19 +123,17 @@ defmodule ComboSaaS.Core.Accounts do
   @doc """
   Gets a user.
   """
-  defdelegate get_user!(id), to: Users, as: :get!
+  defdelegate get_user!(id), to: Users
 
   @doc """
   Gets a user by email.
   """
-  defdelegate get_user_by_email(email), to: Users, as: :get_by_email
+  defdelegate get_user_by_email(email), to: Users
 
   @doc """
   Gets a user by email and password.
   """
-  defdelegate get_user_by_email_and_password(email, password),
-    to: Users,
-    as: :get_by_email_and_password
+  defdelegate get_user_by_email_and_password(email, password), to: Users
 
   @doc """
   Sends a registration token to an email.
@@ -152,9 +151,9 @@ defmodule ComboSaaS.Core.Accounts do
           :ok | {:error, Ecto.Changeset.t()}
   def send_user_registration_token(email) do
     with {:ok, email} <- Users.validate_email(email) do
-      unless Users.get_by_email(email) do
+      unless Users.get_user_by_email(email) do
         Repo.transact(fn ->
-          token = NoUserTokens.create(email, :register)
+          token = NoUserTokens.create_token(email, :register)
           # TODO: enqueue sending the token
           {:ok, IO.inspect(token)}
         end)
@@ -174,12 +173,12 @@ defmodule ComboSaaS.Core.Accounts do
 
   """
   @spec register_user(Users.email(), NoUserTokens.token(), Users.password()) ::
-          {:ok, Users.user()} | {:error, :invalid_token | Ecto.Changeset.t()}
+          {:ok, User.t()} | {:error, :invalid_token | Ecto.Changeset.t()}
   def register_user(email, token, password) do
     Repo.transact(fn ->
-      with :ok <- ok_else(NoUserTokens.consume(email, :register, token), :invalid_token),
-           {:ok, user} <- Users.create(email, password),
-           :ok <- NoUserTokens.delete_all(email, :register) do
+      with :ok <- ok_else(NoUserTokens.consume_token(email, :register, token), :invalid_token),
+           {:ok, user} <- Users.create_user(email, password),
+           :ok <- NoUserTokens.delete_tokens(email, :register) do
         {:ok, user}
       end
     end)
@@ -195,10 +194,10 @@ defmodule ComboSaaS.Core.Accounts do
       and so on, so it's unnecessary to validate it again.
 
   """
-  @spec send_user_email_change_token(Users.user()) :: :ok
+  @spec send_user_email_change_token(User.t()) :: :ok
   def send_user_email_change_token(user) do
     Repo.transact(fn ->
-      token = UserTokens.create(user, user.email, :email_change)
+      token = UserTokens.create_token(user, user.email, :email_change)
       # TODO: enqueue sending the token
       {:ok, IO.inspect(token)}
 
@@ -218,13 +217,13 @@ defmodule ComboSaaS.Core.Accounts do
       this function will always return `:ok` even if the email has been taken.
 
   """
-  @spec send_user_email_change_token_to_new_email(Users.user(), Users.email()) ::
+  @spec send_user_email_change_token_to_new_email(User.t(), Users.email()) ::
           :ok | {:error, Ecto.Changeset.t()}
   def send_user_email_change_token_to_new_email(user, email) do
     with {:ok, email} <- Users.validate_email(email) do
-      unless Users.get_by_email(email) do
+      unless Users.get_user_by_email(email) do
         Repo.transact(fn ->
-          token = UserTokens.create(user, email, :email_change)
+          token = UserTokens.create_token(user, email, :email_change)
           # TODO: enqueue sending the token
           {:ok, IO.inspect(token)}
         end)
@@ -243,26 +242,26 @@ defmodule ComboSaaS.Core.Accounts do
       deleted after the email is changed.
 
   """
-  @spec change_user_email(Users.user(), UserTokens.token(), Users.email(), UserTokens.token()) ::
-          {:ok, Users.user()} | {:error, :invalid_token | Ecto.Changeset.t()}
+  @spec change_user_email(User.t(), UserTokens.token(), Users.email(), UserTokens.token()) ::
+          {:ok, User.t()} | {:error, :invalid_token | Ecto.Changeset.t()}
   def change_user_email(user, token, new_email, new_email_token) do
     with {:ok, user} <-
            Repo.transact(fn ->
              with :ok <-
                     ok_else(
-                      UserTokens.consume(user, user.email, :email_change, token),
+                      UserTokens.consume_token(user, user.email, :email_change, token),
                       {:invalid_token, :email}
                     ),
                   :ok <-
                     ok_else(
-                      UserTokens.consume(user, new_email, :email_change, new_email_token),
+                      UserTokens.consume_token(user, new_email, :email_change, new_email_token),
                       {:invalid_token, :new_email}
                     ) do
-               Users.change_email(user, new_email)
+               Users.change_user_email(user, new_email)
              end
            end) do
-      UserTokens.delete_all(user, user.email, :email_change)
-      UserTokens.delete_all(user, new_email, :email_change)
+      UserTokens.delete_tokens(user, user.email, :email_change)
+      UserTokens.delete_tokens(user, new_email, :email_change)
 
       {:ok, user}
     end
@@ -278,10 +277,10 @@ defmodule ComboSaaS.Core.Accounts do
       and so on, so it's unnecessary to validate it again.
 
   """
-  @spec send_user_password_change_token(Users.user()) :: :ok
+  @spec send_user_password_change_token(User.t()) :: :ok
   def send_user_password_change_token(user) do
     Repo.transact(fn ->
-      token = UserTokens.create(user, user.email, :password_change)
+      token = UserTokens.create_token(user, user.email, :password_change)
       # TODO: enqueue sending the token
       {:ok, IO.inspect(token)}
 
@@ -298,27 +297,27 @@ defmodule ComboSaaS.Core.Accounts do
       after the password is changed.
 
   """
-  @spec change_user_password(Users.user(), UserTokens.token(), Users.password()) ::
-          {:ok, Users.user()} | {:error, :invalid_token | Ecto.Changeset.t()}
+  @spec change_user_password(User.t(), UserTokens.token(), Users.password()) ::
+          {:ok, User.t()} | {:error, :invalid_token | Ecto.Changeset.t()}
   def change_user_password(user, token, password) do
     with {:ok, user} <-
            Repo.transact(fn ->
              with :ok <-
                     ok_else(
-                      UserTokens.consume(user, user.email, :password_change, token),
+                      UserTokens.consume_token(user, user.email, :password_change, token),
                       :invalid_token
                     ) do
-               Users.change_password(user, password)
+               Users.change_user_password(user, password)
              end
            end) do
       # Users likely change their passwords to regain the full control of their
       # accounts. Based on this reason, user tokens are deleted for them.
-      UserTokens.delete_all(user)
+      UserTokens.delete_tokens(user)
 
       # After the transaction is commited, the password hash is updated. At
       # this point, deleting all session tokens ensures no one can log in
       # successfully with old password.
-      UserSessionTokens.delete_all(user)
+      UserSessionTokens.delete_tokens(user)
 
       {:ok, user}
     end
@@ -339,8 +338,8 @@ defmodule ComboSaaS.Core.Accounts do
           :ok | {:error, Ecto.Changeset.t()}
   def send_user_password_reset_token(email) do
     with {:ok, email} <- Users.validate_email(email) do
-      if user = Users.get_by_email(email) do
-        token = UserTokens.create(user, email, :password_reset)
+      if user = Users.get_user_by_email(email) do
+        token = UserTokens.create_token(user, email, :password_reset)
         # TODO: enqueue sending the token
         {:ok, IO.inspect(token)}
       end
@@ -360,27 +359,27 @@ defmodule ComboSaaS.Core.Accounts do
 
   """
   @spec reset_user_password(Users.email(), UserTokens.token(), Users.password()) ::
-          {:ok, Users.user()} | {:error, :invalid_token | Ecto.Changeset.t()}
+          {:ok, User.t()} | {:error, :invalid_token | Ecto.Changeset.t()}
   def reset_user_password(email, token, password) do
     with {:ok, user} <-
            Repo.transact(fn ->
-             with {:ok, user} <- if_else(Users.get_by_email(email), :invalid_token),
+             with {:ok, user} <- if_else(Users.get_user_by_email(email), :invalid_token),
                   :ok <-
                     ok_else(
-                      UserTokens.consume(user, user.email, :password_reset, token),
+                      UserTokens.consume_token(user, user.email, :password_reset, token),
                       :invalid_token
                     ) do
-               Users.change_password(user, password)
+               Users.change_user_password(user, password)
              end
            end) do
       # Users likely reset their passwords to regain the full control of their
       # accounts. Based on this reason, user tokens are deleted for them.
-      UserTokens.delete_all(user)
+      UserTokens.delete_tokens(user)
 
       # After the transaction is commited, the password hash is updated. At
       # this point, deleting all session tokens ensures no one can log in
       # successfully with old password.
-      UserSessionTokens.delete_all(user)
+      UserSessionTokens.delete_tokens(user)
 
       {:ok, user}
     end
@@ -389,17 +388,17 @@ defmodule ComboSaaS.Core.Accounts do
   @doc """
   Creates a session token.
   """
-  @spec create_user_session_token(Users.user()) :: UserSessionTokens.token()
+  @spec create_user_session_token(User.t()) :: UserSessionTokens.token()
   def create_user_session_token(user) do
-    UserSessionTokens.create(user)
+    UserSessionTokens.create_token(user)
   end
 
   @doc """
   Gets a user with the a session token.
   """
-  @spec get_user_by_session_token(UserSessionTokens.token()) :: Users.user() | nil
+  @spec get_user_by_session_token(UserSessionTokens.token()) :: User.t() | nil
   def get_user_by_session_token(token) do
-    with {:ok, user_session_token} <- UserSessionTokens.fetch(token),
+    with {:ok, user_session_token} <- UserSessionTokens.fetch_token(token),
          user_session_token = Repo.preload(user_session_token, :user),
          :ok <- if_else(user_session_token.user),
          do: user_session_token.user,
@@ -411,6 +410,6 @@ defmodule ComboSaaS.Core.Accounts do
   """
   @spec delete_user_session_token(UserSessionTokens.token()) :: :ok
   def delete_user_session_token(token) do
-    UserSessionTokens.delete(token)
+    UserSessionTokens.delete_token(token)
   end
 end

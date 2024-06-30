@@ -6,29 +6,28 @@ defmodule ComboSaaS.Core.Accounts.Users do
   alias ComboSaaS.Core.Accounts.User
 
   @type id :: String.t()
-  @type user :: User.t()
   @type email :: String.t()
   @type password :: String.t()
 
-  @spec get!(id()) :: user()
-  def get!(id) do
+  @spec get_user!(id()) :: User.t()
+  def get_user!(id) do
     Repo.get!(User, id)
   end
 
-  @spec get_by_email(email()) :: user() | nil
-  def get_by_email(email) do
+  @spec get_user_by_email(email()) :: User.t() | nil
+  def get_user_by_email(email) do
     Repo.get_by(User, email: email)
   end
 
-  @spec get_by_email_and_password(email(), password()) :: user() | nil
-  def get_by_email_and_password(email, password)
+  @spec get_user_by_email_and_password(email(), password()) :: User.t() | nil
+  def get_user_by_email_and_password(email, password)
       when is_binary(email) and is_binary(password) do
     user = Repo.get_by(User, email: email)
     if valid_password?(user, password), do: user
   end
 
-  @spec create(email(), password()) :: {:ok, user()} | {:error, Ecto.Changeset.t()}
-  def create(email, password) do
+  @spec create_user(email(), password()) :: {:ok, User.t()} | {:error, Ecto.Changeset.t()}
+  def create_user(email, password) do
     %User{}
     |> changeset(email: email, password: password)
     |> Repo.insert()
@@ -45,15 +44,16 @@ defmodule ComboSaaS.Core.Accounts.Users do
     end
   end
 
-  @spec change_email(user(), email()) :: {:ok, user()} | {:error, Ecto.Changeset.t()}
-  def change_email(user, email) do
+  @spec change_user_email(User.t(), email()) :: {:ok, User.t()} | {:error, Ecto.Changeset.t()}
+  def change_user_email(user, email) do
     user
     |> changeset(email: email)
     |> Repo.update()
   end
 
-  @spec change_password(user(), password()) :: {:ok, user()} | {:error, Ecto.Changeset.t()}
-  def change_password(user, password) do
+  @spec change_user_password(User.t(), password()) ::
+          {:ok, User.t()} | {:error, Ecto.Changeset.t()}
+  def change_user_password(user, password) do
     user
     |> changeset(password: password)
     |> Repo.update()

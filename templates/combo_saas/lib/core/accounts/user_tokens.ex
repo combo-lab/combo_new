@@ -11,8 +11,8 @@ defmodule ComboSaaS.Core.Accounts.UserTokens do
   @type payload :: map()
   @type token :: String.t()
 
-  @spec create(User.t(), sent_to(), UserToken.type(), payload()) :: token()
-  def create(user, sent_to, type, payload \\ %{}) do
+  @spec create_token(User.t(), sent_to(), UserToken.type(), payload()) :: token()
+  def create_token(user, sent_to, type, payload \\ %{}) do
     format = UserToken.format(type)
     {token, token_hash} = EasyToken.generate(format)
 
@@ -31,8 +31,8 @@ defmodule ComboSaaS.Core.Accounts.UserTokens do
     token
   end
 
-  @spec consume(User.t(), sent_to(), UserToken.type(), token()) :: :ok | :error
-  def consume(user, sent_to, type, token) do
+  @spec consume_token(User.t(), sent_to(), UserToken.type(), token()) :: :ok | :error
+  def consume_token(user, sent_to, type, token) do
     format = UserToken.format(type)
 
     with {:ok, token_hash} <- EasyToken.hash(format, token),
@@ -49,26 +49,26 @@ defmodule ComboSaaS.Core.Accounts.UserTokens do
          else: (_ -> :error)
   end
 
-  @spec delete_all(User.t()) :: :ok
-  def delete_all(user) do
+  @spec delete_tokens(User.t()) :: :ok
+  def delete_tokens(user) do
     Repo.delete_all(valid_tokens_query(user: user))
     :ok
   end
 
-  @spec delete_all(User.t(), sent_to()) :: :ok
-  def delete_all(user, sent_to) do
+  @spec delete_tokens(User.t(), sent_to()) :: :ok
+  def delete_tokens(user, sent_to) do
     Repo.delete_all(valid_tokens_query(user: user, sent_to: sent_to))
     :ok
   end
 
-  @spec delete_all(User.t(), sent_to(), UserToken.type()) :: :ok
-  def delete_all(user, sent_to, type) do
+  @spec delete_tokens(User.t(), sent_to(), UserToken.type()) :: :ok
+  def delete_tokens(user, sent_to, type) do
     Repo.delete_all(valid_tokens_query(user: user, sent_to: sent_to, type: type))
     :ok
   end
 
-  @spec cleanup() :: :ok
-  def cleanup do
+  @spec cleanup_tokens() :: :ok
+  def cleanup_tokens do
     Repo.delete_all(invalid_tokens_query())
     :ok
   end
