@@ -53,7 +53,7 @@ defmodule ComboSaaS.MixProject do
       {:cozy_telemetry, "~> 0.5"},
       {:dns_cluster, "~> 0.1"},
       {:jason, "~> 1.2"},
-      {:cozy_proxy, "~> 0.3"},
+      {:cozy_proxy, "~> 0.4"},
       {:bandit, "~> 1.5"},
       {:cozy_env, "~> 0.2"},
       {:plug_probe, "~> 0.1"},
@@ -80,13 +80,13 @@ defmodule ComboSaaS.MixProject do
 
       # code quality
       {:boundary, "~> 0.10", runtime: false},
-      {:ex_check, "~> 0.16", only: [:dev], runtime: false},
+      {:ex_check, ">= 0.0.0", only: [:dev], runtime: false},
       {:credo, ">= 0.0.0", only: [:dev], runtime: false},
       {:dialyxir, ">= 0.0.0", only: [:dev], runtime: false},
       {:mix_audit, ">= 0.0.0", only: [:dev], runtime: false},
 
       # test
-      {:ex_machina, github: "beam-community/ex_machina", ref: "a4352dd", only: [:test]}
+      {:ex_machina, "~> 2.8", only: [:test]}
     ]
   end
 
