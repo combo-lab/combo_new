@@ -43,6 +43,6 @@ defmodule ComboSaaS.Application do
   defp cozy_proxy_config do
     :combo_saas
     |> Application.fetch_env!(CozyProxy)
-    |> Keyword.merge([name: CozyProxy.Supervisor])
+    |> Keyword.merge(name: CozyProxy.Supervisor)
   end
 end
