@@ -209,6 +209,12 @@ defmodule ComboSaaS.MixProject do
       ],
       "admin_web.assets.clean": [
         "cmd mix phx.digest.clean --all -o priv/admin_web/static"
+      ],
+
+      # ! test
+
+      "test.setup": [
+        "cmd MIX_ENV=test mix core.ecto.reset"
       ]
     ]
   end
