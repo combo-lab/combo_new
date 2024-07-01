@@ -11,8 +11,8 @@ defmodule ComboSaaS.Core.Accounts.UserTokens do
   @type payload :: map()
   @type token :: String.t()
 
-  @spec create_token(User.t(), sent_to(), UserToken.type(), payload()) :: token()
-  def create_token(user, sent_to, type, payload \\ %{}) do
+  @spec create_token!(User.t(), sent_to(), UserToken.type(), payload()) :: token()
+  def create_token!(user, sent_to, type, payload \\ %{}) do
     format = UserToken.format(type)
     {token, token_hash} = EasyToken.generate(format)
 

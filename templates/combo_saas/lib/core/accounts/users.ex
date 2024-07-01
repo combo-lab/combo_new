@@ -15,8 +15,15 @@ defmodule ComboSaaS.Core.Accounts.Users do
   end
 
   @spec get_user_by_email(email()) :: User.t() | nil
-  def get_user_by_email(email) do
+  def get_user_by_email(email) when is_binary(email) do
     Repo.get_by(User, email: email)
+  end
+
+  @spec fetch_user_by_email(email()) :: {:ok, User.t()} | :error
+  def fetch_user_by_email(email) when is_binary(email) do
+    if user = Repo.get_by(User, email: email),
+      do: {:ok, user},
+      else: :error
   end
 
   @spec get_user_by_email_and_password(email(), password()) :: User.t() | nil
@@ -24,6 +31,16 @@ defmodule ComboSaaS.Core.Accounts.Users do
       when is_binary(email) and is_binary(password) do
     user = Repo.get_by(User, email: email)
     if valid_password?(user, password), do: user
+  end
+
+  @spec fetch_user_by_email_and_password(email(), password()) :: {:ok, User.t()} | :error
+  def fetch_user_by_email_and_password(email, password)
+      when is_binary(email) and is_binary(password) do
+    user = Repo.get_by(User, email: email)
+
+    if valid_password?(user, password),
+      do: {:ok, user},
+      else: :error
   end
 
   @spec create_user(email(), password()) :: {:ok, User.t()} | {:error, Ecto.Changeset.t()}

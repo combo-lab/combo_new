@@ -37,8 +37,8 @@ defmodule ComboSaaS.Toolkit.EasyToken do
     rand_size = Keyword.get(opts, :size, 32)
 
     token_bytes = :crypto.strong_rand_bytes(rand_size)
-    token_hash = :crypto.hash(@hash_algorithm, token_bytes)
     token = Base.url_encode64(token_bytes, padding: false)
+    token_hash = :crypto.hash(@hash_algorithm, token_bytes)
 
     {token, token_hash}
   end

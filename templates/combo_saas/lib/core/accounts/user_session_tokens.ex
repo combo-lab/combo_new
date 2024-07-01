@@ -13,19 +13,18 @@ defmodule ComboSaaS.Core.Accounts.UserSessionTokens do
   @type meta :: map()
   @type token :: String.t()
 
-  @spec create_token(User.t(), meta()) :: token()
-  def create_token(user, meta \\ %{}) do
+  @spec create_token!(User.t(), meta()) :: token()
+  def create_token!(user, meta \\ %{}) do
     {token, token_hash} = EasyToken.generate(@token_format)
 
-    Repo.insert!(
-      %UserSessionToken{
-        user_id: user.id,
-        token_hash: token_hash,
-        meta: meta
-      },
-      conflict_target: [:token_hash],
-      on_conflict: {:replace_all_except, [:id]}
-    )
+    # Do not use upsert here. Otherwise, a token conflict could allow one user
+    # to access another user's resources.
+    # If a conflict does occur, then let it crash.
+    Repo.insert!(%UserSessionToken{
+      user_id: user.id,
+      token_hash: token_hash,
+      meta: meta
+    })
 
     token
   end
@@ -61,6 +60,26 @@ defmodule ComboSaaS.Core.Accounts.UserSessionTokens do
       |> where([user_session_token], user_session_token.token_hash != ^token_hash)
       |> Repo.delete_all()
     end
+
+    :ok
+  end
+
+  # It helps to remove old tokens when you want to keep the number of valid
+  # tokens under a fixed limit.
+  @spec rotate_tokens(User.t()) :: :ok
+  def rotate_tokens(%User{} = user) do
+    preserved_limit = 5
+
+    preserved_token_ids =
+      valid_tokens_query(user: user)
+      |> order_by([token], desc: token.inserted_at)
+      |> limit([_], ^preserved_limit)
+      |> select([token], token.id)
+
+    {_, _} =
+      valid_tokens_query(user: user)
+      |> where([token], token.id not in subquery(preserved_token_ids))
+      |> Repo.delete_all()
 
     :ok
   end

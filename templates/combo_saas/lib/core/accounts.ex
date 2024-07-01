@@ -60,7 +60,7 @@ defmodule ComboSaaS.Core.Accounts do
   ### Session Tracking
 
   Phoenix provides session support, but the default session cookies are not
-  persisted,they are simply signed and potentially encrypted. This means they
+  persisted, they are simply signed and potentially encrypted. This means they
   are valid indefinitely, unless you change the siging/encryption salt.
 
   To address above drawbacks, sessions are tracked as tokens. It allows to
@@ -131,11 +131,6 @@ defmodule ComboSaaS.Core.Accounts do
   defdelegate get_user_by_email(email), to: Users
 
   @doc """
-  Gets a user by email and password.
-  """
-  defdelegate get_user_by_email_and_password(email, password), to: Users
-
-  @doc """
   Sends a registration token to an email.
 
   ## Notes
@@ -153,9 +148,11 @@ defmodule ComboSaaS.Core.Accounts do
     with {:ok, email} <- Users.validate_email(email) do
       unless Users.get_user_by_email(email) do
         Repo.transact(fn ->
-          token = NoUserTokens.create_token(email, :register)
+          token = NoUserTokens.create_token!(email, :register)
           # TODO: enqueue sending the token
-          {:ok, IO.inspect(token)}
+          IO.inspect(token)
+
+          :ok
         end)
       end
 
@@ -185,6 +182,39 @@ defmodule ComboSaaS.Core.Accounts do
   end
 
   @doc """
+  Gets a user by email and password.
+  """
+  defdelegate get_user_by_email_and_password(email, password), to: Users
+
+  @doc """
+  Creates a session token.
+  """
+  @spec create_user_session_token!(User.t()) :: UserSessionTokens.token()
+  def create_user_session_token!(user) do
+    UserSessionTokens.create_token!(user)
+  end
+
+  @doc """
+  Gets a user with the a session token.
+  """
+  @spec get_user_by_session_token(UserSessionTokens.token()) :: User.t() | nil
+  def get_user_by_session_token(token) do
+    with {:ok, user_session_token} <- UserSessionTokens.fetch_token(token),
+         user_session_token = Repo.preload(user_session_token, :user),
+         :ok <- if_else(user_session_token.user),
+         do: user_session_token.user,
+         else: (_ -> nil)
+  end
+
+  @doc """
+  Deletes the session token.
+  """
+  @spec delete_user_session_token(UserSessionTokens.token()) :: :ok
+  def delete_user_session_token(token) do
+    UserSessionTokens.delete_token(token)
+  end
+
+  @doc """
   Sends an email_change token to a user's email.
 
   ## Notes
@@ -197,9 +227,9 @@ defmodule ComboSaaS.Core.Accounts do
   @spec send_user_email_change_token(User.t()) :: :ok
   def send_user_email_change_token(user) do
     Repo.transact(fn ->
-      token = UserTokens.create_token(user, user.email, :email_change)
+      token = UserTokens.create_token!(user, user.email, :email_change)
       # TODO: enqueue sending the token
-      {:ok, IO.inspect(token)}
+      IO.inspect(token)
 
       :ok
     end)
@@ -223,9 +253,11 @@ defmodule ComboSaaS.Core.Accounts do
     with {:ok, email} <- Users.validate_email(email) do
       unless Users.get_user_by_email(email) do
         Repo.transact(fn ->
-          token = UserTokens.create_token(user, email, :email_change)
+          token = UserTokens.create_token!(user, email, :email_change)
           # TODO: enqueue sending the token
-          {:ok, IO.inspect(token)}
+          IO.inspect(token)
+
+          :ok
         end)
       end
 
@@ -280,9 +312,9 @@ defmodule ComboSaaS.Core.Accounts do
   @spec send_user_password_change_token(User.t()) :: :ok
   def send_user_password_change_token(user) do
     Repo.transact(fn ->
-      token = UserTokens.create_token(user, user.email, :password_change)
+      token = UserTokens.create_token!(user, user.email, :password_change)
       # TODO: enqueue sending the token
-      {:ok, IO.inspect(token)}
+      IO.inspect(token)
 
       :ok
     end)
@@ -339,9 +371,11 @@ defmodule ComboSaaS.Core.Accounts do
   def send_user_password_reset_token(email) do
     with {:ok, email} <- Users.validate_email(email) do
       if user = Users.get_user_by_email(email) do
-        token = UserTokens.create_token(user, email, :password_reset)
+        token = UserTokens.create_token!(user, user.email, :password_reset)
         # TODO: enqueue sending the token
-        {:ok, IO.inspect(token)}
+        IO.inspect(token)
+
+        :ok
       end
 
       :ok
@@ -383,33 +417,5 @@ defmodule ComboSaaS.Core.Accounts do
 
       {:ok, user}
     end
-  end
-
-  @doc """
-  Creates a session token.
-  """
-  @spec create_user_session_token(User.t()) :: UserSessionTokens.token()
-  def create_user_session_token(user) do
-    UserSessionTokens.create_token(user)
-  end
-
-  @doc """
-  Gets a user with the a session token.
-  """
-  @spec get_user_by_session_token(UserSessionTokens.token()) :: User.t() | nil
-  def get_user_by_session_token(token) do
-    with {:ok, user_session_token} <- UserSessionTokens.fetch_token(token),
-         user_session_token = Repo.preload(user_session_token, :user),
-         :ok <- if_else(user_session_token.user),
-         do: user_session_token.user,
-         else: (_ -> nil)
-  end
-
-  @doc """
-  Deletes the session token.
-  """
-  @spec delete_user_session_token(UserSessionTokens.token()) :: :ok
-  def delete_user_session_token(token) do
-    UserSessionTokens.delete_token(token)
   end
 end
