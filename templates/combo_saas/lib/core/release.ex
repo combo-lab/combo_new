@@ -194,7 +194,7 @@ defmodule ComboSaaS.Core.Release do
   end
 
   defp load_apps do
-    Application.load(@app)
+    Application.ensure_loaded(@app)
   end
 
   defp path_for_migrations(repo) do
