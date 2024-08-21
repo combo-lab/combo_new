@@ -37,6 +37,8 @@ defmodule ComboLite.Application do
   end
 
   defp cozy_proxy_config do
-    Application.fetch_env!(:combo_lite, CozyProxy)
+    :combo_lite
+    |> Application.fetch_env!(CozyProxy)
+    |> Keyword.merge(name: CozyProxy.Supervisor)
   end
 end

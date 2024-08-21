@@ -1,10 +1,10 @@
-defmodule ComboLite.I18n.Gettext do
+defmodule ComboLite.I18n.GettextBackend do
   @moduledoc """
   Provides i18n support with a gettext-based API.
 
   It provides a set of macros for translations, for example:
 
-      import ComboLite.I18n.Gettext
+      use Gettext, backend: ComboLite.I18n.GettextBackend
 
       # Simple translation
       gettext("Here is the string to translate")
@@ -40,7 +40,7 @@ defmodule ComboLite.I18n.Gettext do
   require ComboLite.I18n.Config
 
   # credo:disable-for-next-line Credo.Check.Readability.StrictModuleLayout
-  use Gettext,
+  use Gettext.Backend,
     otp_app: :combo_lite,
     priv: "priv/i18n/gettext",
     allowed_locales: Config.locales(),
@@ -59,5 +59,15 @@ defmodule ComboLite.I18n.Gettext do
   @spec get_locale :: locale()
   def get_locale do
     Gettext.get_locale(__MODULE__)
+  end
+
+  @doc false
+  @spec translate_error({String.t(), keyword()}) :: String.t()
+  def translate_error({msg, opts}) do
+    if count = opts[:count] do
+      Gettext.dngettext(__MODULE__, "errors", msg, msg, count, opts)
+    else
+      Gettext.dgettext(__MODULE__, "errors", msg, opts)
+    end
   end
 end

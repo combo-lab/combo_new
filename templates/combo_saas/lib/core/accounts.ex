@@ -150,7 +150,7 @@ defmodule ComboSaaS.Core.Accounts do
         Repo.transact(fn ->
           token = NoUserTokens.create_token!(email, :register)
           # TODO: enqueue sending the token
-          IO.inspect(token)
+          # IO.inspect(token)
 
           :ok
         end)
@@ -229,7 +229,7 @@ defmodule ComboSaaS.Core.Accounts do
     Repo.transact(fn ->
       token = UserTokens.create_token!(user, user.email, :email_change)
       # TODO: enqueue sending the token
-      IO.inspect(token)
+      # IO.inspect(token)
 
       :ok
     end)
@@ -255,7 +255,7 @@ defmodule ComboSaaS.Core.Accounts do
         Repo.transact(fn ->
           token = UserTokens.create_token!(user, email, :email_change)
           # TODO: enqueue sending the token
-          IO.inspect(token)
+          # IO.inspect(token)
 
           :ok
         end)
@@ -314,7 +314,7 @@ defmodule ComboSaaS.Core.Accounts do
     Repo.transact(fn ->
       token = UserTokens.create_token!(user, user.email, :password_change)
       # TODO: enqueue sending the token
-      IO.inspect(token)
+      # IO.inspect(token)
 
       :ok
     end)
@@ -373,7 +373,7 @@ defmodule ComboSaaS.Core.Accounts do
       if user = Users.get_user_by_email(email) do
         token = UserTokens.create_token!(user, user.email, :password_reset)
         # TODO: enqueue sending the token
-        IO.inspect(token)
+        # IO.inspect(token)
 
         :ok
       end

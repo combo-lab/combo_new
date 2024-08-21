@@ -55,8 +55,9 @@ defmodule ComboLite.UserWeb do
         formats: [:html],
         layouts: [html: {ComboLite.UserWeb.Layouts, :app}]
 
+      use ComboLite.I18n, :gettext
+
       import Plug.Conn
-      import ComboLite.I18n.Gettext
 
       unquote(verified_routes())
     end
@@ -123,9 +124,9 @@ defmodule ComboLite.UserWeb do
       import ComboLite.UserWeb.BaseComponents
       import ComboLite.UserWeb.CoreComponents
 
-      # i18n helpers
+      # i18n support
+      use ComboLite.I18n, :gettext
       alias ComboLite.I18n
-      import ComboLite.I18n.Gettext
 
       # Shortcut for generating JS commands
       alias Phoenix.LiveView.JS

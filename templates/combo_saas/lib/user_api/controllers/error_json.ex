@@ -13,7 +13,7 @@ defmodule ComboSaaS.UserAPI.ErrorJSON do
 
   """
 
-  import ComboSaaS.I18n.Gettext
+  use ComboSaaS.I18n, :gettext
   require Logger
 
   def render(template, _assigns) do

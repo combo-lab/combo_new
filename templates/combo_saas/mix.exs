@@ -52,28 +52,28 @@ defmodule ComboSaaS.MixProject do
     [
       {:cozy_telemetry, "~> 0.5"},
       {:dns_cluster, "~> 0.1"},
-      {:jason, "~> 1.2"},
+      {:jason, "~> 1.4"},
       {:cozy_proxy, "~> 0.4"},
       {:bandit, "~> 1.5"},
       {:cozy_env, "~> 0.2"},
       {:plug_probe, "~> 0.1"},
 
       # i18n
-      {:gettext, "~> 0.20"},
+      {:gettext, "~> 0.26"},
 
       # core
       {:argon2_elixir, "~> 4.0"},
-      {:ecto_sql, "~> 3.10"},
+      {:ecto_sql, "~> 3.12"},
       {:postgrex, ">= 0.0.0"},
       {:uuidv7, "~> 0.2"},
-      {:swoosh, "~> 1.5"},
+      {:swoosh, "~> 1.16"},
       {:finch, "~> 0.17"},
 
       # web
       {:phoenix, "~> 1.7"},
       {:phoenix_html, "~> 4.1"},
-      {:phoenix_ecto, "~> 4.5"},
-      {:phoenix_live_view, "~> 1.0.0-rc.0", override: true},
+      {:phoenix_ecto, "~> 4.6"},
+      {:phoenix_live_view, "~> 1.0.0-rc.6", override: true},
       {:cozy_svg, "~> 0.2"},
       {:phoenix_live_reload, "~> 1.5", only: [:dev]},
       {:floki, ">= 0.30.0", only: [:test]},

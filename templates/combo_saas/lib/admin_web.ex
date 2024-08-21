@@ -56,8 +56,9 @@ defmodule ComboSaaS.AdminWeb do
         formats: [:html],
         layouts: [html: {ComboSaaS.AdminWeb.Layouts, :app}]
 
+      use ComboSaaS.I18n, :gettext
+
       import Plug.Conn
-      import ComboSaaS.I18n.Gettext
 
       unquote(verified_routes())
     end
@@ -124,9 +125,9 @@ defmodule ComboSaaS.AdminWeb do
       import ComboSaaS.AdminWeb.BaseComponents
       import ComboSaaS.AdminWeb.CoreComponents
 
-      # i18n helpers
+      # i18n support
+      use ComboSaaS.I18n, :gettext
       alias ComboSaaS.I18n
-      import ComboSaaS.I18n.Gettext
 
       # Shortcut for generating JS commands
       alias Phoenix.LiveView.JS

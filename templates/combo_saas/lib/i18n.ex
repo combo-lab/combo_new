@@ -16,22 +16,30 @@ defmodule ComboSaaS.I18n do
 
   When an Elixir process want to change the locale of all backends. It
   should use `put_locale/1` provided by this module instead of the
-  `Gettext.put_locale/1`, etc.
+  `ComboSaaS.I18n.GettextBackend.put_locale/1`, etc.
 
   """
 
-  use Boundary,
-    deps: [],
-    exports: [
-      Gettext
-    ]
+  use Boundary
 
   alias ComboSaaS.I18n.Config
-  alias ComboSaaS.I18n.Gettext
+  alias ComboSaaS.I18n.GettextBackend
   require ComboSaaS.I18n.Config
 
   @type locale :: String.t()
   @type locales :: [locale()]
+
+  defmacro __using__(which) when is_atom(which) do
+    apply(__MODULE__, which, [])
+  end
+
+  @doc false
+  @spec gettext :: Macro.t()
+  def gettext do
+    quote do
+      use Gettext, backend: unquote(GettextBackend)
+    end
+  end
 
   @doc """
   Returns supported locales.
@@ -65,7 +73,7 @@ defmodule ComboSaaS.I18n do
   """
   @spec put_trusted_locale(locale()) :: :ok
   def put_trusted_locale(locale) when is_binary(locale) do
-    Gettext.put_locale(locale)
+    GettextBackend.put_locale(locale)
 
     put_process_locale(locale)
 
@@ -109,4 +117,19 @@ defmodule ComboSaaS.I18n do
                       |> String.to_atom()
   defp put_process_locale(value), do: Process.put(@process_locale_key, value)
   defp get_process_locale, do: Process.get(@process_locale_key, Config.default_locale())
+
+  @doc """
+  Translates an error message.
+
+  When using gettext, we typically pass the strings we want to translate as a
+  static argument:
+
+      # Translate the number of files with plural rules
+      dngettext("errors", "1 file", "%{count} files", count)
+
+  However the error messages in forms and APIs are generated dynamically, so we
+  need a way for translating them by calling `Gettext` with our gettext backend
+  as first argument. Translations are available in the `errors.po` file.
+  """
+  defdelegate translate_error(error), to: GettextBackend
 end
