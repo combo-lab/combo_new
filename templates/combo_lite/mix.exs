@@ -101,12 +101,10 @@ defmodule ComboLite.MixProject do
     ]
   end
 
-  # Aliases are shortcuts or tasks specific to the current project.
-  #
-  # See the documentation for `Mix` for more info on aliases.
   defp aliases do
     [
       setup: ["deps.get", "assets.setup", "assets.build"],
+      "test.setup": [],
 
       # ! high-level aliases
 
@@ -132,6 +130,9 @@ defmodule ComboLite.MixProject do
       "assets.clean": [
         "user_web.assets.clean"
       ],
+      "assets.audit": [
+        "user_web.assets.audit"
+      ],
 
       #! i18n
 
@@ -146,17 +147,20 @@ defmodule ComboLite.MixProject do
       # ! user_web
 
       "user_web.assets.setup": [
-        "cmd npm install --prefix assets/user_web"
+        "cmd --cd assets/user_web npm install"
       ],
       "user_web.assets.build": [
-        "cmd npm run build --prefix assets/user_web"
+        "cmd --cd assets/user_web npm run build"
       ],
       "user_web.assets.deploy": [
-        "cmd npm run build --prefix assets/user_web",
+        "cmd --cd assets/user_web npm run build",
         "cmd mix phx.digest priv/user_web/static"
       ],
       "user_web.assets.clean": [
         "cmd mix phx.digest.clean --all -o priv/user_web/static"
+      ],
+      "user_web.assets.audit": [
+        "cmd --cd assets/user_web npm audit fix"
       ]
     ]
   end

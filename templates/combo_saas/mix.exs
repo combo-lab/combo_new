@@ -114,13 +114,13 @@ defmodule ComboSaaS.MixProject do
     ]
   end
 
-  # Aliases are shortcuts or tasks specific to the current project.
-  #
-  # See the documentation for `Mix` for more info on aliases.
   defp aliases do
     [
       setup: ["deps.get", "ecto.setup", "assets.setup", "assets.build"],
-      test: ["ecto.setup", "test"],
+      "test.setup": [
+        "cmd MIX_ENV=test mix core.ecto.drop",
+        "cmd MIX_ENV=test mix core.ecto.setup"
+      ],
 
       # ! high-level aliases
 
@@ -156,6 +156,10 @@ defmodule ComboSaaS.MixProject do
         "user_web.assets.clean",
         "admin_web.assets.clean"
       ],
+      "assets.audit": [
+        "user_web.assets.audit",
+        "admin_web.assets.audit"
+      ],
 
       # ! i18n
 
@@ -174,47 +178,48 @@ defmodule ComboSaaS.MixProject do
         "ecto.migrate -r ComboSaaS.Core.Repo",
         "run priv/core/repo/seeds.exs"
       ],
+      "core.ecto.drop": "ecto.drop -r ComboSaaS.Core.Repo",
       "core.ecto.reset": [
-        "ecto.drop -r ComboSaaS.Core.Repo",
+        "core.ecto.drop",
         "core.ecto.setup"
       ],
 
       # ! user_web
 
       "user_web.assets.setup": [
-        "cmd npm install --prefix assets/user_web"
+        "cmd --cd assets/user_web npm install"
       ],
       "user_web.assets.build": [
-        "cmd npm run build --prefix assets/user_web"
+        "cmd --cd assets/user_web npm run build"
       ],
       "user_web.assets.deploy": [
-        "cmd npm run build --prefix assets/user_web",
+        "cmd --cd assets/user_web npm run build",
         "cmd mix phx.digest priv/user_web/static"
       ],
       "user_web.assets.clean": [
         "cmd mix phx.digest.clean --all -o priv/user_web/static"
       ],
+      "user_web.assets.audit": [
+        "cmd --cd assets/user_web npm audit fix"
+      ],
 
       # ! admin_web
 
       "admin_web.assets.setup": [
-        "cmd npm install --prefix assets/admin_web"
+        "cmd --cd assets/admin_web npm install"
       ],
       "admin_web.assets.build": [
-        "cmd npm run build --prefix assets/admin_web"
+        "cmd --cd assets/admin_web npm run build"
       ],
       "admin_web.assets.deploy": [
-        "cmd npm run build --prefix assets/admin_web",
+        "cmd --cd assets/admin_web npm run build",
         "cmd mix phx.digest priv/admin_web/static"
       ],
       "admin_web.assets.clean": [
         "cmd mix phx.digest.clean --all -o priv/admin_web/static"
       ],
-
-      # ! test
-
-      "test.setup": [
-        "cmd MIX_ENV=test mix core.ecto.reset"
+      "admin_web.assets.audit": [
+        "cmd --cd assets/admin_web npm audit fix"
       ]
     ]
   end
