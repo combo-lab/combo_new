@@ -69,7 +69,6 @@ defmodule ComboLite.I18n do
   cast it anymore.
 
   It's often used with `cast_locale/1`.
-
   """
   @spec put_trusted_locale(locale()) :: :ok
   def put_trusted_locale(locale) when is_binary(locale) do
