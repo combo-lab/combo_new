@@ -118,8 +118,7 @@ defmodule ComboSaaS.MixProject do
     [
       setup: ["deps.get", "ecto.setup", "assets.setup", "assets.build"],
       "test.setup": [
-        "cmd MIX_ENV=test mix core.ecto.drop",
-        "cmd MIX_ENV=test mix core.ecto.setup"
+        "cmd MIX_ENV=test mix ecto.reset"
       ],
 
       # ! high-level aliases
