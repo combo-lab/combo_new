@@ -156,10 +156,6 @@ defmodule ComboSaaS.MixProject do
         "user_web.assets.clean",
         "admin_web.assets.clean"
       ],
-      "assets.audit": [
-        "user_web.assets.audit",
-        "admin_web.assets.audit"
-      ],
 
       # ! i18n
 
@@ -199,9 +195,6 @@ defmodule ComboSaaS.MixProject do
       "user_web.assets.clean": [
         "cmd mix phx.digest.clean --all -o priv/user_web/static"
       ],
-      "user_web.assets.audit": [
-        "cmd --cd assets/user_web npm audit fix"
-      ],
 
       # ! admin_web
 
@@ -217,9 +210,6 @@ defmodule ComboSaaS.MixProject do
       ],
       "admin_web.assets.clean": [
         "cmd mix phx.digest.clean --all -o priv/admin_web/static"
-      ],
-      "admin_web.assets.audit": [
-        "cmd --cd assets/admin_web npm audit fix"
       ]
     ]
   end

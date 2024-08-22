@@ -130,9 +130,6 @@ defmodule ComboLite.MixProject do
       "assets.clean": [
         "user_web.assets.clean"
       ],
-      "assets.audit": [
-        "user_web.assets.audit"
-      ],
 
       #! i18n
 
@@ -158,9 +155,6 @@ defmodule ComboLite.MixProject do
       ],
       "user_web.assets.clean": [
         "cmd mix phx.digest.clean --all -o priv/user_web/static"
-      ],
-      "user_web.assets.audit": [
-        "cmd --cd assets/user_web npm audit fix"
       ]
     ]
   end
