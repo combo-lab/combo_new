@@ -34,8 +34,8 @@ defmodule ComboSaaS.Core.Accounts.UserToken do
     timestamps(updated_at: false)
   end
 
-  # Generates @type type() :: :email_change | ... from the `@types` module attribute.
-  @type type() ::
+  # Generates @type type :: :email_change | ... from the `@types` module attribute.
+  @type type ::
           unquote(
             Enum.reduce(
               Enum.reverse(@types),

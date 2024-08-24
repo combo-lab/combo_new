@@ -21,8 +21,8 @@ defmodule ComboSaaS.Core.Accounts.NoUserToken do
     timestamps(updated_at: false)
   end
 
-  # Generates @type type() :: :register | ... from the `@types` module attribute.
-  @type type() ::
+  # Generates @type type :: :register | ... from the `@types` module attribute.
+  @type type ::
           unquote(
             Enum.reduce(
               Enum.reverse(@types),
