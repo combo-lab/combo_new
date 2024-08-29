@@ -73,7 +73,7 @@ defmodule ComboNew do
   defp check_app_name!(name, from_app_option) do
     name = to_string(name)
 
-    unless name =~ Regex.recompile!(~r/^[a-z][\w_]*$/) do
+    unless name =~ Regex.recompile!(~r/^[a-z][a-z0-9_]*$/) do
       extra =
         if !from_app_option do
           ". The application name is inferred from the path, if you'd like to " <>
