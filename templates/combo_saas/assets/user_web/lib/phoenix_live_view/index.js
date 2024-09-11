@@ -41,6 +41,8 @@ const liveSocket = new LiveSocket(`${basePath}/live`, Socket, {
       }
     },
   },
+  hooks,
+  uploaders,
 })
 
 const brandColor = tailwindColors.brand["500"]

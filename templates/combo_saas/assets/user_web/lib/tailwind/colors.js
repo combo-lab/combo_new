@@ -1,3 +1,3 @@
-const colors = process.env.TAILWIND_COLORS
+const colors = __TAILWIND_COLORS__
 
 export default colors

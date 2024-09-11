@@ -1,9 +1,9 @@
 // See the Tailwind configuration guide for advanced usage
 // https://tailwindcss.com/docs/configuration
 
-import defaultTheme from "tailwindcss/defaultTheme.js"
-import colors from "tailwindcss/colors.js"
-import plugin from "tailwindcss/plugin.js"
+import defaultTheme from "tailwindcss/defaultTheme"
+import colors from "tailwindcss/colors"
+import plugin from "tailwindcss/plugin"
 import fs from "fs"
 import path from "path"
 import tailwindcssTypography from "@tailwindcss/typography"
@@ -11,7 +11,7 @@ import tailwindcssForms from "@tailwindcss/forms"
 import tailwindcssAspectRatio from "@tailwindcss/aspect-ratio"
 
 export default {
-  content: ["../../lib/admin_web/**/*.*ex", "./{lib,vendor}/**/*.js"],
+  content: ["../../lib/user_web/**/*.*ex", "./{lib,vendor}/**/*.js"],
   theme: {
     extend: {
       fontFamily: {
