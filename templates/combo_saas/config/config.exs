@@ -32,6 +32,7 @@ config :combo_saas, CozyTelemetry,
 
 config :combo_saas, CozyProxy,
   adapter: Bandit,
+  http_options: [log_protocol_errors: false],
   backends: [
     %{
       plug: {PlugProbe, path: "/"},
