@@ -8,7 +8,7 @@ An opinionated project generator for Phoenix.
 
 `combo_new` will continuously track changes in Phoenix and merge them in.
 
-Currently, this repo is synchronized to the commit `69685f7`(2024/05/27) of [phoenixframework/phoenix](https://github.com/phoenixframework/phoenix).
+Currently, this repo is synchronized to the commit `e0fa893af`(2024/12/12) of [phoenixframework/phoenix](https://github.com/phoenixframework/phoenix).
 
 ## Usage
 
@@ -32,7 +32,7 @@ See `mix help` for more details.
 
 ## Features
 
-- asset pipeline powered by [esbuild](https://esbuild.github.io/) and Node.js ecosystem
+- asset pipeline powered by Vite and Node.js ecosystem
 - reduced number of processes running in dev environment, which is derived from [axelson's repo](https://github.com/axelson/hello_phoenix/pull/1)
 - liveness probe, which is common in container environments.
 - ...
