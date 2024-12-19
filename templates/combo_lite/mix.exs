@@ -13,6 +13,7 @@ defmodule ComboLite.MixProject do
       start_permanent: Mix.env() == :prod,
       releases: releases(),
       deps: deps(),
+      listeners: [Phoenix.CodeReloader],
       compilers: compilers(),
       boundary: boundary(),
       aliases: aliases()
@@ -64,7 +65,7 @@ defmodule ComboLite.MixProject do
       # web
       {:phoenix, "~> 1.7"},
       {:phoenix_html, "~> 4.1"},
-      {:phoenix_live_view, "~> 1.0.0-rc.6", override: true},
+      {:phoenix_live_view, "~> 1.0"},
       {:cozy_svg, "~> 0.2"},
       {:phoenix_live_reload, "~> 1.5", only: [:dev]},
       {:floki, ">= 0.30.0", only: [:test]},

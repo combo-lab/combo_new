@@ -172,7 +172,7 @@ defmodule ComboSaaS.UserWeb.CoreComponents do
 
   def flash_group(assigns) do
     ~H"""
-    <div id={@id} class="fixed top-4 right-4 z-50 space-y-3">
+    <div id={@id} aria-live="polite" class="fixed top-4 right-4 z-50 space-y-3">
       <.flash kind={:info} flash={@flash} />
       <.flash kind={:success} flash={@flash} />
       <.flash kind={:warning} flash={@flash} />
@@ -186,7 +186,7 @@ defmodule ComboSaaS.UserWeb.CoreComponents do
         hidden
       >
         <%= dgettext("ui", "Attempting to reconnect") %>
-        <.icon name="hero-arrow-path" class="ml-1 h-3 w-3 animate-spin" />
+        <.icon name="hero-arrow-path" class="ml-1 h-3 w-3 motion-safe:animate-spin" />
       </.flash>
 
       <.flash
@@ -198,7 +198,7 @@ defmodule ComboSaaS.UserWeb.CoreComponents do
         hidden
       >
         <%= dgettext("ui", "Hang in there while we get back on track") %>
-        <.icon name="hero-arrow-path" class="ml-1 h-3 w-3 animate-spin" />
+        <.icon name="hero-arrow-path" class="ml-1 h-3 w-3 motion-safe:animate-spin" />
       </.flash>
     </div>
     """
@@ -218,7 +218,7 @@ defmodule ComboSaaS.UserWeb.CoreComponents do
       </.simple_form>
   """
   attr :for, :any, required: true, doc: "the data structure for the form"
-  attr :as, :any, default: nil, doc: "the server side parameter to collect all input under"
+  attr :as, :any, doc: "the server side parameter to collect all input under"
 
   attr :rest, :global,
     include: ~w(autocomplete name rel action enctype method novalidate target multipart),
@@ -228,8 +228,10 @@ defmodule ComboSaaS.UserWeb.CoreComponents do
   slot :actions, doc: "the slot for form actions, such as a submit button"
 
   def simple_form(assigns) do
+    assigns = assign(assigns, :as, if(assigns[:as], do: %{as: assigns[:as]}, else: %{}))
+
     ~H"""
-    <.form :let={f} for={@for} as={@as} {@rest}>
+    <.form :let={f} for={@for} {@as} {@rest}>
       <div class="mt-10 space-y-8">
         <%= render_slot(@inner_block, f) %>
         <div :for={action <- @actions} class="mt-2 flex items-center justify-between gap-6">
@@ -443,7 +445,7 @@ defmodule ComboSaaS.UserWeb.CoreComponents do
 
   def error(assigns) do
     ~H"""
-    <p class="mt-3 flex gap-3 text-sm leading-6 text-red-600">
+    <p class="mt-1.5 flex gap-1.5 text-sm leading-6 text-red-600">
       <.icon name="hero-exclamation-circle-mini" class="mt-0.5 h-5 w-5 flex-none" />
       <%= render_slot(@inner_block) %>
     </p>
@@ -610,8 +612,9 @@ defmodule ComboSaaS.UserWeb.CoreComponents do
   def show(js \\ %JS{}, selector) do
     JS.show(js,
       to: selector,
+      time: 300,
       transition:
-        {"transition-all transform ease-out duration-300",
+        {"transition-all ease-out duration-300",
          "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95",
          "opacity-100 translate-y-0 sm:scale-100"}
     )
@@ -622,8 +625,7 @@ defmodule ComboSaaS.UserWeb.CoreComponents do
       to: selector,
       time: 200,
       transition:
-        {"transition-all transform ease-in duration-200",
-         "opacity-100 translate-y-0 sm:scale-100",
+        {"transition-all ease-in duration-200", "opacity-100 translate-y-0 sm:scale-100",
          "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"}
     )
   end
@@ -633,7 +635,8 @@ defmodule ComboSaaS.UserWeb.CoreComponents do
     |> JS.show(to: "##{id}")
     |> JS.show(
       to: "##{id}-bg",
-      transition: {"transition-all transform ease-out duration-300", "opacity-0", "opacity-100"}
+      time: 300,
+      transition: {"transition-all ease-out duration-300", "opacity-0", "opacity-100"}
     )
     |> show("##{id}-container")
     |> JS.add_class("overflow-hidden", to: "body")
@@ -644,7 +647,8 @@ defmodule ComboSaaS.UserWeb.CoreComponents do
     js
     |> JS.hide(
       to: "##{id}-bg",
-      transition: {"transition-all transform ease-in duration-200", "opacity-100", "opacity-0"}
+      time: 200,
+      transition: {"transition-all ease-in duration-200", "opacity-100", "opacity-0"}
     )
     |> hide("##{id}-container")
     |> JS.hide(to: "##{id}", transition: {"block", "block", "hidden"})

@@ -13,6 +13,7 @@ defmodule ComboSaaS.MixProject do
       start_permanent: Mix.env() == :prod,
       releases: releases(),
       deps: deps(),
+      listeners: [Phoenix.CodeReloader],
       compilers: compilers(),
       boundary: boundary(),
       aliases: aliases()
@@ -65,7 +66,7 @@ defmodule ComboSaaS.MixProject do
       {:argon2_elixir, "~> 4.0"},
       {:ecto_sql, "~> 3.12"},
       {:postgrex, ">= 0.0.0"},
-      {:uuidv7, "~> 0.2"},
+      {:uuidv7, "~> 1.0"},
       {:swoosh, "~> 1.16"},
       {:finch, "~> 0.17"},
 
@@ -73,7 +74,7 @@ defmodule ComboSaaS.MixProject do
       {:phoenix, "~> 1.7"},
       {:phoenix_html, "~> 4.1"},
       {:phoenix_ecto, "~> 4.6"},
-      {:phoenix_live_view, "~> 1.0.0-rc.6", override: true},
+      {:phoenix_live_view, "~> 1.0"},
       {:cozy_svg, "~> 0.2"},
       {:phoenix_live_reload, "~> 1.5", only: [:dev]},
       {:floki, ">= 0.30.0", only: [:test]},

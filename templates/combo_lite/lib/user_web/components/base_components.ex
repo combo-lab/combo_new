@@ -33,7 +33,7 @@ defmodule ComboLite.UserWeb.BaseComponents do
   ### Examples
 
       <.icon name="hero-arrow-path" />
-      <.icon name="hero-arrow-path-solid" class="ml-1 w-3 h-3 animate-spin" />
+      <.icon name="hero-arrow-path-solid" class="ml-1 w-3 h-3 motion-safe:animate-spin" />
 
   ## CSS Bundling
 
