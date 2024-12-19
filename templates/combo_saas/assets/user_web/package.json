@@ -9,9 +9,9 @@
     "node": ">= 20.0.0"
   },
   "dependencies": {
-    "@fontsource-variable/inter": "^5.0.21",
-    "@fontsource-variable/jetbrains-mono": "^5.0.23",
-    "alpinejs": "^3.14.1",
+    "@fontsource-variable/inter": "^5.1.0",
+    "@fontsource-variable/jetbrains-mono": "^5.1.1",
+    "alpinejs": "^3.14.7",
     "phoenix": "file:../../deps/phoenix",
     "phoenix_html": "file:../../deps/phoenix_html",
     "phoenix_live_view": "file:../../deps/phoenix_live_view",
@@ -22,11 +22,11 @@
     "@tailwindcss/forms": "^0.5.9",
     "@tailwindcss/typography": "^0.5.15",
     "autoprefixer": "^10.4.20",
-    "heroicons": "^2.1.5",
+    "heroicons": "^2.2.0",
     "merge-options": "^3.0.4",
-    "postcss": "^8.4.45",
+    "postcss": "^8.4.49",
     "postcss-import": "^16.1.0",
-    "tailwindcss": "^3.4.10",
-    "vite": "^5.4.4"
+    "tailwindcss": "^3.4.17",
+    "vite": "^6.0.3"
   }
 }
