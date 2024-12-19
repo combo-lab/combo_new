@@ -93,7 +93,7 @@ defmodule ComboLite.UserWeb.BaseComponents do
 
   def svg(assigns) do
     ~H"""
-    <%= raw(CompiledSVG.render!(@name, @rest)) %>
+    {raw(CompiledSVG.render!(@name, @rest))}
     """
   end
 
@@ -125,7 +125,7 @@ defmodule ComboLite.UserWeb.BaseComponents do
       href={@href}
       {@rest}
     >
-      <%= render_slot(@inner_block) %>
+      {render_slot(@inner_block)}
     </a>
     """
   end

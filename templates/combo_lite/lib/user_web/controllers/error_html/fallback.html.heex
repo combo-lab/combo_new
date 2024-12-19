@@ -6,7 +6,7 @@
 
     <link rel="icon" href="/favicon.ico" />
 
-    <title><%= @status %> - ComboLite.UserWeb</title>
+    <title>{@status} - ComboLite.UserWeb</title>
     <link rel="stylesheet" href={~p"/assets/app.css"} />
   </head>
   <body class={[
@@ -15,9 +15,9 @@
     "font-mono"
   ]}>
     <h1 class="text-xl text-base-500 font-medium">
-      <span><%= @status %></span>
+      <span>{@status}</span>
       <span class="mx-2">|</span>
-      <span class="uppercase"><%= @message %></span>
+      <span class="uppercase">{@message}</span>
     </h1>
     <a class="flex items-center space-x-2 text-base-500 nav-link hover:underline" href={~p"/"}>
       <.icon name="hero-arrow-left" class="w-4 h-4" />
