@@ -80,7 +80,7 @@ defmodule ComboSaaS.AdminWeb.CoreComponents do
                 </button>
               </div>
               <div id={"#{@id}-content"}>
-                <%= render_slot(@inner_block) %>
+                {render_slot(@inner_block)}
               </div>
             </.focus_wrap>
           </div>
@@ -139,14 +139,14 @@ defmodule ComboSaaS.AdminWeb.CoreComponents do
           <.icon :if={@kind == :success} name="hero-check-circle-mini" class="h-6 w-6" />
           <.icon :if={@kind == :warning} name="hero-exclamation-triangle-mini" class="h-6 w-6" />
           <.icon :if={@kind == :error} name="hero-x-circle-mini" class="h-6 w-6" />
-          <p class="sr-only"><%= @kind %></p>
+          <p class="sr-only">{@kind}</p>
         </div>
 
         <div class="flex-1 flex flex-col justify-center space-y-1">
           <p :if={@title} class="pr-6 font-medium text-base-900">
-            <%= @title %>
+            {@title}
           </p>
-          <p class="text-base-500"><%= msg %></p>
+          <p class="text-base-500">{msg}</p>
         </div>
       </div>
       <button
@@ -185,7 +185,7 @@ defmodule ComboSaaS.AdminWeb.CoreComponents do
         phx-connected={hide("#client-error")}
         hidden
       >
-        <%= dgettext("ui", "Attempting to reconnect") %>
+        {dgettext("ui", "Attempting to reconnect")}
         <.icon name="hero-arrow-path" class="ml-1 h-3 w-3 motion-safe:animate-spin" />
       </.flash>
 
@@ -197,7 +197,7 @@ defmodule ComboSaaS.AdminWeb.CoreComponents do
         phx-connected={hide("#server-error")}
         hidden
       >
-        <%= dgettext("ui", "Hang in there while we get back on track") %>
+        {dgettext("ui", "Hang in there while we get back on track")}
         <.icon name="hero-arrow-path" class="ml-1 h-3 w-3 motion-safe:animate-spin" />
       </.flash>
     </div>
@@ -233,9 +233,9 @@ defmodule ComboSaaS.AdminWeb.CoreComponents do
     ~H"""
     <.form :let={f} for={@for} {@as} {@rest}>
       <div class="mt-10 space-y-8">
-        <%= render_slot(@inner_block, f) %>
+        {render_slot(@inner_block, f)}
         <div :for={action <- @actions} class="mt-2 flex items-center justify-between gap-6">
-          <%= render_slot(action, f) %>
+          {render_slot(action, f)}
         </div>
       </div>
     </.form>
@@ -267,7 +267,7 @@ defmodule ComboSaaS.AdminWeb.CoreComponents do
       ]}
       {@rest}
     >
-      <%= render_slot(@inner_block) %>
+      {render_slot(@inner_block)}
     </button>
     """
   end
@@ -357,9 +357,9 @@ defmodule ComboSaaS.AdminWeb.CoreComponents do
           class="rounded border-base-300 text-base-900 focus:ring-0"
           {@rest}
         />
-        <%= @label %>
+        {@label}
       </label>
-      <.error :for={msg <- @errors}><%= msg %></.error>
+      <.error :for={msg <- @errors}>{msg}</.error>
     </div>
     """
   end
@@ -367,7 +367,7 @@ defmodule ComboSaaS.AdminWeb.CoreComponents do
   def input(%{type: "select"} = assigns) do
     ~H"""
     <div>
-      <.label for={@id}><%= @label %></.label>
+      <.label for={@id}>{@label}</.label>
       <select
         id={@id}
         name={@name}
@@ -375,10 +375,10 @@ defmodule ComboSaaS.AdminWeb.CoreComponents do
         multiple={@multiple}
         {@rest}
       >
-        <option :if={@prompt} value=""><%= @prompt %></option>
-        <%= Phoenix.HTML.Form.options_for_select(@options, @value) %>
+        <option :if={@prompt} value="">{@prompt}</option>
+        {Phoenix.HTML.Form.options_for_select(@options, @value)}
       </select>
-      <.error :for={msg <- @errors}><%= msg %></.error>
+      <.error :for={msg <- @errors}>{msg}</.error>
     </div>
     """
   end
@@ -386,7 +386,7 @@ defmodule ComboSaaS.AdminWeb.CoreComponents do
   def input(%{type: "textarea"} = assigns) do
     ~H"""
     <div>
-      <.label for={@id}><%= @label %></.label>
+      <.label for={@id}>{@label}</.label>
       <textarea
         id={@id}
         name={@name}
@@ -397,7 +397,7 @@ defmodule ComboSaaS.AdminWeb.CoreComponents do
         ]}
         {@rest}
       ><%= Phoenix.HTML.Form.normalize_value("textarea", @value) %></textarea>
-      <.error :for={msg <- @errors}><%= msg %></.error>
+      <.error :for={msg <- @errors}>{msg}</.error>
     </div>
     """
   end
@@ -406,7 +406,7 @@ defmodule ComboSaaS.AdminWeb.CoreComponents do
   def input(assigns) do
     ~H"""
     <div>
-      <.label for={@id}><%= @label %></.label>
+      <.label for={@id}>{@label}</.label>
       <input
         type={@type}
         name={@name}
@@ -419,7 +419,7 @@ defmodule ComboSaaS.AdminWeb.CoreComponents do
         ]}
         {@rest}
       />
-      <.error :for={msg <- @errors}><%= msg %></.error>
+      <.error :for={msg <- @errors}>{msg}</.error>
     </div>
     """
   end
@@ -433,7 +433,7 @@ defmodule ComboSaaS.AdminWeb.CoreComponents do
   def label(assigns) do
     ~H"""
     <label for={@for} class="block text-sm font-semibold leading-6 text-base-800">
-      <%= render_slot(@inner_block) %>
+      {render_slot(@inner_block)}
     </label>
     """
   end
@@ -447,7 +447,7 @@ defmodule ComboSaaS.AdminWeb.CoreComponents do
     ~H"""
     <p class="mt-1.5 flex gap-1.5 text-sm leading-6 text-red-600">
       <.icon name="hero-exclamation-circle-mini" class="mt-0.5 h-5 w-5 flex-none" />
-      <%= render_slot(@inner_block) %>
+      {render_slot(@inner_block)}
     </p>
     """
   end
@@ -466,13 +466,13 @@ defmodule ComboSaaS.AdminWeb.CoreComponents do
     <header class={[@actions != [] && "flex items-center justify-between gap-6", @class]}>
       <div>
         <h1 class="text-lg font-semibold leading-8 text-base-800">
-          <%= render_slot(@inner_block) %>
+          {render_slot(@inner_block)}
         </h1>
         <p :if={@subtitle != []} class="mt-2 text-sm leading-6 text-base-600">
-          <%= render_slot(@subtitle) %>
+          {render_slot(@subtitle)}
         </p>
       </div>
-      <div class="flex-none"><%= render_slot(@actions) %></div>
+      <div class="flex-none">{render_slot(@actions)}</div>
     </header>
     """
   end
@@ -517,10 +517,10 @@ defmodule ComboSaaS.AdminWeb.CoreComponents do
         <thead class="border-b border-base-100 ">
           <tr>
             <th :for={col <- @col} class="p-4 text-left font-medium text-sm text-base-500">
-              <%= col[:label] %>
+              {col[:label]}
             </th>
             <th :if={@action != []} class="p-4 text-right font-medium text-sm text-base-500">
-              <span class="sr-only"><%= dgettext("ui", "Actions") %></span>
+              <span class="sr-only">{dgettext("ui", "Actions")}</span>
             </th>
           </tr>
         </thead>
@@ -536,7 +536,7 @@ defmodule ComboSaaS.AdminWeb.CoreComponents do
           >
             <td :for={{col, i} <- Enum.with_index(@col)} class="p-0">
               <div class={["whitespace-nowrap p-4", i == 0 && "font-semibold text-sm text-base-900"]}>
-                <%= render_slot(col, @row_item.(row)) %>
+                {render_slot(col, @row_item.(row))}
               </div>
             </td>
             <td :if={@action != []} class="p-0">
@@ -545,7 +545,7 @@ defmodule ComboSaaS.AdminWeb.CoreComponents do
                   :for={action <- @action}
                   class="font-semibold text-sm text-base-900 hover:text-base-700"
                 >
-                  <%= render_slot(action, @row_item.(row)) %>
+                  {render_slot(action, @row_item.(row))}
                 </span>
               </div>
             </td>
@@ -575,8 +575,8 @@ defmodule ComboSaaS.AdminWeb.CoreComponents do
     <div class="mt-14">
       <dl class="-my-4 divide-y divide-base-100">
         <div :for={item <- @item} class="flex gap-4 py-4 text-sm leading-6 sm:gap-8">
-          <dt class="w-1/4 flex-none text-base-500"><%= item.title %></dt>
-          <dd class="text-base-700"><%= render_slot(item) %></dd>
+          <dt class="w-1/4 flex-none text-base-500">{item.title}</dt>
+          <dd class="text-base-700">{render_slot(item)}</dd>
         </div>
       </dl>
     </div>
@@ -601,7 +601,7 @@ defmodule ComboSaaS.AdminWeb.CoreComponents do
         class="text-sm font-semibold leading-6 text-base-900 hover:text-base-700"
       >
         <.icon name="hero-arrow-left-solid" class="h-3 w-3" />
-        <%= render_slot(@inner_block) %>
+        {render_slot(@inner_block)}
       </.link>
     </div>
     """

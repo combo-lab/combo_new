@@ -1,9 +1,5 @@
 <!DOCTYPE html>
-<html
-  lang="en"
-  class="bg-base-50"
-  data-base-path={get_base_path()}
->
+<html lang="en" class="bg-base-50" data-base-path={get_base_path()}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -13,7 +9,7 @@
 
     <%= if assigns[:page_title] do %>
       <.live_title suffix=" · ComboSaaS.AdminWeb">
-        <%= assigns[:page_title] %>
+        {assigns[:page_title]}
       </.live_title>
     <% else %>
       <.live_title>
@@ -26,6 +22,6 @@
     </script>
   </head>
   <body>
-    <%= @inner_content %>
+    {@inner_content}
   </body>
 </html>

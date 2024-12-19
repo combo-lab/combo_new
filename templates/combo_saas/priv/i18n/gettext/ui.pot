@@ -43,8 +43,8 @@ msgstr ""
 msgid "close"
 msgstr ""
 
-#: lib/admin_web/components/core_components.ex:521
-#: lib/user_web/components/core_components.ex:521
+#: lib/admin_web/components/core_components.ex:523
+#: lib/user_web/components/core_components.ex:523
 #, elixir-autogen, elixir-format
 msgid "Actions"
 msgstr ""
