@@ -13,7 +13,6 @@ defmodule ComboLite.MixProject do
       start_permanent: Mix.env() == :prod,
       releases: releases(),
       deps: deps(),
-      listeners: [Phoenix.CodeReloader],
       compilers: compilers(),
       boundary: boundary(),
       aliases: aliases()
