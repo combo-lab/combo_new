@@ -66,11 +66,33 @@ defmodule ComboSaaS.Toolkit.EasyFlow do
   end
 
   @doc """
+  If `value` is a truthy value, it returns `:ok`.
+  Otherwise, it returns `{:error, reason}`.
+  """
+  @spec if_else(value(), reason()) :: :ok | {:error, reason()}
+  def if_else(value, reason) do
+    if value,
+      do: :ok,
+      else: {:error, reason}
+  end
+
+  @doc """
+  If `value` is a truthy value, it returns `{:ok, value}`.
+  Otherwise, it returns `:error`.
+  """
+  @spec vif_else(value()) :: {:ok, value()} | :error
+  def vif_else(value) do
+    if value,
+      do: {:ok, value},
+      else: :error
+  end
+
+  @doc """
   If `value` is a truthy value, it returns `{:ok, value}`.
   Otherwise, it returns `{:error, reason}`.
   """
-  @spec if_else(value(), reason()) :: {:ok, value()} | {:error, reason()}
-  def if_else(value, reason) do
+  @spec vif_else(value(), reason()) :: {:ok, value()} | {:error, reason()}
+  def vif_else(value, reason) do
     if value,
       do: {:ok, value},
       else: {:error, reason}
