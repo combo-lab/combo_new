@@ -34,13 +34,6 @@ const csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute
 const liveSocket = new LiveSocket(`${basePath}/live`, Socket, {
   longPollFallbackMs: 2500,
   params: { _csrf_token: csrfToken },
-  dom: {
-    onBeforeElUpdated(from, to) {
-      if (window.Alpine && from._x_dataStack) {
-        window.Alpine.clone(from, to)
-      }
-    },
-  },
   hooks,
   uploaders,
 })

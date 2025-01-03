@@ -11,7 +11,6 @@
   "dependencies": {
     "@fontsource-variable/inter": "^5.0.21",
     "@fontsource-variable/jetbrains-mono": "^5.0.23",
-    "alpinejs": "^3.14.1",
     "phoenix": "file:../../deps/phoenix",
     "phoenix_html": "file:../../deps/phoenix_html",
     "phoenix_live_view": "file:../../deps/phoenix_live_view",
