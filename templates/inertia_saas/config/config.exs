@@ -18,19 +18,19 @@ config :phoenix, :json_library, Jason
 
 # ! cozy_telemetry
 
-config :live_saas, CozyTelemetry,
+config :inertia_saas, CozyTelemetry,
   meta: [],
   specs: [
-    LiveSaaS.Telemetry.VM,
-    LiveSaaS.Telemetry.Phoenix,
-    LiveSaaS.Core.Telemetry
+    InertiaSaaS.Telemetry.VM,
+    InertiaSaaS.Telemetry.Phoenix,
+    InertiaSaaS.Core.Telemetry
   ],
   reporter: {:console, []},
   poller: [period: 10_000]
 
 # ! cozy_proxy
 
-config :live_saas, CozyProxy,
+config :inertia_saas, CozyProxy,
   adapter: Bandit,
   http_options: [log_protocol_errors: false],
   backends: [
@@ -39,32 +39,32 @@ config :live_saas, CozyProxy,
       path: "/probe"
     },
     %{
-      plug: LiveSaaS.AdminWeb.Endpoint,
+      plug: InertiaSaaS.AdminWeb.Endpoint,
       path: "/admin"
     },
     %{
-      plug: LiveSaaS.UserAPI.Endpoint,
+      plug: InertiaSaaS.UserAPI.Endpoint,
       path: "/api"
     },
     %{
-      plug: LiveSaaS.UserWeb.Endpoint,
+      plug: InertiaSaaS.UserWeb.Endpoint,
       path: "/"
     }
   ]
 
 # ! i18n
 
-config :live_saas, LiveSaaS.I18n,
+config :inertia_saas, InertiaSaaS.I18n,
   locales: ["en"],
   default_locale: "en"
 
 # ! core
 
 # Configure Mix tasks for Ecto.
-config :live_saas, ecto_repos: [LiveSaaS.Core.Repo]
+config :inertia_saas, ecto_repos: [InertiaSaaS.Core.Repo]
 
 # Configures the database.
-config :live_saas, LiveSaaS.Core.Repo,
+config :inertia_saas, InertiaSaaS.Core.Repo,
   priv: "priv/core/repo",
   migration_primary_key: [name: :id, type: :binary_id],
   migration_timestamps: [type: :utc_datetime_usec]
@@ -72,42 +72,42 @@ config :live_saas, LiveSaaS.Core.Repo,
 # ! user_web
 
 # Configure the endpoint.
-config :live_saas, LiveSaaS.UserWeb.Endpoint,
+config :inertia_saas, InertiaSaaS.UserWeb.Endpoint,
   url: [path: "/"],
   adapter: Bandit.PhoenixAdapter,
   render_errors: [
-    formats: [html: LiveSaaS.UserWeb.ErrorHTML],
+    formats: [html: InertiaSaaS.UserWeb.ErrorHTML],
     layout: false
   ],
-  pubsub_server: LiveSaaS.PubSub,
+  pubsub_server: InertiaSaaS.PubSub,
   live_view: [signing_salt: "==signing_salt=="],
   server: false
 
 # ! user_api
 
 # Configure the endpoint.
-config :live_saas, LiveSaaS.UserAPI.Endpoint,
+config :inertia_saas, InertiaSaaS.UserAPI.Endpoint,
   url: [path: "/api"],
   adapter: Bandit.PhoenixAdapter,
   render_errors: [
-    formats: [json: LiveSaaS.UserAPI.ErrorJSON],
+    formats: [json: InertiaSaaS.UserAPI.ErrorJSON],
     layout: false
   ],
-  pubsub_server: LiveSaaS.PubSub,
+  pubsub_server: InertiaSaaS.PubSub,
   live_view: [signing_salt: "==signing_salt=="],
   server: false
 
 # ! admin_web
 
 # Configure the endpoint.
-config :live_saas, LiveSaaS.AdminWeb.Endpoint,
+config :inertia_saas, InertiaSaaS.AdminWeb.Endpoint,
   url: [path: "/admin"],
   adapter: Bandit.PhoenixAdapter,
   render_errors: [
-    formats: [html: LiveSaaS.AdminWeb.ErrorHTML],
+    formats: [html: InertiaSaaS.AdminWeb.ErrorHTML],
     layout: false
   ],
-  pubsub_server: LiveSaaS.PubSub,
+  pubsub_server: InertiaSaaS.PubSub,
   live_view: [signing_salt: "==signing_salt=="],
   server: false
 

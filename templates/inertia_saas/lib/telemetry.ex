@@ -1,4 +1,4 @@
-defmodule LiveSaaS.Telemetry do
+defmodule InertiaSaaS.Telemetry do
   @moduledoc false
 
   use Boundary,
@@ -31,6 +31,6 @@ defmodule LiveSaaS.Telemetry do
   end
 
   defp config do
-    Application.fetch_env!(:live_saas, CozyTelemetry)
+    Application.fetch_env!(:inertia_saas, CozyTelemetry)
   end
 end

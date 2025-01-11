@@ -1,14 +1,14 @@
 # credo:disable-for-this-file Credo.Check.Readability.Specs
 
-defmodule LiveSaaS.UserWeb do
+defmodule InertiaSaaS.UserWeb do
   @moduledoc """
   The entrypoint for defining the web interface, such
   as controllers, components, channels, and so on.
 
   This can be used in the application as:
 
-      use LiveSaaS.UserWeb, :controller
-      use LiveSaaS.UserWeb, :html
+      use InertiaSaaS.UserWeb, :controller
+      use InertiaSaaS.UserWeb, :html
 
   The definitions below will be executed for every controller,
   component, etc, so keep them short and clean, focused
@@ -23,8 +23,8 @@ defmodule LiveSaaS.UserWeb do
     deps: [
       Phoenix,
       Ecto.Changeset,
-      LiveSaaS.I18n,
-      LiveSaaS.Core
+      InertiaSaaS.I18n,
+      InertiaSaaS.Core
     ],
     exports: [
       Supervisor
@@ -53,9 +53,9 @@ defmodule LiveSaaS.UserWeb do
     quote do
       use Phoenix.Controller,
         formats: [:html],
-        layouts: [html: {LiveSaaS.UserWeb.Layouts, :app}]
+        layouts: [html: {InertiaSaaS.UserWeb.Layouts, :app}]
 
-      use LiveSaaS.I18n, :gettext
+      use InertiaSaaS.I18n, :gettext
 
       import Plug.Conn
 
@@ -66,7 +66,7 @@ defmodule LiveSaaS.UserWeb do
   def live_view do
     quote do
       use Phoenix.LiveView,
-        layout: {LiveSaaS.UserWeb.Layouts, :app}
+        layout: {InertiaSaaS.UserWeb.Layouts, :app}
 
       unquote(html_helpers())
     end
@@ -121,12 +121,12 @@ defmodule LiveSaaS.UserWeb do
       import Phoenix.HTML
 
       # UI components
-      import LiveSaaS.UserWeb.BaseComponents
-      import LiveSaaS.UserWeb.CoreComponents
+      import InertiaSaaS.UserWeb.BaseComponents
+      import InertiaSaaS.UserWeb.CoreComponents
 
       # i18n support
-      use LiveSaaS.I18n, :gettext
-      alias LiveSaaS.I18n
+      use InertiaSaaS.I18n, :gettext
+      alias InertiaSaaS.I18n
 
       # Shortcut for generating JS commands
       alias Phoenix.LiveView.JS
@@ -139,9 +139,9 @@ defmodule LiveSaaS.UserWeb do
   def verified_routes do
     quote do
       use Phoenix.VerifiedRoutes,
-        endpoint: LiveSaaS.UserWeb.Endpoint,
-        router: LiveSaaS.UserWeb.Router,
-        statics: LiveSaaS.UserWeb.static_paths()
+        endpoint: InertiaSaaS.UserWeb.Endpoint,
+        router: InertiaSaaS.UserWeb.Router,
+        statics: InertiaSaaS.UserWeb.static_paths()
     end
   end
 

@@ -1,14 +1,14 @@
 # credo:disable-for-this-file Credo.Check.Readability.Specs
 
-defmodule LiveSaaS.AdminWeb do
+defmodule InertiaSaaS.AdminWeb do
   @moduledoc """
   The entrypoint for defining the web interface, such
   as controllers, components, channels, and so on.
 
   This can be used in the application as:
 
-      use LiveSaaS.AdminWeb, :controller
-      use LiveSaaS.AdminWeb, :html
+      use InertiaSaaS.AdminWeb, :controller
+      use InertiaSaaS.AdminWeb, :html
 
   The definitions below will be executed for every controller,
   component, etc, so keep them short and clean, focused
@@ -23,9 +23,9 @@ defmodule LiveSaaS.AdminWeb do
     deps: [
       Phoenix,
       Ecto.Changeset,
-      LiveSaaS.Telemetry,
-      LiveSaaS.I18n,
-      LiveSaaS.Core
+      InertiaSaaS.Telemetry,
+      InertiaSaaS.I18n,
+      InertiaSaaS.Core
     ],
     exports: [
       Supervisor
@@ -54,9 +54,9 @@ defmodule LiveSaaS.AdminWeb do
     quote do
       use Phoenix.Controller,
         formats: [:html],
-        layouts: [html: {LiveSaaS.AdminWeb.Layouts, :app}]
+        layouts: [html: {InertiaSaaS.AdminWeb.Layouts, :app}]
 
-      use LiveSaaS.I18n, :gettext
+      use InertiaSaaS.I18n, :gettext
 
       import Plug.Conn
 
@@ -67,7 +67,7 @@ defmodule LiveSaaS.AdminWeb do
   def live_view do
     quote do
       use Phoenix.LiveView,
-        layout: {LiveSaaS.AdminWeb.Layouts, :app}
+        layout: {InertiaSaaS.AdminWeb.Layouts, :app}
 
       unquote(html_helpers())
     end
@@ -122,12 +122,12 @@ defmodule LiveSaaS.AdminWeb do
       import Phoenix.HTML
 
       # UI components
-      import LiveSaaS.AdminWeb.BaseComponents
-      import LiveSaaS.AdminWeb.CoreComponents
+      import InertiaSaaS.AdminWeb.BaseComponents
+      import InertiaSaaS.AdminWeb.CoreComponents
 
       # i18n support
-      use LiveSaaS.I18n, :gettext
-      alias LiveSaaS.I18n
+      use InertiaSaaS.I18n, :gettext
+      alias InertiaSaaS.I18n
 
       # Shortcut for generating JS commands
       alias Phoenix.LiveView.JS
@@ -140,9 +140,9 @@ defmodule LiveSaaS.AdminWeb do
   def verified_routes do
     quote do
       use Phoenix.VerifiedRoutes,
-        endpoint: LiveSaaS.AdminWeb.Endpoint,
-        router: LiveSaaS.AdminWeb.Router,
-        statics: LiveSaaS.AdminWeb.static_paths()
+        endpoint: InertiaSaaS.AdminWeb.Endpoint,
+        router: InertiaSaaS.AdminWeb.Router,
+        statics: InertiaSaaS.AdminWeb.static_paths()
     end
   end
 

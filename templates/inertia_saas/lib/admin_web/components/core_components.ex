@@ -1,6 +1,6 @@
 # credo:disable-for-this-file Credo.Check.Readability.Specs
 
-defmodule LiveSaaS.AdminWeb.CoreComponents do
+defmodule InertiaSaaS.AdminWeb.CoreComponents do
   @moduledoc """
   Provides core UI components.
 
@@ -14,10 +14,10 @@ defmodule LiveSaaS.AdminWeb.CoreComponents do
   The components in this module should include style, for boosting UI building.
   """
 
-  use LiveSaaS.AdminWeb, :component
-  use LiveSaaS.I18n, :gettext
-  import LiveSaaS.AdminWeb.BaseComponents, only: [icon: 1]
-  alias LiveSaaS.I18n
+  use InertiaSaaS.AdminWeb, :component
+  use InertiaSaaS.I18n, :gettext
+  import InertiaSaaS.AdminWeb.BaseComponents, only: [icon: 1]
+  alias InertiaSaaS.I18n
   alias Phoenix.LiveView.JS
 
   @doc """

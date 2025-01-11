@@ -1,7 +1,7 @@
-defmodule LiveSaaS.I18n.Config do
+defmodule InertiaSaaS.I18n.Config do
   @moduledoc false
 
-  @compiled_env Application.compile_env!(:live_saas, LiveSaaS.I18n)
+  @compiled_env Application.compile_env!(:inertia_saas, InertiaSaaS.I18n)
   @locales Keyword.fetch!(@compiled_env, :locales)
   @default_locale Keyword.fetch!(@compiled_env, :default_locale)
 

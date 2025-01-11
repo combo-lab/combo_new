@@ -2,4 +2,4 @@
 set -eu
 
 cd -P -- "$(dirname -- "$0")"
-exec ./live_saas eval 'LiveSaaS.Core.Release.migrate()'
+exec ./inertia_saas eval 'InertiaSaaS.Core.Release.migrate()'

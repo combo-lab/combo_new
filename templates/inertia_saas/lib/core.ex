@@ -1,6 +1,6 @@
-defmodule LiveSaaS.Core do
+defmodule InertiaSaaS.Core do
   @moduledoc """
-  `LiveSaaS.Core` keeps the contexts that define the domain
+  `InertiaSaaS.Core` keeps the contexts that define the domain
   and business logic.
 
   Contexts are also responsible for managing data, regardless
@@ -11,8 +11,8 @@ defmodule LiveSaaS.Core do
     deps: [
       Ecto,
       Ecto.Changeset,
-      LiveSaaS.Toolkit,
-      LiveSaaS.I18n
+      InertiaSaaS.Toolkit,
+      InertiaSaaS.I18n
     ],
     exports: [
       Supervisor

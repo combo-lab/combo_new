@@ -1,7 +1,7 @@
-defmodule LiveSaaS.Core.Accounts.User do
+defmodule InertiaSaaS.Core.Accounts.User do
   @moduledoc false
 
-  use LiveSaaS.Core.Schema
+  use InertiaSaaS.Core.Schema
 
   schema "accounts_users" do
     field :email, :string

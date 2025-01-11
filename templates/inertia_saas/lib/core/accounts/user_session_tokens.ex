@@ -1,12 +1,12 @@
-defmodule LiveSaaS.Core.Accounts.UserSessionTokens do
+defmodule InertiaSaaS.Core.Accounts.UserSessionTokens do
   @moduledoc false
 
   import Ecto.Query
-  import LiveSaaS.Toolkit.EasyFlow
-  alias LiveSaaS.Toolkit.EasyToken
-  alias LiveSaaS.Core.Repo
-  alias LiveSaaS.Core.Accounts.User
-  alias LiveSaaS.Core.Accounts.UserSessionToken
+  import InertiaSaaS.Toolkit.EasyFlow
+  alias InertiaSaaS.Toolkit.EasyToken
+  alias InertiaSaaS.Core.Repo
+  alias InertiaSaaS.Core.Accounts.User
+  alias InertiaSaaS.Core.Accounts.UserSessionToken
 
   @token_format {:binary, size: 32}
 

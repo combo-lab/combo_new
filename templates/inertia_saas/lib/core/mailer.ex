@@ -1,3 +1,3 @@
-defmodule LiveSaaS.Core.Mailer do
-  use Swoosh.Mailer, otp_app: :live_saas
+defmodule InertiaSaaS.Core.Mailer do
+  use Swoosh.Mailer, otp_app: :inertia_saas
 end

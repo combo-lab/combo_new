@@ -1,11 +1,11 @@
-defmodule LiveSaaS.Core.Accounts.UserTokens do
+defmodule InertiaSaaS.Core.Accounts.UserTokens do
   @moduledoc false
 
   import Ecto.Query
-  alias LiveSaaS.Toolkit.EasyToken
-  alias LiveSaaS.Core.Repo
-  alias LiveSaaS.Core.Accounts.User
-  alias LiveSaaS.Core.Accounts.UserToken
+  alias InertiaSaaS.Toolkit.EasyToken
+  alias InertiaSaaS.Core.Repo
+  alias InertiaSaaS.Core.Accounts.User
+  alias InertiaSaaS.Core.Accounts.UserToken
 
   @type sent_to :: String.t()
   @type payload :: map()

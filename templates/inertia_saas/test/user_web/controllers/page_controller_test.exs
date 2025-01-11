@@ -1,5 +1,5 @@
-defmodule LiveSaaS.UserWeb.PageControllerTest do
-  use LiveSaaS.UserWeb.ConnCase
+defmodule InertiaSaaS.UserWeb.PageControllerTest do
+  use InertiaSaaS.UserWeb.ConnCase
 
   test "GET /", %{conn: conn} do
     conn = get(conn, ~p"/")

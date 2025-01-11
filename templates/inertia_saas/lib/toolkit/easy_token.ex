@@ -1,4 +1,4 @@
-defmodule LiveSaaS.Toolkit.EasyToken do
+defmodule InertiaSaaS.Toolkit.EasyToken do
   @moduledoc """
   Generates, hashes, verifies token in one place.
 

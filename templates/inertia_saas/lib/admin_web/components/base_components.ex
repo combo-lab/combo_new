@@ -1,13 +1,13 @@
 # credo:disable-for-this-file Credo.Check.Readability.Specs
 
-defmodule LiveSaaS.AdminWeb.BaseComponents do
+defmodule InertiaSaaS.AdminWeb.BaseComponents do
   @moduledoc """
   Provides base UI components.
 
   The components in this module should be style-irrelevant.
   """
 
-  use LiveSaaS.AdminWeb, :component
+  use InertiaSaaS.AdminWeb, :component
   import Phoenix.HTML, only: [raw: 1]
 
   @doc """

@@ -1,4 +1,4 @@
-defmodule LiveSaaS.Toolkit.EasyFlow do
+defmodule InertiaSaaS.Toolkit.EasyFlow do
   @moduledoc """
   Provides tools for `with` expression.
 

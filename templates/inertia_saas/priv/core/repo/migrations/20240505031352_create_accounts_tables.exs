@@ -1,4 +1,4 @@
-defmodule LiveSaaS.Core.Repo.Migrations.CreateAccountsTables do
+defmodule InertiaSaaS.Core.Repo.Migrations.CreateAccountsTables do
   use Ecto.Migration
 
   def change do

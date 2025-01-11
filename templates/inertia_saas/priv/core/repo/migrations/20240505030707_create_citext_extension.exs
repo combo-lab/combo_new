@@ -1,4 +1,4 @@
-defmodule LiveSaaS.Core.Repo.Migrations.CreateCitextExtension do
+defmodule InertiaSaaS.Core.Repo.Migrations.CreateCitextExtension do
   use Ecto.Migration
 
   def change do

@@ -1,8 +1,8 @@
-defmodule LiveSaaS.UserWeb.ErrorHTMLTest do
-  use LiveSaaS.UserWeb.ConnCase, async: true
+defmodule InertiaSaaS.UserWeb.ErrorHTMLTest do
+  use InertiaSaaS.UserWeb.ConnCase, async: true
 
   import Phoenix.Template, only: [render_to_string: 4]
-  alias LiveSaaS.UserWeb.ErrorHTML
+  alias InertiaSaaS.UserWeb.ErrorHTML
 
   test "renders 404.html" do
     assert render_to_string(ErrorHTML, "404", "html", status: 404) =~ "Not Found"

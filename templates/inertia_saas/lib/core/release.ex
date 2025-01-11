@@ -1,4 +1,4 @@
-defmodule LiveSaaS.Core.Release do
+defmodule InertiaSaaS.Core.Release do
   @moduledoc """
   Release-related DB tasks for production environment without Mix installed.
 
@@ -57,8 +57,8 @@ defmodule LiveSaaS.Core.Release do
   @type result :: {:ok, term()} | {:error, term()}
   @type script_result :: {:ok, term()} | no_return()
 
-  @app :live_saas
-  @repo LiveSaaS.Core.Repo
+  @app :inertia_saas
+  @repo InertiaSaaS.Core.Repo
 
   @doc """
   Migrates the database.

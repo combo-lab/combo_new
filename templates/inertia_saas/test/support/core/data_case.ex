@@ -1,4 +1,4 @@
-defmodule LiveSaaS.Core.DataCase do
+defmodule InertiaSaaS.Core.DataCase do
   @moduledoc """
   This module defines the setup for tests requiring
   access to the application's data layer.
@@ -10,7 +10,7 @@ defmodule LiveSaaS.Core.DataCase do
   we enable the SQL sandbox, so changes done to the database
   are reverted at the end of every test. If you are using
   PostgreSQL, you can even run database tests asynchronously
-  by setting `use LiveSaaS.Core.DataCase, async: true`, although
+  by setting `use InertiaSaaS.Core.DataCase, async: true`, although
   this option is not recommended for other databases.
   """
 
@@ -18,17 +18,17 @@ defmodule LiveSaaS.Core.DataCase do
 
   using do
     quote do
-      alias LiveSaaS.Core.Repo
+      alias InertiaSaaS.Core.Repo
 
       import Ecto
       import Ecto.Changeset
       import Ecto.Query
-      import LiveSaaS.Core.DataCase
+      import InertiaSaaS.Core.DataCase
     end
   end
 
   setup tags do
-    LiveSaaS.Core.DataCase.setup_sandbox(tags)
+    InertiaSaaS.Core.DataCase.setup_sandbox(tags)
     :ok
   end
 
@@ -37,7 +37,7 @@ defmodule LiveSaaS.Core.DataCase do
   """
   @spec setup_sandbox(keyword() | map()) :: :ok
   def setup_sandbox(tags) do
-    pid = Ecto.Adapters.SQL.Sandbox.start_owner!(LiveSaaS.Core.Repo, shared: not tags[:async])
+    pid = Ecto.Adapters.SQL.Sandbox.start_owner!(InertiaSaaS.Core.Repo, shared: not tags[:async])
     on_exit(fn -> Ecto.Adapters.SQL.Sandbox.stop_owner(pid) end)
   end
 

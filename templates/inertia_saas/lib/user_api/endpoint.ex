@@ -1,12 +1,12 @@
-defmodule LiveSaaS.UserAPI.Endpoint do
-  use Phoenix.Endpoint, otp_app: :live_saas
+defmodule InertiaSaaS.UserAPI.Endpoint do
+  use Phoenix.Endpoint, otp_app: :inertia_saas
 
   # The session will be stored in the cookie and signed,
   # this means its contents can be read but not tampered with.
   # Set :encryption_salt if you would also like to encrypt it.
   @session_options [
     store: :cookie,
-    key: "_live_saas_user_api_key",
+    key: "_inertia_saas_user_api_key",
     signing_salt: "==signing_salt==",
     same_site: "Lax"
   ]
@@ -28,5 +28,5 @@ defmodule LiveSaaS.UserAPI.Endpoint do
   plug Plug.MethodOverride
   plug Plug.Head
   plug Plug.Session, @session_options
-  plug LiveSaaS.UserAPI.Router
+  plug InertiaSaaS.UserAPI.Router
 end

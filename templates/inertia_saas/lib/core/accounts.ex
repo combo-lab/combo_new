@@ -1,4 +1,4 @@
-defmodule LiveSaaS.Core.Accounts do
+defmodule InertiaSaaS.Core.Accounts do
   @moduledoc """
   The context for accounts.
 
@@ -112,13 +112,13 @@ defmodule LiveSaaS.Core.Accounts do
 
   """
 
-  import LiveSaaS.Toolkit.EasyFlow
-  alias LiveSaaS.Core.Repo
-  alias LiveSaaS.Core.Accounts.User
-  alias LiveSaaS.Core.Accounts.Users
-  alias LiveSaaS.Core.Accounts.NoUserTokens
-  alias LiveSaaS.Core.Accounts.UserTokens
-  alias LiveSaaS.Core.Accounts.UserSessionTokens
+  import InertiaSaaS.Toolkit.EasyFlow
+  alias InertiaSaaS.Core.Repo
+  alias InertiaSaaS.Core.Accounts.User
+  alias InertiaSaaS.Core.Accounts.Users
+  alias InertiaSaaS.Core.Accounts.NoUserTokens
+  alias InertiaSaaS.Core.Accounts.UserTokens
+  alias InertiaSaaS.Core.Accounts.UserSessionTokens
 
   @doc """
   Gets a user.

@@ -19,26 +19,26 @@ config :phoenix_live_view, :debug_heex_annotations, true
 config :phoenix_live_view, :enable_expensive_runtime_checks, true
 
 # Enable dev routes for dashboard and mailbox.
-config :live_saas, dev_routes: true
+config :inertia_saas, dev_routes: true
 
 # Limit running processes, which is good for:
 #
 #   * inspecting process tree in :observer without too much scrolling
 #   * ...
-config :live_saas, process_limit: true
+config :inertia_saas, process_limit: true
 
 # ! cozy_proxy
 
-config :live_saas, CozyProxy, thousand_island_options: [num_acceptors: 2]
+config :inertia_saas, CozyProxy, thousand_island_options: [num_acceptors: 2]
 
 # ! core
 
 # Configure the database.
-config :live_saas, LiveSaaS.Core.Repo,
+config :inertia_saas, InertiaSaaS.Core.Repo,
   username: "postgres",
   password: "postgres",
   hostname: "localhost",
-  database: "live_saas_core_dev",
+  database: "inertia_saas_core_dev",
   stacktrace: true,
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
@@ -47,7 +47,7 @@ config :live_saas, LiveSaaS.Core.Repo,
 #
 # Use "Local" adapter which stores the emails locally. You can see the emails
 # in web browser, at "/dev/mailbox".
-config :live_saas, LiveSaaS.Core.Mailer, adapter: Swoosh.Adapters.Local
+config :inertia_saas, InertiaSaaS.Core.Mailer, adapter: Swoosh.Adapters.Local
 
 # Disable Swoosh API client as it is only required for production adapters.
 config :swoosh, :api_client, false
@@ -55,7 +55,7 @@ config :swoosh, :api_client, false
 # ! user_web
 
 # Configure the endpoint.
-config :live_saas, LiveSaaS.UserWeb.Endpoint,
+config :inertia_saas, InertiaSaaS.UserWeb.Endpoint,
   http: [
     transport_options: [num_acceptors: 2]
   ],
@@ -68,7 +68,7 @@ config :live_saas, LiveSaaS.UserWeb.Endpoint,
   ]
 
 # Watch static and templates for browser reloading.
-config :live_saas, LiveSaaS.UserWeb.Endpoint,
+config :inertia_saas, InertiaSaaS.UserWeb.Endpoint,
   live_reload: [
     patterns: [
       ~r"lib/user_web/(controllers|live|components)/.*(ex|heex)$",
@@ -80,7 +80,7 @@ config :live_saas, LiveSaaS.UserWeb.Endpoint,
 # ! user_api
 
 # Configure the endpoint.
-config :live_saas, LiveSaaS.UserAPI.Endpoint,
+config :inertia_saas, InertiaSaaS.UserAPI.Endpoint,
   http: [
     thousand_island_options: [num_acceptors: 2]
   ],
@@ -93,7 +93,7 @@ config :live_saas, LiveSaaS.UserAPI.Endpoint,
 # ! admin_web
 
 # Configure the endpoint.
-config :live_saas, LiveSaaS.AdminWeb.Endpoint,
+config :inertia_saas, InertiaSaaS.AdminWeb.Endpoint,
   http: [
     thousand_island_options: [num_acceptors: 2]
   ],
@@ -106,7 +106,7 @@ config :live_saas, LiveSaaS.AdminWeb.Endpoint,
   ]
 
 # Watch static and templates for browser reloading.
-config :live_saas, LiveSaaS.AdminWeb.Endpoint,
+config :inertia_saas, InertiaSaaS.AdminWeb.Endpoint,
   live_reload: [
     patterns: [
       ~r"lib/admin_web/(controllers|live|components)/.*(ex|heex)$",

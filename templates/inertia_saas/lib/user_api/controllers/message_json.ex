@@ -1,6 +1,6 @@
 # credo:disable-for-this-file Credo.Check.Readability.Specs
 
-defmodule LiveSaaS.UserAPI.MessageJSON do
+defmodule InertiaSaaS.UserAPI.MessageJSON do
   @moduledoc false
 
   def show(%{message: message}) do

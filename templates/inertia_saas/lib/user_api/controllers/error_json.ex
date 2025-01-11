@@ -1,6 +1,6 @@
 # credo:disable-for-this-file Credo.Check.Readability.Specs
 
-defmodule LiveSaaS.UserAPI.ErrorJSON do
+defmodule InertiaSaaS.UserAPI.ErrorJSON do
   @moduledoc """
   Provides JSON error responses.
 
@@ -13,7 +13,7 @@ defmodule LiveSaaS.UserAPI.ErrorJSON do
 
   """
 
-  use LiveSaaS.I18n, :gettext
+  use InertiaSaaS.I18n, :gettext
   require Logger
 
   def render(template, _assigns) do

@@ -21,7 +21,7 @@ end
 
 # ! general
 
-config :live_saas, :dns_cluster_query, CozyEnv.get_env("DNS_CLUSTER_QUERY")
+config :inertia_saas, :dns_cluster_query, CozyEnv.get_env("DNS_CLUSTER_QUERY")
 
 # ! cozy_proxy
 
@@ -46,13 +46,13 @@ cozy_proxy_origin =
   [cozy_proxy_endpoint] ++
     if cozy_proxy_extra_endpoints, do: split_by_comma.(cozy_proxy_extra_endpoints), else: []
 
-config :live_saas, CozyProxy,
+config :inertia_saas, CozyProxy,
   scheme: :http,
   ip: cozy_proxy_listen_ip,
   port: cozy_proxy_listen_port
 
 if CozyEnv.get_env("RELEASE_NAME") || CozyEnv.get_env("COZY_PROXY_SERVER") do
-  config :live_saas, CozyProxy, server: true
+  config :inertia_saas, CozyProxy, server: true
 end
 
 # ! ecto
@@ -63,13 +63,13 @@ ecto_socket_options = if CozyEnv.get_env("ECTO_IPV6", :boolean), do: [:inet6], e
 
 if config_env() == :prod do
   database_url =
-    CozyEnv.fetch_env!("LIVE_SAAS_CORE_DATABASE_URL",
+    CozyEnv.fetch_env!("INERTIA_SAAS_CORE_DATABASE_URL",
       message: "Set it to something like: ecto://USER:PASS@HOST/DATABASE"
     )
 
-  database_pool_size = CozyEnv.get_env("LIVE_SAAS_CORE_DATABASE_POOL_SIZE", :integer) || 10
+  database_pool_size = CozyEnv.get_env("INERTIA_SAAS_CORE_DATABASE_POOL_SIZE", :integer) || 10
 
-  config :live_saas, LiveSaaS.Core.Repo,
+  config :inertia_saas, InertiaSaaS.Core.Repo,
     url: database_url,
     pool_size: database_pool_size,
     socket_options: ecto_socket_options
@@ -80,10 +80,10 @@ if config_env() == :prod do
   # Also, you may need to configure the Swoosh API client of your choice if you
   # are not using SMTP. Here is an example of the configuration:
   #
-  #     config :live_saas, LiveSaaS.Core.Mailer,
+  #     config :inertia_saas, InertiaSaaS.Core.Mailer,
   #       adapter: Swoosh.Adapters.Mailgun,
-  #       api_key: CozyEnv.fetch_env!("LIVE_SAAS_CORE_MAILGUN_API_KEY"),
-  #       domain: CozyEnv.fetch_env!("LIVE_SAAS_CORE_MAILGUN_DOMAIN")
+  #       api_key: CozyEnv.fetch_env!("INERTIA_SAAS_CORE_MAILGUN_API_KEY"),
+  #       domain: CozyEnv.fetch_env!("INERTIA_SAAS_CORE_MAILGUN_DOMAIN")
   #
   # For this example you need include a HTTP client required by Swoosh API client.
   # Swoosh supports Hackney and Finch out of the box:
@@ -95,22 +95,22 @@ end
 
 # ! user_web
 
-config :live_saas, LiveSaaS.UserWeb.Endpoint, url: cozy_proxy_parsed_endpoint
+config :inertia_saas, InertiaSaaS.UserWeb.Endpoint, url: cozy_proxy_parsed_endpoint
 
 case config_env() do
   :prod ->
     secret_key_base =
-      CozyEnv.fetch_env!("LIVE_SAAS_USER_WEB_SECRET_KEY_BASE",
+      CozyEnv.fetch_env!("INERTIA_SAAS_USER_WEB_SECRET_KEY_BASE",
         message: "Generate one by calling: mix phx.gen.secret"
       )
 
-    config :live_saas, LiveSaaS.UserWeb.Endpoint,
+    config :inertia_saas, InertiaSaaS.UserWeb.Endpoint,
       secret_key_base: secret_key_base,
       check_origin: cozy_proxy_origin
 
   :dev ->
     force_watchers = Application.get_env(:phoenix, :serve_endpoints, false)
-    config :live_saas, LiveSaaS.UserWeb.Endpoint, force_watchers: force_watchers
+    config :inertia_saas, InertiaSaaS.UserWeb.Endpoint, force_watchers: force_watchers
 
   _ ->
     :skip
@@ -118,16 +118,16 @@ end
 
 # ! user_api
 
-config :live_saas, LiveSaaS.UserAPI.Endpoint, url: cozy_proxy_parsed_endpoint
+config :inertia_saas, InertiaSaaS.UserAPI.Endpoint, url: cozy_proxy_parsed_endpoint
 
 case config_env() do
   :prod ->
     secret_key_base =
-      CozyEnv.fetch_env!("LIVE_SAAS_USER_API_SECRET_KEY_BASE",
+      CozyEnv.fetch_env!("INERTIA_SAAS_USER_API_SECRET_KEY_BASE",
         message: "Generate one by calling: mix phx.gen.secret"
       )
 
-    config :live_saas, LiveSaaS.UserAPI.Endpoint,
+    config :inertia_saas, InertiaSaaS.UserAPI.Endpoint,
       secret_key_base: secret_key_base,
       check_origin: cozy_proxy_origin
 
@@ -137,22 +137,22 @@ end
 
 # ! admin_web
 
-config :live_saas, LiveSaaS.AdminWeb.Endpoint, url: cozy_proxy_parsed_endpoint
+config :inertia_saas, InertiaSaaS.AdminWeb.Endpoint, url: cozy_proxy_parsed_endpoint
 
 case config_env() do
   :prod ->
     secret_key_base =
-      CozyEnv.fetch_env!("LIVE_SAAS_ADMIN_WEB_SECRET_KEY_BASE",
+      CozyEnv.fetch_env!("INERTIA_SAAS_ADMIN_WEB_SECRET_KEY_BASE",
         message: "Generate one by calling: mix phx.gen.secret"
       )
 
-    config :live_saas, LiveSaaS.AdminWeb.Endpoint,
+    config :inertia_saas, InertiaSaaS.AdminWeb.Endpoint,
       secret_key_base: secret_key_base,
       check_origin: cozy_proxy_origin
 
   :dev ->
     force_watchers = Application.get_env(:phoenix, :serve_endpoints, false)
-    config :live_saas, LiveSaaS.AdminWeb.Endpoint, force_watchers: force_watchers
+    config :inertia_saas, InertiaSaaS.AdminWeb.Endpoint, force_watchers: force_watchers
 
   _ ->
     :skip

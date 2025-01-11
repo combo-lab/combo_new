@@ -1,9 +1,9 @@
-defmodule LiveSaaS.Core.Accounts.Users do
+defmodule InertiaSaaS.Core.Accounts.Users do
   @moduledoc false
 
   import Ecto.Changeset
-  alias LiveSaaS.Core.Repo
-  alias LiveSaaS.Core.Accounts.User
+  alias InertiaSaaS.Core.Repo
+  alias InertiaSaaS.Core.Accounts.User
 
   @type id :: String.t()
   @type email :: String.t()

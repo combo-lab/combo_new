@@ -1,10 +1,10 @@
-defmodule LiveSaaS.I18n.GettextBackend do
+defmodule InertiaSaaS.I18n.GettextBackend do
   @moduledoc """
   Provides i18n support with a gettext-based API.
 
   It provides a set of macros for translations, for example:
 
-      use Gettext, backend: LiveSaaS.I18n.GettextBackend
+      use Gettext, backend: InertiaSaaS.I18n.GettextBackend
 
       # Simple translation
       gettext("Here is the string to translate")
@@ -36,12 +36,12 @@ defmodule LiveSaaS.I18n.GettextBackend do
 
   """
 
-  alias LiveSaaS.I18n.Config
-  require LiveSaaS.I18n.Config
+  alias InertiaSaaS.I18n.Config
+  require InertiaSaaS.I18n.Config
 
   # credo:disable-for-next-line Credo.Check.Readability.StrictModuleLayout
   use Gettext.Backend,
-    otp_app: :live_saas,
+    otp_app: :inertia_saas,
     priv: "priv/i18n/gettext",
     allowed_locales: Config.locales(),
     default_locale: Config.default_locale()

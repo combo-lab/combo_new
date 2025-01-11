@@ -1,6 +1,6 @@
-defmodule LiveSaaS.Toolkit.EasyTokenTest do
+defmodule InertiaSaaS.Toolkit.EasyTokenTest do
   use ExUnit.Case
-  alias LiveSaaS.Toolkit.EasyToken
+  alias InertiaSaaS.Toolkit.EasyToken
 
   describe "generate/1, hash/2 and verify/3" do
     test "for :binary format" do

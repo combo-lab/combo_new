@@ -1,7 +1,7 @@
-defmodule LiveSaaS.UserAPI.ErrorJSONTest do
-  use LiveSaaS.UserAPI.ConnCase, async: true
+defmodule InertiaSaaS.UserAPI.ErrorJSONTest do
+  use InertiaSaaS.UserAPI.ConnCase, async: true
 
-  alias LiveSaaS.UserAPI.ErrorJSON
+  alias InertiaSaaS.UserAPI.ErrorJSON
 
   test "renders 404" do
     assert ErrorJSON.render("404.json", %{}) == %{message: "Not Found"}

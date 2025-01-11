@@ -1,19 +1,19 @@
-defmodule LiveSaaS.UserWeb.Endpoint do
-  use Phoenix.Endpoint, otp_app: :live_saas
+defmodule InertiaSaaS.UserWeb.Endpoint do
+  use Phoenix.Endpoint, otp_app: :inertia_saas
 
   # The session will be stored in the cookie and signed,
   # this means its contents can be read but not tampered with.
   # Set :encryption_salt if you would also like to encrypt it.
   @session_options [
     store: :cookie,
-    key: "_live_saas_user_web_key",
+    key: "_inertia_saas_user_web_key",
     signing_salt: "==signing_salt==",
     same_site: "Lax"
   ]
 
   # This option controls how many supervisors will be spawned to handle sockets.
   # See `Phoenix.Socket` for more details.
-  @socket_partitions_options if(Application.compile_env(:live_saas, :process_limit),
+  @socket_partitions_options if(Application.compile_env(:inertia_saas, :process_limit),
                                do: [partitions: 2],
                                else: []
                              )
@@ -31,9 +31,9 @@ defmodule LiveSaaS.UserWeb.Endpoint do
   # when deploying the static files in production.
   plug Plug.Static,
     at: "/",
-    from: {:live_saas, "priv/user_web/static"},
+    from: {:inertia_saas, "priv/user_web/static"},
     gzip: false,
-    only: LiveSaaS.UserWeb.static_paths()
+    only: InertiaSaaS.UserWeb.static_paths()
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of the endpoint.
@@ -57,5 +57,5 @@ defmodule LiveSaaS.UserWeb.Endpoint do
   plug Plug.MethodOverride
   plug Plug.Head
   plug Plug.Session, @session_options
-  plug LiveSaaS.UserWeb.Router
+  plug InertiaSaaS.UserWeb.Router
 end

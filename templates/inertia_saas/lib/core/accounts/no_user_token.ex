@@ -1,7 +1,7 @@
-defmodule LiveSaaS.Core.Accounts.NoUserToken do
+defmodule InertiaSaaS.Core.Accounts.NoUserToken do
   @moduledoc false
 
-  use LiveSaaS.Core.Schema
+  use InertiaSaaS.Core.Schema
 
   @type_defs [
     register: %{

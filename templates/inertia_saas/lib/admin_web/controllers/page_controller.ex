@@ -1,7 +1,7 @@
 # credo:disable-for-this-file Credo.Check.Readability.Specs
 
-defmodule LiveSaaS.AdminWeb.PageController do
-  use LiveSaaS.AdminWeb, :controller
+defmodule InertiaSaaS.AdminWeb.PageController do
+  use InertiaSaaS.AdminWeb, :controller
 
   def home(conn, _params) do
     # The home page is often custom made,

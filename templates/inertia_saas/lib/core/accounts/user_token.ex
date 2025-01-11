@@ -1,8 +1,8 @@
-defmodule LiveSaaS.Core.Accounts.UserToken do
+defmodule InertiaSaaS.Core.Accounts.UserToken do
   @moduledoc false
 
-  use LiveSaaS.Core.Schema
-  alias LiveSaaS.Core.Accounts.User
+  use InertiaSaaS.Core.Schema
+  alias InertiaSaaS.Core.Accounts.User
 
   @type_defs [
     email_change: %{

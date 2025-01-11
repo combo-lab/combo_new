@@ -1,4 +1,4 @@
-defmodule LiveSaaS.PubSub do
+defmodule InertiaSaaS.PubSub do
   @moduledoc false
 
   use Boundary,

@@ -1,6 +1,6 @@
-defmodule LiveSaaS.Core.Repo do
+defmodule InertiaSaaS.Core.Repo do
   use Ecto.Repo,
-    otp_app: :live_saas,
+    otp_app: :inertia_saas,
     adapter: Ecto.Adapters.Postgres
 
   @doc """

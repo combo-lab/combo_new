@@ -1,8 +1,8 @@
 # credo:disable-for-this-file Credo.Check.Readability.Specs
 
-defmodule LiveSaaS.UserAPI.HomeController do
-  use LiveSaaS.UserAPI, :controller
-  alias LiveSaaS.UserAPI.MessageJSON
+defmodule InertiaSaaS.UserAPI.HomeController do
+  use InertiaSaaS.UserAPI, :controller
+  alias InertiaSaaS.UserAPI.MessageJSON
 
   def welcome(conn, _) do
     message = "Welcome to the UserAPI world!"

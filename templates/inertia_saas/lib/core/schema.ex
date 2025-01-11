@@ -1,4 +1,4 @@
-defmodule LiveSaaS.Core.Schema do
+defmodule InertiaSaaS.Core.Schema do
   defmacro __using__(_opts) do
     quote do
       use Ecto.Schema

@@ -1,7 +1,7 @@
-defmodule LiveSaaS.MixProject do
+defmodule InertiaSaaS.MixProject do
   use Mix.Project
 
-  @app :live_saas
+  @app :inertia_saas
   @version "0.1.0"
 
   def project do
@@ -24,7 +24,7 @@ defmodule LiveSaaS.MixProject do
   # Type `mix help compile.app` for more information.
   def application do
     [
-      mod: {LiveSaaS.Application, []},
+      mod: {InertiaSaaS.Application, []},
       extra_applications: [:logger, :runtime_tools]
     ]
   end
@@ -169,11 +169,11 @@ defmodule LiveSaaS.MixProject do
       # ! core
 
       "core.ecto.setup": [
-        "ecto.create -r LiveSaaS.Core.Repo",
-        "ecto.migrate -r LiveSaaS.Core.Repo",
+        "ecto.create -r InertiaSaaS.Core.Repo",
+        "ecto.migrate -r InertiaSaaS.Core.Repo",
         "run priv/core/repo/seeds.exs"
       ],
-      "core.ecto.drop": "ecto.drop -r LiveSaaS.Core.Repo",
+      "core.ecto.drop": "ecto.drop -r InertiaSaaS.Core.Repo",
       "core.ecto.reset": [
         "core.ecto.drop",
         "core.ecto.setup"

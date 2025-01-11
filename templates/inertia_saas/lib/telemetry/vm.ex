@@ -1,4 +1,4 @@
-defmodule LiveSaaS.Telemetry.VM do
+defmodule InertiaSaaS.Telemetry.VM do
   @moduledoc false
 
   use CozyTelemetry.Spec

@@ -1,4 +1,4 @@
-defmodule LiveSaaS.AdminWeb.ConnCase do
+defmodule InertiaSaaS.AdminWeb.ConnCase do
   @moduledoc """
   This module defines the test case to be used by
   tests that require setting up a connection.
@@ -11,7 +11,7 @@ defmodule LiveSaaS.AdminWeb.ConnCase do
   we enable the SQL sandbox, so changes done to the database
   are reverted at the end of every test. If you are using
   PostgreSQL, you can even run database tests asynchronously
-  by setting `use LiveSaaS.AdminWeb.ConnCase, async: true`, although
+  by setting `use InertiaSaaS.AdminWeb.ConnCase, async: true`, although
   this option is not recommended for other databases.
   """
 
@@ -20,19 +20,19 @@ defmodule LiveSaaS.AdminWeb.ConnCase do
   using do
     quote do
       # The default endpoint for testing
-      @endpoint LiveSaaS.AdminWeb.Endpoint
+      @endpoint InertiaSaaS.AdminWeb.Endpoint
 
-      use LiveSaaS.AdminWeb, :verified_routes
+      use InertiaSaaS.AdminWeb, :verified_routes
 
       # Import conveniences for testing with connections
       import Plug.Conn
       import Phoenix.ConnTest
-      import LiveSaaS.AdminWeb.ConnCase
+      import InertiaSaaS.AdminWeb.ConnCase
     end
   end
 
   setup tags do
-    LiveSaaS.Core.DataCase.setup_sandbox(tags)
+    InertiaSaaS.Core.DataCase.setup_sandbox(tags)
     {:ok, conn: Phoenix.ConnTest.build_conn()}
   end
 end

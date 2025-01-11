@@ -1,4 +1,4 @@
-defmodule LiveSaaS.AdminWeb.Supervisor do
+defmodule InertiaSaaS.AdminWeb.Supervisor do
   @moduledoc false
 
   use Supervisor
@@ -11,7 +11,7 @@ defmodule LiveSaaS.AdminWeb.Supervisor do
   @impl Supervisor
   def init(_arg) do
     children = [
-      LiveSaaS.AdminWeb.Endpoint
+      InertiaSaaS.AdminWeb.Endpoint
     ]
 
     Supervisor.init(children, strategy: :one_for_one)

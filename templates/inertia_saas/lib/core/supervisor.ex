@@ -1,4 +1,4 @@
-defmodule LiveSaaS.Core.Supervisor do
+defmodule InertiaSaaS.Core.Supervisor do
   @moduledoc false
 
   use Supervisor
@@ -11,9 +11,9 @@ defmodule LiveSaaS.Core.Supervisor do
   @impl Supervisor
   def init(_arg) do
     children = [
-      LiveSaaS.Core.Repo,
+      InertiaSaaS.Core.Repo,
       # Start the Finch HTTP client for sending emails
-      {Finch, name: LiveSaaS.Core.Finch}
+      {Finch, name: InertiaSaaS.Core.Finch}
     ]
 
     Supervisor.init(children, strategy: :one_for_one)

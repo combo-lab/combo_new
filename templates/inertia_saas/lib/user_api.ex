@@ -1,14 +1,14 @@
 # credo:disable-for-this-file Credo.Check.Readability.Specs
 
-defmodule LiveSaaS.UserAPI do
+defmodule InertiaSaaS.UserAPI do
   @moduledoc """
   The entrypoint for defining the web interface, such
   as controllers, components, channels, and so on.
 
   This can be used in the application as:
 
-      use LiveSaaS.UserAPI, :router
-      use LiveSaaS.UserAPI, :controller
+      use InertiaSaaS.UserAPI, :router
+      use InertiaSaaS.UserAPI, :controller
 
   The definitions below will be executed for every controller,
   component, etc, so keep them short and clean, focused
@@ -23,8 +23,8 @@ defmodule LiveSaaS.UserAPI do
     deps: [
       Phoenix,
       Ecto.Changeset,
-      LiveSaaS.I18n,
-      LiveSaaS.Core
+      InertiaSaaS.I18n,
+      InertiaSaaS.Core
     ],
     exports: [
       Supervisor
@@ -56,15 +56,15 @@ defmodule LiveSaaS.UserAPI do
 
       unquote(verified_routes())
 
-      action_fallback LiveSaaS.UserAPI.FallbackController
+      action_fallback InertiaSaaS.UserAPI.FallbackController
     end
   end
 
   def verified_routes do
     quote do
       use Phoenix.VerifiedRoutes,
-        endpoint: LiveSaaS.UserAPI.Endpoint,
-        router: LiveSaaS.UserAPI.Router
+        endpoint: InertiaSaaS.UserAPI.Endpoint,
+        router: InertiaSaaS.UserAPI.Router
     end
   end
 

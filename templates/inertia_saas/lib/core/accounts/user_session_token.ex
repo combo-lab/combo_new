@@ -1,8 +1,8 @@
-defmodule LiveSaaS.Core.Accounts.UserSessionToken do
+defmodule InertiaSaaS.Core.Accounts.UserSessionToken do
   @moduledoc false
 
-  use LiveSaaS.Core.Schema
-  alias LiveSaaS.Core.Accounts.User
+  use InertiaSaaS.Core.Schema
+  alias InertiaSaaS.Core.Accounts.User
 
   # Since expired session token requires user to log in again, in order to
   # minimize the impact on users' continuous usage experience as much as

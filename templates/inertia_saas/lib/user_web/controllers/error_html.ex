@@ -1,6 +1,6 @@
 # credo:disable-for-this-file Credo.Check.Readability.Specs
 
-defmodule LiveSaaS.UserWeb.ErrorHTML do
+defmodule InertiaSaaS.UserWeb.ErrorHTML do
   @moduledoc """
   Provides HTML error pages.
 
@@ -22,7 +22,7 @@ defmodule LiveSaaS.UserWeb.ErrorHTML do
 
   """
 
-  use LiveSaaS.UserWeb, :html
+  use InertiaSaaS.UserWeb, :html
   require Logger
 
   embed_templates "error_html/*"

@@ -1,4 +1,4 @@
-# LiveSaaS
+# InertiaSaaS
 
 To start the Phoenix server:
 
