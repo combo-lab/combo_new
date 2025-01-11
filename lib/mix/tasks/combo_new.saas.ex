@@ -2,10 +2,10 @@
 #
 # Because the Mix task names are derived from the module name, in order to
 # make `mix combo_new.saas` work, I have to use this strange module name.
-defmodule Mix.Tasks.ComboNew.Saas do
+defmodule Mix.Tasks.ComboNew.LiveSaas do
   use Mix.Task
 
-  @shortdoc "Creates a Phoenix project in SaaS type"
+  @shortdoc "Creates a Phoenix project in LiveSaaS type"
 
   @moduledoc """
   #{@shortdoc}.
@@ -39,6 +39,6 @@ defmodule Mix.Tasks.ComboNew.Saas do
 
   @impl true
   def run(argv) do
-    ComboNew.run(__MODULE__, ComboNew.Generator.ComboSaaS, argv)
+    ComboNew.run(__MODULE__, ComboNew.Generator.LiveSaaS, argv)
   end
 end

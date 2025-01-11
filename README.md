@@ -24,7 +24,7 @@ Create a new Phoenix project:
 # create a project from combo_lite template
 $ mix combo_new.lite demo
 
-# create a project from combo_saas template
+# create a project from live_saas template
 $ mix combo_new.saas demo
 ```
 
