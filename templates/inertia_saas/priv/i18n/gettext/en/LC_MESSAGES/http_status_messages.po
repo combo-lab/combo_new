@@ -1,0 +1,40 @@
+## "msgid"s in this file come from POT (.pot) files.
+###
+### Do not add, change, or remove "msgid"s manually here as
+### they're tied to the ones in the corresponding POT file
+### (with the same domain).
+###
+### Use "mix gettext.extract --merge" or "mix gettext.merge"
+### to merge POT files into PO files.
+msgid ""
+msgstr ""
+"Language: en\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: lib/admin_web/controllers/error_html.ex:43
+#: lib/user_api/controllers/error_json.ex:38
+#: lib/user_web/controllers/error_html.ex:43
+#, elixir-autogen, elixir-format
+msgid "Bad Request"
+msgstr ""
+
+#: lib/admin_web/controllers/error_html.ex:51
+#: lib/user_api/controllers/error_json.ex:46
+#: lib/user_web/controllers/error_html.ex:51
+#, elixir-autogen, elixir-format
+msgid "Internal Server Error"
+msgstr ""
+
+#: lib/admin_web/controllers/error_html.ex:47
+#: lib/user_api/controllers/error_json.ex:42
+#: lib/user_web/controllers/error_html.ex:47
+#, elixir-autogen, elixir-format
+msgid "Not Found"
+msgstr ""
+
+#: lib/admin_web/controllers/error_html.ex:56
+#: lib/user_api/controllers/error_json.ex:51
+#: lib/user_web/controllers/error_html.ex:56
+#, elixir-autogen, elixir-format
+msgid "Something Went Wrong"
+msgstr ""

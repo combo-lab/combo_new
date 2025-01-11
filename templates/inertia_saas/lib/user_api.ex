@@ -1,0 +1,77 @@
+# credo:disable-for-this-file Credo.Check.Readability.Specs
+
+defmodule LiveSaaS.UserAPI do
+  @moduledoc """
+  The entrypoint for defining the web interface, such
+  as controllers, components, channels, and so on.
+
+  This can be used in the application as:
+
+      use LiveSaaS.UserAPI, :router
+      use LiveSaaS.UserAPI, :controller
+
+  The definitions below will be executed for every controller,
+  component, etc, so keep them short and clean, focused
+  on imports, uses and aliases.
+
+  Do NOT define functions inside the quoted expressions
+  below. Instead, define additional modules and import
+  those modules here.
+  """
+
+  use Boundary,
+    deps: [
+      Phoenix,
+      Ecto.Changeset,
+      LiveSaaS.I18n,
+      LiveSaaS.Core
+    ],
+    exports: [
+      Supervisor
+    ]
+
+  def router do
+    quote do
+      use Phoenix.Router, helpers: false
+
+      # Import common connection and controller functions to use in pipelines
+      import Plug.Conn
+      import Phoenix.Controller
+    end
+  end
+
+  def channel do
+    quote do
+      use Phoenix.Channel
+    end
+  end
+
+  def controller do
+    quote do
+      use Phoenix.Controller,
+        formats: [:json],
+        layouts: []
+
+      import Plug.Conn
+
+      unquote(verified_routes())
+
+      action_fallback LiveSaaS.UserAPI.FallbackController
+    end
+  end
+
+  def verified_routes do
+    quote do
+      use Phoenix.VerifiedRoutes,
+        endpoint: LiveSaaS.UserAPI.Endpoint,
+        router: LiveSaaS.UserAPI.Router
+    end
+  end
+
+  @doc """
+  When used, dispatch to the appropriate router, controller, etc.
+  """
+  defmacro __using__(which) when is_atom(which) do
+    apply(__MODULE__, which, [])
+  end
+end
