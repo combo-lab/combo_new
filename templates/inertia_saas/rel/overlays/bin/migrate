@@ -1,5 +1,0 @@
-#!/bin/sh
-set -eu
-
-cd -P -- "$(dirname -- "$0")"
-exec ./inertia_saas eval 'InertiaSaaS.Core.Release.migrate()'
