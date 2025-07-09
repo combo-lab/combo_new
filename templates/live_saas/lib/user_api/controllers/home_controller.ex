@@ -1,5 +1,3 @@
-# credo:disable-for-this-file Credo.Check.Readability.Specs
-
 defmodule LiveSaaS.UserAPI.HomeController do
   use LiveSaaS.UserAPI, :controller
   alias LiveSaaS.UserAPI.MessageJSON

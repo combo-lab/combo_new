@@ -1,5 +1,3 @@
-# credo:disable-for-this-file Credo.Check.Readability.Specs
-
 defmodule LiveSaaS.UserAPI.FallbackController do
   @moduledoc """
   Translates controller action results into valid `Plug.Conn` responses.

@@ -1,5 +1,3 @@
-# credo:disable-for-this-file Credo.Check.Readability.Specs
-
 defmodule LiveSaaS.UserAPI.ErrorJSON do
   @moduledoc """
   Provides JSON error responses.

@@ -14,6 +14,7 @@ defmodule LiveSaaS.MixProject do
       releases: releases(),
       deps: deps(),
       compilers: compilers(),
+      listeners: [Phoenix.CodeReloader],
       boundary: boundary(),
       aliases: aliases()
     ]
@@ -50,16 +51,11 @@ defmodule LiveSaaS.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:cozy_telemetry, "~> 0.5"},
-      {:dns_cluster, "~> 0.1"},
-      {:jason, "~> 1.4"},
-      {:cozy_proxy, "~> 0.4"},
-      {:bandit, "~> 1.5"},
-      {:cozy_env, "~> 0.2"},
-      {:plug_probe, "~> 0.1"},
+      # distribution
+      {:dns_cluster, "~> 0.2"},
 
-      # i18n
-      {:gettext, "~> 0.26"},
+      # config
+      {:cozy_env, "~> 0.2"},
 
       # core
       {:argon2_elixir, "~> 4.0"},
@@ -69,14 +65,26 @@ defmodule LiveSaaS.MixProject do
       {:swoosh, "~> 1.16"},
       {:finch, "~> 0.17"},
 
+      # i18n
+      {:gettext, "~> 0.26"},
+
       # web
-      {:phoenix, "~> 1.7"},
+      {:cozy_proxy, "~> 0.4"},
+      {:bandit, "~> 1.5"},
+      {:plug_probe, "~> 0.1"},
+      {:phoenix, "~> 1.8.0-rc.3", override: true},
       {:phoenix_html, "~> 4.1"},
       {:phoenix_ecto, "~> 4.6"},
-      {:phoenix_live_view, "~> 1.0"},
+      {:phoenix_live_view, "~> 1.1.0-rc.0"},
       {:cozy_svg, "~> 0.2"},
       {:phoenix_live_reload, "~> 1.5", only: [:dev]},
       {:floki, ">= 0.30.0", only: [:test]},
+
+      # monitoring
+      {:cozy_telemetry, "~> 0.5"},
+
+      # utils
+      {:jason, "~> 1.4"},
 
       # code quality
       {:boundary, "~> 0.10", runtime: false},

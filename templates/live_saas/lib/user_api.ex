@@ -1,5 +1,3 @@
-# credo:disable-for-this-file Credo.Check.Readability.Specs
-
 defmodule LiveSaaS.UserAPI do
   @moduledoc """
   The entrypoint for defining the web interface, such
@@ -48,9 +46,7 @@ defmodule LiveSaaS.UserAPI do
 
   def controller do
     quote do
-      use Phoenix.Controller,
-        formats: [:json],
-        layouts: []
+      use Phoenix.Controller, formats: [:json]
 
       import Plug.Conn
 

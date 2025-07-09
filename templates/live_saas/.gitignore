@@ -26,7 +26,7 @@ erl_crash.dump
 live_saas-*.tar
 
 # Ignore assets that are produced by build tools.
-/priv/*/static/
+/priv/*/static/build
 
 # Ignore Node.js related files.
 /assets/*/node_modules/

@@ -71,7 +71,7 @@ config :live_saas, LiveSaaS.UserWeb.Endpoint,
 config :live_saas, LiveSaaS.UserWeb.Endpoint,
   live_reload: [
     patterns: [
-      ~r"lib/user_web/(controllers|live|components)/.*(ex|heex)$",
+      ~r"lib/user_web/(?:router|controllers|layouts|components)(?:/.*)?\.(ex|heex)$",
       ~r"priv/user_web/static/(?!uploads/).*(js|css|png|jpeg|jpg|gif|svg)$",
       ~r"priv/i18n/gettext/.*(po)$"
     ]
@@ -109,7 +109,7 @@ config :live_saas, LiveSaaS.AdminWeb.Endpoint,
 config :live_saas, LiveSaaS.AdminWeb.Endpoint,
   live_reload: [
     patterns: [
-      ~r"lib/admin_web/(controllers|live|components)/.*(ex|heex)$",
+      ~r"lib/admin_web/(?:router|controllers|layouts|components)(?:/.*)?\.(ex|heex)$",
       ~r"priv/admin_web/static/(?!uploads/).*(js|css|png|jpeg|jpg|gif|svg)$",
       ~r"priv/i18n/gettext/.*(po)$"
     ]

@@ -1,5 +1,3 @@
-# credo:disable-for-this-file Credo.Check.Readability.Specs
-
 defmodule LiveSaaS.UserWeb.ErrorHTML do
   @moduledoc """
   Provides HTML error pages.

@@ -1,5 +1,3 @@
-# credo:disable-for-this-file Credo.Check.Readability.Specs
-
 defmodule LiveSaaS.AdminWeb do
   @moduledoc """
   The entrypoint for defining the web interface, such
@@ -23,7 +21,6 @@ defmodule LiveSaaS.AdminWeb do
     deps: [
       Phoenix,
       Ecto.Changeset,
-      LiveSaaS.Telemetry,
       LiveSaaS.I18n,
       LiveSaaS.Core
     ],
@@ -31,7 +28,7 @@ defmodule LiveSaaS.AdminWeb do
       Supervisor
     ]
 
-  def static_paths, do: ~w(robots.txt favicon.ico icons images assets)
+  def static_paths, do: ~w(robots.txt favicon.ico build assets)
 
   def router do
     quote do
@@ -40,7 +37,6 @@ defmodule LiveSaaS.AdminWeb do
       # Import common connection and controller functions to use in pipelines
       import Plug.Conn
       import Phoenix.Controller
-      import Phoenix.LiveView.Router
     end
   end
 
@@ -52,9 +48,7 @@ defmodule LiveSaaS.AdminWeb do
 
   def controller do
     quote do
-      use Phoenix.Controller,
-        formats: [:html],
-        layouts: [html: {LiveSaaS.AdminWeb.Layouts, :app}]
+      use Phoenix.Controller, formats: [:html]
 
       use LiveSaaS.I18n, :gettext
 
@@ -64,26 +58,9 @@ defmodule LiveSaaS.AdminWeb do
     end
   end
 
-  def live_view do
-    quote do
-      use Phoenix.LiveView,
-        layout: {LiveSaaS.AdminWeb.Layouts, :app}
-
-      unquote(html_helpers())
-    end
-  end
-
   def component do
     quote do
       unquote(component_helpers())
-    end
-  end
-
-  def live_component do
-    quote do
-      use Phoenix.LiveComponent
-
-      unquote(html_helpers())
     end
   end
 
@@ -122,15 +99,14 @@ defmodule LiveSaaS.AdminWeb do
       import Phoenix.HTML
 
       # UI components
-      import LiveSaaS.AdminWeb.BaseComponents
       import LiveSaaS.AdminWeb.CoreComponents
+
+      # Command modules used in templates
+      alias LiveSaaS.AdminWeb.Layouts
 
       # i18n support
       use LiveSaaS.I18n, :gettext
       alias LiveSaaS.I18n
-
-      # Shortcut for generating JS commands
-      alias Phoenix.LiveView.JS
 
       # Routes generation with the ~p sigil
       unquote(verified_routes())
