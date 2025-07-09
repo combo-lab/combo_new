@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" class="bg-base-50" data-base-path={get_base_path()}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="csrf-token" content={get_csrf_token()} />
+    <link rel="icon" href="/favicon.ico" />
+    <%= if title = assigns[:page_title] do %>
+      <title>{"#{title} · ComboLT.UserWeb"}</title>
+    <% else %>
+      <title>ComboLT.AdminWeb</title>
+    <% end %>
+    <.vite entries={["css/app.css", "js/app.js"]} />
+  </head>
+  <body>
+    {@inner_content}
+  </body>
+</html>

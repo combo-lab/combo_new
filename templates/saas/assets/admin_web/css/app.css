@@ -1,0 +1,95 @@
+@import "tailwindcss";
+
+@source "../css";
+@source "../js";
+@source "../../../lib/admin_web";
+
+@theme static {
+  --font-sans:
+    "Inter Variable", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol", "Noto Color Emoji";
+  --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-mono:
+    "JetBrains Mono Variable", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+
+  --color-base-50: var(--color-slate-50);
+  --color-base-100: var(--color-slate-100);
+  --color-base-200: var(--color-slate-200);
+  --color-base-300: var(--color-slate-300);
+  --color-base-400: var(--color-slate-400);
+  --color-base-500: var(--color-slate-500);
+  --color-base-600: var(--color-slate-600);
+  --color-base-700: var(--color-slate-700);
+  --color-base-800: var(--color-slate-800);
+  --color-base-900: var(--color-slate-900);
+  --color-base-950: var(--color-slate-950);
+
+  --color-brand-50: var(--color-cyan-50);
+  --color-brand-100: var(--color-cyan-100);
+  --color-brand-200: var(--color-cyan-200);
+  --color-brand-300: var(--color-cyan-300);
+  --color-brand-400: var(--color-cyan-400);
+  --color-brand-500: var(--color-cyan-500);
+  --color-brand-600: var(--color-cyan-600);
+  --color-brand-700: var(--color-cyan-700);
+  --color-brand-800: var(--color-cyan-800);
+  --color-brand-900: var(--color-cyan-900);
+  --color-brand-950: var(--color-cyan-950);
+
+  --color-blue-50: var(--color-sky-50);
+  --color-blue-100: var(--color-sky-100);
+  --color-blue-200: var(--color-sky-200);
+  --color-blue-300: var(--color-sky-300);
+  --color-blue-400: var(--color-sky-400);
+  --color-blue-500: var(--color-sky-500);
+  --color-blue-600: var(--color-sky-600);
+  --color-blue-700: var(--color-sky-700);
+  --color-blue-800: var(--color-sky-800);
+  --color-blue-900: var(--color-sky-900);
+  --color-blue-950: var(--color-sky-950);
+
+  --color-green-50: var(--color-emerald-50);
+  --color-green-100: var(--color-emerald-100);
+  --color-green-200: var(--color-emerald-200);
+  --color-green-300: var(--color-emerald-300);
+  --color-green-400: var(--color-emerald-400);
+  --color-green-500: var(--color-emerald-500);
+  --color-green-600: var(--color-emerald-600);
+  --color-green-700: var(--color-emerald-700);
+  --color-green-800: var(--color-emerald-800);
+  --color-green-900: var(--color-emerald-900);
+  --color-green-950: var(--color-emerald-950);
+
+  --color-yellow-50: var(--color-yellow-50);
+  --color-yellow-100: var(--color-yellow-100);
+  --color-yellow-200: var(--color-yellow-200);
+  --color-yellow-300: var(--color-yellow-300);
+  --color-yellow-400: var(--color-yellow-400);
+  --color-yellow-500: var(--color-yellow-500);
+  --color-yellow-600: var(--color-yellow-600);
+  --color-yellow-700: var(--color-yellow-700);
+  --color-yellow-800: var(--color-yellow-800);
+  --color-yellow-900: var(--color-yellow-900);
+  --color-yellow-950: var(--color-yellow-950);
+
+  --color-red-50: var(--color-red-50);
+  --color-red-100: var(--color-red-100);
+  --color-red-200: var(--color-red-200);
+  --color-red-300: var(--color-red-300);
+  --color-red-400: var(--color-red-400);
+  --color-red-500: var(--color-red-500);
+  --color-red-600: var(--color-red-600);
+  --color-red-700: var(--color-red-700);
+  --color-red-800: var(--color-red-800);
+  --color-red-900: var(--color-red-900);
+  --color-red-950: var(--color-red-950);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+*::selection {
+  @apply bg-brand-100;
+}
