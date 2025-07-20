@@ -6,14 +6,11 @@
     "build": "vite build",
     "dev": "vite"
   },
-  "workspaces": [
-    "../../deps/*"
-  ],
   "dependencies": {
     "@fontsource-variable/inter": "^5.2.6",
     "@fontsource-variable/jetbrains-mono": "^5.2.6",
-    "phoenix": "workspace:*",
-    "phoenix_html": "workspace:*"
+    "phoenix": "file:../../deps/phoenix",
+    "phoenix_html": "file:../../deps/phoenix_html"
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.1.0",
