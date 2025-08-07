@@ -18,19 +18,25 @@ defmodule ComboLT.Web.Layouts do
 
   def app(assigns) do
     ~H"""
+    <header>
+      <div>
+        <div>
+          <a href="/">
+            Home
+          </a>
+        </div>
+        <div>
+          <a href="https://hexdocs.pm/combo/">
+            Get Started <span aria-hidden="true">&rarr;</span>
+          </a>
+        </div>
+      </div>
+    </header>
     <main>
       <div>
         {render_slot(@inner_block)}
       </div>
     </main>
     """
-  end
-
-  defp get_base_path do
-    :combo_lt
-    |> Application.get_env(ComboLT.Web.Endpoint)
-    |> get_in([:url, :path])
-    |> then(&(&1 || ""))
-    |> String.trim_trailing("/")
   end
 end
