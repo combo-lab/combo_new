@@ -1,11 +1,11 @@
-defmodule ComboLT.Web.Router do
-  use ComboLT.Web, :router
+defmodule DemoLT.Web.Router do
+  use DemoLT.Web, :router
 
   pipeline :browser do
     plug :accepts, ["html"]
     plug :fetch_session
     plug :fetch_flash
-    plug :put_root_layout, html: {ComboLT.Web.Layouts, :root}
+    plug :put_root_layout, html: {DemoLT.Web.Layouts, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
   end
@@ -14,17 +14,17 @@ defmodule ComboLT.Web.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/", ComboLT.Web do
+  scope "/", DemoLT.Web do
     pipe_through :browser
 
     get "/", PageController, :home
   end
 
-  scope "/api", ComboLT.Web do
+  scope "/api", DemoLT.Web do
     pipe_through :api
   end
 
-  if Application.compile_env(:combo_lt, :dev_routes) do
+  if Application.compile_env(:demo_lt, :dev_routes) do
     scope "/dev" do
       pipe_through :browser
     end

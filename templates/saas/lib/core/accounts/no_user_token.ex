@@ -1,7 +1,7 @@
-defmodule ComboLT.Core.Accounts.NoUserToken do
+defmodule DemoLT.Core.Accounts.NoUserToken do
   @moduledoc false
 
-  use ComboLT.Core.Schema
+  use DemoLT.Core.Schema
 
   @type_defs [
     register: %{

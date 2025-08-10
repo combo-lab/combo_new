@@ -1,4 +1,4 @@
-defmodule ComboLT.Telemetry.Phoenix do
+defmodule DemoLT.Telemetry.Phoenix do
   @moduledoc false
 
   use CozyTelemetry.Spec

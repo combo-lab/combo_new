@@ -1,4 +1,4 @@
-defmodule ComboLT.Core.Repo.Migrations.CreateCitextExtension do
+defmodule DemoLT.Core.Repo.Migrations.CreateCitextExtension do
   use Ecto.Migration
 
   def change do

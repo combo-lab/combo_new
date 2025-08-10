@@ -1,4 +1,4 @@
-defmodule ComboLT.Toolkit.EasyToken do
+defmodule DemoLT.Toolkit.EasyToken do
   @moduledoc """
   Generates, hashes, verifies token in one place.
 

@@ -1,4 +1,4 @@
-defmodule ComboLT.Core.Supervisor do
+defmodule DemoLT.Core.Supervisor do
   use Supervisor
 
   @spec start_link(term()) :: Supervisor.on_start()

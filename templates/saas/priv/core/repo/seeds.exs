@@ -4,7 +4,7 @@
 #
 # Inside the script, you can read and write to any repositories directly:
 #
-#     ComboLT.Core.Repo.insert!(%ComboLT.SomeSchema{})
+#     DemoLT.Core.Repo.insert!(%DemoLT.SomeSchema{})
 #
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.

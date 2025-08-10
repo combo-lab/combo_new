@@ -1,7 +1,7 @@
-defmodule ComboLT.MixProject do
+defmodule DemoLT.MixProject do
   use Mix.Project
 
-  @app :combo_lt
+  @app :demo_lt
   @version "0.1.0"
 
   def project do
@@ -25,7 +25,7 @@ defmodule ComboLT.MixProject do
   # Type `mix help compile.app` for more information.
   def application do
     [
-      mod: {ComboLT.Application, []},
+      mod: {DemoLT.Application, []},
       extra_applications: [:logger, :runtime_tools]
     ]
   end
@@ -150,11 +150,11 @@ defmodule ComboLT.MixProject do
       # ! core
 
       "core.ecto.setup": [
-        "ecto.create -r ComboLT.Core.Repo",
-        "ecto.migrate -r ComboLT.Core.Repo",
+        "ecto.create -r DemoLT.Core.Repo",
+        "ecto.migrate -r DemoLT.Core.Repo",
         "run priv/core/repo/seeds.exs"
       ],
-      "core.ecto.drop": "ecto.drop -r ComboLT.Core.Repo",
+      "core.ecto.drop": "ecto.drop -r DemoLT.Core.Repo",
       "core.ecto.reset": ["core.ecto.drop", "core.ecto.setup"],
 
       # ! user_web

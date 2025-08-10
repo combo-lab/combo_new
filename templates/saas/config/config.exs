@@ -18,19 +18,19 @@ config :phoenix, :json_library, Jason
 
 # ! cozy_telemetry
 
-config :combo_lt, CozyTelemetry,
+config :demo_lt, CozyTelemetry,
   meta: [],
   specs: [
-    ComboLT.Telemetry.VM,
-    ComboLT.Telemetry.Phoenix,
-    ComboLT.Core.Telemetry
+    DemoLT.Telemetry.VM,
+    DemoLT.Telemetry.Phoenix,
+    DemoLT.Core.Telemetry
   ],
   reporter: {:console, []},
   poller: [period: 10_000]
 
 # ! cozy_proxy
 
-config :combo_lt, CozyProxy,
+config :demo_lt, CozyProxy,
   adapter: Bandit,
   http_options: [log_protocol_errors: false],
   backends: [
@@ -39,32 +39,32 @@ config :combo_lt, CozyProxy,
       path: "/probe"
     },
     %{
-      plug: ComboLT.AdminWeb.Endpoint,
+      plug: DemoLT.AdminWeb.Endpoint,
       path: "/admin"
     },
     %{
-      plug: ComboLT.UserAPI.Endpoint,
+      plug: DemoLT.UserAPI.Endpoint,
       path: "/api"
     },
     %{
-      plug: ComboLT.UserWeb.Endpoint,
+      plug: DemoLT.UserWeb.Endpoint,
       path: "/"
     }
   ]
 
 # ! i18n
 
-config :combo_lt, ComboLT.I18n,
+config :demo_lt, DemoLT.I18n,
   locales: ["en"],
   default_locale: "en"
 
 # ! core
 
 # Configure Mix tasks for Ecto.
-config :combo_lt, ecto_repos: [ComboLT.Core.Repo]
+config :demo_lt, ecto_repos: [DemoLT.Core.Repo]
 
 # Configures the database.
-config :combo_lt, ComboLT.Core.Repo,
+config :demo_lt, DemoLT.Core.Repo,
   priv: "priv/core/repo",
   migration_primary_key: [name: :id, type: :binary_id],
   migration_timestamps: [type: :utc_datetime_usec]
@@ -72,42 +72,42 @@ config :combo_lt, ComboLT.Core.Repo,
 # ! user_web
 
 # Configure the endpoint.
-config :combo_lt, ComboLT.UserWeb.Endpoint,
+config :demo_lt, DemoLT.UserWeb.Endpoint,
   url: [path: "/"],
   adapter: Bandit.PhoenixAdapter,
   render_errors: [
-    formats: [html: ComboLT.UserWeb.ErrorHTML],
+    formats: [html: DemoLT.UserWeb.ErrorHTML],
     layout: false
   ],
-  pubsub_server: ComboLT.PubSub,
+  pubsub_server: DemoLT.PubSub,
   live_view: [signing_salt: "==signing_salt=="],
   server: false
 
 # ! user_api
 
 # Configure the endpoint.
-config :combo_lt, ComboLT.UserAPI.Endpoint,
+config :demo_lt, DemoLT.UserAPI.Endpoint,
   url: [path: "/api"],
   adapter: Bandit.PhoenixAdapter,
   render_errors: [
-    formats: [json: ComboLT.UserAPI.ErrorJSON],
+    formats: [json: DemoLT.UserAPI.ErrorJSON],
     layout: false
   ],
-  pubsub_server: ComboLT.PubSub,
+  pubsub_server: DemoLT.PubSub,
   live_view: [signing_salt: "==signing_salt=="],
   server: false
 
 # ! admin_web
 
 # Configure the endpoint.
-config :combo_lt, ComboLT.AdminWeb.Endpoint,
+config :demo_lt, DemoLT.AdminWeb.Endpoint,
   url: [path: "/admin"],
   adapter: Bandit.PhoenixAdapter,
   render_errors: [
-    formats: [html: ComboLT.AdminWeb.ErrorHTML],
+    formats: [html: DemoLT.AdminWeb.ErrorHTML],
     layout: false
   ],
-  pubsub_server: ComboLT.PubSub,
+  pubsub_server: DemoLT.PubSub,
   live_view: [signing_salt: "==signing_salt=="],
   server: false
 

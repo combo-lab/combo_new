@@ -1,12 +1,12 @@
-defmodule ComboLT.AdminWeb do
+defmodule DemoLT.AdminWeb do
   @moduledoc """
   The entrypoint for defining the web interface, such
   as controllers, components, channels, and so on.
 
   This can be used in the application as:
 
-      use ComboLT.AdminWeb, :controller
-      use ComboLT.AdminWeb, :html
+      use DemoLT.AdminWeb, :controller
+      use DemoLT.AdminWeb, :html
 
   The definitions below will be executed for every controller,
   component, etc, so keep them short and clean, focused
@@ -21,8 +21,8 @@ defmodule ComboLT.AdminWeb do
     deps: [
       Phoenix,
       Ecto.Changeset,
-      ComboLT.I18n,
-      ComboLT.Core
+      DemoLT.I18n,
+      DemoLT.Core
     ],
     exports: [
       Supervisor
@@ -50,7 +50,7 @@ defmodule ComboLT.AdminWeb do
     quote do
       use Phoenix.Controller, formats: [:html]
 
-      use ComboLT.I18n, :gettext
+      use DemoLT.I18n, :gettext
 
       import Plug.Conn
 
@@ -99,20 +99,20 @@ defmodule ComboLT.AdminWeb do
       import Phoenix.HTML
 
       # UI components
-      import ComboLT.AdminWeb.CoreComponents
+      import DemoLT.AdminWeb.CoreComponents
 
       # Command modules used in templates
-      alias ComboLT.AdminWeb.Layouts
+      alias DemoLT.AdminWeb.Layouts
 
       # i18n support
-      use ComboLT.I18n, :gettext
-      alias ComboLT.I18n
+      use DemoLT.I18n, :gettext
+      alias DemoLT.I18n
 
       # vite support
       use Combo.Vite.Component,
-        endpoint: ComboLT.Endpoint,
-        static_dir: {:combo_lt, "priv/admin_web/static"},
-        ssr_out_dir: {:combo_lt, "priv/admin_web/ssr"}
+        endpoint: DemoLT.Endpoint,
+        static_dir: {:demo_lt, "priv/admin_web/static"},
+        ssr_out_dir: {:demo_lt, "priv/admin_web/ssr"}
 
       # Routes generation with the ~p sigil
       unquote(verified_routes())
@@ -122,9 +122,9 @@ defmodule ComboLT.AdminWeb do
   def verified_routes do
     quote do
       use Phoenix.VerifiedRoutes,
-        endpoint: ComboLT.AdminWeb.Endpoint,
-        router: ComboLT.AdminWeb.Router,
-        statics: ComboLT.AdminWeb.static_paths()
+        endpoint: DemoLT.AdminWeb.Endpoint,
+        router: DemoLT.AdminWeb.Router,
+        statics: DemoLT.AdminWeb.static_paths()
     end
   end
 

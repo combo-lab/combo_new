@@ -1,12 +1,12 @@
-defmodule ComboLT.Core.Accounts.UserSessionTokens do
+defmodule DemoLT.Core.Accounts.UserSessionTokens do
   @moduledoc false
 
   import Ecto.Query
-  import ComboLT.Toolkit.EasyFlow
-  alias ComboLT.Toolkit.EasyToken
-  alias ComboLT.Core.Repo
-  alias ComboLT.Core.Accounts.User
-  alias ComboLT.Core.Accounts.UserSessionToken
+  import DemoLT.Toolkit.EasyFlow
+  alias DemoLT.Toolkit.EasyToken
+  alias DemoLT.Core.Repo
+  alias DemoLT.Core.Accounts.User
+  alias DemoLT.Core.Accounts.UserSessionToken
 
   @token_format {:binary, size: 32}
 

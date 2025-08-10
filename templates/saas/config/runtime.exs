@@ -21,7 +21,7 @@ end
 
 # ! general
 
-config :combo_lt, :dns_cluster_query, CozyEnv.get_env("DNS_CLUSTER_QUERY")
+config :demo_lt, :dns_cluster_query, CozyEnv.get_env("DNS_CLUSTER_QUERY")
 
 # ! cozy_proxy
 
@@ -46,13 +46,13 @@ cozy_proxy_origin =
   [cozy_proxy_endpoint] ++
     if cozy_proxy_extra_endpoints, do: split_by_comma.(cozy_proxy_extra_endpoints), else: []
 
-config :combo_lt, CozyProxy,
+config :demo_lt, CozyProxy,
   scheme: :http,
   ip: cozy_proxy_listen_ip,
   port: cozy_proxy_listen_port
 
 if CozyEnv.get_env("RELEASE_NAME") || CozyEnv.get_env("COZY_PROXY_SERVER") do
-  config :combo_lt, CozyProxy, server: true
+  config :demo_lt, CozyProxy, server: true
 end
 
 # ! ecto
@@ -63,13 +63,13 @@ ecto_socket_options = if CozyEnv.get_env("ECTO_IPV6", :boolean), do: [:inet6], e
 
 if config_env() == :prod do
   database_url =
-    CozyEnv.fetch_env!("COMBO_LT_CORE_DATABASE_URL",
+    CozyEnv.fetch_env!("DEMO_LT_CORE_DATABASE_URL",
       message: "Set it to something like: ecto://USER:PASS@HOST/DATABASE"
     )
 
-  database_pool_size = CozyEnv.get_env("COMBO_LT_CORE_DATABASE_POOL_SIZE", :integer) || 10
+  database_pool_size = CozyEnv.get_env("DEMO_LT_CORE_DATABASE_POOL_SIZE", :integer) || 10
 
-  config :combo_lt, ComboLT.Core.Repo,
+  config :demo_lt, DemoLT.Core.Repo,
     url: database_url,
     pool_size: database_pool_size,
     socket_options: ecto_socket_options
@@ -80,10 +80,10 @@ if config_env() == :prod do
   # Also, you may need to configure the Swoosh API client of your choice if you
   # are not using SMTP. Here is an example of the configuration:
   #
-  #     config :combo_lt, ComboLT.Core.Mailer,
+  #     config :demo_lt, DemoLT.Core.Mailer,
   #       adapter: Swoosh.Adapters.Mailgun,
-  #       api_key: CozyEnv.fetch_env!("COMBO_LT_CORE_MAILGUN_API_KEY"),
-  #       domain: CozyEnv.fetch_env!("COMBO_LT_CORE_MAILGUN_DOMAIN")
+  #       api_key: CozyEnv.fetch_env!("DEMO_LT_CORE_MAILGUN_API_KEY"),
+  #       domain: CozyEnv.fetch_env!("DEMO_LT_CORE_MAILGUN_DOMAIN")
   #
   # For this example you need include a HTTP client required by Swoosh API client.
   # Swoosh supports Hackney and Finch out of the box:
@@ -95,22 +95,22 @@ end
 
 # ! user_web
 
-config :combo_lt, ComboLT.UserWeb.Endpoint, url: cozy_proxy_parsed_endpoint
+config :demo_lt, DemoLT.UserWeb.Endpoint, url: cozy_proxy_parsed_endpoint
 
 case config_env() do
   :prod ->
     secret_key_base =
-      CozyEnv.fetch_env!("COMBO_LT_USER_WEB_SECRET_KEY_BASE",
+      CozyEnv.fetch_env!("DEMO_LT_USER_WEB_SECRET_KEY_BASE",
         message: "Generate one by calling: mix phx.gen.secret"
       )
 
-    config :combo_lt, ComboLT.UserWeb.Endpoint,
+    config :demo_lt, DemoLT.UserWeb.Endpoint,
       secret_key_base: secret_key_base,
       check_origin: cozy_proxy_origin
 
   :dev ->
     force_watchers = Application.get_env(:phoenix, :serve_endpoints, false)
-    config :combo_lt, ComboLT.UserWeb.Endpoint, force_watchers: force_watchers
+    config :demo_lt, DemoLT.UserWeb.Endpoint, force_watchers: force_watchers
 
   _ ->
     :skip
@@ -118,16 +118,16 @@ end
 
 # ! user_api
 
-config :combo_lt, ComboLT.UserAPI.Endpoint, url: cozy_proxy_parsed_endpoint
+config :demo_lt, DemoLT.UserAPI.Endpoint, url: cozy_proxy_parsed_endpoint
 
 case config_env() do
   :prod ->
     secret_key_base =
-      CozyEnv.fetch_env!("COMBO_LT_USER_API_SECRET_KEY_BASE",
+      CozyEnv.fetch_env!("DEMO_LT_USER_API_SECRET_KEY_BASE",
         message: "Generate one by calling: mix phx.gen.secret"
       )
 
-    config :combo_lt, ComboLT.UserAPI.Endpoint,
+    config :demo_lt, DemoLT.UserAPI.Endpoint,
       secret_key_base: secret_key_base,
       check_origin: cozy_proxy_origin
 
@@ -137,22 +137,22 @@ end
 
 # ! admin_web
 
-config :combo_lt, ComboLT.AdminWeb.Endpoint, url: cozy_proxy_parsed_endpoint
+config :demo_lt, DemoLT.AdminWeb.Endpoint, url: cozy_proxy_parsed_endpoint
 
 case config_env() do
   :prod ->
     secret_key_base =
-      CozyEnv.fetch_env!("COMBO_LT_ADMIN_WEB_SECRET_KEY_BASE",
+      CozyEnv.fetch_env!("DEMO_LT_ADMIN_WEB_SECRET_KEY_BASE",
         message: "Generate one by calling: mix phx.gen.secret"
       )
 
-    config :combo_lt, ComboLT.AdminWeb.Endpoint,
+    config :demo_lt, DemoLT.AdminWeb.Endpoint,
       secret_key_base: secret_key_base,
       check_origin: cozy_proxy_origin
 
   :dev ->
     force_watchers = Application.get_env(:phoenix, :serve_endpoints, false)
-    config :combo_lt, ComboLT.AdminWeb.Endpoint, force_watchers: force_watchers
+    config :demo_lt, DemoLT.AdminWeb.Endpoint, force_watchers: force_watchers
 
   _ ->
     :skip

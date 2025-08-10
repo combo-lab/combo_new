@@ -1,4 +1,4 @@
-defmodule ComboLT.Core.Accounts do
+defmodule DemoLT.Core.Accounts do
   @moduledoc """
   The context for accounts.
 
@@ -112,13 +112,13 @@ defmodule ComboLT.Core.Accounts do
 
   """
 
-  import ComboLT.Toolkit.EasyFlow
-  alias ComboLT.Core.Repo
-  alias ComboLT.Core.Accounts.User
-  alias ComboLT.Core.Accounts.Users
-  alias ComboLT.Core.Accounts.NoUserTokens
-  alias ComboLT.Core.Accounts.UserTokens
-  alias ComboLT.Core.Accounts.UserSessionTokens
+  import DemoLT.Toolkit.EasyFlow
+  alias DemoLT.Core.Repo
+  alias DemoLT.Core.Accounts.User
+  alias DemoLT.Core.Accounts.Users
+  alias DemoLT.Core.Accounts.NoUserTokens
+  alias DemoLT.Core.Accounts.UserTokens
+  alias DemoLT.Core.Accounts.UserSessionTokens
 
   @doc """
   Gets a user.

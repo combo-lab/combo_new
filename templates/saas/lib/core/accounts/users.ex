@@ -1,9 +1,9 @@
-defmodule ComboLT.Core.Accounts.Users do
+defmodule DemoLT.Core.Accounts.Users do
   @moduledoc false
 
   import Ecto.Changeset
-  alias ComboLT.Core.Repo
-  alias ComboLT.Core.Accounts.User
+  alias DemoLT.Core.Repo
+  alias DemoLT.Core.Accounts.User
 
   @type id :: String.t()
   @type email :: String.t()

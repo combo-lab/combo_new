@@ -1,4 +1,4 @@
-defmodule ComboLT.UserWeb.Layouts do
+defmodule DemoLT.UserWeb.Layouts do
   @moduledoc """
   This module holds different layouts used by your application.
 
@@ -7,7 +7,7 @@ defmodule ComboLT.UserWeb.Layouts do
 
   See the `layouts` directory for all templates available.
   """
-  use ComboLT.UserWeb, :html
+  use DemoLT.UserWeb, :html
 
   embed_templates "layouts/*"
 
@@ -55,8 +55,8 @@ defmodule ComboLT.UserWeb.Layouts do
   end
 
   defp get_base_path do
-    :combo_lt
-    |> Application.get_env(ComboLT.UserWeb.Endpoint)
+    :demo_lt
+    |> Application.get_env(DemoLT.UserWeb.Endpoint)
     |> get_in([:url, :path])
     |> then(&(&1 || ""))
     |> String.trim_trailing("/")

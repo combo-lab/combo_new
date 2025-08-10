@@ -6,13 +6,13 @@ config :logger, :default_formatter,
 
 config :combo, :json_module, Jason
 
-config :combo_lt, ComboLT.Web.Endpoint,
+config :demo_lt, DemoLT.Web.Endpoint,
   adapter: Combo.Endpoint.BanditAdapter,
   render_errors: [
-    formats: [html: ComboLT.Web.ErrorHTML, json: ComboLT.Web.ErrorJSON],
+    formats: [html: DemoLT.Web.ErrorHTML, json: DemoLT.Web.ErrorJSON],
     layout: false
   ],
-  pubsub_server: ComboLT.PubSub
+  pubsub_server: DemoLT.PubSub
 
 # Import environment specific config
 #

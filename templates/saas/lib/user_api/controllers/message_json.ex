@@ -1,4 +1,4 @@
-defmodule ComboLT.UserAPI.MessageJSON do
+defmodule DemoLT.UserAPI.MessageJSON do
   @moduledoc false
 
   def show(%{message: message}) do

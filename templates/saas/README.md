@@ -1,4 +1,4 @@
-# ComboLT
+# DemoLT
 
 To start the Phoenix server:
 

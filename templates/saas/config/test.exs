@@ -18,18 +18,18 @@ config :phoenix_live_view, :enable_expensive_runtime_checks, true
 # The MIX_TEST_PARTITION environment variable can be used
 # to provide built-in test partitioning in CI environment.
 # Run `mix help test` for more information.
-config :combo_lt, ComboLT.Core.Repo,
+config :demo_lt, DemoLT.Core.Repo,
   username: "postgres",
   password: "postgres",
   hostname: "localhost",
-  database: "combo_lt_core_test#{System.get_env("COMBO_LT_CORE_MIX_TEST_PARTITION")}",
+  database: "combo_lt_core_test#{System.get_env("DEMO_LT_CORE_MIX_TEST_PARTITION")}",
   pool: Ecto.Adapters.SQL.Sandbox,
   pool_size: System.schedulers_online() * 2
 
 # Configure the mailer
 #
 # In test we don't send emails.
-config :combo_lt, ComboLT.Core.Mailer, adapter: Swoosh.Adapters.Test
+config :demo_lt, DemoLT.Core.Mailer, adapter: Swoosh.Adapters.Test
 
 # Disable swoosh api client as it is only required for production adapters.
 config :swoosh, :api_client, false
@@ -40,7 +40,7 @@ config :swoosh, :api_client, false
 #
 # We don't run a server during test. If one is required, you can enable the
 # server option below.
-config :combo_lt, ComboLT.UserWeb.Endpoint,
+config :demo_lt, DemoLT.UserWeb.Endpoint,
   url: [path: "/"],
   http: [ip: {127, 0, 0, 1}, port: 4101],
   secret_key_base: "=========================secret_key_base=========================",
@@ -52,7 +52,7 @@ config :combo_lt, ComboLT.UserWeb.Endpoint,
 #
 # We don't run a server during test. If one is required, you can enable the
 # server option below.
-config :combo_lt, ComboLT.UserAPI.Endpoint,
+config :demo_lt, DemoLT.UserAPI.Endpoint,
   url: [path: "/"],
   http: [ip: {127, 0, 0, 1}, port: 4102],
   secret_key_base: "=========================secret_key_base=========================",
@@ -64,7 +64,7 @@ config :combo_lt, ComboLT.UserAPI.Endpoint,
 #
 # We don't run a server during test. If one is required, you can enable the
 # server option below.
-config :combo_lt, ComboLT.AdminWeb.Endpoint,
+config :demo_lt, DemoLT.AdminWeb.Endpoint,
   url: [path: "/"],
   http: [ip: {127, 0, 0, 1}, port: 4103],
   secret_key_base: "=========================secret_key_base=========================",

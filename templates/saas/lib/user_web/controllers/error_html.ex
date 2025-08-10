@@ -1,4 +1,4 @@
-defmodule ComboLT.UserWeb.ErrorHTML do
+defmodule DemoLT.UserWeb.ErrorHTML do
   @moduledoc """
   Provides HTML error pages.
 
@@ -20,7 +20,7 @@ defmodule ComboLT.UserWeb.ErrorHTML do
 
   """
 
-  use ComboLT.UserWeb, :html
+  use DemoLT.UserWeb, :html
   require Logger
 
   embed_templates "error_html/*"

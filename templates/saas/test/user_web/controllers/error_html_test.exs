@@ -1,8 +1,8 @@
-defmodule ComboLT.UserWeb.ErrorHTMLTest do
-  use ComboLT.UserWeb.ConnCase, async: true
+defmodule DemoLT.UserWeb.ErrorHTMLTest do
+  use DemoLT.UserWeb.ConnCase, async: true
 
   import Phoenix.Template, only: [render_to_string: 4]
-  alias ComboLT.UserWeb.ErrorHTML
+  alias DemoLT.UserWeb.ErrorHTML
 
   test "renders 404.html" do
     assert render_to_string(ErrorHTML, "404", "html", status: 404) =~ "Not Found"

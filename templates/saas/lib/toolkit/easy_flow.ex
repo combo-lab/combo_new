@@ -1,4 +1,4 @@
-defmodule ComboLT.Toolkit.EasyFlow do
+defmodule DemoLT.Toolkit.EasyFlow do
   @moduledoc """
   Provides tools for `with` expression.
 

@@ -1,5 +1,5 @@
-defmodule ComboLT.Core do
+defmodule DemoLT.Core do
   @moduledoc """
-  `ComboLT.Core` manages the domain and business logic.
+  `DemoLT.Core` manages the domain and business logic.
   """
 end

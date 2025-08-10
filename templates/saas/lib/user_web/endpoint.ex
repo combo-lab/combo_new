@@ -1,5 +1,5 @@
-defmodule ComboLT.UserWeb.Endpoint do
-  use Phoenix.Endpoint, otp_app: :combo_lt
+defmodule DemoLT.UserWeb.Endpoint do
+  use Phoenix.Endpoint, otp_app: :demo_lt
 
   # The session will be stored in the cookie and signed,
   # this means its contents can be read but not tampered with.
@@ -13,7 +13,7 @@ defmodule ComboLT.UserWeb.Endpoint do
 
   # This option controls how many supervisors will be spawned to handle sockets.
   # See `Phoenix.Socket` for more details.
-  @socket_partitions_options if(Application.compile_env(:combo_lt, :process_limit),
+  @socket_partitions_options if(Application.compile_env(:demo_lt, :process_limit),
                                do: [partitions: 2],
                                else: []
                              )
@@ -24,9 +24,9 @@ defmodule ComboLT.UserWeb.Endpoint do
   # when deploying the static files in production.
   plug Plug.Static,
     at: "/",
-    from: {:combo_lt, "priv/user_web/static"},
+    from: {:demo_lt, "priv/user_web/static"},
     gzip: false,
-    only: ComboLT.UserWeb.static_paths()
+    only: DemoLT.UserWeb.static_paths()
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of the endpoint.
@@ -50,5 +50,5 @@ defmodule ComboLT.UserWeb.Endpoint do
   plug Plug.MethodOverride
   plug Plug.Head
   plug Plug.Session, @session_options
-  plug ComboLT.UserWeb.Router
+  plug DemoLT.UserWeb.Router
 end

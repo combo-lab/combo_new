@@ -1,23 +1,23 @@
-defmodule ComboLT.UserWeb.Router do
-  use ComboLT.UserWeb, :router
+defmodule DemoLT.UserWeb.Router do
+  use DemoLT.UserWeb, :router
 
   pipeline :browser do
     plug :accepts, ["html"]
     plug :fetch_session
     plug :fetch_flash
-    plug :put_root_layout, html: {ComboLT.UserWeb.Layouts, :root}
+    plug :put_root_layout, html: {DemoLT.UserWeb.Layouts, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
   end
 
-  scope "/", ComboLT.UserWeb do
+  scope "/", DemoLT.UserWeb do
     pipe_through :browser
 
     get "/", PageController, :home
   end
 
   # Enable Swoosh mailbox preview in development
-  if Application.compile_env(:combo_lt, :dev_routes) do
+  if Application.compile_env(:demo_lt, :dev_routes) do
     scope "/dev" do
       pipe_through :browser
 

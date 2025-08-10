@@ -1,4 +1,4 @@
-defmodule ComboLT.AdminWeb.Supervisor do
+defmodule DemoLT.AdminWeb.Supervisor do
   @moduledoc false
 
   use Supervisor
@@ -11,7 +11,7 @@ defmodule ComboLT.AdminWeb.Supervisor do
   @impl Supervisor
   def init(_arg) do
     children = [
-      ComboLT.AdminWeb.Endpoint
+      DemoLT.AdminWeb.Endpoint
     ]
 
     Supervisor.init(children, strategy: :one_for_one)

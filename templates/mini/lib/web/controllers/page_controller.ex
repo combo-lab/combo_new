@@ -1,5 +1,5 @@
-defmodule ComboLT.Web.PageController do
-  use ComboLT.Web, :controller
+defmodule DemoLT.Web.PageController do
+  use DemoLT.Web, :controller
 
   def home(conn, _params) do
     render(conn, :home)

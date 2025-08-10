@@ -1,4 +1,4 @@
-defmodule ComboLT.Toolkit do
+defmodule DemoLT.Toolkit do
   use Boundary,
     deps: [],
     exports: [

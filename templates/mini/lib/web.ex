@@ -1,12 +1,12 @@
-defmodule ComboLT.Web do
+defmodule DemoLT.Web do
   @moduledoc """
   Defines the web interface, such as controllers, components, channels,
   and so on.
 
   This can be used in the application as:
 
-      use ComboLT.Web, :controller
-      use ComboLT.Web, :html
+      use DemoLT.Web, :controller
+      use DemoLT.Web, :html
 
   The definitions below will be executed for every controller, component, etc,
   so keep them short and clean, focused on imports, uses and aliases.
@@ -70,7 +70,7 @@ defmodule ComboLT.Web do
       use Combo.HTML
 
       # Common modules used in templates
-      alias ComboLT.Web.Layouts
+      alias DemoLT.Web.Layouts
 
       # Routes generation with the ~p sigil
       unquote(verified_routes())
@@ -80,9 +80,9 @@ defmodule ComboLT.Web do
   def verified_routes do
     quote do
       use Combo.VerifiedRoutes,
-        endpoint: ComboLT.Web.Endpoint,
-        router: ComboLT.Web.Router,
-        statics: ComboLT.Web.static_paths()
+        endpoint: DemoLT.Web.Endpoint,
+        router: DemoLT.Web.Router,
+        statics: DemoLT.Web.static_paths()
     end
   end
 end

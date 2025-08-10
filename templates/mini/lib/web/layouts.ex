@@ -1,5 +1,5 @@
-defmodule ComboLT.Web.Layouts do
-  use ComboLT.Web, :html
+defmodule DemoLT.Web.Layouts do
+  use DemoLT.Web, :html
 
   embed_templates "layouts/*"
 

@@ -1,11 +1,11 @@
-defmodule ComboLT.Core.Accounts.UserTokens do
+defmodule DemoLT.Core.Accounts.UserTokens do
   @moduledoc false
 
   import Ecto.Query
-  alias ComboLT.Toolkit.EasyToken
-  alias ComboLT.Core.Repo
-  alias ComboLT.Core.Accounts.User
-  alias ComboLT.Core.Accounts.UserToken
+  alias DemoLT.Toolkit.EasyToken
+  alias DemoLT.Core.Repo
+  alias DemoLT.Core.Accounts.User
+  alias DemoLT.Core.Accounts.UserToken
 
   @type sent_to :: String.t()
   @type payload :: map()

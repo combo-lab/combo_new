@@ -1,6 +1,6 @@
-defmodule ComboLT.Core.Repo do
+defmodule DemoLT.Core.Repo do
   use Ecto.Repo,
-    otp_app: :combo_lt,
+    otp_app: :demo_lt,
     adapter: Ecto.Adapters.Postgres
 
   @doc """

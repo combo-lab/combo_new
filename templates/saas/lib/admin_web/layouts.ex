@@ -1,4 +1,4 @@
-defmodule ComboLT.AdminWeb.Layouts do
+defmodule DemoLT.AdminWeb.Layouts do
   @moduledoc """
   This module holds different layouts used by your application.
 
@@ -7,7 +7,7 @@ defmodule ComboLT.AdminWeb.Layouts do
 
   See the `layouts` directory for all templates available.
   """
-  use ComboLT.AdminWeb, :html
+  use DemoLT.AdminWeb, :html
 
   embed_templates "layouts/*"
 
@@ -55,8 +55,8 @@ defmodule ComboLT.AdminWeb.Layouts do
   end
 
   defp get_base_path do
-    :combo_lt
-    |> Application.get_env(ComboLT.AdminWeb.Endpoint)
+    :demo_lt
+    |> Application.get_env(DemoLT.AdminWeb.Endpoint)
     |> get_in([:url, :path])
     |> then(&(&1 || ""))
     |> String.trim_trailing("/")

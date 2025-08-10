@@ -1,4 +1,4 @@
-defmodule ComboLT.Core.DataCase do
+defmodule DemoLT.Core.DataCase do
   @moduledoc """
   This module defines the setup for tests requiring
   access to the application's data layer.
@@ -10,7 +10,7 @@ defmodule ComboLT.Core.DataCase do
   we enable the SQL sandbox, so changes done to the database
   are reverted at the end of every test. If you are using
   PostgreSQL, you can even run database tests asynchronously
-  by setting `use ComboLT.Core.DataCase, async: true`, although
+  by setting `use DemoLT.Core.DataCase, async: true`, although
   this option is not recommended for other databases.
   """
 
@@ -18,17 +18,17 @@ defmodule ComboLT.Core.DataCase do
 
   using do
     quote do
-      alias ComboLT.Core.Repo
+      alias DemoLT.Core.Repo
 
       import Ecto
       import Ecto.Changeset
       import Ecto.Query
-      import ComboLT.Core.DataCase
+      import DemoLT.Core.DataCase
     end
   end
 
   setup tags do
-    ComboLT.Core.DataCase.setup_sandbox(tags)
+    DemoLT.Core.DataCase.setup_sandbox(tags)
     :ok
   end
 
@@ -37,7 +37,7 @@ defmodule ComboLT.Core.DataCase do
   """
   @spec setup_sandbox(keyword() | map()) :: :ok
   def setup_sandbox(tags) do
-    pid = Ecto.Adapters.SQL.Sandbox.start_owner!(ComboLT.Core.Repo, shared: not tags[:async])
+    pid = Ecto.Adapters.SQL.Sandbox.start_owner!(DemoLT.Core.Repo, shared: not tags[:async])
     on_exit(fn -> Ecto.Adapters.SQL.Sandbox.stop_owner(pid) end)
   end
 

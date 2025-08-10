@@ -1,5 +1,5 @@
-defmodule ComboLT.AdminWeb.Endpoint do
-  use Phoenix.Endpoint, otp_app: :combo_lt
+defmodule DemoLT.AdminWeb.Endpoint do
+  use Phoenix.Endpoint, otp_app: :demo_lt
 
   # The session will be stored in the cookie and signed,
   # this means its contents can be read but not tampered with.
@@ -13,7 +13,7 @@ defmodule ComboLT.AdminWeb.Endpoint do
 
   # This option controls how many supervisors will be spawned to handle sockets.
   # See `Phoenix.Socket` for more details.
-  @socket_partitions_options if(Application.compile_env(:combo_lt, :process_limit),
+  @socket_partitions_options if(Application.compile_env(:demo_lt, :process_limit),
                                do: [partitions: 2],
                                else: []
                              )
@@ -31,9 +31,9 @@ defmodule ComboLT.AdminWeb.Endpoint do
   # when deploying the static files in production.
   plug Plug.Static,
     at: "/",
-    from: {:combo_lt, "priv/admin_web/static"},
+    from: {:demo_lt, "priv/admin_web/static"},
     gzip: false,
-    only: ComboLT.AdminWeb.static_paths()
+    only: DemoLT.AdminWeb.static_paths()
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of the endpoint.
@@ -57,5 +57,5 @@ defmodule ComboLT.AdminWeb.Endpoint do
   plug Plug.MethodOverride
   plug Plug.Head
   plug Plug.Session, @session_options
-  plug ComboLT.AdminWeb.Router
+  plug DemoLT.AdminWeb.Router
 end

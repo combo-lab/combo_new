@@ -1,7 +1,7 @@
-defmodule ComboLT.Web.ErrorJSONTest do
-  use ComboLT.Web.ConnCase, async: true
+defmodule DemoLT.Web.ErrorJSONTest do
+  use DemoLT.Web.ConnCase, async: true
 
-  alias ComboLT.Web.ErrorJSON
+  alias DemoLT.Web.ErrorJSON
 
   test "renders 404" do
     assert ErrorJSON.render("404.json", %{}) == %{errors: %{detail: "Not Found"}}

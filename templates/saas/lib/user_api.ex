@@ -1,12 +1,12 @@
-defmodule ComboLT.UserAPI do
+defmodule DemoLT.UserAPI do
   @moduledoc """
   The entrypoint for defining the web interface, such
   as controllers, components, channels, and so on.
 
   This can be used in the application as:
 
-      use ComboLT.UserAPI, :router
-      use ComboLT.UserAPI, :controller
+      use DemoLT.UserAPI, :router
+      use DemoLT.UserAPI, :controller
 
   The definitions below will be executed for every controller,
   component, etc, so keep them short and clean, focused
@@ -21,8 +21,8 @@ defmodule ComboLT.UserAPI do
     deps: [
       Phoenix,
       Ecto.Changeset,
-      ComboLT.I18n,
-      ComboLT.Core
+      DemoLT.I18n,
+      DemoLT.Core
     ],
     exports: [
       Supervisor
@@ -52,15 +52,15 @@ defmodule ComboLT.UserAPI do
 
       unquote(verified_routes())
 
-      action_fallback ComboLT.UserAPI.FallbackController
+      action_fallback DemoLT.UserAPI.FallbackController
     end
   end
 
   def verified_routes do
     quote do
       use Phoenix.VerifiedRoutes,
-        endpoint: ComboLT.UserAPI.Endpoint,
-        router: ComboLT.UserAPI.Router
+        endpoint: DemoLT.UserAPI.Endpoint,
+        router: DemoLT.UserAPI.Router
     end
   end
 

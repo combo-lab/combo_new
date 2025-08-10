@@ -1,4 +1,4 @@
-defmodule ComboLT.Core.Supervisor do
+defmodule DemoLT.Core.Supervisor do
   @moduledoc false
 
   use Supervisor
@@ -11,9 +11,9 @@ defmodule ComboLT.Core.Supervisor do
   @impl Supervisor
   def init(_arg) do
     children = [
-      ComboLT.Core.Repo,
+      DemoLT.Core.Repo,
       # Start the Finch HTTP client for sending emails
-      {Finch, name: ComboLT.Core.Finch}
+      {Finch, name: DemoLT.Core.Finch}
     ]
 
     Supervisor.init(children, strategy: :one_for_one)

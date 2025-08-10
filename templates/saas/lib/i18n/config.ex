@@ -1,7 +1,7 @@
-defmodule ComboLT.I18n.Config do
+defmodule DemoLT.I18n.Config do
   @moduledoc false
 
-  @compiled_env Application.compile_env!(:combo_lt, ComboLT.I18n)
+  @compiled_env Application.compile_env!(:demo_lt, DemoLT.I18n)
   @locales Keyword.fetch!(@compiled_env, :locales)
   @default_locale Keyword.fetch!(@compiled_env, :default_locale)
 

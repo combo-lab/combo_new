@@ -1,4 +1,4 @@
-defmodule ComboLT.UserAPI.ConnCase do
+defmodule DemoLT.UserAPI.ConnCase do
   @moduledoc """
   This module defines the test case to be used by
   tests that require setting up a connection.
@@ -11,7 +11,7 @@ defmodule ComboLT.UserAPI.ConnCase do
   we enable the SQL sandbox, so changes done to the database
   are reverted at the end of every test. If you are using
   PostgreSQL, you can even run database tests asynchronously
-  by setting `use ComboLT.UserAPI.ConnCase, async: true`, although
+  by setting `use DemoLT.UserAPI.ConnCase, async: true`, although
   this option is not recommended for other databases.
   """
 
@@ -20,19 +20,19 @@ defmodule ComboLT.UserAPI.ConnCase do
   using do
     quote do
       # The default endpoint for testing
-      @endpoint ComboLT.UserAPI.Endpoint
+      @endpoint DemoLT.UserAPI.Endpoint
 
-      use ComboLT.UserAPI, :verified_routes
+      use DemoLT.UserAPI, :verified_routes
 
       # Import conveniences for testing with connections
       import Plug.Conn
       import Phoenix.ConnTest
-      import ComboLT.UserAPI.ConnCase
+      import DemoLT.UserAPI.ConnCase
     end
   end
 
   setup tags do
-    ComboLT.Core.DataCase.setup_sandbox(tags)
+    DemoLT.Core.DataCase.setup_sandbox(tags)
     {:ok, conn: Phoenix.ConnTest.build_conn()}
   end
 end

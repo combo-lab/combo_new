@@ -15,15 +15,15 @@ config :combo, :plug_init_mode, :runtime
 config :combo, :ceex_debug_annotations, true
 
 # Enable dev routes
-config :combo_lt, dev_routes: true
+config :demo_lt, dev_routes: true
 
 # Limit running processes, which is good for:
 #
 #   * inspecting process tree in :observer without too much scrolling
 #   * ...
-config :combo_lt, process_limit: true
+config :demo_lt, process_limit: true
 
-config :combo_lt, ComboLT.Web.Endpoint,
+config :demo_lt, DemoLT.Web.Endpoint,
   # http: [
   #   transport_options: [num_acceptors: 2]
   # ],
@@ -32,7 +32,7 @@ config :combo_lt, ComboLT.Web.Endpoint,
   debug_errors: true,
   secret_key_base: "=========================secret_key_base========================="
 
-config :combo_lt, ComboLT.Web.Endpoint,
+config :demo_lt, DemoLT.Web.Endpoint,
   live_reload: [
     patterns: [
       ~r"lib/web/(?:router|controllers|layouts|components)(?:/.*)?\.(ex|ceex)$",

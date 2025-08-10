@@ -1,12 +1,12 @@
-defmodule ComboLT.UserWeb do
+defmodule DemoLT.UserWeb do
   @moduledoc """
   The entrypoint for defining the web interface, such
   as controllers, components, channels, and so on.
 
   This can be used in the application as:
 
-      use ComboLT.UserWeb, :controller
-      use ComboLT.UserWeb, :html
+      use DemoLT.UserWeb, :controller
+      use DemoLT.UserWeb, :html
 
   The definitions below will be executed for every controller,
   component, etc, so keep them short and clean, focused
@@ -21,8 +21,8 @@ defmodule ComboLT.UserWeb do
     deps: [
       Phoenix,
       Ecto.Changeset,
-      ComboLT.I18n,
-      ComboLT.Core
+      DemoLT.I18n,
+      DemoLT.Core
     ],
     exports: [
       Supervisor
@@ -50,7 +50,7 @@ defmodule ComboLT.UserWeb do
     quote do
       use Phoenix.Controller, formats: [:html]
 
-      use ComboLT.I18n, :gettext
+      use DemoLT.I18n, :gettext
 
       import Plug.Conn
 
@@ -99,20 +99,20 @@ defmodule ComboLT.UserWeb do
       import Phoenix.HTML
 
       # UI components
-      import ComboLT.UserWeb.CoreComponents
+      import DemoLT.UserWeb.CoreComponents
 
       # Command modules used in templates
-      alias ComboLT.UserWeb.Layouts
+      alias DemoLT.UserWeb.Layouts
 
       # i18n support
-      use ComboLT.I18n, :gettext
-      alias ComboLT.I18n
+      use DemoLT.I18n, :gettext
+      alias DemoLT.I18n
 
       # vite support
       use Combo.Vite.Component,
-        endpoint: ComboLT.Endpoint,
-        static_dir: {:combo_lt, "priv/user_web/static"},
-        ssr_out_dir: {:combo_lt, "priv/user_web/ssr"}
+        endpoint: DemoLT.Endpoint,
+        static_dir: {:demo_lt, "priv/user_web/static"},
+        ssr_out_dir: {:demo_lt, "priv/user_web/ssr"}
 
       # Routes generation with the ~p sigil
       unquote(verified_routes())
@@ -122,9 +122,9 @@ defmodule ComboLT.UserWeb do
   def verified_routes do
     quote do
       use Phoenix.VerifiedRoutes,
-        endpoint: ComboLT.UserWeb.Endpoint,
-        router: ComboLT.UserWeb.Router,
-        statics: ComboLT.UserWeb.static_paths()
+        endpoint: DemoLT.UserWeb.Endpoint,
+        router: DemoLT.UserWeb.Router,
+        statics: DemoLT.UserWeb.static_paths()
     end
   end
 

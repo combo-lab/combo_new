@@ -1,4 +1,4 @@
-defmodule ComboLT.Telemetry.VM do
+defmodule DemoLT.Telemetry.VM do
   @moduledoc false
 
   use CozyTelemetry.Spec

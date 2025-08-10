@@ -1,8 +1,8 @@
-defmodule ComboLT.Core.Accounts.UserToken do
+defmodule DemoLT.Core.Accounts.UserToken do
   @moduledoc false
 
-  use ComboLT.Core.Schema
-  alias ComboLT.Core.Accounts.User
+  use DemoLT.Core.Schema
+  alias DemoLT.Core.Accounts.User
 
   @type_defs [
     email_change: %{

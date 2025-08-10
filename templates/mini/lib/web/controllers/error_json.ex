@@ -1,4 +1,4 @@
-defmodule ComboLT.Web.ErrorJSON do
+defmodule DemoLT.Web.ErrorJSON do
   # If you want to customize a particular status code, you may add your
   # own clauses, such as:
   #

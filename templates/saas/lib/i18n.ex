@@ -1,4 +1,4 @@
-defmodule ComboLT.I18n do
+defmodule DemoLT.I18n do
   @moduledoc """
   Provides i18n support.
 
@@ -16,15 +16,15 @@ defmodule ComboLT.I18n do
 
   When an Elixir process want to change the locale of all backends. It
   should use `put_locale/1` provided by this module instead of the
-  `ComboLT.I18n.GettextBackend.put_locale/1`, etc.
+  `DemoLT.I18n.GettextBackend.put_locale/1`, etc.
 
   """
 
   use Boundary
 
-  alias ComboLT.I18n.Config
-  alias ComboLT.I18n.GettextBackend
-  require ComboLT.I18n.Config
+  alias DemoLT.I18n.Config
+  alias DemoLT.I18n.GettextBackend
+  require DemoLT.I18n.Config
 
   @type locale :: String.t()
   @type locales :: [locale()]

@@ -1,5 +1,5 @@
-defmodule ComboLT.UserAPI.Endpoint do
-  use Phoenix.Endpoint, otp_app: :combo_lt
+defmodule DemoLT.UserAPI.Endpoint do
+  use Phoenix.Endpoint, otp_app: :demo_lt
 
   # The session will be stored in the cookie and signed,
   # this means its contents can be read but not tampered with.
@@ -28,5 +28,5 @@ defmodule ComboLT.UserAPI.Endpoint do
   plug Plug.MethodOverride
   plug Plug.Head
   plug Plug.Session, @session_options
-  plug ComboLT.UserAPI.Router
+  plug DemoLT.UserAPI.Router
 end

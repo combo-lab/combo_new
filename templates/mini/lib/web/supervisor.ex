@@ -1,4 +1,4 @@
-defmodule ComboLT.Web.Supervisor do
+defmodule DemoLT.Web.Supervisor do
   use Supervisor
 
   @spec start_link(term()) :: Supervisor.on_start()
@@ -9,7 +9,7 @@ defmodule ComboLT.Web.Supervisor do
   @impl Supervisor
   def init(_arg) do
     children = [
-      ComboLT.Web.Endpoint
+      DemoLT.Web.Endpoint
     ]
 
     Supervisor.init(children, strategy: :one_for_one)

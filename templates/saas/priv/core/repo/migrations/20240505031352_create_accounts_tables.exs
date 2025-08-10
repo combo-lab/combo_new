@@ -1,4 +1,4 @@
-defmodule ComboLT.Core.Repo.Migrations.CreateAccountsTables do
+defmodule DemoLT.Core.Repo.Migrations.CreateAccountsTables do
   use Ecto.Migration
 
   def change do

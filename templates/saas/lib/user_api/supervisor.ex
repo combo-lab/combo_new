@@ -1,4 +1,4 @@
-defmodule ComboLT.UserAPI.Supervisor do
+defmodule DemoLT.UserAPI.Supervisor do
   @moduledoc false
 
   use Supervisor
@@ -11,7 +11,7 @@ defmodule ComboLT.UserAPI.Supervisor do
   @impl Supervisor
   def init(_arg) do
     children = [
-      ComboLT.UserAPI.Endpoint
+      DemoLT.UserAPI.Endpoint
     ]
 
     Supervisor.init(children, strategy: :one_for_one)

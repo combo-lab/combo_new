@@ -1,7 +1,7 @@
-defmodule ComboLT.Core.Accounts.User do
+defmodule DemoLT.Core.Accounts.User do
   @moduledoc false
 
-  use ComboLT.Core.Schema
+  use DemoLT.Core.Schema
 
   schema "accounts_users" do
     field :email, :string

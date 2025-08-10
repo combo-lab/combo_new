@@ -6,9 +6,9 @@
     <meta name="csrf-token" content={get_csrf_token()} />
     <link rel="icon" href="/favicon.ico" />
     <%= if title = assigns[:page_title] do %>
-      <title>{"#{title} · ComboLT.UserWeb"}</title>
+      <title>{"#{title} · DemoLT.UserWeb"}</title>
     <% else %>
-      <title>ComboLT.AdminWeb</title>
+      <title>DemoLT.AdminWeb</title>
     <% end %>
     <.vite entries={["css/app.css", "js/app.js"]} />
   </head>

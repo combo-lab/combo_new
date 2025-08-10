@@ -1,8 +1,8 @@
-defmodule ComboLT.Core.Accounts.UserSessionToken do
+defmodule DemoLT.Core.Accounts.UserSessionToken do
   @moduledoc false
 
-  use ComboLT.Core.Schema
-  alias ComboLT.Core.Accounts.User
+  use DemoLT.Core.Schema
+  alias DemoLT.Core.Accounts.User
 
   # Since expired session token requires user to log in again, in order to
   # minimize the impact on users' continuous usage experience as much as

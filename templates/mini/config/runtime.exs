@@ -30,7 +30,7 @@ listen_port =
 
 origins = [base_url]
 
-config :combo_lt, ComboLT.Web.Endpoint,
+config :demo_lt, DemoLT.Web.Endpoint,
   url: parsed_url,
   http: [
     ip: listen_ip,
@@ -44,7 +44,7 @@ case config_env() do
         message: "Generate one by calling: mix combo.gen.secret"
       )
 
-    config :combo_lt, ComboLT.Web.Endpoint,
+    config :demo_lt, DemoLT.Web.Endpoint,
       secret_key_base: secret_key_base,
       check_origin: origins
 
@@ -53,5 +53,5 @@ case config_env() do
 end
 
 if CozyEnv.get_env("RELEASE_NAME") do
-  config :combo_lt, ComboLT.Web.Endpoint, server: true
+  config :demo_lt, DemoLT.Web.Endpoint, server: true
 end

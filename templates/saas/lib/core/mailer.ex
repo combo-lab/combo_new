@@ -1,3 +1,3 @@
-defmodule ComboLT.Core.Mailer do
-  use Swoosh.Mailer, otp_app: :combo_lt
+defmodule DemoLT.Core.Mailer do
+  use Swoosh.Mailer, otp_app: :demo_lt
 end

@@ -1,5 +1,5 @@
-defmodule ComboLT.UserWeb.PageControllerTest do
-  use ComboLT.UserWeb.ConnCase
+defmodule DemoLT.UserWeb.PageControllerTest do
+  use DemoLT.UserWeb.ConnCase
 
   test "GET /", %{conn: conn} do
     conn = get(conn, ~p"/")

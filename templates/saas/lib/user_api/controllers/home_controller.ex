@@ -1,6 +1,6 @@
-defmodule ComboLT.UserAPI.HomeController do
-  use ComboLT.UserAPI, :controller
-  alias ComboLT.UserAPI.MessageJSON
+defmodule DemoLT.UserAPI.HomeController do
+  use DemoLT.UserAPI, :controller
+  alias DemoLT.UserAPI.MessageJSON
 
   def welcome(conn, _) do
     message = "Welcome to the UserAPI world!"

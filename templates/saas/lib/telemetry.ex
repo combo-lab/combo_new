@@ -1,4 +1,4 @@
-defmodule ComboLT.Telemetry do
+defmodule DemoLT.Telemetry do
   @moduledoc false
 
   use Boundary,
@@ -31,6 +31,6 @@ defmodule ComboLT.Telemetry do
   end
 
   defp config do
-    Application.fetch_env!(:combo_lt, CozyTelemetry)
+    Application.fetch_env!(:demo_lt, CozyTelemetry)
   end
 end

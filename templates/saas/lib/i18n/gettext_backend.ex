@@ -1,10 +1,10 @@
-defmodule ComboLT.I18n.GettextBackend do
+defmodule DemoLT.I18n.GettextBackend do
   @moduledoc """
   Provides i18n support with a gettext-based API.
 
   It provides a set of macros for translations, for example:
 
-      use Gettext, backend: ComboLT.I18n.GettextBackend
+      use Gettext, backend: DemoLT.I18n.GettextBackend
 
       # Simple translation
       gettext("Here is the string to translate")
@@ -36,12 +36,12 @@ defmodule ComboLT.I18n.GettextBackend do
 
   """
 
-  alias ComboLT.I18n.Config
-  require ComboLT.I18n.Config
+  alias DemoLT.I18n.Config
+  require DemoLT.I18n.Config
 
   # credo:disable-for-next-line Credo.Check.Readability.StrictModuleLayout
   use Gettext.Backend,
-    otp_app: :combo_lt,
+    otp_app: :demo_lt,
     priv: "priv/i18n/gettext",
     allowed_locales: Config.locales(),
     default_locale: Config.default_locale()

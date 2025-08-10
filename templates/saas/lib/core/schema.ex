@@ -1,4 +1,4 @@
-defmodule ComboLT.Core.Schema do
+defmodule DemoLT.Core.Schema do
   defmacro __using__(_opts) do
     quote do
       use Ecto.Schema

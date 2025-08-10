@@ -1,4 +1,4 @@
-defmodule ComboLT.Web.ConnCase do
+defmodule DemoLT.Web.ConnCase do
   @moduledoc """
   This module defines the test case to be used by tests that require
   setting up a connection.
@@ -9,14 +9,14 @@ defmodule ComboLT.Web.ConnCase do
   using do
     quote do
       # The default endpoint for testing
-      @endpoint ComboLT.Web.Endpoint
+      @endpoint DemoLT.Web.Endpoint
 
-      use ComboLT.Web, :verified_routes
+      use DemoLT.Web, :verified_routes
 
       # Import conveniences for testing with connections
       import Plug.Conn
       import Combo.ConnTest
-      import ComboLT.Web.ConnCase
+      import DemoLT.Web.ConnCase
     end
   end
 

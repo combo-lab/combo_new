@@ -1,8 +1,8 @@
-defmodule ComboLT.AdminWeb.CoreComponents do
+defmodule DemoLT.AdminWeb.CoreComponents do
   @moduledoc """
   Provides core UI components.
   """
 
-  use ComboLT.AdminWeb, :component
-  use ComboLT.I18n, :gettext
+  use DemoLT.AdminWeb, :component
+  use DemoLT.I18n, :gettext
 end

@@ -1,6 +1,6 @@
-defmodule ComboLT.Core do
+defmodule DemoLT.Core do
   @moduledoc """
-  `ComboLT.Core` keeps the contexts that define the domain
+  `DemoLT.Core` keeps the contexts that define the domain
   and business logic.
 
   Contexts are also responsible for managing data, regardless
@@ -11,8 +11,8 @@ defmodule ComboLT.Core do
     deps: [
       Ecto,
       Ecto.Changeset,
-      ComboLT.Toolkit,
-      ComboLT.I18n
+      DemoLT.Toolkit,
+      DemoLT.I18n
     ],
     exports: [
       Supervisor

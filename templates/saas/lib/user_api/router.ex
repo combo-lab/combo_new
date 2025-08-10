@@ -1,11 +1,11 @@
-defmodule ComboLT.UserAPI.Router do
-  use ComboLT.UserAPI, :router
+defmodule DemoLT.UserAPI.Router do
+  use DemoLT.UserAPI, :router
 
   pipeline :api do
     plug :accepts, ["json"]
   end
 
-  scope "/", ComboLT.UserAPI do
+  scope "/", DemoLT.UserAPI do
     pipe_through :api
 
     get "/", HomeController, :welcome

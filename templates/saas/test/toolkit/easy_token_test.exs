@@ -1,6 +1,6 @@
-defmodule ComboLT.Toolkit.EasyTokenTest do
+defmodule DemoLT.Toolkit.EasyTokenTest do
   use ExUnit.Case
-  alias ComboLT.Toolkit.EasyToken
+  alias DemoLT.Toolkit.EasyToken
 
   describe "generate/1, hash/2 and verify/3" do
     test "for :binary format" do

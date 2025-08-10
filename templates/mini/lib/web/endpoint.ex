@@ -1,5 +1,5 @@
-defmodule ComboLT.Web.Endpoint do
-  use Combo.Endpoint, otp_app: :combo_lt
+defmodule DemoLT.Web.Endpoint do
+  use Combo.Endpoint, otp_app: :demo_lt
 
   # The session will be stored in the cookie and signed, this means its
   # contents can be read but not tampered with.
@@ -15,7 +15,7 @@ defmodule ComboLT.Web.Endpoint do
   # sockets.
   #
   # See `Combo.Socket` for more details.
-  @socket_opts if(Application.compile_env(:combo_lt, :process_limit),
+  @socket_opts if(Application.compile_env(:demo_lt, :process_limit),
                  do: [partitions: 2],
                  else: []
                )
@@ -28,9 +28,9 @@ defmodule ComboLT.Web.Endpoint do
   # when deploying the static files in production.
   plug Plug.Static,
     at: "/",
-    from: :combo_lt,
+    from: :demo_lt,
     gzip: not code_reloading?,
-    only: ComboLT.Web.static_paths()
+    only: DemoLT.Web.static_paths()
 
   # Code reloading can be explicitly enabled under the :code_reloader
   # configuration of the endpoint.
@@ -51,5 +51,5 @@ defmodule ComboLT.Web.Endpoint do
   plug Plug.MethodOverride
   plug Plug.Head
   plug Plug.Session, @session_opts
-  plug ComboLT.Web.Router
+  plug DemoLT.Web.Router
 end

@@ -1,4 +1,4 @@
-defmodule ComboLT.PubSub do
+defmodule DemoLT.PubSub do
   @moduledoc false
 
   use Boundary,

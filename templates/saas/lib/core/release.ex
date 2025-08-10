@@ -1,4 +1,4 @@
-defmodule ComboLT.Core.Release do
+defmodule DemoLT.Core.Release do
   @moduledoc """
   Release-related DB tasks for production environment without Mix installed.
 
@@ -57,8 +57,8 @@ defmodule ComboLT.Core.Release do
   @type result :: {:ok, term()} | {:error, term()}
   @type script_result :: {:ok, term()} | no_return()
 
-  @app :combo_lt
-  @repo ComboLT.Core.Repo
+  @app :demo_lt
+  @repo DemoLT.Core.Repo
 
   @doc """
   Migrates the database.

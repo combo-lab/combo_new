@@ -1,4 +1,4 @@
-defmodule ComboLT.UserAPI.ErrorJSON do
+defmodule DemoLT.UserAPI.ErrorJSON do
   @moduledoc """
   Provides JSON error responses.
 
@@ -11,7 +11,7 @@ defmodule ComboLT.UserAPI.ErrorJSON do
 
   """
 
-  use ComboLT.I18n, :gettext
+  use DemoLT.I18n, :gettext
   require Logger
 
   def render(template, _assigns) do
