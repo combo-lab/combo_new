@@ -1,7 +1,7 @@
 defmodule ComboLT.Web.ErrorHTMLTest do
   use ComboLT.Web.ConnCase, async: true
 
-  import Phoenix.Template, only: [render_to_string: 4]
+  import Combo.Template, only: [render_to_string: 4]
   alias ComboLT.Web.ErrorHTML
 
   test "renders 404.html" do

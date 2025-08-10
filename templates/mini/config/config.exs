@@ -4,10 +4,10 @@ config :logger, :default_formatter,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]
 
-config :phoenix, :json_library, Jason
+config :combo, :json_module, Jason
 
 config :combo_lt, ComboLT.Web.Endpoint,
-  adapter: Bandit.PhoenixAdapter,
+  adapter: Combo.Endpoint.BanditAdapter,
   render_errors: [
     formats: [html: ComboLT.Web.ErrorHTML, json: ComboLT.Web.ErrorJSON],
     layout: false

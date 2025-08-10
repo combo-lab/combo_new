@@ -23,23 +23,23 @@ defmodule ComboLT.Web do
 
   def router do
     quote do
-      use Phoenix.Router, helpers: false
+      use Combo.Router
 
       # Import common connection and controller functions to use in pipelines
       import Plug.Conn
-      import Phoenix.Controller
+      import Combo.Controller
     end
   end
 
   def channel do
     quote do
-      use Phoenix.Channel
+      use Combo.Channel
     end
   end
 
   def controller do
     quote do
-      use Phoenix.Controller, formats: [:html, :json]
+      use Combo.Controller, formats: [:html, :json]
 
       import Plug.Conn
 
@@ -49,32 +49,25 @@ defmodule ComboLT.Web do
 
   def component do
     quote do
-      unquote(component_helpers())
+      # Include general helpers for rendering HTML
+      unquote(html_helpers())
     end
   end
 
   def html do
     quote do
       # Import convenience functions from controllers
-      import Phoenix.Controller,
+      import Combo.Controller,
         only: [get_csrf_token: 0, view_module: 1, view_template: 1]
 
       # Include general helpers for rendering HTML
       unquote(html_helpers())
-      unquote(component_helpers())
-    end
-  end
-
-  defp component_helpers do
-    quote do
-      use Phoenix.Component
     end
   end
 
   defp html_helpers do
     quote do
-      # HTML escaping functionality
-      import Phoenix.HTML
+      use Combo.HTML
 
       # Common modules used in templates
       alias ComboLT.Web.Layouts
@@ -86,7 +79,7 @@ defmodule ComboLT.Web do
 
   def verified_routes do
     quote do
-      use Phoenix.VerifiedRoutes,
+      use Combo.VerifiedRoutes,
         endpoint: ComboLT.Web.Endpoint,
         router: ComboLT.Web.Router,
         statics: ComboLT.Web.static_paths()

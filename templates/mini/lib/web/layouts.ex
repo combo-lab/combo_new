@@ -17,7 +17,7 @@ defmodule ComboLT.Web.Layouts do
   slot :inner_block, required: true
 
   def app(assigns) do
-    ~H"""
+    ~CE"""
     <header>
       <div>
         <div>

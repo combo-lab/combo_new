@@ -5,17 +5,14 @@ config :logger, :default_formatter, format: "[$level] $message\n"
 
 # Set a higher stacktrace during development. Avoid configuring such in
 # production as building large stacktraces may be expensive.
-config :phoenix, :stacktrace_depth, 20
+config :combo, :stacktrace_depth, 20
 
 # Initialize plugs at runtime for faster development compilation.
-config :phoenix, :plug_init_mode, :runtime
+config :combo, :plug_init_mode, :runtime
 
-# Include HEEx debug annotations as HTML comments in rendered markup.
+# Include CEEx debug annotations as HTML comments in rendered markup.
 # Changing it requires `mix clean` and a full recompile.
-config :phoenix_live_view, :debug_heex_annotations, true
-
-# Enable helpful, but potentially expensive runtime checks.
-config :phoenix_live_view, :enable_expensive_runtime_checks, true
+config :combo, :ceex_debug_annotations, true
 
 # Enable dev routes
 config :combo_lt, dev_routes: true
@@ -38,7 +35,7 @@ config :combo_lt, ComboLT.Web.Endpoint,
 config :combo_lt, ComboLT.Web.Endpoint,
   live_reload: [
     patterns: [
-      ~r"lib/web/(?:router|controllers|layouts|components)(?:/.*)?\.(ex|heex)$",
+      ~r"lib/web/(?:router|controllers|layouts|components)(?:/.*)?\.(ex|ceex)$",
       ~r"priv/static/(?!uploads/).*(js|css|png|jpeg|jpg|gif|svg)$"
     ]
   ]

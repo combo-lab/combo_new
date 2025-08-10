@@ -1,5 +1,0 @@
-#!/bin/sh
-set -eu
-
-cd -P -- "$(dirname -- "$0")"
-COZY_PROXY_SERVER=true exec ./combo_lt start

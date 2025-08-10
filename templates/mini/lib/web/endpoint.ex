@@ -1,5 +1,5 @@
 defmodule ComboLT.Web.Endpoint do
-  use Phoenix.Endpoint, otp_app: :combo_lt
+  use Combo.Endpoint, otp_app: :combo_lt
 
   # The session will be stored in the cookie and signed, this means its
   # contents can be read but not tampered with.
@@ -14,7 +14,7 @@ defmodule ComboLT.Web.Endpoint do
   # This option controls how many supervisors will be spawned to handle
   # sockets.
   #
-  # See `Phoenix.Socket` for more details.
+  # See `Combo.Socket` for more details.
   @socket_opts if(Application.compile_env(:combo_lt, :process_limit),
                  do: [partitions: 2],
                  else: []
@@ -35,18 +35,18 @@ defmodule ComboLT.Web.Endpoint do
   # Code reloading can be explicitly enabled under the :code_reloader
   # configuration of the endpoint.
   if code_reloading? do
-    socket "/phoenix/live_reload/socket", Phoenix.LiveReloader.Socket, @socket_opts
-    plug Phoenix.LiveReloader
-    plug Phoenix.CodeReloader
+    # socket "/phoenix/live_reload/socket", Phoenix.LiveReloader.Socket, @socket_opts
+    # plug Phoenix.LiveReloader
+    plug Combo.CodeReloader
   end
 
   plug Plug.RequestId
-  plug Plug.Telemetry, event_prefix: [:phoenix, :endpoint]
+  plug Plug.Telemetry, event_prefix: [:combo, :endpoint]
 
   plug Plug.Parsers,
     parsers: [:urlencoded, :multipart, :json],
     pass: ["*/*"],
-    json_decoder: Phoenix.json_library()
+    json_decoder: Combo.json_module()
 
   plug Plug.MethodOverride
   plug Plug.Head

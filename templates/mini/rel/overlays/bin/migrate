@@ -1,5 +1,0 @@
-#!/bin/sh
-set -eu
-
-cd -P -- "$(dirname -- "$0")"
-exec ./combo_lt eval 'ComboLT.Core.Release.migrate()'
