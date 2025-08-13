@@ -7,7 +7,6 @@ config :logger, :default_formatter,
 config :combo, :json_module, Jason
 
 config :demo_lt, DemoLT.Web.Endpoint,
-  adapter: Combo.Endpoint.BanditAdapter,
   render_errors: [
     formats: [html: DemoLT.Web.ErrorHTML, json: DemoLT.Web.ErrorJSON],
     layout: false
