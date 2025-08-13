@@ -35,7 +35,7 @@ config :demo_lt, DemoLT.Web.Endpoint,
 config :demo_lt, DemoLT.Web.Endpoint,
   live_reload: [
     patterns: [
-      ~r"lib/web/(?:router|controllers|layouts|components)(?:/.*)?\.(ex|ceex)$",
+      ~r"lib/demo_lt/web/(?:router|controllers|layouts|components)(?:/.*)?\.(ex|ceex)$",
       ~r"priv/static/(?!uploads/).*(js|css|png|jpeg|jpg|gif|svg)$"
     ]
   ]
