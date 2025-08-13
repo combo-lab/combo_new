@@ -25,9 +25,8 @@ defmodule DemoLT.Web do
     quote do
       use Combo.Router
 
-      # Import common connection and controller functions to use in pipelines
+      import Combo.Conn
       import Plug.Conn
-      import Combo.Controller
     end
   end
 
@@ -41,6 +40,7 @@ defmodule DemoLT.Web do
     quote do
       use Combo.Controller, formats: [:html, :json]
 
+      import Combo.Conn
       import Plug.Conn
 
       unquote(verified_routes())
@@ -56,11 +56,13 @@ defmodule DemoLT.Web do
 
   def html do
     quote do
-      # Import convenience functions from controllers
-      import Combo.Controller,
-        only: [get_csrf_token: 0, view_module: 1, view_template: 1]
+      import Combo.Conn,
+        only: [
+          get_csrf_token: 0,
+          view_module!: 1,
+          view_template!: 1
+        ]
 
-      # Include general helpers for rendering HTML
       unquote(html_helpers())
     end
   end
@@ -69,10 +71,8 @@ defmodule DemoLT.Web do
     quote do
       use Combo.HTML
 
-      # Common modules used in templates
       alias DemoLT.Web.Layouts
 
-      # Routes generation with the ~p sigil
       unquote(verified_routes())
     end
   end

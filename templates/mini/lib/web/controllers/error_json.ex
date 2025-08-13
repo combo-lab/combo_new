@@ -9,6 +9,6 @@ defmodule DemoLT.Web.ErrorJSON do
   # The default is to return the status message from the template name.
   # For example, "404.json" becomes {"errors": {"detail": "Not Found"}}.
   def render(template, _assigns) do
-    %{errors: %{detail: Combo.Controller.status_message_from_template(template)}}
+    %{errors: %{detail: Combo.Conn.status_message_from_template(template)}}
   end
 end

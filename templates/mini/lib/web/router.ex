@@ -5,7 +5,7 @@ defmodule DemoLT.Web.Router do
     plug :accepts, ["html"]
     plug :fetch_session
     plug :fetch_flash
-    plug :put_root_layout, html: {DemoLT.Web.Layouts, :root}
+    plug :put_layout, html: {DemoLT.Web.Layouts, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
   end
