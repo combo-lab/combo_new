@@ -8,8 +8,8 @@ config :combo, :json_module, Jason
 
 config :demo_lt, DemoLT.Web.Endpoint,
   render_errors: [
-    formats: [html: DemoLT.Web.ErrorHTML, json: DemoLT.Web.ErrorJSON],
-    layout: false
+    layout: [html: false, json: false],
+    formats: [html: DemoLT.Web.ErrorHTML, json: DemoLT.Web.ErrorJSON]
   ],
   pubsub_server: DemoLT.PubSub
 
