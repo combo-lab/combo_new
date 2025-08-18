@@ -3,6 +3,10 @@ defmodule DemoLT.Application do
 
   @impl Application
   def start(_type, _args) do
+    if stacktrace_depth = Application.get_env(:demo_lt, :stacktrace_depth, nil) do
+      :erlang.system_flag(:backtrace_depth, stacktrace_depth)
+    end
+
     children = [
       DemoLT.PubSub,
       DemoLT.Core.Supervisor,

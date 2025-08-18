@@ -3,16 +3,16 @@ import Config
 # Do not include metadata nor timestamps in development logs.
 config :logger, :default_formatter, format: "[$level] $message\n"
 
-# Set a higher stacktrace during development. Avoid configuring such in
-# production as building large stacktraces may be expensive.
-config :combo, :stacktrace_depth, 20
-
 # Initialize plugs at runtime for faster development compilation.
 config :combo, :plug_init_mode, :runtime
 
 # Include CEEx debug annotations as HTML comments in rendered markup.
 # Changing it requires `mix clean` and a full recompile.
-config :combo, :ceex_debug_annotations, true
+config :combo, :template, ceex_debug_annotations: true
+
+# Set a higher stacktrace during development.
+# Avoid configuring it in production as building large stacktraces may be expensive.
+config :demo_lt, :stacktrace_depth, 20
 
 # Enable dev routes
 config :demo_lt, dev_routes: true
