@@ -21,7 +21,8 @@ config :demo_lt, DemoLT.Web.Endpoint,
   check_origin: false,
   live_reloader: [
     patterns: [
-      ~r"lib/demo_lt/web/(?:router|controllers|layouts|components)(?:/.*)?\.(ex|ceex)$",
+      ~r"lib/demo_lt/web/router\.ex",
+      ~r"lib/demo_lt/web/(controllers|layouts|components)/.*\.(ex|ceex)$",
       ~r"priv/static/(?!uploads/).*(js|css|png|jpeg|jpg|gif|svg)$"
     ]
   ],
