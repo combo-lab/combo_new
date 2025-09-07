@@ -1,5 +1,5 @@
 defmodule DemoLT do
   @moduledoc """
-  The namespace for this application.
+  The namespace for current application.
   """
 end
