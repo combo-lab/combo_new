@@ -43,8 +43,6 @@ defmodule DemoLT.MixProject do
       {:combo, path: "../../../combo"},
       {:bandit, "~> 1.5"},
       {:cozy_env, "~> 0.2"},
-      {:lazy_html, ">= 0.1.0"},
-      {:jason, "~> 1.4"},
 
       # code quality
       {:ex_check, ">= 0.0.0", only: [:dev], runtime: false},
