@@ -1,0 +1,33 @@
+import Config
+
+# Do not include metadata nor timestamps in development logs.
+config :logger, :default_formatter, format: "[$level] $message\n"
+
+# Initialize plugs at runtime for faster development compilation.
+config :combo, :plug_init_mode, :runtime
+
+# Include CEEx debug annotations as HTML comments in rendered markup.
+# Changing it requires `mix clean` and a full recompile.
+config :combo, :template, ceex_debug_annotations: true
+
+# Set a higher stacktrace during development.
+# Avoid configuring it in production as building large stacktraces may be expensive.
+config :demo_lt, :stacktrace_depth, 20
+
+# Enable dev routes
+config :demo_lt, dev_routes: true
+
+config :demo_lt, DemoLT.Web.Endpoint,
+  check_origin: false,
+  live_reloader: [
+    patterns: [
+      ~r"lib/demo_lt/web/router\.ex",
+      ~r"lib/demo_lt/web/(controllers|layouts|components)/.*\.(ex|ceex)$",
+      ~r"priv/static/(?!uploads/).*(js|css|png|jpeg|jpg|gif|svg)$"
+    ]
+  ],
+  code_reloader: true,
+  process_limit: 2,
+  force_ssl: false,
+  debug_errors: true,
+  secret_key_base: "=========================secret_key_base========================="

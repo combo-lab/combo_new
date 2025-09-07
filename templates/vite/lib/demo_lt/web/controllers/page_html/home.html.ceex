@@ -1,0 +1,9 @@
+<Layouts.app>
+  <h1>Combo v{Application.spec(:combo, :vsn)}</h1>
+  <p>Combines the good parts of modern web development.</p>
+
+  <section>
+    <p>This is a minimal Combo project.</p>
+    <p>It shows minimal setup without assets building tool or database.</p>
+  </section>
+</Layouts.app>
