@@ -31,10 +31,7 @@ defmodule DemoLT.MixProject do
 
   defp releases do
     [
-      {@app,
-       [
-         include_executables_for: [:unix]
-       ]}
+      {@app, [include_executables_for: [:unix]]}
     ]
   end
 
