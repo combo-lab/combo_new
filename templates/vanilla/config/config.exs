@@ -4,8 +4,6 @@ config :logger, :default_formatter,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]
 
-config :combo, :json_module, Jason
-
 config :demo_lt, DemoLT.Web.Endpoint,
   render_errors: [
     layout: [html: false, json: false],
