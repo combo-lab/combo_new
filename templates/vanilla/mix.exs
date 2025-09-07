@@ -8,7 +8,7 @@ defmodule DemoLT.MixProject do
     [
       app: @app,
       version: @version,
-      elixir: "~> 1.15",
+      elixir: "~> 1.18",
       elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,
       releases: releases(),
