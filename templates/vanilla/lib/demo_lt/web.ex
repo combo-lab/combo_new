@@ -25,8 +25,8 @@ defmodule DemoLT.Web do
     quote do
       use Combo.Router
 
-      import Combo.Conn
       import Plug.Conn
+      import Combo.Conn
     end
   end
 
@@ -40,8 +40,14 @@ defmodule DemoLT.Web do
     quote do
       use Combo.Controller, formats: [:html, :json]
 
-      import Combo.Conn
       import Plug.Conn
+      import Combo.Conn
+
+      import Combo.HTML.Components,
+        only: [
+          to_form: 1,
+          to_form: 2
+        ]
 
       unquote(verified_routes())
     end
