@@ -8,15 +8,22 @@
 import Config
 
 base_url = CozyEnv.get_env("BASE_URL") || "http://localhost:4000"
+assets_base_url = CozyEnv.get_env("ASSETS_BASE_URL") || nil
 
-parse_url = fn url ->
-  %URI{scheme: scheme, host: host, port: port} = URI.parse(url)
-  [scheme: scheme, host: host, port: port]
+parse_url = fn
+  nil ->
+    nil
+
+  url ->
+    %URI{scheme: scheme, host: host, port: port} = URI.parse(url)
+    [scheme: scheme, host: host, port: port]
 end
 
-parsed_url = parse_url.(base_url)
-derived_host = Keyword.fetch!(parsed_url, :host)
-derived_port = Keyword.fetch!(parsed_url, :port)
+parsed_base_url = parse_url.(base_url)
+parsed_assets_base_url = parse_url.(assets_base_url)
+
+derived_host = Keyword.fetch!(parsed_base_url, :host)
+derived_port = Keyword.fetch!(parsed_base_url, :port)
 
 listen_ip =
   if derived_host in ["127.0.0.1", "localhost"],
@@ -31,7 +38,8 @@ listen_port =
 origins = [base_url]
 
 config :demo_lt, DemoLT.Web.Endpoint,
-  url: parsed_url,
+  url: parsed_base_url,
+  static_url: parsed_assets_base_url,
   http: [
     ip: listen_ip,
     port: listen_port
