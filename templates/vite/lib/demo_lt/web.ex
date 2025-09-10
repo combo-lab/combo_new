@@ -19,7 +19,7 @@ defmodule DemoLT.Web do
     apply(__MODULE__, which, [])
   end
 
-  def static_paths, do: ~w(robots.txt favicon.ico assets)
+  def static_paths, do: ~w(robots.txt favicon.ico build)
 
   def router do
     quote do
