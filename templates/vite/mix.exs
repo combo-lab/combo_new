@@ -50,8 +50,9 @@ defmodule DemoLT.MixProject do
 
   defp aliases do
     [
-      setup: ["deps.get"],
-      "assets.deploy": ["phx.digest"]
+      setup: ["deps.get", "assets.setup"],
+      "assets.setup": ["cmd --cd assets npm install"],
+      "assets.build": ["cmd --cd assets npm run build"]
     ]
   end
 end
