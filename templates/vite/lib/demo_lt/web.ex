@@ -77,6 +77,10 @@ defmodule DemoLT.Web do
     quote do
       use Combo.HTML
 
+      use Combo.Vite.Components,
+        endpoint: DemoLT.Web.Endpoint,
+        static_dir: {:demo_lt, "priv/static"}
+
       alias DemoLT.Web.Layouts
 
       unquote(verified_routes())

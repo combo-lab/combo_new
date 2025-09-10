@@ -10,9 +10,7 @@
     <% else %>
       <title>DemoLT.Web</title>
     <% end %>
-    <link rel="stylesheet" href={~p"/assets/css/app.css"} />
-    <script defer type="text/javascript" src={~p"/assets/js/app.js"}>
-    </script>
+    <.vite_assets names={["src/css/app.css", "src/js/app.js"]} />
   </head>
   <body>
     {@inner_content}

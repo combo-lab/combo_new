@@ -27,6 +27,13 @@ config :demo_lt, DemoLT.Web.Endpoint,
     ]
   ],
   code_reloader: true,
+  watchers: [
+    npm: [
+      "run",
+      "dev",
+      cd: Path.expand("../assets", __DIR__)
+    ]
+  ],
   process_limit: 2,
   force_ssl: false,
   debug_errors: true,

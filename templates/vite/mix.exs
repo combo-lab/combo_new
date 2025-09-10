@@ -37,7 +37,8 @@ defmodule DemoLT.MixProject do
 
   defp deps do
     [
-      {:combo, path: "../../../combo"},
+      {:combo, path: "../../../combo", override: true},
+      {:combo_vite, path: "../../../combo_vite"},
       {:bandit, "~> 1.5"},
       {:cozy_env, "~> 0.2"},
 
