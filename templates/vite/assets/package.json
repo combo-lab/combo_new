@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json.schemastore.org/package.json",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "dependencies": {
+    "combo": "file:../deps/combo"
+  },
+  "devDependencies": {
+    "vite": "^7.0.0",
+    "vite-plugin-combo": "../../../../combo_vite/vite-plugin"
+  }
+}
