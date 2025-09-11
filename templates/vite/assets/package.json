@@ -6,11 +6,9 @@
     "dev": "vite",
     "build": "vite build"
   },
-  "dependencies": {
-    "combo": "file:../deps/combo"
-  },
+  "dependencies": {},
   "devDependencies": {
     "vite": "^7.0.0",
-    "vite-plugin-combo": "../../../../combo_vite/vite-plugin"
+    "vite-plugin-combo": "file:../deps/combo_vite/npm-packages/vite-plugin-combo"
   }
 }

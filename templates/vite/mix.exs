@@ -38,7 +38,7 @@ defmodule DemoLT.MixProject do
   defp deps do
     [
       {:combo, path: "../../../combo", override: true},
-      {:combo_vite, path: "../../../combo_vite"},
+      {:combo_vite, "~> 0.2"},
       {:bandit, "~> 1.5"},
       {:cozy_env, "~> 0.2"},
 
@@ -51,7 +51,7 @@ defmodule DemoLT.MixProject do
   defp aliases do
     [
       setup: ["deps.get", "assets.setup"],
-      "assets.setup": ["cmd --cd assets npm install"],
+      "assets.setup": ["cmd --cd assets npm install --install-links"],
       "assets.build": ["cmd --cd assets npm run build"],
       "assets.clean": ["cmd rm -r priv/static/build"]
     ]
