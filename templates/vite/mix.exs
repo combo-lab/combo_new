@@ -40,7 +40,7 @@ defmodule DemoLT.MixProject do
       {:combo, path: "../../../combo", override: true},
       {:combo_vite, "~> 0.2"},
       {:bandit, "~> 1.5"},
-      {:cozy_env, "~> 0.2"},
+      {:system_env, "~> 0.1"},
 
       # code quality
       {:ex_check, ">= 0.0.0", only: [:dev], runtime: false},

@@ -7,8 +7,8 @@
 
 import Config
 
-base_url = CozyEnv.get_env("BASE_URL") || "http://localhost:4000"
-assets_base_url = CozyEnv.get_env("ASSETS_BASE_URL") || nil
+base_url = SystemEnv.get_env("BASE_URL") || "http://localhost:4000"
+assets_base_url = SystemEnv.get_env("ASSETS_BASE_URL") || nil
 
 parse_url = fn
   nil ->
@@ -31,7 +31,7 @@ listen_ip =
     else: {0, 0, 0, 0}
 
 listen_port =
-  if custom_port = CozyEnv.get_env("LISTEN_PORT", :integer),
+  if custom_port = SystemEnv.get_env("LISTEN_PORT", :integer),
     do: custom_port,
     else: derived_port
 
@@ -48,7 +48,7 @@ config :demo_lt, DemoLT.Web.Endpoint,
 case config_env() do
   :prod ->
     secret_key_base =
-      CozyEnv.fetch_env!("SECRET_KEY_BASE",
+      SystemEnv.fetch_env!("SECRET_KEY_BASE",
         message: "Generate one by calling: mix combo.gen.secret"
       )
 
@@ -60,6 +60,6 @@ case config_env() do
     :skip
 end
 
-if CozyEnv.get_env("RELEASE_NAME") do
+if SystemEnv.get_env("RELEASE_NAME") do
   config :demo_lt, DemoLT.Web.Endpoint, server: true
 end
