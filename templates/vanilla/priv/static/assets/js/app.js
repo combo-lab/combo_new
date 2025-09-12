@@ -1,1 +1,1 @@
-console.log("Hello from Combo.");
+/* Add your JavaScript code */
