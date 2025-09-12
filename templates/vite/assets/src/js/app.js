@@ -1,1 +1,1 @@
-console.log("Hello from Combo.");
+import "@fontsource-variable/instrument-sans"

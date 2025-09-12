@@ -1,9 +1,9 @@
-<Layouts.app>
-  <h1>Combo v{Application.spec(:combo, :vsn)}</h1>
-  <p>Combines the good parts of modern web development.</p>
-
-  <section>
-    <p>This is a minimal Combo project.</p>
-    <p>It shows minimal setup without assets building tool or database.</p>
-  </section>
-</Layouts.app>
+<div class="min-h-screen p-6 flex justify-center items-center bg-[#fdfdfc] dark:bg-[#0a0a0a] text-[#706f6c] dark:text-[#a1a09a]">
+  <main class="flex flex-col space-y-6 -translate-y-8 transition-all opacity-100 duration-750 starting:opacity-0">
+    <img class="w-full max-w-[250px]" src={vite_url("src/images/logo.svg")} />
+    <div class="text-xl">
+      <h1 class="sr-only">Combo</h1>
+      <p class="mb-2 ">A web framework, that combines the good parts of modern web development.</p>
+    </div>
+  </main>
+</div>

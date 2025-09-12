@@ -1,5 +1,7 @@
 # DemoLT
 
+A Combo project, integrating Vite for assets bundling.
+
 ## Requirements
 
 - Elixir
@@ -7,11 +9,20 @@
 
 ## Quick start
 
-To start the dev server:
+### Setup environments
 
-- Run `mix setup` to setup environments.
-- Start with `mix combo.serve` or inside IEx with `iex -S mix combo.serve`
+```
+$ mix setup
+```
+
+### Run dev server
+
+```
+$ iex -S mix combo.serve
+```
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from web browser.
+
+## Deployment
 
 Ready to run in production? Please [check out deployment guides](https://hexdocs.pm/combo/deployment.html).
