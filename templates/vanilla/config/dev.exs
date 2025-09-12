@@ -23,7 +23,7 @@ config :demo_lt, DemoLT.Web.Endpoint,
     patterns: [
       ~r"lib/demo_lt/web/router\.ex",
       ~r"lib/demo_lt/web/(controllers|layouts|components)/.*\.(ex|ceex)$",
-      ~r"priv/static/(?!uploads/).*(js|css|png|jpeg|jpg|gif|svg)$"
+      ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$"
     ]
   ],
   code_reloader: true,
