@@ -1,5 +1,6 @@
 import { defineConfig } from "vite"
 import combo from "vite-plugin-combo"
+import tailwindcss from "@tailwindcss/vite"
 
 export default defineConfig({
   plugins: [
@@ -11,5 +12,6 @@ export default defineConfig({
         "../lib/*/web/(controllers|layouts|components)/**/*.(ex|ceex)",
       ],
     }),
+    tailwindcss()
   ],
 })

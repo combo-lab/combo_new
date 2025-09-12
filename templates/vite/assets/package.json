@@ -6,8 +6,9 @@
     "dev": "vite",
     "build": "vite build"
   },
-  "dependencies": {},
   "devDependencies": {
+    "@tailwindcss/vite": "^4.1.13",
+    "tailwindcss": "^4.1.13",
     "vite": "^7.0.0",
     "vite-plugin-combo": "file:../deps/combo_vite/npm-packages/vite-plugin-combo"
   }
