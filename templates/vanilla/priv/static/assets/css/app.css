@@ -137,7 +137,7 @@ h6 {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 750ms;
   opacity: 100%;
-  transform: translateY(-8rem);
+  transform: translateY(-2rem);
 
   @starting-style {
     opacity: 0%;
