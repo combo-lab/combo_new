@@ -19,6 +19,12 @@ config :demo_lt, dev_routes: true
 
 config :demo_lt, DemoLT.Web.Endpoint,
   check_origin: false,
+  live_reloader: [
+    patterns: [
+      ~r"lib/demo_lt/web/router\.ex",
+      ~r"lib/demo_lt/web/(controllers|layouts|components)/.*\.(ex|ceex)$"
+    ]
+  ],
   code_reloader: true,
   watchers: [
     npm: [

@@ -21,6 +21,11 @@ defmodule DemoLT.Web.Endpoint do
     gzip: not code_reloading?,
     only: DemoLT.Web.static_paths()
 
+  if live_reloading? do
+    socket "/combo/live_reload/socket", Combo.LiveReloader.Socket
+    plug Combo.LiveReloader
+  end
+
   if code_reloading? do
     plug Combo.CodeReloader
   end
