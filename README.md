@@ -45,7 +45,7 @@ In this way, `combo_new` can focus on providing minimal, functional base templat
 
 ## Creating your own templates
 
-If you need a template to handle additional features like user authentication, email sending, etc, you can copy the template from `combo_new` that best matches your needs, then modify it accordingly. Read [the guide of creating templates](./CREATE_TEMPLATES.md) for more information.
+If you need a template to provide additional features like user authentication, email sending, etc, you can copy the template from `combo_new` that best matches your needs, then modify it accordingly. Read [the guide of creating templates](./CREATING_TEMPLATES.md) for more information.
 
 ## License
 
