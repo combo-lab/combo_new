@@ -2,9 +2,9 @@ defmodule ComboNew.MixProject do
   use Mix.Project
 
   @version "0.3.0"
-  @description "An opinionated project generator for Phoenix."
+  @description "The project generator for Combo."
   @elixir_requirement "~> 1.15"
-  @source_url "https://github.com/cozy-elixir/combo_new"
+  @source_url "https://github.com/combo-lab/combo_new"
 
   def project do
     [

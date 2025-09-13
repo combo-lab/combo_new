@@ -1,6 +1,6 @@
 defmodule ComboNew do
   @moduledoc """
-  An opinionated project generator for Combo.
+  The project generator for Combo.
   """
 
   @app Mix.Project.config()[:app]
