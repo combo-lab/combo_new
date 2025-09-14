@@ -1,4 +1,4 @@
-defmodule Mix.Tasks.Local.ComboNew do
+defmodule Mix.Tasks.ComboNew.Update do
   use Mix.Task
 
   @shortdoc "Updates combo_new locally"
@@ -6,7 +6,11 @@ defmodule Mix.Tasks.Local.ComboNew do
   @moduledoc """
   Updates combo_new locally.
 
-      $ mix local.combo_new
+  ## Usage
+
+  ```console
+  $ mix combo_new.update
+  ```
 
   It accepts the same command line options as `archive.install hex combo_new`.
   """
