@@ -18,7 +18,10 @@ defmodule ComboNew.MixProject do
       homepage_url: @source_url,
       docs: docs(),
       package: package(),
-      aliases: aliases()
+      aliases: aliases(),
+      dialyzer: [
+        plt_add_apps: [:mix]
+      ]
     ]
   end
 
@@ -32,7 +35,10 @@ defmodule ComboNew.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:ex_doc, ">= 0.0.0", only: :dev, runtime: false}
+      {:ex_check, ">= 0.0.0", only: [:dev], runtime: false},
+      {:credo, ">= 0.0.0", only: [:dev], runtime: false},
+      {:dialyxir, ">= 0.0.0", only: [:dev], runtime: false},
+      {:ex_doc, ">= 0.0.0", only: [:dev], runtime: false}
     ]
   end
 
@@ -49,7 +55,7 @@ defmodule ComboNew.MixProject do
     [
       files: ~w(lib templates mix.exs README.md),
       links: %{"GitHub" => @source_url},
-      licenses: ["Apache-2.0"]
+      licenses: ["MIT"]
     ]
   end
 
