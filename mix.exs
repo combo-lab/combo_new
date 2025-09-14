@@ -17,11 +17,9 @@ defmodule ComboNew.MixProject do
       source_url: @source_url,
       homepage_url: @source_url,
       docs: docs(),
+      dialyzer: dialyzer(),
       package: package(),
-      aliases: aliases(),
-      dialyzer: [
-        plt_add_apps: [:mix]
-      ]
+      aliases: aliases()
     ]
   end
 
@@ -48,6 +46,12 @@ defmodule ComboNew.MixProject do
       main: "readme",
       source_url: @source_url,
       source_ref: "v#{@version}"
+    ]
+  end
+
+  defp dialyzer do
+    [
+      plt_add_apps: [:mix]
     ]
   end
 
