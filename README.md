@@ -1,5 +1,8 @@
 # combo_new
 
+[![CI](https://github.com/combo-lab/combo_new/actions/workflows/ci.yml/badge.svg)](https://github.com/combo-lab/combo_new/actions/workflows/ci.yml)
+[![Hex.pm](https://img.shields.io/hexpm/v/combo_new.svg)](https://hex.pm/packages/combo_new)
+
 The project generator for Combo.
 
 ## Installation
