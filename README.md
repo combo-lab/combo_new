@@ -12,26 +12,10 @@ $ mix archive.install hex combo_new
 
 ## Usage
 
-```
-# create a project from a given template
-$ mix combo_new <template name> <project name>
-```
+`combo_new` provides two main Mix tasks:
 
-Available templates:
-
-- `vanilla`
-- `vite`
-- `app-web`
-- `app-saas`
-
-See `mix help` for more details.
-
-## Features
-
-- asset pipeline powered by Vite and Node.js ecosystem
-- reduced number of processes running in dev environment, which is derived from [axelson's repo](https://github.com/axelson/hello_phoenix/pull/1)
-- liveness probe, which is common in container environments.
-- ...
+- `combo_new`. Run `mix help combo_new` for more information.
+- `combo_new.update`. Run `mix help combo_new.update` for more information.
 
 ## Design philosophy
 
