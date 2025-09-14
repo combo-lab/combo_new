@@ -2,7 +2,7 @@
 
 Rules:
 
-- the app name of a template must be `:demo_lt`.
+- the OTP application name of a template must be `:demo_lt`.
 - the base module name of a template must be `DemoLT`.
 - the environment variables used in a template must be prefixed with `DEMO_LT`.
 - `=========================secret_key_base=========================` should be used as the `secret_key_base` placeholder.

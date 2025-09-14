@@ -3,7 +3,7 @@ defmodule ComboNew.MixProject do
 
   @version "0.3.0"
   @description "The project generator for Combo."
-  @elixir_requirement "~> 1.15"
+  @elixir_requirement "~> 1.18"
   @source_url "https://github.com/combo-lab/combo_new"
 
   def project do

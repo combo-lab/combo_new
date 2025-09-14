@@ -12,20 +12,22 @@ defmodule ComboNew do
     module: :string
   ]
 
+  alias __MODULE__.Generator
+
   @doc """
-  Runs a generator with Mix task.
+  Runs the generator within a Mix task.
   """
-  def run(_mix_task_module, _generator, [option] = _agrv)
+  def run(_mix_task_module, [option] = _agrv)
       when option in ~w(-v --version) do
     Mix.shell().info("#{@app} v#{@version}")
   end
 
-  def run(mix_task_module, generator, argv) do
+  def run(mix_task_module, argv) do
     elixir_version_check!()
 
     case OptionParser.parse!(argv, strict: @support_options) do
-      {opts, [base_path | _]} ->
-        generate(generator, base_path, opts)
+      {opts, [template_name, base_path | _]} ->
+        generate(template_name, base_path, opts)
 
       _ ->
         task_name = to_mix_task_name(mix_task_module)
@@ -54,7 +56,7 @@ defmodule ComboNew do
   @doc """
   Generates a project.
   """
-  def generate(generator, base_path, opts) do
+  def generate(template_name, base_path, opts) do
     base_path = Path.expand(base_path)
 
     app = String.to_atom(opts[:app] || Path.basename(base_path))
@@ -65,7 +67,12 @@ defmodule ComboNew do
     check_module_name!(module)
     check_directory_existence!(base_path)
 
-    :ok = generator.generate(base_path, app: app, module: module, env_prefix: env_prefix)
+    :ok =
+      Generator.generate(template_name, base_path,
+        app: app,
+        module: module,
+        env_prefix: env_prefix
+      )
 
     print_next_steps(base_path)
   end
@@ -92,7 +99,7 @@ defmodule ComboNew do
   defp check_module_name!(name) do
     unless inspect(name) =~ Regex.recompile!(~r/^[A-Z]\w*(\.[A-Z]\w*)*$/) do
       Mix.raise(
-        "Module name must be a valid Elixir alias (for example: Foo.Bar), got: #{inspect(name)}"
+        "Module name must be a valid Elixir module name (for example: Foo.Bar), got: #{inspect(name)}"
       )
     end
   end
@@ -128,11 +135,11 @@ defmodule ComboNew do
 
     Then, start the app with:
 
-        $ mix phx.server
+        $ mix combo.serve
 
     Or, run the app inside IEx (Interactive Elixir) as:
 
-        $ iex -S mix phx.server
+        $ iex -S mix combo.serve
 
     """)
   end
