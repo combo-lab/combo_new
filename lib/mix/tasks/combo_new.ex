@@ -35,7 +35,7 @@ defmodule Mix.Tasks.ComboNew do
   ### Arguments
 
     * `<template>` - the name of template. Available templates:
-  #{Generator.available_template_names() |> Enum.map(&"#{String.duplicate(" ", 6)}- `#{&1}`") |> Enum.join("\n")}
+  #{Generator.available_template_names() |> Enum.map_join("\n", &"#{String.duplicate(" ", 6)}- `#{&1}`")}
 
     * `<path>` - the path of the generated project. It can be an absolute or
       a relative path. The OTP application name and base module name will be
@@ -141,7 +141,7 @@ defmodule Mix.Tasks.ComboNew do
       Mix.raise("""
       Unknown template name - #{name}. Available template names are:
 
-      #{available_template_names |> Enum.map(&"#{String.duplicate(" ", 2)}- #{&1}") |> Enum.join("\n")}
+      #{available_template_names |> Enum.map_join("\n", &"#{String.duplicate(" ", 2)}- #{&1}")}
       """)
     end
   end
@@ -151,11 +151,11 @@ defmodule Mix.Tasks.ComboNew do
 
     unless name =~ Regex.recompile!(~r/^[a-z][a-z0-9_]*$/) do
       extra_msg =
-        if !app_opt_passed? do
+        if app_opt_passed? do
+          ""
+        else
           ". The application name is inferred from the path, if you'd like to " <>
             "explicitly name the application then use the `--app APP` option."
-        else
-          ""
         end
 
       Mix.raise(
@@ -215,7 +215,6 @@ defmodule Mix.Tasks.ComboNew do
 
     module
     |> String.split(".")
-    |> Enum.map(&Macro.underscore/1)
-    |> Enum.join(".")
+    |> Enum.map_join(".", &Macro.underscore/1)
   end
 end

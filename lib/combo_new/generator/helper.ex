@@ -4,8 +4,6 @@ defmodule ComboNew.Generator.Helper do
   import Bitwise
   alias ComboNew.Git
 
-  @mode Mix.env()
-
   @doc """
   Gets the list of template names.
 
@@ -44,16 +42,14 @@ defmodule ComboNew.Generator.Helper do
   @doc """
   Lists files.
   """
-  def ls_template_files(dir) do
-    if @mode == :prod,
-      do: do_ls_files(dir),
-      else: Git.ls_files(dir)
-  end
-
-  defp do_ls_files(dir) do
-    "#{dir}/**/*"
-    |> Path.wildcard(match_dot: true)
-    |> Enum.filter(&File.regular?/1)
+  if Mix.env() == :prod do
+    def ls_template_files(dir) do
+      "#{dir}/**/*"
+      |> Path.wildcard(match_dot: true)
+      |> Enum.filter(&File.regular?/1)
+    end
+  else
+    def ls_template_files(dir), do: Git.ls_files(dir)
   end
 
   def fetch_file_mode!(path) do
