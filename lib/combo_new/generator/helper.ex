@@ -42,16 +42,23 @@ defmodule ComboNew.Generator.Helper do
   @doc """
   Lists files.
   """
-  if Mix.env() == :prod do
-    def ls_template_files(dir) do
+  def ls_template_files(dir) do
+    if in_git_repo?() do
+      Git.ls_files(dir)
+    else
       "#{dir}/**/*"
       |> Path.wildcard(match_dot: true)
       |> Enum.filter(&File.regular?/1)
     end
-  else
-    def ls_template_files(dir), do: Git.ls_files(dir)
   end
 
+  defp in_git_repo? do
+    File.exists?(Path.join(File.cwd!(), ".git"))
+  end
+
+  @doc """
+  Fetches the mode of file.
+  """
   def fetch_file_mode!(path) do
     mask = 0o777
     stat = File.stat!(path)
