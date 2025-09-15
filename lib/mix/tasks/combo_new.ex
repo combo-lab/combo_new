@@ -7,6 +7,42 @@ defmodule Mix.Tasks.ComboNew do
   @moduledoc ~s'''
   #{@shortdoc}.
 
+  ## Usage
+
+  ```console
+  $ mix combo_new <template> <path> [--app APP] [--module MODULE]
+  ```
+
+  It also supports using Git repositories as templates, which is useful to use
+  you own templates:
+
+  ```console
+  $ mix combo_new <git_repo> <path> [--app APP] [--module MODULE]
+  ```
+
+  ### Arguments
+
+    * `<template>` - the name of template. Available templates:
+  #{Generator.available_template_names() |> Enum.map_join("\n", &"#{String.duplicate(" ", 6)}- `#{&1}`")}
+    * `<git_repo>` - the address of a Git repo. Supported protocols:
+      - `https://`
+      - `ssh://`
+      - `file://`
+
+    * `<path>` - the path of the generated project. It can be an absolute or
+      a relative path. The OTP application name and base module name will be
+      retrieved from the path, unless `--app` or `--module` option is given.
+
+  ### Options
+
+    * `--app` - the name of the OTP application. If it's not specified, the name
+      will be retrieved from the `<path>`.
+
+    * `--module` - the name of the base module. If it's not specified, the name
+      will be retrieved from the name of the OTP application.
+
+    * `-v`, `--version` - prints the version.
+
   ## Examples
 
   Generates a project from the `vanilla` template in the `./demo` directory:
@@ -26,30 +62,12 @@ defmodule Mix.Tasks.ComboNew do
   $ mix combo_new vanilla demo --app rina
   ```
 
-  ## Usage
+  Generates a project in the `./demo` directory, using a remote Git repository
+  the as the template:
 
   ```console
-  $ mix combo_new <template> <path> [--app APP] [--module MODULE]
+  $ mix combo_new https://github.com/namespace/name.git demo
   ```
-
-  ### Arguments
-
-    * `<template>` - the name of template. Available templates:
-  #{Generator.available_template_names() |> Enum.map_join("\n", &"#{String.duplicate(" ", 6)}- `#{&1}`")}
-
-    * `<path>` - the path of the generated project. It can be an absolute or
-      a relative path. The OTP application name and base module name will be
-      retrieved from the path, unless `--app` or `--module` option is given.
-
-  ### Options
-
-    * `--app` - the name of the OTP application. If it's not specified, the name
-      will be retrieved from the `<path>`.
-
-    * `--module` - the name of the base module. If it's not specified, the name
-      will be retrieved from the name of the OTP application.
-
-    * `-v`, `--version` - prints the version.
   '''
 
   @app Mix.Project.config()[:app]
@@ -188,17 +206,10 @@ defmodule Mix.Tasks.ComboNew do
   defp print_next_steps(target_path) do
     Mix.shell().info("""
 
-    We are almost there! The following steps are missing:
+    Done! Now run:
 
         $ cd #{relative_path(target_path)}
         $ mix setup
-
-    Then, start the app with:
-
-        $ mix combo.serve
-
-    Or, run the app inside IEx (Interactive Elixir) as:
-
         $ iex -S mix combo.serve
     """)
   end
