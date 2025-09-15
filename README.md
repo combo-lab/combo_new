@@ -28,7 +28,9 @@ $ mix archive.install hex combo_new
 - Templates are standalone runnable projects. Although it limits the range of requirements that a single template can support, it makes development and debugging much simpler.
 - Templates that include database functionality will always integrate with PostgreSQL - the world's most advanced open source RDBMS.
 
-In this way, `combo_new` can focus on providing minimal, functional base templates, avoiding the maintenance overhead of accommodating diverse requirements. Meanwhile, community members can tailor their own templates to their specific needs, enabling the community to flourish without being too restrictive.
+In this way, `combo_new` can focus on providing minimal, functional base templates, avoiding the maintenance overhead of accommodating diverse requirements.
+
+Meanwhile, `combo_new` supports generating projects using remote Git repos, which allows community members to tailor their own templates for their own needs, enabling the community to flourish without being too restrictive.
 
 ## Creating your own templates
 

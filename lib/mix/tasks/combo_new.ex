@@ -55,7 +55,7 @@ defmodule Mix.Tasks.ComboNew do
   ```
 
   Generates a project in the `./demo` directory, using a remote Git repository
-  the as the template:
+  as the template:
 
   ```console
   $ mix combo_new https://github.com/namespace/name.git demo
