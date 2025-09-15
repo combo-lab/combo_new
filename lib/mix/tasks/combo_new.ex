@@ -1,6 +1,7 @@
 defmodule Mix.Tasks.ComboNew do
   use Mix.Task
   alias ComboNew.Generator
+  alias ComboNew.Error
 
   @shortdoc "Generates a Combo project"
 
@@ -13,21 +14,12 @@ defmodule Mix.Tasks.ComboNew do
   $ mix combo_new <template> <path> [--app APP] [--module MODULE]
   ```
 
-  It also supports using Git repositories as templates, which is useful to use
-  you own templates:
-
-  ```console
-  $ mix combo_new <git_repo> <path> [--app APP] [--module MODULE]
-  ```
-
   ### Arguments
 
-    * `<template>` - the name of template. Available templates:
-  #{Generator.available_template_names() |> Enum.map_join("\n", &"#{String.duplicate(" ", 6)}- `#{&1}`")}
-    * `<git_repo>` - the address of a Git repo. Supported protocols:
-      - `https://`
-      - `ssh://`
-      - `file://`
+    * `<template>` - the name of a built-in template, or the address of a Git
+      repo, which is useful to use your own templates.
+      * Supported built-in templates: #{Generator.builtin_template_names() |> Enum.join(", ")}.
+      * Supported protocols of the address of Git repos: `https://`, `ssh://`, `file://`.
 
     * `<path>` - the path of the generated project. It can be an absolute or
       a relative path. The OTP application name and base module name will be
@@ -74,6 +66,8 @@ defmodule Mix.Tasks.ComboNew do
   @version Mix.Project.config()[:version]
   @elixir_requirement Mix.Project.config()[:elixir]
 
+  @version_line "#{@app} v#{@version}"
+
   @support_options [
     app: :string,
     module: :string
@@ -81,15 +75,15 @@ defmodule Mix.Tasks.ComboNew do
 
   @impl true
   def run([option] = _argv) when option in ~w(-v --version) do
-    Mix.shell().info("#{@app} v#{@version}")
+    Mix.shell().info(@version_line)
   end
 
   def run(argv) do
     check_elixir_version!()
 
     case OptionParser.parse!(argv, strict: @support_options) do
-      {opts, [template_name, target_path | _]} ->
-        generate(target_path, template_name, opts)
+      {opts, [template, target_path | _]} ->
+        generate(template, target_path, opts)
 
       _ ->
         task_name = to_mix_task_name(__MODULE__)
@@ -97,37 +91,46 @@ defmodule Mix.Tasks.ComboNew do
     end
   end
 
-  # ComboNew.run(__MODULE__, argv)
-
-  defp check_elixir_version!() do
-    unless Version.match?(System.version(), @elixir_requirement) do
-      Mix.raise(
-        "#{@app} v#{@version} requires Elixir #{@elixir_requirement}. " <>
-          "But, you have Elixir #{System.version()}. \n" <> "Please update accordingly."
-      )
+  defp check_elixir_version! do
+    if not Version.match?(System.version(), @elixir_requirement) do
+      exit(:dep_error, """
+      #{@version_line} requires Elixir #{@elixir_requirement}. \
+      But, you have Elixir #{System.version()}.
+      Please update accordingly.\
+      """)
     end
   end
 
-  defp generate(target_path, template_name, opts) do
+  defp generate(template, target_path, opts) do
     target_path = Path.expand(target_path)
 
-    app = String.to_atom(opts[:app] || Path.basename(target_path))
-    module = Module.concat([opts[:module] || camelize(app)])
-    env_prefix = upcase(app)
+    app_name = opts[:app] || Path.basename(target_path)
+    module_name = opts[:module] || camelize(app_name)
 
+    template = check_template!(template)
     check_target_path!(target_path)
-    check_template_name!(template_name)
-    check_app_name!(app, !!opts[:app])
-    check_module_name!(module)
+    check_app_name!(app_name, !!opts[:app])
+    check_module_name!(module_name)
 
-    :ok =
-      Generator.generate!(target_path, template_name,
-        app: app,
-        module: module,
-        env_prefix: env_prefix
-      )
+    app = String.to_atom(app_name)
+    module = Module.concat([module_name])
+
+    try do
+      Generator.generate!(template, target_path, app, module)
+    rescue
+      e in [Error] ->
+        msg = Exception.message(e)
+        exit(:runtime_error, msg)
+    end
 
     print_next_steps(target_path)
+  end
+
+  defp check_template!(template) do
+    case Generator.cast_template(template) do
+      {:ok, template} -> template
+      {:error, msg} -> exit(:arg_error, msg)
+    end
   end
 
   defp check_target_path!(path) do
@@ -136,7 +139,10 @@ defmodule Mix.Tasks.ComboNew do
         :ok
 
       File.exists?(path) and not File.dir?(path) ->
-        Mix.raise("The path #{path} already exists, but it's not a directory. Abort.")
+        exit(:arg_error, """
+        The path #{path} already exists, and it's not a directory. \
+        It's impossible to generate files into it, exit.\
+        """)
 
       File.exists?(path) and File.dir?(path) ->
         continue? =
@@ -146,21 +152,7 @@ defmodule Mix.Tasks.ComboNew do
 
         if continue?,
           do: :ok,
-          else: Mix.raise("Please use another path.")
-    end
-  end
-
-  defp check_template_name!(name) do
-    available_template_names = Generator.available_template_names()
-
-    if name in available_template_names do
-      :ok
-    else
-      Mix.raise("""
-      Unknown template name - #{name}. Available template names are:
-
-      #{available_template_names |> Enum.map_join("\n", &"#{String.duplicate(" ", 2)}- #{&1}")}
-      """)
+          else: exit(:ok, "Please use another path.")
     end
   end
 
@@ -172,35 +164,28 @@ defmodule Mix.Tasks.ComboNew do
         if app_opt_passed? do
           ""
         else
-          ". The application name is inferred from the path, if you'd like to " <>
-            "explicitly name the application then use the `--app APP` option."
+          ". If you'd like to explicitly name it, then use the `--app` option."
         end
 
-      Mix.raise(
-        "Application name must start with a letter and have only lowercase " <>
-          "letters, numbers and underscore, got: #{inspect(name)}" <> extra_msg
-      )
+      exit(:arg_error, """
+      #{inspect(name)} is not a valid OTP application name. \
+      The OTP application name must start with a lowercase letter and contain \
+      only lowercase letters, numbers, and underscores#{extra_msg}\
+      """)
     end
   end
 
-  defp check_module_name!(name) do
-    unless inspect(name) =~ Regex.recompile!(~r/^[A-Z]\w*(\.[A-Z]\w*)*$/) do
-      Mix.raise(
-        "Module name must be a valid Elixir module name (for example: Foo.Bar), got: #{inspect(name)}"
-      )
+  defp check_module_name!(name) when is_binary(name) do
+    if not (name =~ Regex.recompile!(~r/^[A-Z]\w*(\.[A-Z]\w*)*$/)) do
+      exit(:arg_error, """
+      #{inspect(name)} is not a valid module name. \
+      The module name must be a valid Elixir module name, such as "MyApp".
+      """)
     end
   end
 
-  defp camelize(term) when is_atom(term) do
-    term
-    |> Atom.to_string()
-    |> Macro.camelize()
-  end
-
-  defp upcase(term) when is_atom(term) do
-    term
-    |> Atom.to_string()
-    |> String.upcase()
+  defp camelize(term) when is_binary(term) do
+    Macro.camelize(term)
   end
 
   defp print_next_steps(target_path) do
@@ -227,5 +212,25 @@ defmodule Mix.Tasks.ComboNew do
     module
     |> String.split(".")
     |> Enum.map_join(".", &Macro.underscore/1)
+  end
+
+  defp exit(:ok, msg) do
+    IO.puts(:stdio, msg)
+    System.halt(0)
+  end
+
+  defp exit(:runtime_error, msg) do
+    IO.puts(:stderr, msg)
+    System.halt(1)
+  end
+
+  defp exit(:arg_error, msg) do
+    IO.puts(:stderr, msg)
+    System.halt(2)
+  end
+
+  defp exit(:dep_error, msg) do
+    IO.puts(:stderr, msg)
+    System.halt(7)
   end
 end

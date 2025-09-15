@@ -1,4 +1,4 @@
-defmodule ComboNew.Generator.Helper do
+defmodule ComboNew.Template do
   @moduledoc false
 
   import Bitwise
@@ -27,39 +27,38 @@ defmodule ComboNew.Generator.Helper do
     Enum.sort_by(names, fn name -> Map.get(orders, name, name) end)
   end
 
-  @doc """
-  Lists files of all templates.
-  """
-  def ls_all_template_files(root, template_names) do
+  def ls_template_files(root, template_names) when is_list(template_names) do
     template_names
     |> Enum.map(fn template_name ->
-      template_base_dir = Path.join(root, template_name)
-      ls_template_files(template_base_dir)
+      dir = Path.join(root, template_name)
+      ls_files(dir)
     end)
     |> List.flatten()
   end
 
-  @doc """
-  Lists files.
-  """
-  def ls_template_files(dir) do
-    if in_git_repo?() do
+  def scan_template_tuples(root) do
+    absolute_paths = ls_files(root)
+
+    Enum.map(absolute_paths, fn path ->
+      relative_path = Path.relative_to(path, root)
+      mode = fetch_file_mode!(path)
+      content = File.read!(path)
+      {relative_path, mode, content}
+    end)
+  end
+
+  defp ls_files(dir) do
+    if Git.in_repo?(dir) do
       Git.ls_files(dir)
     else
-      "#{dir}/**/*"
+      dir
+      |> Path.join("**/*")
       |> Path.wildcard(match_dot: true)
       |> Enum.filter(&File.regular?/1)
     end
   end
 
-  defp in_git_repo? do
-    File.exists?(Path.join(File.cwd!(), ".git"))
-  end
-
-  @doc """
-  Fetches the mode of file.
-  """
-  def fetch_file_mode!(path) do
+  defp fetch_file_mode!(path) do
     mask = 0o777
     stat = File.stat!(path)
     stat.mode &&& mask
