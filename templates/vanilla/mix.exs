@@ -37,11 +37,9 @@ defmodule MyApp.MixProject do
 
   defp deps do
     [
-      {:combo, path: "../../../combo"},
+      {:combo, "~> 0.2"},
       {:bandit, "~> 1.5"},
       {:system_env, "~> 0.1"},
-
-      # code quality
       {:ex_check, ">= 0.0.0", only: [:dev], runtime: false},
       {:dialyxir, ">= 0.0.0", only: [:dev], runtime: false}
     ]
