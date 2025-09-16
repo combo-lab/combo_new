@@ -91,7 +91,7 @@ defmodule ComboNew.Git do
 
   def ls_files(dir) do
     root = root_dir(dir)
-    result = git!("ls-tree --full-name --name-only -r HEAD .", cd: dir)
+    result = git!("ls-files --full-name", cd: dir)
 
     result
     |> String.trim()
