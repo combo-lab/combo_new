@@ -1,6 +1,6 @@
 # MyApp
 
-A minimal Combo project, without integrating assets bundling tool, database, etc.
+A minimal Combo project, using vanilla JS and CSS, without integrating any assets bundling tool.
 
 ## Requirements
 
