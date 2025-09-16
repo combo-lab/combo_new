@@ -143,6 +143,7 @@ defmodule ComboNew.Git do
 
       case File.read_link(current_path) do
         {:ok, target} ->
+          # credo:disable-for-next-line
           if Path.type(target) == :absolute do
             target
           else
