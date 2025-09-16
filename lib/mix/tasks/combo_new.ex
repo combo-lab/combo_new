@@ -18,7 +18,7 @@ defmodule Mix.Tasks.ComboNew do
 
     * `<template>` - the name of a built-in template, or the address of a Git
       repo, which is useful to use your own templates.
-      * Supported built-in templates: #{Generator.builtin_template_names() |> Enum.join(", ")}.
+      * Supported built-in templates: #{Generator.builtin_template_names() |> Enum.map_join(", ", &"`#{&1}`")}.
       * Supported protocols of the address of Git repos: `https://`, `ssh://`, `file://`.
 
     * `<path>` - the path of the generated project. It can be an absolute or
