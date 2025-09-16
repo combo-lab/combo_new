@@ -3,7 +3,9 @@
     <img class="logo" src="/assets/images/logo.svg" />
     <div>
       <h1 class="sr-only">Combo</h1>
-      <p class="description">A web framework, that combines the good parts of modern web development.</p>
+      <p class="description">
+        A web framework, that combines the good parts of modern web development.
+      </p>
     </div>
   </main>
 </div>
