@@ -12,17 +12,17 @@ config :combo, :template, ceex_debug_annotations: true
 
 # Set a higher stacktrace during development.
 # Avoid configuring it in production as building large stacktraces may be expensive.
-config :demo_lt, :stacktrace_depth, 20
+config :my_app, :stacktrace_depth, 20
 
 # Enable dev routes
-config :demo_lt, dev_routes: true
+config :my_app, dev_routes: true
 
-config :demo_lt, DemoLT.Web.Endpoint,
+config :my_app, MyApp.Web.Endpoint,
   check_origin: false,
   live_reloader: [
     patterns: [
-      ~r"lib/demo_lt/web/router\.ex",
-      ~r"lib/demo_lt/web/(controllers|layouts|components)/.*\.(ex|ceex)$"
+      ~r"lib/my_app/web/router\.ex",
+      ~r"lib/my_app/web/(controllers|layouts|components)/.*\.(ex|ceex)$"
     ]
   ],
   code_reloader: true,

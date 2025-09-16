@@ -1,4 +1,4 @@
-# DemoLT
+# MyApp
 
 A Combo project, integrating Vite for assets bundling.
 

@@ -4,12 +4,12 @@ config :logger, :default_formatter,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]
 
-config :demo_lt, DemoLT.Web.Endpoint,
+config :my_app, MyApp.Web.Endpoint,
   render_errors: [
     layout: [html: false, json: false],
-    formats: [html: DemoLT.Web.ErrorHTML, json: DemoLT.Web.ErrorJSON]
+    formats: [html: MyApp.Web.ErrorHTML, json: MyApp.Web.ErrorJSON]
   ],
-  pubsub_server: DemoLT.PubSub
+  pubsub_server: MyApp.PubSub
 
 # Import environment specific config
 #

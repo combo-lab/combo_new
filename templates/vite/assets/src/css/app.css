@@ -2,7 +2,7 @@
 
 @source "../css";
 @source "../js";
-@source "../../../lib/demo_lt/web";
+@source "../../../lib/my_app/web";
 
 @theme {
   --font-sans:

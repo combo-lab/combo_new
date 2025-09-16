@@ -1,8 +1,8 @@
-defmodule DemoLT.Web.ErrorHTMLTest do
-  use DemoLT.Web.ConnCase, async: true
+defmodule MyApp.Web.ErrorHTMLTest do
+  use MyApp.Web.ConnCase, async: true
 
   import Combo.Template, only: [render_to_string: 4]
-  alias DemoLT.Web.ErrorHTML
+  alias MyApp.Web.ErrorHTML
 
   test "renders 404.html" do
     assert render_to_string(ErrorHTML, "404", "html", []) =~ "Not Found"

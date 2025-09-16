@@ -37,7 +37,7 @@ listen_port =
 
 origins = [base_url]
 
-config :demo_lt, DemoLT.Web.Endpoint,
+config :my_app, MyApp.Web.Endpoint,
   url: parsed_base_url,
   static_url: parsed_assets_base_url,
   http: [
@@ -52,7 +52,7 @@ case config_env() do
         message: "Generate one by calling: mix combo.gen.secret"
       )
 
-    config :demo_lt, DemoLT.Web.Endpoint,
+    config :my_app, MyApp.Web.Endpoint,
       secret_key_base: secret_key_base,
       check_origin: origins
 
@@ -61,5 +61,5 @@ case config_env() do
 end
 
 if SystemEnv.get_env("RELEASE_NAME") do
-  config :demo_lt, DemoLT.Web.Endpoint, server: true
+  config :my_app, MyApp.Web.Endpoint, server: true
 end

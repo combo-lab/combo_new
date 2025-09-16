@@ -1,4 +1,4 @@
-# DemoLT
+# MyApp
 
 A minimal Combo project, without integrating assets bundling tool, database, etc.
 

@@ -4,9 +4,9 @@ defmodule ComboNew.Generator do
   alias ComboNew.Template
   alias ComboNew.Git
 
-  @template_app :demo_lt
-  @template_module DemoLT
-  @template_env_prefix "DEMO_LT"
+  @template_app :my_app
+  @template_module MyApp
+  @template_env_prefix "MY_APP"
 
   templates_root = Path.expand("../../templates", __DIR__)
   @templates_root templates_root

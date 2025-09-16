@@ -1,7 +1,7 @@
-defmodule DemoLT.MixProject do
+defmodule MyApp.MixProject do
   use Mix.Project
 
-  @app :demo_lt
+  @app :my_app
   @version "0.1.0"
 
   def project do
@@ -21,7 +21,7 @@ defmodule DemoLT.MixProject do
 
   def application do
     [
-      mod: {DemoLT.Application, []},
+      mod: {MyApp.Application, []},
       extra_applications: [:logger, :runtime_tools]
     ]
   end

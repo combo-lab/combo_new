@@ -10,7 +10,7 @@ config :combo, :plug_init_mode, :runtime
 #
 # Don't run a server during test. If one is required, enable the :server
 # option below.
-config :demo_lt, DemoLT.Web.Endpoint,
+config :my_app, MyApp.Web.Endpoint,
   http: [ip: {127, 0, 0, 1}, port: 4101],
   secret_key_base: "=========================secret_key_base=========================",
   server: false
