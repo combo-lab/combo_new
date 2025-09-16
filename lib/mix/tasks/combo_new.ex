@@ -93,7 +93,7 @@ defmodule Mix.Tasks.ComboNew do
 
   defp check_elixir_version! do
     if not Version.match?(System.version(), @elixir_requirement) do
-      exit(:dep_error, """
+      exit_with_msg(:dep_error, """
       #{@version_line} requires Elixir #{@elixir_requirement}. \
       But, you have Elixir #{System.version()}.
       Please update accordingly.\
@@ -120,7 +120,7 @@ defmodule Mix.Tasks.ComboNew do
     rescue
       e in [Error] ->
         msg = Exception.message(e)
-        exit(:runtime_error, msg)
+        exit_with_msg(:runtime_error, msg)
     end
 
     print_next_steps(target_path)
@@ -129,7 +129,7 @@ defmodule Mix.Tasks.ComboNew do
   defp check_template!(template) do
     case Generator.cast_template(template) do
       {:ok, template} -> template
-      {:error, msg} -> exit(:arg_error, msg)
+      {:error, msg} -> exit_with_msg(:arg_error, msg)
     end
   end
 
@@ -139,7 +139,7 @@ defmodule Mix.Tasks.ComboNew do
         :ok
 
       File.exists?(path) and not File.dir?(path) ->
-        exit(:arg_error, """
+        exit_with_msg(:arg_error, """
         The path #{path} already exists, and it's not a directory. \
         It's impossible to generate files into it, exit.\
         """)
@@ -152,7 +152,7 @@ defmodule Mix.Tasks.ComboNew do
 
         if continue?,
           do: :ok,
-          else: exit(:ok, "Please use another path.")
+          else: exit_with_msg(:ok, "Please use another path.")
     end
   end
 
@@ -167,7 +167,7 @@ defmodule Mix.Tasks.ComboNew do
           ". If you'd like to explicitly name it, then use the `--app` option."
         end
 
-      exit(:arg_error, """
+      exit_with_msg(:arg_error, """
       #{inspect(name)} is not a valid OTP application name. \
       The OTP application name must start with a lowercase letter and contain \
       only lowercase letters, numbers, and underscores#{extra_msg}\
@@ -177,7 +177,7 @@ defmodule Mix.Tasks.ComboNew do
 
   defp check_module_name!(name) when is_binary(name) do
     if not (name =~ Regex.recompile!(~r/^[A-Z]\w*(\.[A-Z]\w*)*$/)) do
-      exit(:arg_error, """
+      exit_with_msg(:arg_error, """
       #{inspect(name)} is not a valid module name. \
       The module name must be a valid Elixir module name, such as "MyApp".
       """)
@@ -214,23 +214,19 @@ defmodule Mix.Tasks.ComboNew do
     |> Enum.map_join(".", &Macro.underscore/1)
   end
 
-  defp exit(:ok, msg) do
-    IO.puts(:stdio, msg)
-    System.halt(0)
-  end
+  @spec exit_with_msg(atom(), String.t()) :: no_return()
+  defp exit_with_msg(type, msg) do
+    output_device = if type == :ok, do: :stdio, else: :stderr
+    IO.puts(output_device, msg)
 
-  defp exit(:runtime_error, msg) do
-    IO.puts(:stderr, msg)
-    System.halt(1)
-  end
+    exit_code =
+      case type do
+        :ok -> 0
+        :runtime_error -> 1
+        :arg_error -> 2
+        :dep_error -> 7
+      end
 
-  defp exit(:arg_error, msg) do
-    IO.puts(:stderr, msg)
-    System.halt(2)
-  end
-
-  defp exit(:dep_error, msg) do
-    IO.puts(:stderr, msg)
-    System.halt(7)
+    System.halt(exit_code)
   end
 end
