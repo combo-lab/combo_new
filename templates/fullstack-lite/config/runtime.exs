@@ -7,6 +7,19 @@
 
 import Config
 
+if config_env() == :prod do
+  database_url =
+    SystemEnv.fetch_env!("MY_APP_DATABASE_URL",
+      message: "Set it to something like: ecto://USER:PASS@HOST/DATABASE"
+    )
+
+  database_pool_size = SystemEnv.get_env("MY_APP_DATABASE_POOL_SIZE", :integer) || 10
+
+  config :my_app, MyApp.Core.Repo,
+    url: database_url,
+    pool_size: database_pool_size
+end
+
 base_url = SystemEnv.get_env("BASE_URL") || "http://localhost:4000"
 assets_base_url = SystemEnv.get_env("ASSETS_BASE_URL") || nil
 

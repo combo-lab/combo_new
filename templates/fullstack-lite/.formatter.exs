@@ -1,5 +1,10 @@
 [
-  import_deps: [:combo],
+  import_deps: [:combo, :ecto, :ecto_sql],
+  subdirectories: ["priv/*/migrations"],
   plugins: [Combo.HTML.Formatter],
-  inputs: ["*.{ex,exs,ceex}", "{config,lib,test}/**/*.{ex,exs,ceex}"]
+  inputs: [
+    "{mix,.formatter}.exs",
+    "{config,lib,test}/**/*.{ex,exs,ceex}",
+    "priv/*/seeds.exs"
+  ]
 ]

@@ -4,6 +4,13 @@ config :logger, :default_formatter,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]
 
+config :my_app, ecto_repos: [MyApp.Core.Repo]
+
+config :my_app, MyApp.Core.Repo,
+  priv: "priv/repo",
+  migration_primary_key: [name: :id, type: :binary_id],
+  migration_timestamps: [type: :utc_datetime_usec]
+
 config :my_app, MyApp.Web.Endpoint,
   render_errors: [
     layout: [html: false, json: false],

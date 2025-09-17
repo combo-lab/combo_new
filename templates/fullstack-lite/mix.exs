@@ -37,10 +37,14 @@ defmodule MyApp.MixProject do
 
   defp deps do
     [
-      {:combo, "~> 0.2"},
-      {:combo_vite, "~> 0.3"},
-      {:bandit, "~> 1.5"},
       {:system_env, "~> 0.1"},
+      {:ecto_sql, "~> 3.0"},
+      {:postgrex, ">= 0.0.0"},
+      {:uuidv7, "~> 1.0"},
+      {:combo, "~> 0.2"},
+      {:bandit, "~> 1.5"},
+      {:combo_ecto, "~> 0.1"},
+      {:combo_vite, "~> 0.3"},
       {:ex_check, ">= 0.0.0", only: [:dev], runtime: false},
       {:dialyxir, ">= 0.0.0", only: [:dev], runtime: false}
     ]
@@ -51,7 +55,8 @@ defmodule MyApp.MixProject do
       setup: ["deps.get", "assets.setup"],
       "assets.setup": ["cmd --cd assets npm install --install-links"],
       "assets.build": ["cmd --cd assets npm run build"],
-      "assets.clean": ["cmd rm -r priv/static/build"]
+      "assets.clean": ["cmd rm -r priv/static/build"],
+      "assets.deploy": ["assets.clean", "assets.build"]
     ]
   end
 end

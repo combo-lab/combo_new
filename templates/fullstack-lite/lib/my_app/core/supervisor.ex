@@ -8,7 +8,9 @@ defmodule MyApp.Core.Supervisor do
 
   @impl Supervisor
   def init(_arg) do
-    children = []
+    children = [
+      MyApp.Core.Repo
+    ]
 
     Supervisor.init(children, strategy: :one_for_one)
   end

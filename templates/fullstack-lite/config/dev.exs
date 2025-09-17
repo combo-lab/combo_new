@@ -17,6 +17,15 @@ config :my_app, :stacktrace_depth, 20
 # Enable dev routes
 config :my_app, dev_routes: true
 
+config :my_app, MyApp.Core.Repo,
+  username: "postgres",
+  password: "postgres",
+  hostname: "localhost",
+  database: "my_app",
+  stacktrace: true,
+  show_sensitive_data_on_connection_error: true,
+  pool_size: 10
+
 config :my_app, MyApp.Web.Endpoint,
   check_origin: false,
   live_reloader: [
@@ -27,11 +36,7 @@ config :my_app, MyApp.Web.Endpoint,
   ],
   code_reloader: true,
   watchers: [
-    npm: [
-      "run",
-      "dev",
-      cd: Path.expand("../assets", __DIR__)
-    ]
+    npm: ["run", "dev", cd: Path.expand("../assets", __DIR__)]
   ],
   process_limit: 2,
   force_ssl: false,
