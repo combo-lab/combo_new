@@ -1,6 +1,6 @@
 # MyApp
 
-A minimal Combo project, using vanilla JS and CSS, without integrating any assets bundling tool.
+A Combo project, using vanilla JS and CSS.
 
 ## Requirements
 
@@ -21,6 +21,14 @@ $ iex -S mix combo.serve
 ```
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from web browser.
+
+### Build release
+
+```
+$ mix deps.get --only prod
+$ mix assets.deploy
+$ MIX_ENV=prod mix release
+```
 
 ## Deployment
 

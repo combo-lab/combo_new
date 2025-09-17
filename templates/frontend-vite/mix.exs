@@ -51,7 +51,8 @@ defmodule MyApp.MixProject do
       setup: ["deps.get", "assets.setup"],
       "assets.setup": ["cmd --cd assets npm install --install-links"],
       "assets.build": ["cmd --cd assets npm run build"],
-      "assets.clean": ["cmd rm -r priv/static/build"]
+      "assets.clean": ["cmd rm -rf priv/static/build"],
+      "assets.deploy": ["assets.clean", "assets.build"]
     ]
   end
 end

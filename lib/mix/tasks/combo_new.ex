@@ -37,21 +37,11 @@ defmodule Mix.Tasks.ComboNew do
 
   ## Examples
 
-  Generates a project from the `vanilla` template in the `./demo` directory:
-  ```console
-  $ mix combo_new vanilla demo
-  ```
-
-  Generates a project from the `vanilla` template in the `/tmp/demo` directory:
-  ```console
-  $ mix combo_new vanilla /tmp/demo
-  ```
-
-  Generates a project from the `vanilla` template in the `./demo` directory, but
-  specifying the name of the OTP application as `rina`:
+  Generates a project from the `frontend-vanilla` template in the `./demo`
+  directory:
 
   ```console
-  $ mix combo_new vanilla demo --app rina
+  $ mix combo_new frontend-vanilla demo
   ```
 
   Generates a project in the `./demo` directory, using a remote Git repository
@@ -59,6 +49,20 @@ defmodule Mix.Tasks.ComboNew do
 
   ```console
   $ mix combo_new https://github.com/namespace/name.git demo
+  ```
+
+  Generates a project from the `frontend-vanilla` template in the `/tmp/demo`
+  directory:
+
+  ```console
+  $ mix combo_new frontend-vanilla /tmp/demo
+  ```
+
+  Generates a project from the `frontend-vanilla` template in the `./demo`
+  directory, but specifying the name of the OTP application as `rina`:
+
+  ```console
+  $ mix combo_new frontend-vanilla demo --app rina
   ```
   '''
 
