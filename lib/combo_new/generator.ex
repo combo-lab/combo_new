@@ -163,8 +163,7 @@ defmodule ComboNew.Generator do
       |> String.replace(to_string(placeholder_app), to_string(app))
       |> String.replace(inspect(placeholder_module), inspect(module))
       |> String.replace(placeholder_env_prefix, env_prefix)
-      |> inject_secret_key_base()
-      |> inject_signing_salt()
+      |> inject_random_string()
 
     Mix.Generator.create_file(path, content)
     File.chmod!(path, mode)
@@ -172,28 +171,19 @@ defmodule ComboNew.Generator do
     :ok
   end
 
-  defp inject_secret_key_base(content) do
-    placeholder = "=========================secret_key_base========================="
-    replacement = random_string(64)
-    new_content = String.replace(content, placeholder, replacement, global: false)
+  def inject_random_string(content) do
+    random_string_pattern =
+      Regex.recompile!(~r/"=+\s*random_string\(\s*(?<length>\d+)\s*\)\s*\=+"/)
 
-    if new_content == content do
-      new_content
-    else
-      inject_secret_key_base(new_content)
-    end
-  end
-
-  defp inject_signing_salt(content) do
-    placeholder = "==signing_salt=="
-    replacement = random_string(8)
-    new_content = String.replace(content, placeholder, replacement, global: false)
-
-    if new_content == content do
-      new_content
-    else
-      inject_signing_salt(new_content)
-    end
+    Regex.scan(random_string_pattern, content)
+    |> Enum.map(fn [placeholder, raw_length] ->
+      length = String.to_integer(raw_length)
+      replacement = "\"#{random_string(length)}\""
+      {placeholder, replacement}
+    end)
+    |> Enum.reduce(content, fn {placeholder, replacement}, acc ->
+      String.replace(acc, placeholder, replacement, global: false)
+    end)
   end
 
   defp random_string(length) do

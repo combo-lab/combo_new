@@ -12,5 +12,5 @@ config :combo, :plug_init_mode, :runtime
 # option below.
 config :my_app, MyApp.Web.Endpoint,
   http: [ip: {127, 0, 0, 1}, port: 4101],
-  secret_key_base: "=========================secret_key_base=========================",
+  secret_key_base: "======================= random_string(65) ======================="
   server: false
