@@ -6,7 +6,7 @@ defmodule MyApp.Web.Endpoint do
   # Set :encryption_salt if you would also like to encrypt it.
   @session_opts [
     store: :cookie,
-    key: "_combo_lt_web_key",
+    key: "_my_app_web_key",
     signing_salt: "= random_string(20) =",
     same_site: "Lax"
   ]

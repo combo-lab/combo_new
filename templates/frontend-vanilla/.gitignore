@@ -23,4 +23,4 @@ erl_crash.dump
 /tmp/
 
 # Ignore package tarball (built via "mix hex.build").
-combo_lt-*.tar
+my_app-*.tar
