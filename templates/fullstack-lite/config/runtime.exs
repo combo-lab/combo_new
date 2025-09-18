@@ -8,16 +8,16 @@
 import Config
 
 if config_env() == :prod do
-  database_url =
-    SystemEnv.fetch_env!("MY_APP_DATABASE_URL",
+  db_url =
+    SystemEnv.fetch_env!("DB_URL",
       message: "Set it to something like: ecto://USER:PASS@HOST/DATABASE"
     )
 
-  database_pool_size = SystemEnv.get_env("MY_APP_DATABASE_POOL_SIZE", :integer) || 10
+  db_pool_size = SystemEnv.get_env("DB_POOL_SIZE", :integer) || 10
 
   config :my_app, MyApp.Core.Repo,
-    url: database_url,
-    pool_size: database_pool_size
+    url: db_url,
+    pool_size: db_pool_size
 end
 
 base_url = SystemEnv.get_env("BASE_URL") || "http://localhost:4000"
