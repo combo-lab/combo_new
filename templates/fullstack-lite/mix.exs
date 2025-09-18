@@ -13,7 +13,6 @@ defmodule MyApp.MixProject do
       start_permanent: Mix.env() == :prod,
       releases: releases(),
       deps: deps(),
-      compilers: Mix.compilers(),
       listeners: [Combo.CodeReloader],
       aliases: aliases()
     ]
