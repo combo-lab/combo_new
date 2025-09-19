@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json.schemastore.org/package.json",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "test": "true"
+  },
+  "devDependencies": {
+    "vite": "^7.0.0",
+    "vite-plugin-combo": "file:../deps/combo_vite/npm-packages/vite-plugin-combo"
+  },
+  "dependencies": {
+    "@fontsource-variable/instrument-sans": "^5.2.7"
+  }
+}
