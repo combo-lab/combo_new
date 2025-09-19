@@ -77,7 +77,7 @@ defmodule MyApp.Web do
     quote do
       use Combo.HTML
 
-      use Combo.Vite.Components,
+      use Combo.Vite.HTML,
         endpoint: MyApp.Web.Endpoint,
         static_dir: {:my_app, "priv/static"}
 
