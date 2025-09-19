@@ -10,7 +10,8 @@
     <% else %>
       <title>MyApp.Web</title>
     <% end %>
-    <.vite_assets names={["src/css/app.css", "src/js/app.js"]} />
+    <.vite_react_refresh />
+    <.vite_assets names={["src/js/app.jsx"]} />
   </head>
   <body>
     {@inner_content}
