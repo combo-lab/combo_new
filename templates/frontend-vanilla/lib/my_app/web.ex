@@ -55,7 +55,6 @@ defmodule MyApp.Web do
 
   def component do
     quote do
-      # Include general helpers for rendering HTML
       unquote(html_helpers())
     end
   end
