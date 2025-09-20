@@ -7,7 +7,7 @@ defmodule MyApp.Web.Endpoint do
   @session_opts [
     store: :cookie,
     key: "_my_app_web_key",
-    signing_salt: "= random_string(20) =",
+    signing_salt: "= random_string(8) =",
     same_site: "Lax"
   ]
 
