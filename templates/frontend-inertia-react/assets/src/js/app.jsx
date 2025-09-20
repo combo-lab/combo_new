@@ -7,8 +7,6 @@ import axios from "axios";
 import { createInertiaApp } from "@inertiajs/react";
 import { createRoot } from "react-dom/client";
 
-import.meta.glob(["../images/**"])
-
 axios.defaults.xsrfHeaderName = "x-csrf-token";
 
 createInertiaApp({

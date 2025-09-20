@@ -38,6 +38,7 @@ defmodule MyApp.MixProject do
     [
       {:combo, "~> 0.2"},
       {:combo_vite, "~> 0.4"},
+      {:combo_inertia, path: "../../../combo_inertia"},
       {:bandit, "~> 1.5"},
       {:system_env, "~> 0.1"},
       {:ex_check, ">= 0.0.0", only: [:dev], runtime: false},

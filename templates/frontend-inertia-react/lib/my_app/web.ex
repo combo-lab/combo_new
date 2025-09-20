@@ -42,6 +42,7 @@ defmodule MyApp.Web do
 
       import Plug.Conn
       import Combo.Conn
+      import Combo.Inertia.Conn
 
       import Combo.HTML.Components,
         only: [
@@ -79,6 +80,8 @@ defmodule MyApp.Web do
       use Combo.Vite.HTML,
         endpoint: MyApp.Web.Endpoint,
         static_dir: {:my_app, "priv/static"}
+
+      import Combo.Inertia.HTML
 
       alias MyApp.Web.Layouts
 
