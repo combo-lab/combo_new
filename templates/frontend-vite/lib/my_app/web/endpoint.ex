@@ -12,13 +12,9 @@ defmodule MyApp.Web.Endpoint do
   ]
 
   # Serve at "/" the static files from "priv/static" directory.
-  #
-  # You should set gzip to true if you are running phx.digest
-  # when deploying the static files in production.
   plug Plug.Static,
     at: "/",
     from: :my_app,
-    gzip: not code_reloading?,
     only: MyApp.Web.static_paths()
 
   if live_reloading? do
