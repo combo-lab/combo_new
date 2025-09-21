@@ -3,6 +3,6 @@ defmodule MyApp.Web.PageController do
 
   def home(conn, _params) do
     conn
-    |> render_inertia("Home")
+    |> inertia_render("Home")
   end
 end
