@@ -2,11 +2,15 @@ import "@fontsource-variable/instrument-sans"
 import "../css/app.css"
 
 import { createInertiaApp } from "@inertiajs/react";
-import { createRoot } from "react-dom/client";
+import { createRoot, hydrateRoot } from "react-dom/client";
 import { resolvePageComponent } from "./inertia-helper";
 
 import axios from "axios";
 axios.defaults.xsrfHeaderName = "x-csrf-token";
+
+function ssr_mode() {
+  return document.documentElement.hasAttribute("ssr");
+}
 
 createInertiaApp({
   resolve: (name) => resolvePageComponent(
@@ -14,6 +18,10 @@ createInertiaApp({
     import.meta.glob('./Pages/**/*.jsx', { eager: true })
   ),
   setup({ el, App, props }) {
-    createRoot(el).render(<App {...props} />)
+    if (ssr_mode()) {
+      hydrateRoot(el, <App {...props} />);
+    } else {
+      createRoot(el).render(<App {...props} />)    
+    }
   },
 });
