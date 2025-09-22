@@ -29,6 +29,9 @@ my_app-*.tar
 npm-debug.log
 /assets/node_modules/
 
-# Ignore built files that are produced by assets build tools.
+# Ignore files that are produced by assets build tools.
 /priv/static/build/
 /priv/static/__hot__
+
+# Ignore files that are produced for SSR by assets build tools.
+/priv/ssr/

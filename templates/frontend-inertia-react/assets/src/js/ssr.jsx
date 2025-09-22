@@ -1,0 +1,18 @@
+import "@fontsource-variable/instrument-sans"
+import "../css/app.css"
+
+import { createInertiaApp } from "@inertiajs/react"
+import ReactDOMServer from "react-dom/server"
+import { resolvePageComponent } from "./inertia-helper";
+
+export function render(page) {
+  return createInertiaApp({
+    page,
+    render: ReactDOMServer.renderToString,
+    resolve: (name) => resolvePageComponent(
+      `./Pages/${name}.jsx`, 
+      import.meta.glob('./Pages/**/*.jsx', { eager: true })
+    ),
+    setup: ({ App, props }) => <App {...props} />,
+  })
+}

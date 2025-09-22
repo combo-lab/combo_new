@@ -33,3 +33,8 @@ config :my_app, MyApp.Web.Endpoint,
   force_ssl: false,
   debug_errors: true,
   secret_key_base: "======================= random_string(65) ======================="
+
+config :my_app, MyApp.Web.Endpoint,
+  inertia: [
+    ssr: false
+  ]

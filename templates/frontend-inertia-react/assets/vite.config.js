@@ -7,7 +7,9 @@ export default defineConfig({
     combo({
       input: ["src/js/app.jsx"],
       staticDir: "../priv/static",
+      ssrInput: ["src/js/ssr.jsx"],
+      ssrOutDir: "../priv/ssr",
     }),
     react(),
-  ],
+  ]
 })
