@@ -37,7 +37,7 @@ defmodule MyApp.MixProject do
   defp deps do
     [
       {:combo, "~> 0.2"},
-      {:combo_vite, "~> 0.5"},
+      {:combo_vite, path: "../../../combo_vite"},
       {:combo_inertia, path: "../../../combo_inertia"},
       {:bandit, "~> 1.5"},
       {:system_env, "~> 0.1"},
