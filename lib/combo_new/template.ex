@@ -21,7 +21,7 @@ defmodule ComboNew.Template do
 
     orders = %{
       "vanilla" => 1,
-      "frontend-vite" => 2,
+      "vite" => 2,
       "fullstack-lite" => 3
     }
 
