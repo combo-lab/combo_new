@@ -27,7 +27,5 @@ config :my_app, MyApp.Web.Endpoint,
     ]
   ],
   code_reloader: true,
-  process_limit: 2,
-  force_ssl: false,
   debug_errors: true,
   secret_key_base: "======================= random_string(65) ======================="
