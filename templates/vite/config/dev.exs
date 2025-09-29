@@ -14,9 +14,6 @@ config :combo, :template, ceex_debug_annotations: true
 # Avoid configuring it in production as building large stacktraces may be expensive.
 config :my_app, :stacktrace_depth, 20
 
-# Enable dev routes
-config :my_app, dev_routes: true
-
 config :my_app, MyApp.Web.Endpoint,
   live_reloader: [
     patterns: [

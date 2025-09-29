@@ -11,11 +11,11 @@ defmodule MyApp.Web.Endpoint do
     same_site: "Lax"
   ]
 
-  # Serve at "/" the static files from "priv/static" directory.
   plug Plug.Static,
     at: "/",
-    from: :my_app,
-    only: MyApp.Web.static_paths()
+    from: {:my_app, "priv/static"},
+    only: MyApp.Web.static_paths(),
+    raise_on_missing_only: MyApp.Env.dev?()
 
   if live_reloading? do
     socket "/combo/live_reload/socket", Combo.LiveReloader.Socket
