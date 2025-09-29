@@ -19,9 +19,17 @@ derived_host = Keyword.fetch!(parsed_url, :host)
 derived_port = Keyword.fetch!(parsed_url, :port)
 
 listen_ip =
-  if derived_host in ["127.0.0.1", "localhost"],
-    do: {127, 0, 0, 1},
-    else: {0, 0, 0, 0}
+  cond do
+    derived_host in ["127.0.0.1", "localhost"] ->
+      {127, 0, 0, 1}
+
+    env = SystemEnv.get_env("LISTEN_IP") ->
+      {:ok, ip} = env |> to_charlist() |> :inet.parse_address()
+      ip
+
+    true ->
+      {0, 0, 0, 0}
+  end
 
 listen_port =
   if custom_port = SystemEnv.get_env("LISTEN_PORT", :integer),
