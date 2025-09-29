@@ -47,7 +47,7 @@ defmodule MyApp.MixProject do
   defp aliases do
     [
       setup: ["deps.get"],
-      "assets.deploy": ["phx.digest"]
+      "assets.deploy": ["combo.static.digest"]
     ]
   end
 end

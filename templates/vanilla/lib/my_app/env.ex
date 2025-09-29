@@ -5,4 +5,5 @@ defmodule MyApp.Env do
 
   def current, do: @mix_env
   def dev?, do: @mix_env == :dev
+  def prod?, do: @mix_env == :prod
 end

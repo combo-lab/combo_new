@@ -11,15 +11,11 @@ defmodule MyApp.Web.Endpoint do
     same_site: "Lax"
   ]
 
-  # Serve at "/" the static files from "priv/static" directory.
-  #
-  # The `gzip` option is for serving compressed static files generated
-  # by running `phx.digest`.
   plug Plug.Static,
     at: "/",
     from: {:my_app, "priv/static"},
-    gzip: not code_reloading?,
     only: MyApp.Web.static_paths(),
+    gzip: MyApp.Env.prod?(),
     raise_on_missing_only: MyApp.Env.dev?()
 
   if live_reloading? do
