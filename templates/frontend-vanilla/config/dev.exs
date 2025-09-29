@@ -18,7 +18,6 @@ config :my_app, :stacktrace_depth, 20
 config :my_app, dev_routes: true
 
 config :my_app, MyApp.Web.Endpoint,
-  check_origin: false,
   live_reloader: [
     patterns: [
       ~r"lib/my_app/web/router\.ex",
@@ -28,4 +27,5 @@ config :my_app, MyApp.Web.Endpoint,
   ],
   code_reloader: true,
   debug_errors: true,
+  check_origin: false,
   secret_key_base: "======================= random_string(65) ======================="
