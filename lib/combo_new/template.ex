@@ -20,7 +20,7 @@ defmodule ComboNew.Template do
       end)
 
     orders = %{
-      "frontend-vanilla" => 1,
+      "vanilla" => 1,
       "frontend-vite" => 2,
       "fullstack-lite" => 3
     }
