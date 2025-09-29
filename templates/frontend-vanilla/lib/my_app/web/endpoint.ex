@@ -17,9 +17,10 @@ defmodule MyApp.Web.Endpoint do
   # by running `phx.digest`.
   plug Plug.Static,
     at: "/",
-    from: :my_app,
+    from: {:my_app, "priv/static"},
     gzip: not code_reloading?,
-    only: MyApp.Web.static_paths()
+    only: MyApp.Web.static_paths(),
+    raise_on_missing_only: MyApp.Env.dev?()
 
   if live_reloading? do
     socket "/combo/live_reload/socket", Combo.LiveReloader.Socket
