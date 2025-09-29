@@ -22,6 +22,7 @@ defmodule ComboNew.Template do
     orders = %{
       "vanilla" => 1,
       "vite" => 2,
+      "inertia-react" => 2,
       "fullstack-lite" => 3
     }
 
