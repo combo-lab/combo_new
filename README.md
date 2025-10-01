@@ -24,9 +24,9 @@ $ mix archive.install hex combo_new
 
 > These principles only apply to the templates in `combo_new`, not to your own templates.
 
+- Templates only showcase features for building web interfaces. Other backend features like databases are not demonstrated.
 - Templates are designed to demonstrate the essential structure of a working project, not to encompass all possible requirements.
 - Templates are standalone runnable projects. Although it limits the range of requirements that a single template can support, it makes development and debugging much simpler.
-- Templates that include database functionality will always integrate with PostgreSQL - the world's most advanced open source RDBMS.
 
 In this way, `combo_new` can focus on providing minimal, functional base templates, avoiding the maintenance overhead of accommodating diverse requirements.
 
@@ -34,8 +34,14 @@ Meanwhile, `combo_new` supports generating projects using remote Git repos, whic
 
 ## Creating your own templates
 
-If you need a template to provide additional features like user authentication, email sending, etc, you can copy the template from `combo_new` that best matches your needs, then modify it accordingly. Read [the guide of creating templates](./CREATING_TEMPLATES.md) for more information.
+If you need a template to provide additional features like user authentication, email sending, etc, you can copy the template from `combo_new` that best matches your needs, then modify it accordingly.
+
+For instance, I've created my own template:
+
+- [zekedou/combo-fullback-lite](https://github.com/zekedou/combo-fullstack-lite)
+
+If you'd like to create one as well, please read [the guide of creating templates](./CREATING_TEMPLATES.md) for more information.
 
 ## License
 
-MIT
+[MIT](./LICENSE)
