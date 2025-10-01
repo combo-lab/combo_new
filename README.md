@@ -24,13 +24,13 @@ $ mix archive.install hex combo_new
 
 > These principles only apply to the templates in `combo_new`, not to your own templates.
 
-- Templates only showcase features for building web interfaces. Other backend features like databases are not demonstrated.
-- Templates are designed to demonstrate the essential structure of a working project, not to encompass all possible requirements.
-- Templates are standalone runnable projects. Although it limits the range of requirements that a single template can support, it makes development and debugging much simpler.
+- These templates only demonstrate features for building web interfaces. Other backend features, like data storage, authentication, authorization, telemetry, email sending, etc, are not demonstrated.
+- These templates are designed to demonstrate the essential structure of a working project, not to encompass all possible requirements.
+- These templates are standalone runnable projects. Although it limits the range of requirements that a single template can support, it makes development and debugging much simpler.
 
 In this way, `combo_new` can focus on providing minimal, functional base templates, avoiding the maintenance overhead of accommodating diverse requirements.
 
-Meanwhile, `combo_new` supports generating projects using remote Git repos, which allows community members to tailor their own templates for their own needs, enabling the community to flourish without being too restrictive.
+Meanwhile, `combo_new` supports generating projects using remote Git repos, which allows users to tailor their own templates for their own needs, enabling the community to flourish without being too restrictive.
 
 ## Creating your own templates
 
