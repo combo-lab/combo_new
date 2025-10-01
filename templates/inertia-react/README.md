@@ -1,6 +1,6 @@
 # MyApp
 
-A Combo project, integrating Vite for assets bundling.
+A Combo project, integrating Inertia with React adapter.
 
 ## Requirements
 
