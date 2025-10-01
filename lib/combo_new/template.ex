@@ -22,8 +22,7 @@ defmodule ComboNew.Template do
     orders = %{
       "vanilla" => 1,
       "vite" => 2,
-      "inertia-react" => 2,
-      "fullstack-lite" => 3
+      "inertia-react" => 3
     }
 
     Enum.sort_by(names, fn name -> Map.get(orders, name, name) end)
