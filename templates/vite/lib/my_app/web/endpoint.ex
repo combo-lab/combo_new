@@ -18,7 +18,7 @@ defmodule MyApp.Web.Endpoint do
     raise_on_missing_only: MyApp.Env.dev?()
 
   if live_reloading? do
-    socket "/combo/live_reload/socket", Combo.LiveReloader.Socket
+    socket "/combo/live_reloader/socket", Combo.LiveReloader.Socket
     plug Combo.LiveReloader
   end
 

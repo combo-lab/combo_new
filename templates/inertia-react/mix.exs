@@ -36,10 +36,10 @@ defmodule MyApp.MixProject do
 
   defp deps do
     [
-      {:combo, path: "../../../combo", override: true},
-      {:combo_vite, path: "../../../combo_vite", override: true},
-      {:combo_inertia, path: "../../../combo_inertia", override: true},
-      {:bandit, "~> 1.5"},
+      {:combo, "~> 0.3"},
+      {:combo_vite, "~> 0.5"},
+      {:combo_inertia, "~> 0.1"},
+      {:bandit, "~> 1.8"},
       {:system_env, "~> 0.1"},
       {:ex_check, ">= 0.0.0", only: [:dev], runtime: false},
       {:dialyxir, ">= 0.0.0", only: [:dev], runtime: false}

@@ -18,7 +18,7 @@ defmodule MyApp.Web.Endpoint do
     only: MyApp.Web.static_paths()
 
   if live_reloading? do
-    socket "/combo/live_reload/socket", Combo.LiveReloader.Socket
+    socket "/combo/live_reloader/socket", Combo.LiveReloader.Socket
     plug Combo.LiveReloader
   end
 

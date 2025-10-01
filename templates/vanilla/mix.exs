@@ -36,8 +36,8 @@ defmodule MyApp.MixProject do
 
   defp deps do
     [
-      {:combo, path: "../../../combo", override: true},
-      {:bandit, "~> 1.5"},
+      {:combo, "~> 0.3"},
+      {:bandit, "~> 1.8"},
       {:system_env, "~> 0.1"},
       {:ex_check, ">= 0.0.0", only: [:dev], runtime: false},
       {:dialyxir, ">= 0.0.0", only: [:dev], runtime: false}
