@@ -42,7 +42,7 @@ defmodule ComboNew.MixProject do
 
   defp docs do
     [
-      extras: ["README.md", "CREATING_TEMPLATES.md"],
+      extras: ["README.md", "CREATING_TEMPLATES.md", "LICENSE"],
       main: "readme",
       source_url: @source_url,
       source_ref: "v#{@version}"
