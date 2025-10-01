@@ -24,7 +24,7 @@ defmodule MyApp.Web.Router do
     pipe_through :api
   end
 
-  if MyApp.Env.dev? do
+  if MyApp.Env.dev?() do
     scope "/dev" do
       pipe_through :browser
     end
