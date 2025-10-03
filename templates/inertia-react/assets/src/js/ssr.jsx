@@ -9,6 +9,7 @@ export function render(page) {
   return createInertiaApp({
     page,
     render: ReactDOMServer.renderToString,
+    title: title => title ? `${title} - MyApp` : 'MyApp',
     resolve: (name) => resolvePageComponent(
       `./Pages/${name}.jsx`, 
       import.meta.glob('./Pages/**/*.jsx', { eager: true })

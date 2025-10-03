@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="csrf-token" content={get_csrf_token()} />
     <link rel="icon" href="/favicon.ico" />
-    <.inertia_title>{assigns[:page_title]}</.inertia_title>
+    <.inertia_title>
+      {if title = assigns[:page_title], do: "#{title} - MyApp", else: "MyApp"}
+    </.inertia_title>
     <.inertia_head content={@inertia_head} />
     <.vite_react_refresh />
     <.vite_assets names={["src/js/app.jsx"]} />
