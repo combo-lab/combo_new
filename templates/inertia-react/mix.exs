@@ -36,9 +36,9 @@ defmodule MyApp.MixProject do
 
   defp deps do
     [
-      {:combo, "~> 0.3"},
-      {:combo_vite, "~> 0.5"},
-      {:combo_inertia, "~> 0.1"},
+      {:combo, "~> 0.4"},
+      {:combo_vite, "~> 0.6"},
+      {:combo_inertia, "~> 0.2"},
       {:bandit, "~> 1.8"},
       {:system_env, "~> 0.1"},
       {:ex_check, ">= 0.0.0", only: [:dev], runtime: false},
