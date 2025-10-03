@@ -133,7 +133,6 @@ h6 {
 .main-container {
   display: flex;
   flex-direction: column;
-  transform: translateY(-2rem);
 }
 
 .main-container > :not(:last-child) {
