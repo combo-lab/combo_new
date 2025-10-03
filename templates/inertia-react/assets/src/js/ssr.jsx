@@ -11,8 +11,8 @@ export function render(page) {
     render: ReactDOMServer.renderToString,
     title: title => title ? `${title} - MyApp` : 'MyApp',
     resolve: (name) => resolvePageComponent(
-      `./Pages/${name}.jsx`, 
-      import.meta.glob('./Pages/**/*.jsx', { eager: true })
+      `./pages/${name}.jsx`, 
+      import.meta.glob('./pages/**/*.jsx', { eager: true })
     ),
     setup: ({ App, props }) => <App {...props} />,
   })

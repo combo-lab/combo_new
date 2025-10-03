@@ -5,17 +5,17 @@
 // ## Resolve page component
 // 
 //     resolvePageComponent(
-//       `./Pages/${name}.jsx`,
-//       import.meta.glob('./Pages/**/*.jsx', { eager: true })
+//       `./pages/${name}.jsx`,
+//       import.meta.glob('./pages/**/*.jsx', { eager: true })
 //     )
 //
 // ## Resolve page component with a fallback name
 // 
 //     resolvePageComponent(
-//       `./Pages/${name}.jsx`,
-//       import.meta.glob('./Pages/**/*.jsx', { eager: true }),
+//       `./pages/${name}.jsx`,
+//       import.meta.glob('./pages/**/*.jsx', { eager: true }),
 //       {
-//         fallbackName: `./Pages/404.jsx`
+//         fallbackName: `./pages/404.jsx`
 //       }
 //     )
 //

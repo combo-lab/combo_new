@@ -1,10 +1,8 @@
-import { Head } from '@inertiajs/react'
 import logo from "../../images/logo.svg"
 
 export default function Home({}) {
   return (
     <>
-      <Head title="MyApp.Web" />
       <div className="page-container">
         <main className="main-container">
           <img className="logo" src={logo}/>
