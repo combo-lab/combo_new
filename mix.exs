@@ -1,7 +1,7 @@
 defmodule ComboNew.MixProject do
   use Mix.Project
 
-  @version "0.6.0"
+  @version "0.7.0"
   @description "The project generator for Combo."
   @elixir_requirement "~> 1.18"
   @source_url "https://github.com/combo-lab/combo_new"
@@ -58,7 +58,7 @@ defmodule ComboNew.MixProject do
   defp package do
     [
       files: ~w(lib templates mix.exs README.md),
-      links: %{"GitHub" => @source_url},
+      links: %{"Source" => @source_url},
       licenses: ["MIT"]
     ]
   end
