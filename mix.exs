@@ -77,7 +77,7 @@ defmodule ComboNew.MixProject do
 
   defp tag_release(_) do
     Mix.shell().info("Tagging release as v#{@version}")
-    System.cmd("git", ["tag", "v#{@version}"])
+    System.cmd("git", ["tag", "v#{@version}", "--message", "Release v#{@version}"])
     System.cmd("git", ["push", "--tags"])
   end
 end
