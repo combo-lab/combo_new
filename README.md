@@ -20,6 +20,19 @@ $ mix archive.install hex combo_new
 - `combo_new`. Run `mix help combo_new` for more information.
 - `combo_new.update`. Run `mix help combo_new.update` for more information.
 
+## About the template structure
+
+The templates are structured as follows:
+
+```
+lib/my_app/
+├── application.ex
+├── core/
+├── core.ex
+├── web/
+└── web.ex
+```
+
 ## Design philosophy
 
 > These principles only apply to the templates in `combo_new`, not to your own templates.
