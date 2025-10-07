@@ -20,7 +20,7 @@ $ mix archive.install hex combo_new
 - `combo_new`. Run `mix help combo_new` for more information.
 - `combo_new.update`. Run `mix help combo_new.update` for more information.
 
-## About the template structure
+## The template structure
 
 The templates are structured as follows:
 
