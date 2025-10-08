@@ -10,7 +10,7 @@ import axios from "axios";
 axios.defaults.xsrfHeaderName = "x-csrf-token";
 
 function ssr_mode() {
-  return document.documentElement.hasAttribute("ssr");
+  return document.documentElement.hasAttribute("data-ssr");
 }
 
 createInertiaApp({
