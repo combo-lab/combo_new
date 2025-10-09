@@ -32,7 +32,7 @@ defmodule MyApp.Web.Endpoint do
   plug Plug.Parsers,
     parsers: [:urlencoded, :multipart, :json],
     pass: ["*/*"],
-    json_decoder: Combo.json_module()
+    json_decoder: Combo.json_library()
 
   plug Plug.MethodOverride
   plug Plug.Head
