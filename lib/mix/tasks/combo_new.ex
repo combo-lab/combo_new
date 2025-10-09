@@ -127,7 +127,10 @@ defmodule Mix.Tasks.ComboNew do
         exit_with_msg(:runtime_error, msg)
     end
 
-    print_next_steps(target_path)
+    case template do
+      {:builtin_template, _} -> print_next_steps(target_path)
+      _ -> print_unmanaged_next_steps()
+    end
   end
 
   defp check_template!(template) do
@@ -200,6 +203,13 @@ defmodule Mix.Tasks.ComboNew do
         $ cd #{relative_path(target_path)}
         $ mix setup
         $ iex -S mix combo.serve
+    """)
+  end
+
+  defp print_unmanaged_next_steps do
+    Mix.shell().info("""
+
+    Done!
     """)
   end
 
