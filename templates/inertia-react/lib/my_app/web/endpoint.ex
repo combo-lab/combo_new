@@ -1,16 +1,6 @@
 defmodule MyApp.Web.Endpoint do
   use Combo.Endpoint, otp_app: :my_app
 
-  # The session will be stored in the cookie and signed, this means its
-  # contents can be read but not tampered with.
-  # Set :encryption_salt if you would also like to encrypt it.
-  @session_opts [
-    store: :cookie,
-    key: "_my_app_web",
-    signing_salt: "= random_string(8) =",
-    same_site: "Lax"
-  ]
-
   plug Plug.Static,
     at: "/",
     from: {:my_app, "priv/static"},
@@ -36,6 +26,12 @@ defmodule MyApp.Web.Endpoint do
 
   plug Plug.MethodOverride
   plug Plug.Head
-  plug Plug.Session, @session_opts
+
+  plug Plug.Session,
+    store: :cookie,
+    key: "my_app_web_session",
+    signing_salt: "= random_string(8) =",
+    same_site: "Lax"
+
   plug MyApp.Web.Router
 end
