@@ -8,6 +8,7 @@ defmodule MyApp.Web.Router do
     plug :put_layout, html: {MyApp.Web.Layouts, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug Combo.Vite.Plug
   end
 
   pipeline :api do

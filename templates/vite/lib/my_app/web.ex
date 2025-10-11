@@ -75,10 +75,7 @@ defmodule MyApp.Web do
   defp html_helpers do
     quote do
       use Combo.HTML
-
-      use Combo.Vite.HTML,
-        endpoint: MyApp.Web.Endpoint,
-        static_dir: {:my_app, "priv/static"}
+      import Combo.Vite.HTML
 
       alias MyApp.Web.Layouts
 
