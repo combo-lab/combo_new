@@ -1,6 +1,3 @@
-import "@fontsource-variable/instrument-sans"
-import "../css/app.css"
-
 import { createInertiaApp } from "@inertiajs/react"
 import ReactDOMServer from "react-dom/server"
 import { resolvePageComponent } from "./inertia-helper";
