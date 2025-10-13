@@ -11,5 +11,5 @@ export default defineConfig({
       ssrOutDir: "../priv/ssr",
     }),
     react(),
-  ]
+  ],
 })

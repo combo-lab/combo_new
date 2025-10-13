@@ -5,7 +5,7 @@ export default function Home({}) {
     <>
       <div className="page-container">
         <main className="main-container">
-          <img className="logo" src={logo}/>
+          <img className="logo" src={logo} />
           <div>
             <h1 className="sr-only">Combo</h1>
             <p className="description">
@@ -15,5 +15,5 @@ export default function Home({}) {
         </main>
       </div>
     </>
-  );
+  )
 }
