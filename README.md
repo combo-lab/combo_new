@@ -52,7 +52,7 @@ If you need a template to provide additional features like authentication, email
 
 For instance, I've created my own template:
 
-- [zekedou/combo-fullback-lite](https://github.com/zekedou/combo-fullstack-lite)
+- [zekedou/combo-react-starter](https://github.com/zekedou/combo-react-starter)
 
 If you'd like to create one as well, please read [the guide of creating templates](./CREATING_TEMPLATES.md) for more information.
 
