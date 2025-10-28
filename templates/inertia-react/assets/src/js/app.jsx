@@ -3,11 +3,12 @@ import "vite/modulepreload-polyfill"
 import "@fontsource-variable/instrument-sans"
 import "../css/app.css"
 
+import axios from "axios"
 import { createInertiaApp } from "@inertiajs/react"
 import { createRoot, hydrateRoot } from "react-dom/client"
 
-import axios from "axios"
-axios.defaults.xsrfHeaderName = "x-csrf-token"
+axios.defaults.xsrfCookieName = "CSRF-TOKEN"
+axios.defaults.xsrfHeaderName = "X-CSRF-TOKEN"
 
 const appName = "MyApp"
 
