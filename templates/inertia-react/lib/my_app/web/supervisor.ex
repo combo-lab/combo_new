@@ -24,9 +24,8 @@ defmodule MyApp.Web.Supervisor do
     ssr? = get_in(config, [:inertia, :ssr])
 
     if ssr? do
-      [
-        {Combo.Inertia.SSR, path: Path.join([Application.app_dir(:my_app), "priv/ssr"])}
-      ]
+      path = Path.join([Application.app_dir(:my_app), "priv/ssr"])
+      [{Combo.Inertia.SSR, endpoint: MyApp.Web.Endpoint, path: path}]
     else
       []
     end
