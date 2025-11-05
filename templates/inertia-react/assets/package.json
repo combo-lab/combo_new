@@ -10,7 +10,7 @@
   "devDependencies": {
     "@vitejs/plugin-react": "^5.0.3",
     "vite": "^7.0.0",
-    "vite-plugin-combo": "file:../deps/combo_vite/npm-packages/vite-plugin-combo"
+    "vite-plugin-combo": "file:../deps/combo_vite/node-packages/vite-plugin-combo"
   },
   "dependencies": {
     "@fontsource-variable/instrument-sans": "^5.2.7",

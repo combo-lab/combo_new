@@ -19,8 +19,8 @@ importers:
         specifier: ^7.0.0
         version: 7.2.0
       vite-plugin-combo:
-        specifier: file:../deps/combo_vite/npm-packages/vite-plugin-combo
-        version: file:../deps/combo_vite/npm-packages/vite-plugin-combo(vite@7.2.0)
+        specifier: file:../deps/combo_vite/node-packages/vite-plugin-combo
+        version: file:../deps/combo_vite/node-packages/vite-plugin-combo(vite@7.2.0)
 
 packages:
 
@@ -347,8 +347,8 @@ packages:
     resolution: {integrity: sha512-j2Zq4NyQYG5XMST4cbs02Ak8iJUdxRM0XI5QyxXuZOzKOINmWurp3smXu3y5wDcJrptwpSjgXHzIQxR0omXljQ==}
     engines: {node: '>=12.0.0'}
 
-  vite-plugin-combo@file:../deps/combo_vite/npm-packages/vite-plugin-combo:
-    resolution: {directory: ../deps/combo_vite/npm-packages/vite-plugin-combo, type: directory}
+  vite-plugin-combo@file:../deps/combo_vite/node-packages/vite-plugin-combo:
+    resolution: {directory: ../deps/combo_vite/node-packages/vite-plugin-combo, type: directory}
     engines: {node: ^20.19.0 || >=22.12.0}
     peerDependencies:
       vite: ^7.0.0
@@ -628,7 +628,7 @@ snapshots:
       fdir: 6.5.0(picomatch@4.0.3)
       picomatch: 4.0.3
 
-  vite-plugin-combo@file:../deps/combo_vite/npm-packages/vite-plugin-combo(vite@7.2.0):
+  vite-plugin-combo@file:../deps/combo_vite/node-packages/vite-plugin-combo(vite@7.2.0):
     dependencies:
       vite: 7.2.0
 
