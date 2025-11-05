@@ -5,7 +5,7 @@ A Combo project, integrating Vite for assets bundling.
 ## Requirements
 
 - Elixir
-- Node.js
+- Node.js + pnpm
 
 ## Quick start
 

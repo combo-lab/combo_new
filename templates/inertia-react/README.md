@@ -5,7 +5,7 @@ A Combo project, integrating Inertia with React adapter.
 ## Requirements
 
 - Elixir
-- Node.js
+- Node.js + pnpm
 
 ## Quick start
 

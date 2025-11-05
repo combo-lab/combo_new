@@ -24,7 +24,7 @@ config :my_app, MyApp.Web.Endpoint,
   code_reloader: true,
   debug_errors: true,
   watchers: [
-    npm: ["run", "dev", cd: Path.expand("../assets", __DIR__)]
+    pnpm: ["run", "dev", cd: Path.expand("../assets", __DIR__)]
   ],
   check_origin: false,
   secret_key_base: "======================= random_string(65) ======================="

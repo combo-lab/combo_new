@@ -50,8 +50,8 @@ defmodule MyApp.MixProject do
   defp aliases do
     [
       setup: ["deps.get", "assets.setup"],
-      "assets.setup": ["cmd --cd assets npm install --install-links"],
-      "assets.build": ["cmd --cd assets npm run build"],
+      "assets.setup": ["cmd --cd assets pnpm install"],
+      "assets.build": ["cmd --cd assets pnpm run build"],
       "assets.clean": ["cmd rm -rf priv/static/build", "cmd rm -rf priv/ssr"],
       "assets.deploy": ["assets.clean", "assets.build"]
     ]
