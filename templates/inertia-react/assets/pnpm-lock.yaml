@@ -18,8 +18,8 @@ importers:
         specifier: '*'
         version: 1.13.2
       combo:
-        specifier: file:../deps/combo/npm-packages/combo
-        version: file:../deps/combo/npm-packages/combo
+        specifier: file:../deps/combo/node-packages/combo
+        version: file:../deps/combo/node-packages/combo
       react:
         specifier: ^19.1.1
         version: 19.2.0
@@ -475,8 +475,8 @@ packages:
     resolution: {integrity: sha512-FQN4MRfuJeHf7cBbBMJFXhKSDq+2kAArBlmRBvcvFE5BB1HZKXtSFASDhdlz9zOYwxh8lDdnvmMOe/+5cdoEdg==}
     engines: {node: '>= 0.8'}
 
-  combo@file:../deps/combo/npm-packages/combo:
-    resolution: {directory: ../deps/combo/npm-packages/combo, type: directory}
+  combo@file:../deps/combo/node-packages/combo:
+    resolution: {directory: ../deps/combo/node-packages/combo, type: directory}
 
   convert-source-map@2.0.0:
     resolution: {integrity: sha512-Kvp459HrV2FEJ1CAsi1Ku+MY3kasH19TFykTz2xWmMeq6bk2NU3XXvfJ+Q61m0xktWwt+1HSYf3JZsTms3aRJg==}
@@ -1128,7 +1128,7 @@ snapshots:
     dependencies:
       delayed-stream: 1.0.0
 
-  combo@file:../deps/combo/npm-packages/combo: {}
+  combo@file:../deps/combo/node-packages/combo: {}
 
   convert-source-map@2.0.0: {}
 

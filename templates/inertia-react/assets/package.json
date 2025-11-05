@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@fontsource-variable/instrument-sans": "^5.2.7",
-    "combo": "file:../deps/combo/npm-packages/combo",
+    "combo": "file:../deps/combo/node-packages/combo",
     "@inertiajs/react": "^2.1.7",
     "axios": "*",
     "react": "^19.1.1",
