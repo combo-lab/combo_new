@@ -5,6 +5,7 @@ defmodule MyApp.Web.Router do
     plug :accepts, ["html"]
     plug :fetch_session
     plug :fetch_flash
+    plug :put_previous_url
     plug :put_layout, html: {MyApp.Web.Layouts, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
