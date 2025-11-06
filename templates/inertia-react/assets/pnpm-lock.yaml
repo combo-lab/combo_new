@@ -9,10 +9,10 @@ importers:
   .:
     dependencies:
       '@fontsource-variable/instrument-sans':
-        specifier: ^5.2.7
+        specifier: ^5.2.0
         version: 5.2.8
       '@inertiajs/react':
-        specifier: ^2.1.7
+        specifier: ^2.2.0
         version: 2.2.15(react@19.2.0)
       axios:
         specifier: '*'
@@ -21,21 +21,21 @@ importers:
         specifier: file:../deps/combo/node-packages/combo
         version: file:../deps/combo/node-packages/combo
       react:
-        specifier: ^19.1.1
+        specifier: ^19.2.0
         version: 19.2.0
       react-dom:
-        specifier: ^19.1.1
+        specifier: ^19.2.0
         version: 19.2.0(react@19.2.0)
     devDependencies:
       '@vitejs/plugin-react':
-        specifier: ^5.0.3
-        version: 5.1.0(vite@7.2.0)
+        specifier: ^5.0.0
+        version: 5.1.0(vite@7.2.1)
       vite:
-        specifier: ^7.0.0
-        version: 7.2.0
+        specifier: ^7.2.0
+        version: 7.2.1
       vite-plugin-combo:
         specifier: file:../deps/combo_vite/node-packages/vite-plugin-combo
-        version: file:../deps/combo_vite/node-packages/vite-plugin-combo(vite@7.2.0)
+        version: file:../deps/combo_vite/node-packages/vite-plugin-combo(vite@7.2.1)
 
 packages:
 
@@ -451,8 +451,8 @@ packages:
   axios@1.13.2:
     resolution: {integrity: sha512-VPk9ebNqPcy5lRGuSlKx752IlDatOjT9paPlm8A7yOuW2Fbvp4X3JznJtT4f0GzGLLiWE9W8onz51SqLYwzGaA==}
 
-  baseline-browser-mapping@2.8.24:
-    resolution: {integrity: sha512-uUhTRDPXamakPyghwrUcjaGvvBqGrWvBHReoiULMIpOJVM9IYzQh83Xk2Onx5HlGI2o10NNCzcs9TG/S3TkwrQ==}
+  baseline-browser-mapping@2.8.25:
+    resolution: {integrity: sha512-2NovHVesVF5TXefsGX1yzx1xgr7+m9JQenvz6FQY3qd+YXkKkYiv+vTCc7OriP9mcDZpTC5mAOYN4ocd29+erA==}
     hasBin: true
 
   browserslist@4.27.0:
@@ -468,8 +468,8 @@ packages:
     resolution: {integrity: sha512-+ys997U96po4Kx/ABpBCqhA9EuxJaQWDQg7295H4hBphv3IZg0boBKuwYpt4YXp6MZ5AmZQnU/tyMTlRpaSejg==}
     engines: {node: '>= 0.4'}
 
-  caniuse-lite@1.0.30001753:
-    resolution: {integrity: sha512-Bj5H35MD/ebaOV4iDLqPEtiliTN29qkGtEHCwawWn4cYm+bPJM2NsaP30vtZcnERClMzp52J4+aw2UNbK4o+zw==}
+  caniuse-lite@1.0.30001754:
+    resolution: {integrity: sha512-x6OeBXueoAceOmotzx3PO4Zpt4rzpeIFsSr6AAePTZxSkXiYDUmpypEl7e2+8NCd9bD7bXjqyef8CJYPC1jfxg==}
 
   combined-stream@1.0.8:
     resolution: {integrity: sha512-FQN4MRfuJeHf7cBbBMJFXhKSDq+2kAArBlmRBvcvFE5BB1HZKXtSFASDhdlz9zOYwxh8lDdnvmMOe/+5cdoEdg==}
@@ -709,8 +709,8 @@ packages:
     peerDependencies:
       vite: ^7.0.0
 
-  vite@7.2.0:
-    resolution: {integrity: sha512-C/Naxf8H0pBx1PA4BdpT+c/5wdqI9ILMdwjSMILw7tVIh3JsxzZqdeTLmmdaoh5MYUEOyBnM9K3o0DzoZ/fe+w==}
+  vite@7.2.1:
+    resolution: {integrity: sha512-qTl3VF7BvOupTR85Zc561sPEgxyUSNSvTQ9fit7DEMP7yPgvvIGm5Zfa1dOM+kOwWGNviK9uFM9ra77+OjK7lQ==}
     engines: {node: ^20.19.0 || >=22.12.0}
     hasBin: true
     peerDependencies:
@@ -1080,7 +1080,7 @@ snapshots:
 
   '@types/lodash@4.17.20': {}
 
-  '@vitejs/plugin-react@5.1.0(vite@7.2.0)':
+  '@vitejs/plugin-react@5.1.0(vite@7.2.1)':
     dependencies:
       '@babel/core': 7.28.5
       '@babel/plugin-transform-react-jsx-self': 7.27.1(@babel/core@7.28.5)
@@ -1088,7 +1088,7 @@ snapshots:
       '@rolldown/pluginutils': 1.0.0-beta.43
       '@types/babel__core': 7.20.5
       react-refresh: 0.18.0
-      vite: 7.2.0
+      vite: 7.2.1
     transitivePeerDependencies:
       - supports-color
 
@@ -1102,12 +1102,12 @@ snapshots:
     transitivePeerDependencies:
       - debug
 
-  baseline-browser-mapping@2.8.24: {}
+  baseline-browser-mapping@2.8.25: {}
 
   browserslist@4.27.0:
     dependencies:
-      baseline-browser-mapping: 2.8.24
-      caniuse-lite: 1.0.30001753
+      baseline-browser-mapping: 2.8.25
+      caniuse-lite: 1.0.30001754
       electron-to-chromium: 1.5.245
       node-releases: 2.0.27
       update-browserslist-db: 1.1.4(browserslist@4.27.0)
@@ -1122,7 +1122,7 @@ snapshots:
       call-bind-apply-helpers: 1.0.2
       get-intrinsic: 1.3.0
 
-  caniuse-lite@1.0.30001753: {}
+  caniuse-lite@1.0.30001754: {}
 
   combined-stream@1.0.8:
     dependencies:
@@ -1369,11 +1369,11 @@ snapshots:
       escalade: 3.2.0
       picocolors: 1.1.1
 
-  vite-plugin-combo@file:../deps/combo_vite/node-packages/vite-plugin-combo(vite@7.2.0):
+  vite-plugin-combo@file:../deps/combo_vite/node-packages/vite-plugin-combo(vite@7.2.1):
     dependencies:
-      vite: 7.2.0
+      vite: 7.2.1
 
-  vite@7.2.0:
+  vite@7.2.1:
     dependencies:
       esbuild: 0.25.12
       fdir: 6.5.0(picomatch@4.0.3)
