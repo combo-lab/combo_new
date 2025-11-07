@@ -7,12 +7,11 @@
     "dev": "vite",
     "test": "true"
   },
-  "devDependencies": {
-    "vite": "^7.2.0",
-    "vite-plugin-combo": "file:../deps/combo_vite/node-packages/vite-plugin-combo"
-  },
+  "devDependencies": {},
   "dependencies": {
-    "@fontsource-variable/instrument-sans": "^5.2.0",
-    "combo": "file:../deps/combo/node-packages/combo"
+    "vite": "^7.2.0",
+    "combo": "file:../deps/combo/node-packages/combo",
+    "vite-plugin-combo": "file:../deps/combo_vite/node-packages/vite-plugin-combo",
+    "@fontsource-variable/instrument-sans": "^5.2.0"
   }
 }

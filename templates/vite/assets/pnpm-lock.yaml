@@ -14,7 +14,6 @@ importers:
       combo:
         specifier: file:../deps/combo/node-packages/combo
         version: file:../deps/combo/node-packages/combo
-    devDependencies:
       vite:
         specifier: ^7.2.0
         version: 7.2.1

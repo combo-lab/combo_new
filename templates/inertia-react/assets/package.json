@@ -7,17 +7,16 @@
     "dev": "vite",
     "test": "true"
   },
-  "devDependencies": {
-    "vite": "^7.2.0",
-    "vite-plugin-combo": "file:../deps/combo_vite/node-packages/vite-plugin-combo",
-    "@vitejs/plugin-react": "^5.0.0"
-  },
+  "devDependencies": {},
   "dependencies": {
-    "@fontsource-variable/instrument-sans": "^5.2.0",
+    "vite": "^7.2.0",
     "combo": "file:../deps/combo/node-packages/combo",
+    "vite-plugin-combo": "file:../deps/combo_vite/node-packages/vite-plugin-combo",
     "@inertiajs/react": "^2.2.0",
     "axios": "*",
     "react": "^19.2.0",
-    "react-dom": "^19.2.0"
+    "react-dom": "^19.2.0",
+    "@vitejs/plugin-react": "^5.0.0",
+    "@fontsource-variable/instrument-sans": "^5.2.0"
   }
 }
