@@ -1,7 +1,7 @@
 defmodule ComboNew.MixProject do
   use Mix.Project
 
-  @version "0.11.0"
+  @version "0.12.0"
   @description "The project generator for Combo."
   @elixir_requirement "~> 1.18"
   @source_url "https://github.com/combo-lab/combo_new"
