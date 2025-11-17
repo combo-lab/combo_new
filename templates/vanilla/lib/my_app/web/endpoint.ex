@@ -4,7 +4,7 @@ defmodule MyApp.Web.Endpoint do
   plug Plug.Static,
     at: "/",
     from: {:my_app, "priv/static"},
-    only: MyApp.Web.static_paths(),
+    only: ~w(robots.txt favicon.ico assets),
     gzip: MyApp.Env.prod?(),
     raise_on_missing_only: MyApp.Env.dev?()
 

@@ -19,8 +19,6 @@ defmodule MyApp.Web do
     apply(__MODULE__, which, [])
   end
 
-  def static_paths, do: ~w(robots.txt favicon.ico assets)
-
   def router do
     quote do
       use Combo.Router
@@ -49,13 +47,14 @@ defmodule MyApp.Web do
           to_form: 2
         ]
 
-      unquote(verified_routes())
+      unquote(route_helpers())
     end
   end
 
   def component do
     quote do
       unquote(html_helpers())
+      unquote(route_helpers())
     end
   end
 
@@ -69,6 +68,7 @@ defmodule MyApp.Web do
         ]
 
       unquote(html_helpers())
+      unquote(route_helpers())
     end
   end
 
@@ -77,17 +77,12 @@ defmodule MyApp.Web do
       use Combo.HTML
 
       alias MyApp.Web.Layouts
-
-      unquote(verified_routes())
     end
   end
 
-  def verified_routes do
+  defp route_helpers do
     quote do
-      use Combo.VerifiedRoutes,
-        endpoint: MyApp.Web.Endpoint,
-        router: MyApp.Web.Router,
-        statics: MyApp.Web.static_paths()
+      alias MyApp.Web.Router.Helpers, as: Routes
     end
   end
 end
