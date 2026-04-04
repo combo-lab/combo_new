@@ -26,6 +26,7 @@ defmodule MyApp.Web.Endpoint do
     json_decoder: Combo.json_library()
 
   plug Plug.MethodOverride
+  plug Plug.Head
 
   plug Plug.Session,
     store: :cookie,
