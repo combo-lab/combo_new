@@ -12,7 +12,7 @@
     "vite": "^8.0.0",
     "combo": "file:../deps/combo/node-packages/combo",
     "vite-plugin-combo": "file:../deps/combo_vite/node-packages/vite-plugin-combo",
-    "@inertiajs/react": "^2.2.0",
+    "@inertiajs/react": "^2.3.7",
     "axios": "*",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
