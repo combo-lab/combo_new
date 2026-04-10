@@ -17,8 +17,8 @@ config :my_app, :stacktrace_depth, 20
 config :my_app, MyApp.Web.Endpoint,
   live_reloader: [
     patterns: [
-      ~r"lib/my_app/web/router\.ex",
-      ~r"lib/my_app/web/(controllers|layouts|components)/.*\.(ex|ceex)$"
+      ~r"lib/my_app/web/router\.ex"E,
+      ~r"lib/my_app/web/(controllers|layouts|components)/.*\.(ex|ceex)$"E
     ]
   ],
   code_reloader: true,
