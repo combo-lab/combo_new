@@ -50,7 +50,8 @@ config :my_app, MyApp.Web.Endpoint,
   static_url: parsed_assets_base_url,
   http: [
     ip: listen_ip,
-    port: listen_port
+    port: listen_port,
+    http_options: [log_protocol_errors: false]
   ]
 
 case config_env() do
