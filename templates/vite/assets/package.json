@@ -7,11 +7,10 @@
     "dev": "vite",
     "test": "true"
   },
-  "devDependencies": {},
   "dependencies": {
-    "vite": "^8.0.0",
+    "@fontsource-variable/instrument-sans": "^5.2.8",
     "combo": "file:../deps/combo/node-packages/combo",
-    "vite-plugin-combo": "file:../deps/combo_vite/node-packages/vite-plugin-combo",
-    "@fontsource-variable/instrument-sans": "^5.2.0"
+    "vite": "^8.0.9",
+    "vite-plugin-combo": "file:../deps/combo_vite/node-packages/vite-plugin-combo"
   }
 }
