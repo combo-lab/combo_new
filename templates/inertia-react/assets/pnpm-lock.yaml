@@ -20,9 +20,6 @@ importers:
       axios:
         specifier: ^1.15.1
         version: 1.15.1
-      babel-plugin-react-compiler:
-        specifier: ^1.0.0
-        version: 1.0.0
       combo:
         specifier: file:../deps/combo/node-packages/combo
         version: file:../deps/combo/node-packages/combo
@@ -527,14 +524,17 @@ packages:
 
 snapshots:
 
-  '@babel/helper-string-parser@7.27.1': {}
+  '@babel/helper-string-parser@7.27.1':
+    optional: true
 
-  '@babel/helper-validator-identifier@7.28.5': {}
+  '@babel/helper-validator-identifier@7.28.5':
+    optional: true
 
   '@babel/types@7.29.0':
     dependencies:
       '@babel/helper-string-parser': 7.27.1
       '@babel/helper-validator-identifier': 7.28.5
+    optional: true
 
   '@emnapi/core@1.9.2':
     dependencies:
@@ -668,6 +668,7 @@ snapshots:
   babel-plugin-react-compiler@1.0.0:
     dependencies:
       '@babel/types': 7.29.0
+    optional: true
 
   call-bind-apply-helpers@1.0.2:
     dependencies:

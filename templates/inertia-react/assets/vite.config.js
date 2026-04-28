@@ -10,10 +10,6 @@ export default defineConfig({
       ssrInput: ["src/js/ssr.jsx"],
       ssrOutDir: "../priv/ssr",
     }),
-    react({
-      babel: {
-        plugins: ["babel-plugin-react-compiler"],
-      },
-    }),
+    react(),
   ],
 })
