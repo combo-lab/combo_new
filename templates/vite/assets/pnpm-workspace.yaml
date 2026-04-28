@@ -1,5 +1,7 @@
 onlyBuiltDependencies:
   - esbuild
 
+# Mitigating supply chain attacks
 minimumReleaseAge: 10080
-minimumReleaseAgeExclude: []
+blockExoticSubdeps: true
+trustPolicy: no-downgrade
