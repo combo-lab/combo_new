@@ -36,14 +36,15 @@ defmodule MyApp.MixProject do
 
   defp deps do
     [
+      {:system_env, "~> 0.1"},
       {:combo, "~> 0.10"},
       {:combo_vite, "~> 0.10"},
       {:combo_inertia, "~> 2.0"},
-      {:bandit, "~> 1.10"},
+      {:bandit, "~> 1.11"},
       {:jason, ">= 0.0.0"},
-      {:system_env, "~> 0.1"},
       {:ex_check, ">= 0.0.0", only: [:dev], runtime: false},
-      {:dialyxir, ">= 0.0.0", only: [:dev], runtime: false}
+      {:dialyxir, ">= 0.0.0", only: [:dev], runtime: false},
+      {:mix_audit, ">= 0.0.0", only: [:dev], runtime: false}
     ]
   end
 
